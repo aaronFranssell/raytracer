@@ -66,7 +66,7 @@ public class TestCSG
 		CSGNode root = new CSGNode(new Operation(Operation.BOUNDED_BY));
 		root.setLeftChild(new CSGNode(s2));
 		root.setRightChild(new CSGNode(s1));
-		CSGTree tree = new CSGTree(root);
+		CSGTree theTree = new CSGTree(root);
 		
 		effects = new Effects();
 		effects.setPhong(true);
@@ -77,11 +77,11 @@ public class TestCSG
 		
 		LinkedList<Surface> surfaceList = new LinkedList<Surface>();
 		
-		surfaceList.add(tree);
+		surfaceList.add(theTree);
 		surfaceList.add(f);
 		//surfaceList.add(s1);
 		//surfaceList.add(s2);
-
+		
 		Color returnColor = null;
 		/*
 		 * 	0|
