@@ -19,7 +19,7 @@ import etc.Ray;
 public class CSGTree extends Surface
 {
 	private CSGNode root;
-	
+
 	public CSGTree(CSGNode incomingRoot)
 	{
 		root = incomingRoot;
@@ -41,7 +41,7 @@ public class CSGTree extends Surface
 		while(node.getSurface() == null)
 		{
 			node = node.getLeftChild();
-		}//while
+		}
 		return node.getSurface().getEffects();
 	}
 	
@@ -57,11 +57,11 @@ public class CSGTree extends Surface
 		   (currNode.getLeftChild() == null && currNode.getRightChild() != null))
 		{
 			throw new Exception("Invalid BSPTree, one child is null, and other child is not.");
-		}//if
+		}
 		if(currNode.getLeftChild() == null && currNode.getRightChild() == null && currNode.getOperation() != null)
 		{
 			throw new Exception("Invalid BSPTree, an operation node has no children.");
-		}//if
+		}
 		if(currNode.getLeftChild() != null && currNode.getRightChild() != null && currNode.getSurface() != null)
 		{
 			throw new Exception("Invalid BSPTree, a node has children and contains a surface.");
@@ -84,7 +84,7 @@ public class CSGTree extends Surface
 		while(node.getSurface() == null)
 		{
 			node = node.getLeftChild();
-		}//while
+		}
 		return node.getSurface().getCA();
 	}
 
@@ -94,7 +94,7 @@ public class CSGTree extends Surface
 		while(node.getSurface() == null)
 		{
 			node = node.getLeftChild();
-		}//while
+		}
 		return node.getSurface().getCL();
 	}
 
@@ -104,7 +104,7 @@ public class CSGTree extends Surface
 		while(node.getSurface() == null)
 		{
 			node = node.getLeftChild();
-		}//while
+		}
 		return node.getSurface().getCR();
 	}
 	
@@ -141,22 +141,22 @@ public class CSGTree extends Surface
 			//recurse down the tree until we get hit data from the leaf nodes
 			leftHitData = new CSGTree(root.getLeftChild()).getHitData(r);
 			rightHitData = new CSGTree(root.getRightChild()).getHitData(r);
-		}//else
+		}
 		
 		if(root.getOperation().getValue() == Operation.UNION)
 		{
 			return getUnion(leftHitData, rightHitData);
-		}//if
+		}
 		
 		if(root.getOperation().getValue() == Operation.INTERSECTION)
 		{
 			return getIntersection(leftHitData, rightHitData);
-		}//if
+		}
 		//Operation.BOUNDED_BY
 		else
 		{
 			return getBoundedBy(leftHitData, rightHitData, r);
-		}//else
+		}
 	}
 	
 	/**
@@ -173,32 +173,27 @@ public class CSGTree extends Surface
 	 */
 	private HitData getBoundedBy(HitData leftHitData, HitData rightHitData, Ray r) throws Exception
 	{
+	
 		//If left side isn't hit, then return the miss. If the right side isn't hit, then I can just return the miss
 		//left side.
 		if(!leftHitData.isHit() || !rightHitData.isHit())
 		{
 			return leftHitData;
-		}//if
-		
+		}
+
 		Interval leftSideInterval = new Interval(leftHitData.getHitTs());
 		Interval rightSideInterval = new Interval(rightHitData.getHitTs());
 		
 		//this is the case when the bounding solid leaves the original solid unaffected
-		if(leftHitData.getSmallestT() < rightHitData.getSmallestT() && !rightSideInterval.isInInterval(leftHitData.getSmallestT()))
+		//if(leftHitData.getSmallestT() < rightHitData.getSmallestT() && !rightSideInterval.isInInterval(leftHitData.getSmallestT()))
+		if(!rightSideInterval.isInInterval(leftHitData.getSmallestT()))
 		{
 			return leftHitData;
-		}//if
-		
-		
-		if(r.isShootingToLight())
-		{
-			return new HitData();
-		}//if
-		
+		}
+
 		//this is the case where the near face of the right solid lies inside of the left solid surface
 		if(leftSideInterval.isInInterval(rightHitData.getSmallestT()))
 		{
-
 			double nearT = leftSideInterval.getNearInterval(rightHitData.getSmallestT());
 			Point nearHitPoint = Library.getP(nearT, r);
 			Surface rightSurface = rightHitData.getSurface();
@@ -207,14 +202,14 @@ public class CSGTree extends Surface
 			//be the reversed right hit data's normal.
 			return new HitData(nearT, this, normal.scaleReturn(-1.0), nearHitPoint,
 							   Library.mergeTArrays(leftHitData.getHitTs(), rightHitData.getHitTs()));
-		}//if
+		}
 		
 		//this is the case where all left side ts lie in the right solid. In this case, there is a miss.
 		//t arrays are sorted on creation in HitData, so i can just refer to smallestTIndex + 1 for the next smallest t
 		if(rightSideInterval.allInInterval(leftHitData.getHitTs()))
 		{
 			return new HitData();
-		}//if
+		}
 		
 		//this is the case where the near t of the main solid lies inside of the bounding solid. The far hit point
 		//of the bounding solid will be the hit point.
@@ -228,7 +223,7 @@ public class CSGTree extends Surface
 			//be the reversed right hit data's normal.
 			return new HitData(farT, this, normal.scaleReturn(-1.0), nearHitPoint,
 							   Library.mergeTArrays(leftHitData.getHitTs(), rightHitData.getHitTs()));
-		}//if
+		}
 		return leftHitData;
 	}
 	
@@ -238,15 +233,15 @@ public class CSGTree extends Surface
 		{
 			//left side takes precedence
 			return leftHitData;
-		}//if
+		}
 		else if(!leftHitData.isHit())
 		{
 			return leftHitData;
-		}//if
+		}
 		else
 		{
 			return rightHitData;
-		}//else
+		}
 	}
 
 	private HitData getUnion(HitData leftHitData, HitData rightHitData)
@@ -255,7 +250,7 @@ public class CSGTree extends Surface
 		if(leftHitData.isHit())
 		{
 			return leftHitData;
-		}//if
+		}
 		if(rightHitData.isHit() && !leftHitData.isHit())
 		{
 			return rightHitData;

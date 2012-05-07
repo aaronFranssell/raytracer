@@ -61,8 +61,8 @@ public class Cone extends Surface
 			{
 				throw new Exception("The base point: " + basePoint.toString() + " is not on the same line as the vertex: " 
 									+ vertex.toString() + " and direction vector: " + direction.toString());
-			}//if
-		}//if
+			}
+		}
 	}
 
 	/**
@@ -107,11 +107,11 @@ public class Cone extends Surface
 		if(pMinusV.dot(direction) < 0)
 		{
 			Nh = (direction.scaleReturn(-1 * hypotenuse).add(vertex)).toPoint();
-		}//if
+		}
 		else
 		{
 			Nh = (direction.scaleReturn(hypotenuse).add(vertex)).toPoint();
-		}//else
+		}
 		Vector normal = p.minus(Nh);
 		return normal.normalizeReturn();
 	}
@@ -149,17 +149,17 @@ public class Cone extends Surface
 		{
 			//determine if the hit point p is to far away from the base point
 			retTArray = Library.getHitTsByLimitingLength(retTArray, direction, basePoint, length, r);
-		}//if
+		}
 		if(!Double.isNaN(Library.getSmallestT(retTArray)))
 		{
 			Point p = Library.getP(smallestT, r);
 			Vector normal = getNormal(p, r);
 			return new HitData(smallestT, this, normal, p, retTArray);
-		}//if
+		}
 		else
 		{
 			return new HitData();
-		}//else
+		}
 	}
 	
 	@Override
@@ -179,6 +179,4 @@ public class Cone extends Surface
 	{
 		return cL;
 	}
-
-	
 }

@@ -28,7 +28,7 @@ public class Triangle extends Surface
 		b = incomingB;
 		c = incomingC;
 		effects = incomingEffects;
-	}//triangle
+	}
 	
 	public double getSmallestT(Ray r)
 	{
@@ -45,7 +45,7 @@ public class Triangle extends Surface
 		if(gamma < 0.0 || gamma > 1.0)
 		{
 			return Double.NaN;
-		}//if
+		}
 		Matrix3 betaTop = new Matrix3(a.x - r.getEye().x, a.x - c.x, r.getD().x,
 		  a.y - r.getEye().y, a.y - c.y, r.getD().y,
 		  a.z - r.getEye().z, a.z - c.z, r.getD().z);
@@ -55,7 +55,7 @@ public class Triangle extends Surface
 		if(beta < 0.0 || beta > 1.0 - gamma)
 		{
 			return Double.NaN;
-		}//if
+		}
 		Matrix3 tTop = new Matrix3(a.x - b.x, a.x - c.x, a.x - r.getEye().x,
 						   a.y - b.y, a.y - c.y, a.y - r.getEye().y,
 						   a.z - b.z, a.z - c.z, a.z - r.getEye().z);
@@ -77,7 +77,7 @@ public class Triangle extends Surface
 			n.x -= 2*n.x;
 			n.y -= 2*n.y;
 			n.z -= 2*n.z;
-		}//if
+		}
 		
 		return n;
 	}
@@ -92,7 +92,7 @@ public class Triangle extends Surface
 		Vector normal = getNormal(p, r);
 		HitData hit = new HitData(smallestT, this, normal, p, retTArray);
 		return hit;
-	}//isHit
+	}
 	
 	@Override
 	public int getType()

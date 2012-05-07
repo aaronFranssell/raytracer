@@ -14,26 +14,26 @@ public class Vector
 		x = incomingX;
 		y = incomingY;
 		z = incomingZ;
-	}//Vector3
+	}
 	
 	public boolean equals(Object other)
 	{
 		if(other == null)
 		{
 			return false;
-		}//if
+		}
 		
 		if(!(other instanceof Vector))
 		{
 			return false;
-		}//if
+		}
 		Vector otherVector = (Vector) other;
 		if(Library.doubleEqual(otherVector.x, x, Constants.POSITIVE_ZERO) &&
 		   Library.doubleEqual(otherVector.y, y, Constants.POSITIVE_ZERO) &&
 		   Library.doubleEqual(otherVector.z, z, Constants.POSITIVE_ZERO))
-		{
+		{	
 			return true;
-		}//if
+		}
 		return false;
 	}
 	
@@ -52,12 +52,12 @@ public class Vector
 		newZ = x*right.y - y*right.x;
 		Vector vector = new Vector(newX,newY,newZ);
 		return vector;
-	}//cross
+	}
 
 	public double dot(Vector other)
 	{
 		return(other.x * x + other.y * y + other.z * z);
-	}//dot
+	}
 	
 	public double magnitude()
 	{

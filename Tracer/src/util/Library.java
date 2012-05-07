@@ -25,7 +25,7 @@ import primitives.Surface;
 public class Library 
 {
 		
-//	this scales the image so that all color values over %75 of 255 are scaled uniformly between 
+	//this scales the image so that all color values over %75 of 255 are scaled uniformly between 
 	//~191 and 255
 	public static void scale2(int[][][] imageData, double pctScaleStart, int totalRGBValues, int totalSamples,
 							   int largestIntColorValue, int numberAbove255, int width, int height)
@@ -34,7 +34,6 @@ public class Library
 		System.out.println("largest (int) color value: " + largestIntColorValue);
 		System.out.println("totalSamples: " + totalSamples);
 		System.out.println("numberAbove255: " + numberAbove255);
-		//System.out.println("uhhh value: " + (pctScaleStart * 255));
 		int startValue = (int) (pctScaleStart * 255);
 		System.out.println("startValue: " + startValue);
 		for(int w = 0; w < width; w++)
@@ -45,27 +44,27 @@ public class Library
 				{
 					imageData[w][h][0] = startValue + calcValue(imageData[w][h][0],255 - startValue,
 															    largestIntColorValue);
-				}//if
+				}
 				if(imageData[w][h][1] > startValue)
 				{
 					imageData[w][h][1] = startValue + calcValue(imageData[w][h][1],255 - startValue,
 						    									largestIntColorValue);
-				}//if
+				}
 				if(imageData[w][h][2] > startValue)
 				{
 					imageData[w][h][2] = startValue + calcValue(imageData[w][h][2],255 - startValue,
 						    									largestIntColorValue);
-				}//if
-			}//for
-		}//for
-	}//scale
+				}
+			}
+		}
+	}
 	
 	private static int calcValue(int currValue, int difference, int largestIntColorValue)
 	{
 		return difference*currValue/largestIntColorValue;
 	}
 	
-//	This scales the image so 255 is the highest individual pixel color (437->255 in one case)
+	//This scales the image so 255 is the highest individual pixel color (437->255 in one case)
 	public static void scale(int[][][] imageData, int largestIntColorValue, int width, int height)
 	{
 		System.out.println("largest (int) color value: " + largestIntColorValue);
@@ -76,9 +75,9 @@ public class Library
 				imageData[w][h][0] = 255*imageData[w][h][0]/largestIntColorValue;
 				imageData[w][h][1] = 255*imageData[w][h][1]/largestIntColorValue;
 				imageData[w][h][2] = 255*imageData[w][h][2]/largestIntColorValue;
-			}//for
-		}//for
-	}//scale
+			}
+		}
+	}
 	
 	public static double max(double num1, double num2)
 	{
@@ -102,7 +101,7 @@ public class Library
 		retArray[0] = ((b*-1) + Math.pow(discriminant,0.5))/(2*a);
 		retArray[1] = ((b*-1) - Math.pow(discriminant,0.5))/(2*a);
 		return retArray;
-	}//solveQuadratic
+	}
 	
 	public static Ray getRefractedRay(Vector d, double refractiveN, double refractiveNT,
 									  HitData hitData)
@@ -113,7 +112,7 @@ public class Library
 		//if ((reversed d) * n) is greater than 0. If the cos is < 0, we need to reverse the normal.
 		Vector reveresedD = new Vector(-d.x,-d.y,-d.z);
 		double tempDDotN = reveresedD.dot(n);
-		//System.out.println("tempDDotN: " + tempDDotN);
+
 		if(tempDDotN < 0)
 		{
 			n.x -= 2*n.x;
@@ -129,7 +128,7 @@ public class Library
 			return null;
 		secondHalf = Math.pow(secondHalf, 0.5);
 		Vector secondHalfN = new Vector(n.x, n.y, n.z);
-		//System.out.println("secondHalfN: " + secondHalfN);
+
 		secondHalfN.x *= secondHalf;
 		secondHalfN.y *= secondHalf;
 		secondHalfN.z *= secondHalf;
@@ -150,7 +149,7 @@ public class Library
 		firstHalfN.x /= refractiveNT;
 		firstHalfN.y /= refractiveNT;
 		firstHalfN.z /= refractiveNT;
-		//System.out.println("firstHalfN: " + firstHalfN.toString() + "\n");
+
 		Vector t = new Vector(0.0,0.0,0.0);
 		t.x = firstHalfN.x - secondHalfN.x;
 		t.y = firstHalfN.y - secondHalfN.y;
@@ -165,16 +164,13 @@ public class Library
 	
 	public static boolean isInShadow(Surface currSurface, LinkedList<Surface> surfaceList, Point light, HitData hitData) throws Exception
 	{
-		Vector d = new Vector(0.0,0.0,0.0);
-		
-		d = light.minus(hitData.getP());
+		Vector d = light.minus(hitData.getP());
 				
 		double distanceToLight = d.magnitude();
 		
 		d.normalize();
 		
 		Ray rayShotToLight = new Ray(d, hitData.getP());
-		rayShotToLight.setShootingToLight(true);
 		
 		for(Surface inFrontSurface : surfaceList)
 		{
@@ -186,9 +182,9 @@ public class Library
 				if(distanceToClosePoint < distanceToLight)
 				{
 					return true;
-				}//if
-			}//if
-		}//while
+				}
+			}
+		}
 		return false;
 	}
 	
@@ -304,7 +300,7 @@ public class Library
 				aRoot = aRoot.add(new Complex((-1) * alpha, 0.0));
 				aRoot = aRoot.divide(new Complex(2.0, 0.0));
 				allRoots.add(aRoot);
-			}//while
+			}
 			double minusBOver4A = ((-1)*B)/(4* A);
 						
 			Iterator<Complex> allRootsIt = allRoots.iterator();
@@ -329,8 +325,8 @@ public class Library
 						returnTs[returnTIndex] = Double.NaN;
 					}
 					returnTIndex++;
-				}//while
-			}//while
+				}
+			}
 			return returnTs;
 		}//if
 		//these will behave exactly like real numbers for the time being
@@ -391,10 +387,10 @@ public class Library
 					returnTs[returnTIndex] = Double.NaN;
 				}
 				returnTIndex++;
-			}//while
-		}//while
+			}
+		}
 		return returnTs;
-	}//solveQuartic
+	}
 	
 	private static Complex getR(Complex P, Complex Q) {
 		Complex R;
@@ -411,7 +407,7 @@ public class Library
 			//either sign of the square root will do
 			//so we can break after grabbing the root
 			break;
-		}//while
+		}
 		return R;
 	}
 	
@@ -512,7 +508,7 @@ public class Library
 		if(num1 + tolerance > num2 && num1 - tolerance < num2)
 		{
 			return true;
-		}//if
+		}
 		else
 		{
 			return false;
@@ -540,7 +536,7 @@ public class Library
 			if(Double.isNaN(incomingHitTs[i]))
 			{
 				throw new Exception("Hit t value is NaN, these values must be valid hits.");
-			}//if
+			}
 			Point hitP = Library.getP(incomingHitTs[i], r);
 			
 			Vector vectorToHitPointFromBase = hitP.minus(basePoint);
@@ -570,9 +566,9 @@ public class Library
 				{
 					//simply copy over the hitT
 					hitTs[i] = incomingHitTs[i];
-				}//else
-			}//else
-		}//for
+				}
+			}
+		}
 		
 		return hitTs;
 	}

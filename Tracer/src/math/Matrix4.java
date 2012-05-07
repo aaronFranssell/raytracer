@@ -23,7 +23,7 @@ public class Matrix4
 		matrix[1][0] = i5; matrix[1][1] = i6; matrix[1][2] = i7; matrix[1][3] = i8; 
 		matrix[2][0] = i9; matrix[2][1] =i10; matrix[2][2] =i11; matrix[2][3] =i12;
 		matrix[3][0] =i13; matrix[3][1] =i14; matrix[3][2] =i15; matrix[3][3] =i16;
-	}//matrix
+	}
 	
 	public Matrix4(double[][] incomingMatrix)
 	{
@@ -75,11 +75,10 @@ public class Matrix4
 				for(int a = 0; a < 4; a++)
 				{
 					smallSum += matrix[i][a] * right[a][u];
-				}//for
+				}
 				retMatrix[i][u] = smallSum;
-			}//for
-		}//for
-		System.out.println();
+			}
+		}
 		return new Matrix4(retMatrix);
 	}
 	
@@ -95,7 +94,7 @@ public class Matrix4
 			if(i%2 == 1)
 			{
 				outside *= -1;
-			}//if
+			}
 			double[][] matrix3 = new double[3][3];
 			int m3row = 0;
 			int m3col = 0;
@@ -111,21 +110,21 @@ public class Matrix4
 						{
 							matrix3[m3row][m3col] = matrix[a][e];
 							m3col++;
-						}//if
-					}//for
+						}
+					}
 					m3row++;
-				}//if
-			}//for
+				}
+			}
 			Matrix3 m = new Matrix3(matrix3);
 			partialDet[partialDetIndex] = outside * m.det();
 			partialDetIndex++;
-		}//for
+		}
 		for(int a = 0; a < partialDet.length; a++)
 		{
 			retVal += partialDet[a];
-		}//for
+		}
 		return retVal;
-	}//det
+	}
 	
 	public Matrix4 getMinors()
 	{
@@ -149,17 +148,17 @@ public class Matrix4
 							{
 								matrix3[m3row][m3col] = matrix[a][e];
 								m3col++;
-							}//if
-						}//for
+							}
+						}
 						m3row++;
-					}//if
-				}//for
+					}
+				}
 				Matrix3 m = new Matrix3(matrix3);
 				retMatrix[i][u] = (i+u)%2 == 0 ? m.det():m.det()*-1;
-			}//for
-		}//for
+			}
+		}
 		return new Matrix4(retMatrix);
-	}//getMinors
+	}
 	
 	public Matrix4 transpose()
 	{
@@ -169,8 +168,8 @@ public class Matrix4
 			for(int u = 0; u < 4; u++)
 			{
 				retMatrix[u][i] = matrix[i][u];
-			}//for
-		}//for
+			}
+		}
 		return new Matrix4(retMatrix);
 	}
 	
@@ -178,7 +177,7 @@ public class Matrix4
 	{
 		Matrix4 minorMatrix = getMinors();
 		return minorMatrix.transpose();
-	}//getAdjoint
+	}
 	
 	public String toString()
 	{
@@ -192,10 +191,10 @@ public class Matrix4
 			if(i != 3)
 			{
 				returnString += "\n";
-			}//if
-		}//for
+			}
+		}
 		return returnString;
-	}//toString
+	}
 	
 	public Matrix4 divideBy(double scaleNum)
 	{
@@ -205,8 +204,8 @@ public class Matrix4
 			for(int u = 0; u < 4; u++)
 			{
 				retMatrix[i][u] = matrix[i][u]/scaleNum; 
-			}//for
-		}//for
+			}
+		}
 		return new Matrix4(retMatrix);
 	}
 	
@@ -218,8 +217,8 @@ public class Matrix4
 			for(int u = 0; u < 4; u++)
 			{
 				retMatrix[i][u] = matrix[i][u] * mulNum;
-			}//for
-		}//for
+			}
+		}
 		return new Matrix4(retMatrix);
 	}
 	
@@ -228,11 +227,11 @@ public class Matrix4
 		if(this.det() != 0)
 		{
 			return this.getAdjoint().divideBy(1/this.det());
-		}//if
+		}
 		else
 		{
 			throw new Exception("Determinant of this matrix is zero, may not get the inverse.");
-		}//else
+		}
 	}
 
 	public double[][] getMatrix() {

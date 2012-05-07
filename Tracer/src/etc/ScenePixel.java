@@ -40,7 +40,7 @@ public class ScenePixel
 			return new Color(0.0,0.0,0.0);
 		}
 		return colorPixel(r, surfaceList, currentDepth, eye, currHit);
-	}//recurse
+	}
 	
 	private HitData shootRay(LinkedList<Surface> surfaceList, Ray r) throws Exception
 	{
@@ -55,11 +55,11 @@ public class ScenePixel
 				if(hit == null || smallestHit.getSmallestT() < hit.getSmallestT())
 				{
 					hit = smallestHit;
-				}//if
-			}//if
-		}//while
+				}
+			}
+		}
 		return hit;
-	}//shootRay
+	}
 	
 	private Color colorPixel(Ray r, LinkedList<Surface> surfaceList, int currentDepth, Point eye, 
 			  						HitData hit) throws Exception
@@ -97,8 +97,8 @@ public class ScenePixel
 			{
 				refractReturnColor = recurse(newRay,surfaceList,currentDepth+1);
 				Library.clamp(refractReturnColor);
-			}//if
-		}//if
+			}
+		}
 		return refractReturnColor.scaleReturn(Constants.scaleRefractReturnColor);
 	}
 
@@ -117,7 +117,7 @@ public class ScenePixel
 			newRay = Library.getReflectedRay(r, hit.getP(), hit.getNormal());
 			reflectReturnColor = recurse(newRay, surfaceList, currentDepth + 1);
 			Library.clamp(reflectReturnColor);
-		}//if
+		}
 		return reflectReturnColor.scaleReturn(Constants.scaleReflectReturnColor);
 	}
 }

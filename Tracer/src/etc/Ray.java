@@ -3,12 +3,8 @@ package etc;
 import math.Point;
 import math.Vector;
 
-
-
 public class Ray
 {
-	private boolean shootingToLight;
-	
 	private Point eye;
 	
 	private Vector uvwS;
@@ -27,7 +23,7 @@ public class Ray
 	
 	private Vector s;
 	private Vector d;
-
+	
 	public Ray(Point incomingEye, double incomingL, double incomingR, double incomingB, double incomingT,
 			   int incomingNX, int incomingNY, int incomingI, int incomingJ,
 			   Vector incomingU, Vector incomingV, Vector incomingW)
@@ -170,15 +166,5 @@ public class Ray
 
 	public void setW(Vector w) {
 		this.w = w;
-	}
-
-	public boolean isShootingToLight()
-	{
-		return shootingToLight;
-	}
-
-	public void setShootingToLight(boolean shootingToLight)
-	{
-		this.shootingToLight = shootingToLight;
 	}
 }

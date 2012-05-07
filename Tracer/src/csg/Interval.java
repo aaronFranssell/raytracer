@@ -24,7 +24,7 @@ public class Interval
 			{
 				return interval[i];
 			}
-		}//for
+		}
 		try
 		{
 			throw new Exception("Not a valid smallestT for the interval!");
@@ -50,8 +50,8 @@ public class Interval
 			if(smallestT > interval[i] && smallestT < interval[i + 1])
 			{
 				return true;
-			}//if
-		}//for
+			}
+		}
 		return false;
 	}
 	
@@ -76,7 +76,7 @@ public class Interval
 		if(interval[0] > smallestT)
 		{
 			return Double.NaN;
-		}//if
+		}
 		
 		//increment by 2, if the smallestT is inside of an interval
 		for(int i = 0; i < interval.length; i += 2)
@@ -85,13 +85,13 @@ public class Interval
 			{
 				//smallestT is inside the invertval, the hit point will be the far end of the interval.
 				return interval[i+1];
-			}//if
+			}
 			//can break out of the loop if we know that the smallestT does not lie in an interval
 			if(smallestT < interval[i])
 			{
 				break;
-			}//if
-		}//for
+			}
+		}
 		
 		return Double.NaN;
 	}

@@ -62,7 +62,7 @@ public class TestCSG
 		effects = new Effects();
 		effects.setPhong(true);
 		Sphere s2 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
-		
+
 		CSGNode root = new CSGNode(new Operation(Operation.BOUNDED_BY));
 		root.setLeftChild(new CSGNode(s2));
 		root.setRightChild(new CSGNode(s1));
@@ -72,7 +72,7 @@ public class TestCSG
 		effects.setPhong(true);
 		effects.setReflective(true);
 		Point point = new Point(0.0,-2.5,0.0);
-		Vector normal =new Vector(0.0,1.0,0.0); 
+		Vector normal =new Vector(0.0,1.0,0.0);
 		Plane f = new Plane(normal, point, cR,cL, Constants.cA, effects);
 		
 		LinkedList<Surface> surfaceList = new LinkedList<Surface>();

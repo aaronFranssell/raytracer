@@ -83,6 +83,11 @@ public class Constants
 	public static int height = 800;
 	
 	/**
+	 * Outersphere radius. Just has to be sufficiently large enough so that no shapes are behind it.
+	 */
+	public static final double OUTERSPHERE_RADIUS = 100.0;
+	
+	/**
 	 * I dunno how these interact exactly. Their ratio means something about whether things appear bigger or 
 	 * smaller... Lolz.
 	 */
@@ -99,6 +104,6 @@ public class Constants
 	public static final int top = 1;
 	public static final int bottom = -1;
 	
-	public static String pathToIMGDirectory = "C:\\raytracer\\Tracer\\img\\";
-	public static String pathToLogDirectory = "C:\\raytracer\\Tracer\\debugging\\";
+	public static String pathToIMGDirectory = "C:\\raytracer\\raytracer\\Tracer\\img\\";
+	public static String pathToLogDirectory = "C:\\raytracer\\raytracer\\Tracer\\debugging\\";
 }

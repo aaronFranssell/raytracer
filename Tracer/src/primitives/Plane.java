@@ -6,6 +6,7 @@ import etc.HitData;
 import etc.Ray;
 import math.Point;
 import math.Vector;
+import util.Constants;
 import util.Library;
 
 
@@ -42,7 +43,7 @@ public class Plane extends Surface
 		double bottom = tempD.dot(n);
 		double hitT = top/bottom;
 		
-		if(hitT < 0.0003)
+		if(hitT < Constants.POSITIVE_ZERO)
 		{
 			return Double.MAX_VALUE;
 		}
@@ -75,7 +76,7 @@ public class Plane extends Surface
 			if(Math.sin(p.x) > 0)
 			{
 				returnColor = white;
-			}//if
+			}
 			else
 			{
 				returnColor =  black;
@@ -86,7 +87,7 @@ public class Plane extends Surface
 			if(Math.sin(p.x) > 0)
 			{	
 				returnColor = black;
-			}//if
+			}
 			else
 			{
 				returnColor =  white;

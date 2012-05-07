@@ -101,7 +101,7 @@ public class TestProg
 		effects = new Effects();
 		effects.setPhong(true);
 		String filePath = Constants.pathToIMGDirectory + "hubble1.JPG";
-		OuterSphere background = new OuterSphere(800,filePath,effects,Constants.cA,cL);
+		OuterSphere background = new OuterSphere(filePath,effects,Constants.cA,cL, 1.0);
 		
 		cR = new Color(0.0,0.7,0.5);
 		effects = new Effects();
@@ -173,7 +173,7 @@ public class TestProg
 		System.out.println("w: "+ basis.getW().x + ", " + basis.getW().y + ", " + basis.getW().z);
 		for(int w=0;w<Constants.width;w++)
 		{
-			//System.out.println("w: " + w);
+			System.out.println("w: " + w);
 			for(int h=0;h<Constants.height;h++)
 			{
 				r = new Ray(Constants.eye, Constants.left, Constants.right,Constants.bottom, Constants.top, 

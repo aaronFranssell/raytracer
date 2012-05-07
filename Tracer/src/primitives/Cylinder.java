@@ -97,7 +97,7 @@ public class Cylinder extends Surface
 		if(cosDirection < 0)
 		{
 			distanceToClosePoint *= -1;
-		}//if
+		}
 		Vector pointOnLine = new Vector(direction.x * distanceToClosePoint, direction.y * distanceToClosePoint, 
 										direction.z * distanceToClosePoint);		
 		//displace the scaled vector by the center, and that is the close point
@@ -123,7 +123,7 @@ public class Cylinder extends Surface
 		if(bottomToP.dot(direction) < 0)
 		{
 			return false;
-		}//if
+		}
 		//Now do the same as above, except in reverse.	
 		Vector topToP = pointOnCylinder.minus(top);
 		topToP.normalize();
@@ -141,7 +141,7 @@ public class Cylinder extends Surface
 		if(!rayHitInfiniteCylinder(r))
 		{
 			return new HitData();
-		}//if
+		}
 		double[] hitTs = getHitTs(r);
 		double smallestT = Library.getSmallestT(hitTs);
 		if(Double.isNaN(smallestT))
@@ -158,7 +158,6 @@ public class Cylinder extends Surface
 	{
 		preComputedEyeMinusBottom = bottom.minus(r.getEye());
 		
-		//a discussion of this algorithm is in the raytracingDocumentation directory in downloadDirectory
 		preComputedRCrossA = r.getD().cross(direction);
 		Vector tempRCrossA = preComputedRCrossA.copy();
 		tempRCrossA.normalize();
@@ -167,7 +166,7 @@ public class Cylinder extends Surface
 		if(r.getD().x == 0.0/0.0 || r.getD().y == 0.0/0.0 || r.getD().z == 0.0/0.0)
 		{
 			return false;
-		}//if
+		}
 		
 		Vector eyeMinusBottom = r.getEye().minus(bottom);
 		//"d" represents the closest the ray will get to the center vector/line of the cylinder.

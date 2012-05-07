@@ -51,7 +51,6 @@ public class Transform
 										  0.0,0.0,1.0,-incomingWorldCenter.z,
 										  0.0,0.0,0.0,1.0);
 		translationMatrix = translationMatrix.multiply(moveMatrix);
-		//System.out.println("translationMatrix: " + translationMatrix);
 		translationMatrixInverse = translationMatrix.getInverse();
 	}
 	

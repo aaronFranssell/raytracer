@@ -10,23 +10,23 @@ import etc.Ray;
 
 public class Sphere extends Surface
 {
-	private Point center;
+	protected Point center;
 
-	private double radius;
+	protected double radius;
 
-	private Color cR;
+	protected Color cR;
 
-	private Color cA;
+	protected Color cA;
 
-	private Color cL;
+	protected Color cL;
 
-	private int[][][] image;
+	protected int[][][] image;
 
-	double textureScale;
+	protected double textureScale;
 
-	int w;
+	protected int w;
 
-	int h;
+	protected int h;
 
 	public Sphere(Point incomingCenter, double incomingRadius,
 			Color incomingCR, Color incomingCA, Color incomingCL,
@@ -45,7 +45,7 @@ public class Sphere extends Surface
 			image = Library.readImage(filePath);
 			w = image.length;
 			h = image[0].length;
-		}// if
+		}
 	}
 
 	@Override

@@ -87,15 +87,15 @@ public abstract class Surface
 		{
 			NoiseColor nc = effects.getNoiseMappedColorClass();
 			cR = nc.getColor(p);
-		}//if		
+		}
 		if(effects.isPhong())
 		{
 			return Library.getColorPhong(cR, cA, cL, normal, light, eye, phongExponent, p, inShadow);
-		}//if
+		}
 		else if(effects.isLambertian())
 		{
 			return Library.getColorLambertian(cR, cA, cL, normal, light, p, inShadow);
-		}//else
+		}
 		return new Color(0.0,0.0,0.0);
 	}
 

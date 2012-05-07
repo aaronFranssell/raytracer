@@ -1,8 +1,5 @@
 package math;
 
-
-
-
 public class Matrix3
 {
 	private double[][] matrix = new double[3][3];
@@ -14,7 +11,7 @@ public class Matrix3
 		matrix[0][0] = i1; matrix[0][1] = i2; matrix[0][2] = i3;
 		matrix[1][0] = i4; matrix[1][1] = i5; matrix[1][2] = i6;
 		matrix[2][0] = i7; matrix[2][1] = i8; matrix[2][2] = i9;
-	}//matrix
+	}
 	
 	public Matrix3(double[][] incomingMatrix)
 	{
@@ -29,11 +26,11 @@ public class Matrix3
 			for(int u = 0; u < 3; u++)
 			{
 				returnString += matrix[i][u] + ", ";
-			}//for
+			}
 			returnString += "\n";
-		}//for
+		}
 		return returnString;
-	}//toString
+	}
 	
 	public double det()
 	{

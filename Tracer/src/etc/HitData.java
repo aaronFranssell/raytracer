@@ -35,7 +35,7 @@ public class HitData
 		for(int i = 0; i < hitTs.length; i++)
 		{
 			retString += hitTs[i] + ", ";
-		}//for
+		}
 		retString += "\nsurfaceType: " + Surface.translateType(surface);
 		return retString;
 	}
