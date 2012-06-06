@@ -1,9 +1,0 @@
-package csg;
-
-public class Test_CSGTree
-{
-	public void TestConstructor_NullSurface_ExpectNullPointerException()
-	{
-		
-	}
-}
