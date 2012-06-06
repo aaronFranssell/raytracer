@@ -1,0 +1,32 @@
+package csg;
+
+import math.Point;
+
+import org.junit.Test;
+
+import etc.Color;
+import etc.Effects;
+
+import primitives.Surface;
+
+public class Test_CSGTree
+{
+	@Test(expected=NullPointerException.class)
+	public void TestConstructor_NullSurface_ExpectNullPointerException()
+	{
+		Surface s = null;
+		
+		new CSGTree(new CSGNode(s));
+	}
+	
+	public void TestConstructor_OperationNullChildren_ExpectException()
+	{
+		CSGNode node = new CSGNode(Operation.BOUNDED_BY);
+		Surface s = new Sphere(new Point(), new Vector(), )
+		
+		Point incomingCenter, double incomingRadius,
+		Color incomingCR, Color incomingCA, Color incomingCL,
+		Effects incomingEffects, String filePath,
+		double incomingTextureScale
+	}
+}

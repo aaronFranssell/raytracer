@@ -14,11 +14,16 @@ public class ScenePixel
 	public Ray r;
 	public LinkedList<Surface> surfaceList;
 	public int currentDepth;
-	public ScenePixel(Ray incomingRay, LinkedList<Surface> incomingSurfaceList, int incomingCurrentDepth)
+	private Point eye;
+	private Point light;
+	
+	public ScenePixel(Ray incomingRay, LinkedList<Surface> incomingSurfaceList, int incomingCurrentDepth, Point incomingEye, Point incomingLight)
 	{
 		r = incomingRay;
 		surfaceList = incomingSurfaceList;
 		currentDepth = incomingCurrentDepth;
+		eye = incomingEye;
+		light = incomingLight;
 	}
 	
 	public Color getPixelColor() throws Exception
@@ -28,7 +33,6 @@ public class ScenePixel
 	
 	private Color recurse(Ray r, LinkedList<Surface> surfaceList, int currentDepth) throws Exception
 	{
-		Point eye = Constants.eye.copy();
 		HitData currHit;
 		if(Constants.maxDepth == currentDepth)
 		{
@@ -72,8 +76,8 @@ public class ScenePixel
 
 		reflectReturnColor = getReflectedColor(r, surfaceList, currentDepth, hit, reflectReturnColor, currSurface);
 		refractReturnColor = getRefractedColor(r, surfaceList, currentDepth, hit, refractReturnColor, currSurface);
-		surfaceColor =  currSurface.getColor(Constants.light, eye, Constants.PHONG_EXPONENT,
-									Library.isInShadow(currSurface, surfaceList,Constants.light, hit),
+		surfaceColor =  currSurface.getColor(light, eye, Constants.PHONG_EXPONENT,
+									Library.isInShadow(currSurface, surfaceList, light, hit),
 									currSurface.getCR(), hit.getP(),currSurface.getCA(),
 									currSurface.getCL(), hit.getNormal());
 

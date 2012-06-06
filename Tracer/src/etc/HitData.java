@@ -1,6 +1,7 @@
 package etc;
 
 import primitives.Surface;
+import util.Constants;
 import util.Library;
 import math.Point;
 import math.Vector;
@@ -78,5 +79,25 @@ public class HitData
 	public double[] getHitTs()
 	{
 		return hitTs;
+	}
+	
+	/**
+	 * This function returns all positive hit Ts for the object
+	 * @return Sorted array of all positive hit Ts
+	 */
+	public double[] getPositiveHitTs()
+	{
+		int i = 0;
+		for(i = 0; hitTs[i] <= Constants.POSITIVE_ZERO; i++){}
+		
+		double[] retTs = new double[hitTs.length - i];
+		
+		int currI = i;
+		for(; i < hitTs.length; i++)
+		{
+			retTs[i - currI] = hitTs[i];
+		}
+		
+		return retTs;
 	}
 }

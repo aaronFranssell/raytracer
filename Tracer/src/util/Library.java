@@ -207,9 +207,9 @@ public class Library
 		}//if
 		else
 		{
-			RGBValue.red = cR.red*cA.red * Constants.SHADOW_BUMP_UP;
-			RGBValue.green = cR.green*cA.green * Constants.SHADOW_BUMP_UP;
-			RGBValue.blue = cR.blue*cA.blue * Constants.SHADOW_BUMP_UP;
+			RGBValue.red = cR.red*cA.red;
+			RGBValue.green = cR.green*cA.green;
+			RGBValue.blue = cR.blue*cA.blue;
 		}
 		return RGBValue;
 	}
@@ -436,32 +436,14 @@ public class Library
 			if(!Double.isNaN(tArray[i]) && tArray[i] > Constants.POSITIVE_ZERO && tArray[i] < smallestT)
 			{
 				smallestT = tArray[i];
-			}//if
-		}//for
+			}
+		}
 		if(smallestT == Double.MAX_VALUE)
 		{
 			return Double.NaN;
-		}//if
+		}
 		return smallestT;
 	}
-	
-	public static double[] mergeTArrays(double[] arr1, double[] arr2)
-	{
-		double[] retArr = new double[arr1.length + arr2.length];
-		int arr1Size = arr1.length;
-		for(int i = 0; i < arr1Size; i++)
-		{
-			retArr[i] = arr1[i];
-		}//for
-		
-		for(int i = arr1Size; i < arr2.length + arr1Size; i++)
-		{
-			retArr[i] = arr2[i-arr1Size];
-		}//for
-		
-		return retArr;
-	}
-	
 	/**
 	 * I'm gonna bubble sort this, I know its O(n^2), but probably will be less than 10 "t"s at a time, so who cares? 
 	 */

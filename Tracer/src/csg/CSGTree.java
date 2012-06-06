@@ -13,25 +13,16 @@ import etc.Ray;
  * Some thoughts about this class. THE LEFT SIDE OPERATION TAKES PRECEDENCE! To be more clear, the left surface is assumed
  * to be the "base object." As a result, its color, 't' value, normal, etc. take precedence. Therefore these CSG operations
  * are geometric only, so all style/effects that are returned are that of the left side surface.
- * @author Me! Ha!
  *
  */
 public class CSGTree extends Surface
 {
 	private CSGNode root;
 
-	public CSGTree(CSGNode incomingRoot)
+	public CSGTree(CSGNode incomingRoot) throws Exception
 	{
 		root = incomingRoot;
-		try
-		{
-			validate(root);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-			System.exit(0);
-		}
+		validate(root);
 		effects = getLeftChildEffects();
 	}
 	
@@ -46,25 +37,27 @@ public class CSGTree extends Surface
 	}
 	
 	/**
-	 * This function ensures that the incomingRoot is a valid BSPTree (all Surfaces with no children, all operations
+	 * This function ensures that the incomingRoot is a valid CSGTree (all Surfaces with no children, all operations
 	 * have children).
-	 * @throws Exception If there is an invalid BSP tree
+	 * @throws Exception If there is an invalid CSG tree
 	 *
 	 */
 	private void validate(CSGNode currNode) throws Exception
 	{
+		if(currNode == null){ throw new NullPointerException("Node may not be null!"); }
+		
 		if((currNode.getLeftChild() != null && currNode.getRightChild() == null) ||
 		   (currNode.getLeftChild() == null && currNode.getRightChild() != null))
 		{
-			throw new Exception("Invalid BSPTree, one child is null, and other child is not.");
+			throw new Exception("Invalid CSGTree, one child is null, and other child is not.");
 		}
 		if(currNode.getLeftChild() == null && currNode.getRightChild() == null && currNode.getOperation() != null)
 		{
-			throw new Exception("Invalid BSPTree, an operation node has no children.");
+			throw new Exception("Invalid CSGTree, an operation node has no children.");
 		}
 		if(currNode.getLeftChild() != null && currNode.getRightChild() != null && currNode.getSurface() != null)
 		{
-			throw new Exception("Invalid BSPTree, a node has children and contains a surface.");
+			throw new Exception("Invalid CSGTree, a node has children and contains a surface.");
 		}
 		if(currNode.getLeftChild() != null)
 		{
@@ -173,7 +166,6 @@ public class CSGTree extends Surface
 	 */
 	private HitData getBoundedBy(HitData leftHitData, HitData rightHitData, Ray r) throws Exception
 	{
-	
 		//If left side isn't hit, then return the miss. If the right side isn't hit, then I can just return the miss
 		//left side.
 		if(!leftHitData.isHit() || !rightHitData.isHit())
@@ -184,13 +176,19 @@ public class CSGTree extends Surface
 		Interval leftSideInterval = new Interval(leftHitData.getHitTs());
 		Interval rightSideInterval = new Interval(rightHitData.getHitTs());
 		
+		//this is the case where all positive left side ts lie in the right solid. In this case, there is a miss.
+		//t arrays are sorted on creation in HitData, so i can just refer to smallestTIndex + 1 for the next smallest t
+		if(rightSideInterval.allInInterval(leftHitData.getPositiveHitTs()))
+		{
+			return new HitData();
+		}
+		
 		//this is the case when the bounding solid leaves the original solid unaffected
-		//if(leftHitData.getSmallestT() < rightHitData.getSmallestT() && !rightSideInterval.isInInterval(leftHitData.getSmallestT()))
 		if(!rightSideInterval.isInInterval(leftHitData.getSmallestT()))
 		{
 			return leftHitData;
 		}
-
+		
 		//this is the case where the near face of the right solid lies inside of the left solid surface
 		if(leftSideInterval.isInInterval(rightHitData.getSmallestT()))
 		{
@@ -198,17 +196,10 @@ public class CSGTree extends Surface
 			Point nearHitPoint = Library.getP(nearT, r);
 			Surface rightSurface = rightHitData.getSurface();
 			Vector normal = rightSurface.getNormal(nearHitPoint, r);
+			double[] mergedTs = leftSideInterval.mergeTIntervals(rightSideInterval);
 			//return new HitData object. The hit point will be the far side of the bounding solid. The normal will
 			//be the reversed right hit data's normal.
-			return new HitData(nearT, this, normal.scaleReturn(-1.0), nearHitPoint,
-							   Library.mergeTArrays(leftHitData.getHitTs(), rightHitData.getHitTs()));
-		}
-		
-		//this is the case where all left side ts lie in the right solid. In this case, there is a miss.
-		//t arrays are sorted on creation in HitData, so i can just refer to smallestTIndex + 1 for the next smallest t
-		if(rightSideInterval.allInInterval(leftHitData.getHitTs()))
-		{
-			return new HitData();
+			return new HitData(nearT, this, normal.scaleReturn(-1.0), nearHitPoint, mergedTs);
 		}
 		
 		//this is the case where the near t of the main solid lies inside of the bounding solid. The far hit point
@@ -219,10 +210,10 @@ public class CSGTree extends Surface
 			Point nearHitPoint = Library.getP(farT, r);
 			Surface rightSurface = rightHitData.getSurface();
 			Vector normal = rightSurface.getNormal(nearHitPoint, r);
+			double[] mergedTs = leftSideInterval.mergeTIntervals(rightSideInterval);
 			//return new HitData object. The hit point will be the far side of the bounding solid. The normal will
 			//be the reversed right hit data's normal.
-			return new HitData(farT, this, normal.scaleReturn(-1.0), nearHitPoint,
-							   Library.mergeTArrays(leftHitData.getHitTs(), rightHitData.getHitTs()));
+			return new HitData(farT, this, normal.scaleReturn(-1.0), nearHitPoint, mergedTs);
 		}
 		return leftHitData;
 	}

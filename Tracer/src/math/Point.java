@@ -9,6 +9,13 @@ public class Point
 	public double y;
 	public double z;
 	
+	public Point()
+	{
+		x = 0.0;
+		y = 0.0;
+		z = 0.0;
+	}
+	
 	public Point(double incomingX, double incomingY, double incomingZ)
 	{
 		x = incomingX;

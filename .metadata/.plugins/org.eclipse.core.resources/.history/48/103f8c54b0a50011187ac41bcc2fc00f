@@ -1,0 +1,7 @@
+package exception;
+
+@SuppressWarnings("serial")
+public class RaytracerException extends Exception
+{
+
+}

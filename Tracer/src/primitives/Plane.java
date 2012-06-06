@@ -69,7 +69,7 @@ public class Plane extends Surface
 						  Color cL, Vector n)
 	{
 		Color returnColor;
-		Color white = new Color(0.9,0.9,0.9);
+		Color white = new Color(0.75,0.75,0.75);
 		Color black = new Color(0.1,0.1,0.1);
 		if(Math.cos(p.z) > 0)
 		{

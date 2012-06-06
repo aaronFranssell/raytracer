@@ -21,7 +21,9 @@ public class Torus extends Surface
 	private Vector direction;
 	private Transform transform;
 	
-	public static final Vector surfaceDirection = new Vector(0.0,0.0,1.0);
+	public static final Vector OFFSET_DIRECTION_VECTOR = new Vector(0.0,0.0000001, 0.0);
+	public static final Vector ZERO = new Vector(0.0,0.0,0.0);
+	public static final Vector SURFACE_DIRECTION = new Vector(0.0,0.0,1.0);
 	
 	public Torus(Point incomingCenter, Vector incomingDirection, double incomingLargeR, double incomingSmallR, 
 				 Color incomingCR,Color incomingCA, Color incomingCL, Effects incomingEffects) throws Exception
@@ -33,11 +35,18 @@ public class Torus extends Surface
 		cA = incomingCA;
 		cL = incomingCL;
 		effects = incomingEffects;
+		
 		//because I couldn't find a generalized torus rendering algorithm, I will have to use matrix
 		//transformations in order to render things the way I want to :-(
 		direction = incomingDirection;
 		direction.normalize();
-		transform = new Transform(surfaceDirection, incomingDirection, incomingCenter);
+		if(SURFACE_DIRECTION.cross(direction).equals(ZERO))
+		{
+			System.out.println("WARNING: Torus world direction parallel to surface local direction, offseting by: " + OFFSET_DIRECTION_VECTOR);
+			direction = direction.add(OFFSET_DIRECTION_VECTOR);
+			direction.normalize();
+		}
+		transform = new Transform(SURFACE_DIRECTION, direction, incomingCenter);
 	}
 	
 	private Vector getLocalNormal(Point p)

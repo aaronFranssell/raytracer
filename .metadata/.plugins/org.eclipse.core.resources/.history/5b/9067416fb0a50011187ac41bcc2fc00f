@@ -1,0 +1,10 @@
+package exception;
+
+public class RaytracerException extends Exception
+{
+	private static final long serialVersionUID = 1L;
+	public RaytracerException()
+	{
+		super();
+	}
+}
