@@ -31,7 +31,7 @@ public class ScenePixel
 		return recurse(r,surfaceList,currentDepth);
 	}
 	
-	private Color recurse(Ray r, LinkedList<Surface> surfaceList, int currentDepth) throws Exception
+	private Color recurse(Ray r, LinkedList<Surface> surfaceList, int currentDepth) throws RaytracerException
 	{
 		HitData currHit;
 		if(Constants.maxDepth == currentDepth)
@@ -46,7 +46,7 @@ public class ScenePixel
 		return colorPixel(r, surfaceList, currentDepth, eye, currHit);
 	}
 	
-	private HitData shootRay(LinkedList<Surface> surfaceList, Ray r) throws Exception
+	private HitData shootRay(LinkedList<Surface> surfaceList, Ray r) throws RaytracerException
 	{
 		Iterator<Surface> surfaceListIt = surfaceList.iterator();
 		HitData hit = null;
@@ -65,21 +65,16 @@ public class ScenePixel
 		return hit;
 	}
 	
-	private Color colorPixel(Ray r, LinkedList<Surface> surfaceList, int currentDepth, Point eye, 
-			  						HitData hit) throws Exception
+	private Color colorPixel(Ray r, LinkedList<Surface> surfaceList, int currentDepth, Point eye, HitData hit) throws RaytracerException
 	{
-		Color reflectReturnColor = new Color(0.0,0.0,0.0);
-		Color refractReturnColor = new Color(0.0,0.0,0.0);
 		Color totalColor = new Color(0.0,0.0,0.0);
 		Color surfaceColor = new Color(0.0,0.0,0.0);
 		Surface currSurface = hit.getSurface();
 
-		reflectReturnColor = getReflectedColor(r, surfaceList, currentDepth, hit, reflectReturnColor, currSurface);
-		refractReturnColor = getRefractedColor(r, surfaceList, currentDepth, hit, refractReturnColor, currSurface);
-		surfaceColor =  currSurface.getColor(light, eye, Constants.PHONG_EXPONENT,
-									Library.isInShadow(currSurface, surfaceList, light, hit),
-									currSurface.getCR(), hit.getP(),currSurface.getCA(),
-									currSurface.getCL(), hit.getNormal());
+		Color reflectReturnColor = getReflectedColor(r, surfaceList, currentDepth, hit, currSurface);
+		Color refractReturnColor = getRefractedColor(r, surfaceList, currentDepth, hit, currSurface);
+		boolean inShadow = Library.isInShadow(currSurface, surfaceList, light, hit);
+		surfaceColor =  currSurface.getColor(light, eye, Constants.PHONG_EXPONENT, inShadow, hit.getNormal());
 
 		surfaceColor = surfaceColor.scaleReturn(Constants.scaleReturnColor);
 		
@@ -89,36 +84,29 @@ public class ScenePixel
 		return totalColor;
 	}
 
-	private Color getRefractedColor(Ray r, LinkedList<Surface> surfaceList,
-			int currentDepth, HitData hit, Color refractReturnColor,
-			Surface currSurface) throws Exception
+	private Color getRefractedColor(Ray r, LinkedList<Surface> surfaceList,	int currentDepth, HitData hit, Surface currSurface) throws RaytracerException
 	{
 		Ray newRay;
+		Color refractReturnColor = new Color(0.0,0.0,0.0);
 		if(currSurface.getEffects().isRefractive())
 		{
 			newRay = Library.getRefractedRay(r.getD(), Constants.refractiveN,Constants.refractiveNT, hit);
-			if(newRay != null)
-			{
-				refractReturnColor = recurse(newRay,surfaceList,currentDepth+1);
-				Library.clamp(refractReturnColor);
-			}
+			refractReturnColor = recurse(newRay,surfaceList,currentDepth+1);
+			Library.clamp(refractReturnColor);
 		}
 		return refractReturnColor.scaleReturn(Constants.scaleRefractReturnColor);
 	}
 
-	private Color getReflectedColor(Ray r, LinkedList<Surface> surfaceList,
-			int currentDepth, HitData hit, Color reflectReturnColor,
-			Surface currSurface) throws Exception
+	private Color getReflectedColor(Ray r, LinkedList<Surface> surfaceList,	int currentDepth, HitData hit, Surface currSurface) throws RaytracerException
 	{
-		Ray newRay;
 		//reversedD.dot... code is for when the ray might be refracted inside of a surface.
 		//if the ray's dot product is < 0 then the ray is inside of a surface and does not need to
 		//be reflected
 		Vector reversedD = new Vector(-r.getD().x,-r.getD().y,-r.getD().z);
-		if(currSurface.getEffects().isReflective() && 
-		   reversedD.dot(hit.getNormal()) > 0)
+		Color reflectReturnColor = new Color(0.0,0.0,0.0);
+		if(currSurface.getEffects().isReflective() && reversedD.dot(hit.getNormal()) > 0)
 		{
-			newRay = Library.getReflectedRay(r, hit.getP(), hit.getNormal());
+			Ray newRay = Library.getReflectedRay(r, hit.getP(), hit.getNormal());
 			reflectReturnColor = recurse(newRay, surfaceList, currentDepth + 1);
 			Library.clamp(reflectReturnColor);
 		}

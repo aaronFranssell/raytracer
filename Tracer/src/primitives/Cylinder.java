@@ -15,10 +15,6 @@ public class Cylinder extends Surface
 	
 	private Point bottom;
 	private double radius;
-	private Color cR;
-	private Color cA;
-	private Color cL;
-	private Point shadowP;
 	private double height;
 	private Vector direction;
 	private double d;
@@ -45,7 +41,7 @@ public class Cylinder extends Surface
 	}
 	
 	private double[] getHitTs(Ray r)
-	{		
+	{
 		/*
 		 * this value gives the "t" distance to the point on the ray closest to the direction vector of the cylinder.
 		 * Br is eyepoint, Bc is a point on the cylinder centerline, A is the direction, R is the ray direction.
@@ -183,88 +179,8 @@ public class Cylinder extends Surface
 	}
 
 	@Override
-	public int getType()
+	public SurfaceType getType()
 	{
-		return Surface.CYLINDER;
-	}
-
-	public Point getBottom() {
-		return bottom;
-	}
-
-	public void setBottom(Point bottom) {
-		this.bottom = bottom;
-	}
-
-	public Color getCA() {
-		return cA;
-	}
-
-	public void setCA(Color ca) {
-		cA = ca;
-	}
-
-	public Color getCL() {
-		return cL;
-	}
-
-	public void setCL(Color cl) {
-		cL = cl;
-	}
-
-	public Color getCR() {
-		return cR;
-	}
-
-	public void setCR(Color cr) {
-		cR = cr;
-	}
-
-	public double getD() {
-		return d;
-	}
-
-	public void setD(double d) {
-		this.d = d;
-	}
-
-	public Vector getDirection() {
-		return direction;
-	}
-
-	public void setDirection(Vector direction) {
-		this.direction = direction;
-	}
-
-	public double getHeight() {
-		return height;
-	}
-
-	public void setHeight(double height) {
-		this.height = height;
-	}
-
-	public double getRadius() {
-		return radius;
-	}
-
-	public void setRadius(double radius) {
-		this.radius = radius;
-	}
-
-	public Point getShadowP() {
-		return shadowP;
-	}
-
-	public void setShadowP(Point shadowP) {
-		this.shadowP = shadowP;
-	}
-
-	public Point getTop() {
-		return top;
-	}
-
-	public void setTop(Point top) {
-		this.top = top;
+		return SurfaceType.Cylinder;
 	}
 }

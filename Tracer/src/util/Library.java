@@ -17,6 +17,7 @@ import org.apache.commons.math.complex.Complex;
 import etc.Color;
 import etc.HitData;
 import etc.Ray;
+import etc.RaytracerException;
 
 import primitives.Surface;
 
@@ -162,7 +163,7 @@ public class Library
 		return newRay;
 	}
 	
-	public static boolean isInShadow(Surface currSurface, LinkedList<Surface> surfaceList, Point light, HitData hitData) throws Exception
+	public static boolean isInShadow(Surface currSurface, LinkedList<Surface> surfaceList, Point light, HitData hitData) throws RaytracerException
 	{
 		Vector d = light.minus(hitData.getP());
 				
@@ -175,7 +176,7 @@ public class Library
 		for(Surface inFrontSurface : surfaceList)
 		{
 			HitData shadowData = inFrontSurface.getHitData(rayShotToLight);
-			if(shadowData.isHit() && inFrontSurface.getType() != Surface.OUTERSPHERE)
+			if(shadowData.isHit() && inFrontSurface.getType() != Surface.SurfaceType.Outersphere)
 			{
 				//if the light point occurs closer to a hit point than this object, then the object is not in shadow
 				double distanceToClosePoint = shadowData.getP().minus(hitData.getP()).magnitude();
@@ -510,14 +511,14 @@ public class Library
 	 * @throws Exception 
 	 */
 	public static double[] getHitTsByLimitingLength(double[] incomingHitTs, Vector solidDirection, Point basePoint,
-													 double length, Ray r) throws Exception
+													 double length, Ray r) throws RaytracerException
 	{
 		double[] hitTs = new double[incomingHitTs.length];
 		for(int i = 0; i < incomingHitTs.length; i++)
 		{
 			if(Double.isNaN(incomingHitTs[i]))
 			{
-				throw new Exception("Hit t value is NaN, these values must be valid hits.");
+				throw new RaytracerException("Hit t value is NaN, these values must be valid hits.");
 			}
 			Point hitP = Library.getP(incomingHitTs[i], r);
 			

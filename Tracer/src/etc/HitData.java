@@ -37,7 +37,7 @@ public class HitData
 		{
 			retString += hitTs[i] + ", ";
 		}
-		retString += "\nsurfaceType: " + Surface.translateType(surface);
+		retString += "\nsurfaceType: " + surface.getType();
 		return retString;
 	}
 
@@ -69,11 +69,6 @@ public class HitData
 	public Surface getSurface()
 	{
 		return surface;
-	}
-
-	public void setSurface(Surface surface)
-	{
-		this.surface = surface;
 	}
 
 	public double[] getHitTs()

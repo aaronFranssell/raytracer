@@ -11,13 +11,8 @@ import util.Library;
 
 public class Torus extends Surface
 {
-	private Point center;
 	private double largeR;
-	private double discriminant;
 	private double smallR;
-	private Color cR;
-	private Color cA;
-	private Color cL;
 	private Vector direction;
 	private Transform transform;
 	
@@ -28,7 +23,6 @@ public class Torus extends Surface
 	public Torus(Point incomingCenter, Vector incomingDirection, double incomingLargeR, double incomingSmallR, 
 				 Color incomingCR,Color incomingCA, Color incomingCL, Effects incomingEffects) throws Exception
 	{
-		center = incomingCenter;
 		smallR = incomingSmallR;
 		largeR = incomingLargeR;
 		cR = incomingCR;
@@ -104,56 +98,8 @@ public class Torus extends Surface
 	}
 	
 	@Override
-	public int getType()
+	public SurfaceType getType()
 	{
-		return Surface.TORUS;
-	}
-
-	public Color getCA() {
-		return cA;
-	}
-
-	public void setCA(Color ca) {
-		cA = ca;
-	}
-
-	public Point getCenter() {
-		return center;
-	}
-
-	public void setCenter(Point center) {
-		this.center = center;
-	}
-
-	public Color getCL() {
-		return cL;
-	}
-
-	public void setCL(Color cl) {
-		cL = cl;
-	}
-
-	public Color getCR() {
-		return cR;
-	}
-
-	public void setCR(Color cr) {
-		cR = cr;
-	}
-
-	public double getDiscriminant() {
-		return discriminant;
-	}
-
-	public void setDiscriminant(double discriminant) {
-		this.discriminant = discriminant;
-	}
-
-	public double getLargeR() {
-		return largeR;
-	}
-
-	public void setLargeR(double largeR) {
-		this.largeR = largeR;
+		return SurfaceType.Torus;
 	}
 }

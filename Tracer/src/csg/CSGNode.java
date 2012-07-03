@@ -1,5 +1,6 @@
 package csg;
 
+import csg.operation.Operation;
 import primitives.Surface;
 
 public class CSGNode
@@ -10,7 +11,7 @@ public class CSGNode
 	private CSGNode rightChild;
 	
 	/**
-	 * A node in the BSP tree will either contain an operation, or a Surface, but not both.
+	 * A node in the CSG tree will either contain an operation, or a Surface, but not both.
 	 * @param operation The operation associated with this node.
 	 */
 	public CSGNode(Operation incomingOperation)
@@ -19,7 +20,7 @@ public class CSGNode
 	}
 	
 	/**
-	 * A node in the BSP tree will either contain an operation, or a Surface, but not both.
+	 * A node in the CSG tree will either contain an operation, or a Surface, but not both.
 	 * @param incomingSurface The surface associated with this node.
 	 */
 	public CSGNode(Surface incomingSurface)

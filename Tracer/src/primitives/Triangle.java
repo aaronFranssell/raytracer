@@ -11,9 +11,6 @@ import math.Vector;
 
 public class Triangle extends Surface
 {
-	private Color cA;
-	private Color cL;
-	private Color cR;
 	private Point a;
 	private Point b;
 	private Point c;
@@ -95,56 +92,8 @@ public class Triangle extends Surface
 	}
 	
 	@Override
-	public int getType()
+	public SurfaceType getType()
 	{
-		return Surface.TRIANGLE;
-	}
-
-	public Point getA() {
-		return a;
-	}
-
-	public void setA(Point a) {
-		this.a = a;
-	}
-
-	public Point getB() {
-		return b;
-	}
-
-	public void setB(Point b) {
-		this.b = b;
-	}
-
-	public Point getC() {
-		return c;
-	}
-
-	public void setC(Point c) {
-		this.c = c;
-	}
-
-	public Color getCA() {
-		return cA;
-	}
-
-	public void setCA(Color ca) {
-		cA = ca;
-	}
-
-	public Color getCL() {
-		return cL;
-	}
-
-	public void setCL(Color cl) {
-		cL = cl;
-	}
-
-	public Color getCR() {
-		return cR;
-	}
-
-	public void setCR(Color cr) {
-		cR = cr;
+		return SurfaceType.Triangle;
 	}
 }

@@ -11,21 +11,10 @@ import etc.Ray;
 public class Sphere extends Surface
 {
 	protected Point center;
-
 	protected double radius;
-
-	protected Color cR;
-
-	protected Color cA;
-
-	protected Color cL;
-
 	protected int[][][] image;
-
 	protected double textureScale;
-
 	protected int w;
-
 	protected int h;
 
 	public Sphere(Point incomingCenter, double incomingRadius,
@@ -50,12 +39,11 @@ public class Sphere extends Surface
 
 	@Override
 	public Color getColor(Point light, Point eye, int phongExponent,
-			boolean inShadow, Color cR, Point p, Color cA, Color cL, Vector n)
+			boolean inShadow, Vector n)
 	{
 		if (image == null)
 		{
-			return super.getColor(light, eye, phongExponent, inShadow, cR, p,
-					cA, cL, n);
+			return super.getColor(light, eye, phongExponent, inShadow, n);
 		}
 		Color returnValue = new Color(0.0, 0.0, 0.0);
 
@@ -119,48 +107,8 @@ public class Sphere extends Surface
 	}
 
 	@Override
-	public int getType()
+	public SurfaceType getType()
 	{
-		return Surface.SPHERE;
-	}
-
-	public Color getCA()
-	{
-		return cA;
-	}
-
-	public void setCA(Color ca)
-	{
-		cA = ca;
-	}
-
-	public Point getCenter()
-	{
-		return center;
-	}
-
-	public void setCenter(Point center)
-	{
-		this.center = center;
-	}
-
-	public Color getCL()
-	{
-		return cL;
-	}
-
-	public void setCL(Color cl)
-	{
-		cL = cl;
-	}
-
-	public Color getCR()
-	{
-		return cR;
-	}
-
-	public void setCR(Color cr)
-	{
-		cR = cr;
+		return SurfaceType.Sphere;
 	}
 }

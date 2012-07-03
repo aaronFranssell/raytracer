@@ -8,6 +8,7 @@ import etc.Color;
 import etc.Effects;
 import etc.HitData;
 import etc.Ray;
+import etc.RaytracerException;
 
 public class Cone extends Surface
 {
@@ -18,9 +19,6 @@ public class Cone extends Surface
 	private double alpha;
 	private double cosAlphaSquared;
 	private double cosAlpha;
-	private Color cR;
-	private Color cA;
-	private Color cL;
 	
 	/**
 	 * @param incomingDirection The direction the cone is pointing in.
@@ -117,13 +115,13 @@ public class Cone extends Surface
 	}
 
 	@Override
-	public int getType()
+	public SurfaceType getType()
 	{
-		return Surface.CONE;
+		return SurfaceType.Cone;
 	}
 
 	@Override
-	public HitData getHitData(Ray r) throws Exception
+	public HitData getHitData(Ray r) throws RaytracerException
 	{
 		double Dz = r.getD().z;
 		double Dy = r.getD().y;
@@ -160,23 +158,5 @@ public class Cone extends Surface
 		{
 			return new HitData();
 		}
-	}
-	
-	@Override
-	public Color getCR()
-	{
-		return cR;
-	}
-
-	@Override
-	public Color getCA()
-	{
-		return cA;
-	}
-
-	@Override
-	public Color getCL()
-	{
-		return cL;
 	}
 }

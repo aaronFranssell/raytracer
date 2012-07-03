@@ -14,9 +14,6 @@ public class Plane extends Surface
 {
 	private Vector n;
 	private Point pointOnPlane;
-	private Color cR;
-	private Color cL;
-	private Color cA;
 	public Plane(Vector incomingN, Point incomingPoint, Color incomingCR, Color incomingCL, Color incomingCA, 
 				  Effects incomingEffects)
 	{
@@ -97,48 +94,8 @@ public class Plane extends Surface
 	}
 	
 	@Override
-	public int getType()
+	public SurfaceType getType()
 	{
-		return Surface.PLANE;
-	}
-
-	public Color getCA() {
-		return cA;
-	}
-
-	public void setCA(Color ca) {
-		cA = ca;
-	}
-
-	public Color getCL() {
-		return cL;
-	}
-
-	public void setCL(Color cl) {
-		cL = cl;
-	}
-
-	public Color getCR() {
-		return cR;
-	}
-
-	public void setCR(Color cr) {
-		cR = cr;
-	}
-
-	public Vector getN() {
-		return n;
-	}
-
-	public void setN(Vector n) {
-		this.n = n;
-	}
-
-	public Point getPointOnPlane() {
-		return pointOnPlane;
-	}
-
-	public void setPointOnPlane(Point pointOnPlane) {
-		this.pointOnPlane = pointOnPlane;
+		return SurfaceType.Plane;
 	}
 }

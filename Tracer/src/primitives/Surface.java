@@ -5,6 +5,7 @@ import etc.Color;
 import etc.Effects;
 import etc.HitData;
 import etc.Ray;
+import etc.RaytracerException;
 import math.Point;
 import math.Vector;
 import noise.NoiseColor;
@@ -13,69 +14,22 @@ import util.Library;
 
 public abstract class Surface
 {
-	public static final int CYLINDER = 0;
-	public static final int SPHERE = 1;
-	public static final int OUTERSPHERE = 2;
-	public static final int TORUS = 3;
-	public static final int TRIANGLE = 4;
-	public static final int PLANE = 5;
-	public static final int CSGTREE = 6;
-	public static final int CONE = 7;
+	protected Color cR;
+	protected Color cA;
+	protected Color cL;
+	protected Point p;
 	
-	public static String translateType(Surface surface)
-	{
-		if(surface == null)
-		{
-			return "null";
-		}
-		switch(surface.getType())
-		{
-		case CYLINDER:
-			return "Cylinder";
-		case SPHERE:
-			return "Sphere";
-		case OUTERSPHERE:
-			return "Outer sphere";
-		case TORUS:
-			return "Torus";
-		case TRIANGLE:
-			return "Triangle";
-		case PLANE:
-			return "Plane";
-		case CSGTREE:
-			return "CSGTree";
-		case CONE:
-			return "CONE";
-		default:
-			try
-			{
-				throw new Exception("Unrecognized type: " + surface.getType());
-			}
-			catch (Exception e)
-			{
-				e.printStackTrace();
-				System.exit(0);
-				return null;
-			}
-		}
-	}
+	public enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone};
 	
-	public abstract Vector getNormal(Point p, Ray r) throws Exception;
+	public abstract Vector getNormal(Point p, Ray r);
 	
-	public abstract int getType();
+	public abstract SurfaceType getType();
 	
 	protected Effects effects;
 	
-	public abstract HitData getHitData(Ray r) throws Exception;
+	public abstract HitData getHitData(Ray r) throws RaytracerException;
 	
-	public abstract Color getCR();
-	
-	public abstract Color getCA();
-	
-	public abstract Color getCL();
-	
-	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Color cR,
-						  Point p, Color cA, Color cL, Vector n)
+	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n)
 	{
 		Vector normal = n;
 		if(effects.getBumpMapClass() != null)
@@ -98,14 +52,24 @@ public abstract class Surface
 		}
 		return new Color(0.0,0.0,0.0);
 	}
+	
+	public Color getCA()
+	{
+		return cA;
+	}
+
+	public Color getCL()
+	{
+		return cL;
+	}
+
+	public Color getCR()
+	{
+		return cR;
+	}
 
 	public Effects getEffects()
 	{
 		return effects;
-	}
-
-	public void setEffects(Effects effects)
-	{
-		this.effects = effects;
 	}
 }

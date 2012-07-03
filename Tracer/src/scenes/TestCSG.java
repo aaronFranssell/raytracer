@@ -13,8 +13,8 @@ import scenes.render.SceneRenderer;
 import util.Constants;
 import bumpMapping.StoneBump;
 import csg.CSGNode;
-import csg.CSGTree;
-import csg.Operation;
+import csg.CSGSurface;
+import csg.operation.BoundedBy;
 import etc.Color;
 import etc.Effects;
 
@@ -51,14 +51,14 @@ public class TestCSG
 		effects.setPhong(true);
 		Sphere s3 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
 		
-		CSGNode halfSphere = new CSGNode(new Operation(Operation.BOUNDED_BY));
+		CSGNode halfSphere = new CSGNode(new BoundedBy());
 		halfSphere.setLeftChild(new CSGNode(s2));
 		halfSphere.setRightChild(new CSGNode(s1));
 		
-		CSGNode quarterSphere = new CSGNode(new Operation(Operation.BOUNDED_BY));
+		CSGNode quarterSphere = new CSGNode(new BoundedBy());
 		quarterSphere.setLeftChild(halfSphere);
 		quarterSphere.setRightChild(new CSGNode(s3));
-		CSGTree theTree = new CSGTree(quarterSphere);
+		CSGSurface theTree = new CSGSurface(quarterSphere);
 		
 		effects = new Effects();
 		effects.setPhong(true);
@@ -82,10 +82,10 @@ public class TestCSG
 		cR = new Color(0.0,4.0,4.0);
 		Torus t2 = new Torus(center, direction, 1.5, 1.0, cR, Constants.cA, cL, effects);
 		
-		CSGNode root = new CSGNode(new Operation(Operation.BOUNDED_BY));
+		CSGNode root = new CSGNode(new BoundedBy());
 		root.setLeftChild(new CSGNode(t1));
 		root.setRightChild(new CSGNode(t2));
-		CSGTree torusTree = new CSGTree(root);
+		CSGSurface torusTree = new CSGSurface(root);
 		
 		LinkedList<Surface> surfaceList = new LinkedList<Surface>();
 		

@@ -14,9 +14,9 @@ public class OuterSphere extends Sphere
 	}
 	
 	@Override
-	public int getType()
+	public SurfaceType getType()
 	{
-		return Surface.OUTERSPHERE;
+		return SurfaceType.Outersphere;
 	}
 
 }
