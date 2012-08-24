@@ -73,4 +73,34 @@ public abstract class Surface
 	{
 		return effects;
 	}
+
+	public Color getcR()
+	{
+		return cR;
+	}
+
+	public void setcR(Color cR)
+	{
+		this.cR = cR;
+	}
+
+	public Color getcA()
+	{
+		return cA;
+	}
+
+	public void setcA(Color cA)
+	{
+		this.cA = cA;
+	}
+
+	public Color getcL()
+	{
+		return cL;
+	}
+
+	public void setcL(Color cL)
+	{
+		this.cL = cL;
+	}
 }

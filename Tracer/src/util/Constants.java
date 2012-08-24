@@ -38,7 +38,6 @@ public class Constants
 	/**
 	 * This will scale the image after a recursive call returns.
 	 */
-	public static double scaleReturnColor = 1.0;
 	public static double scaleRefractReturnColor = 0.7;
 	public static double scaleReflectReturnColor = 0.7;
 

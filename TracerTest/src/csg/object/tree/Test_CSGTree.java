@@ -11,7 +11,9 @@ import org.junit.Test;
 import primitives.Surface;
 import csg.object.tree.factory.CSGTreeFactory;
 import csg.operation.BoundedBy;
+import csg.operation.Intersection;
 import csg.operation.Operation;
+import etc.Color;
 import etc.HitData;
 import etc.Ray;
 import etc.RaytracerException;
@@ -207,5 +209,95 @@ public class Test_CSGTree
 		//Assert
 		verify(mockFactory, times(2)).createTree();
 		Assert.assertTrue(rightHitData == retHitData);
+	}
+	
+	@Test 
+	public void getCA_WithConfiguredSurface_ExpectBottomLeftCA() throws RaytracerException
+	{
+		//Arrange
+		Color cA = new Color(0.0,0.0,0.0);
+		Surface rightSurface = Test_CSGTreeHelper.createTestSurface();
+		Surface bottomLeftSurface = Test_CSGTreeHelper.createTestSurface();
+		bottomLeftSurface.setcA(cA);
+		Surface bottomRightSurface = Test_CSGTreeHelper.createTestSurface();
+		
+		CSGNode right = new CSGNode(rightSurface);
+		
+		CSGNode left = new CSGNode(new Intersection());
+		left.setLeftChild(new CSGNode(bottomLeftSurface));
+		left.setRightChild(new CSGNode(bottomRightSurface));
+		
+		CSGNode node = new CSGNode(new Intersection());
+		node.setLeftChild(left);
+		node.setRightChild(right);
+		
+		CSGTree classUnderTest = new CSGTree();
+		classUnderTest.setRoot(node);
+		
+		//Act
+		Color retCA = classUnderTest.getCA();
+		
+		//Assert
+		Assert.assertEquals(retCA, cA);
+	}
+	
+	@Test 
+	public void getCR_WithConfiguredSurface_ExpectBottomLeftCR() throws RaytracerException
+	{
+		//Arrange
+		Color cR = new Color(0.0,0.0,0.0);
+		Surface rightSurface = Test_CSGTreeHelper.createTestSurface();
+		Surface bottomLeftSurface = Test_CSGTreeHelper.createTestSurface();
+		bottomLeftSurface.setcR(cR);
+		Surface bottomRightSurface = Test_CSGTreeHelper.createTestSurface();
+		
+		CSGNode right = new CSGNode(rightSurface);
+		
+		CSGNode left = new CSGNode(new Intersection());
+		left.setLeftChild(new CSGNode(bottomLeftSurface));
+		left.setRightChild(new CSGNode(bottomRightSurface));
+		
+		CSGNode node = new CSGNode(new Intersection());
+		node.setLeftChild(left);
+		node.setRightChild(right);
+		
+		CSGTree classUnderTest = new CSGTree();
+		classUnderTest.setRoot(node);
+		
+		//Act
+		Color retCR = classUnderTest.getCR();
+		
+		//Assert
+		Assert.assertEquals(retCR, cR);
+	}
+	
+	@Test 
+	public void getCL_WithConfiguredSurface_ExpectBottomLeftCL() throws RaytracerException
+	{
+		//Arrange
+		Color cL = new Color(0.0,0.0,0.0);
+		Surface rightSurface = Test_CSGTreeHelper.createTestSurface();
+		Surface bottomLeftSurface = Test_CSGTreeHelper.createTestSurface();
+		bottomLeftSurface.setcL(cL);
+		Surface bottomRightSurface = Test_CSGTreeHelper.createTestSurface();
+		
+		CSGNode right = new CSGNode(rightSurface);
+		
+		CSGNode left = new CSGNode(new Intersection());
+		left.setLeftChild(new CSGNode(bottomLeftSurface));
+		left.setRightChild(new CSGNode(bottomRightSurface));
+		
+		CSGNode node = new CSGNode(new Intersection());
+		node.setLeftChild(left);
+		node.setRightChild(right);
+		
+		CSGTree classUnderTest = new CSGTree();
+		classUnderTest.setRoot(node);
+		
+		//Act
+		Color retCL = classUnderTest.getCL();
+		
+		//Assert
+		Assert.assertEquals(retCL, cL);
 	}
 }

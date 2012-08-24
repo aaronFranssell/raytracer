@@ -15,7 +15,6 @@ import etc.RaytracerException;
  * Some thoughts about this class. THE LEFT SIDE OPERATION TAKES PRECEDENCE! To be more clear, the left surface is assumed
  * to be the "base object." As a result, its color, effects, etc. take precedence. Therefore these CSG operations
  * are geometric only, so all style/effects that are returned are that of the left side surface.
- *
  */
 public class CSGTree extends Surface
 {

@@ -1,6 +1,5 @@
 package etc;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 import math.Point;
@@ -48,21 +47,16 @@ public class ScenePixel
 	
 	private HitData shootRay(LinkedList<Surface> surfaceList, Ray r) throws RaytracerException
 	{
-		Iterator<Surface> surfaceListIt = surfaceList.iterator();
-		HitData hit = new HitData();
-		while(surfaceListIt.hasNext())
+		HitData returnHit = new HitData();
+		for(Surface currentSurface : surfaceList)
 		{
-			Surface currentSurface = (Surface) surfaceListIt.next();
-			HitData smallestHit = currentSurface.getHitData(r); 
-			if(smallestHit.isHit())
+			HitData currentHit = currentSurface.getHitData(r); 
+			if(currentHit.isHit() && (currentHit.getSmallestT() < returnHit.getSmallestT() || !returnHit.isHit()))
 			{
-				if(hit == null || smallestHit.getSmallestT() < hit.getSmallestT())
-				{
-					hit = smallestHit;
-				}
+				returnHit = currentHit;
 			}
 		}
-		return hit;
+		return returnHit;
 	}
 	
 	private Color colorPixel(Ray r, LinkedList<Surface> surfaceList, int currentDepth, Point eye, HitData hit) throws RaytracerException
@@ -75,8 +69,6 @@ public class ScenePixel
 		Color refractReturnColor = getRefractedColor(r, surfaceList, currentDepth, hit, currSurface);
 		boolean inShadow = Library.isInShadow(currSurface, surfaceList, light, hit);
 		surfaceColor =  currSurface.getColor(light, eye, Constants.PHONG_EXPONENT, inShadow, hit.getNormal(), hit.getP());
-
-		surfaceColor = surfaceColor.scaleReturn(Constants.scaleReturnColor);
 		
 		totalColor.red += reflectReturnColor.red + refractReturnColor.red + surfaceColor.red;
 		totalColor.blue += reflectReturnColor.blue + refractReturnColor.blue + surfaceColor.blue;
