@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename type &apos;csg.IntervalTest&apos; to &apos;Test_Interval&apos;&#x0D;&#x0A;- Original project: &apos;TracerTest&apos;&#x0D;&#x0A;- Original element: &apos;csg.IntervalTest&apos;&#x0D;&#x0A;- Renamed element: &apos;csg.Test_Interval&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;IntervalTest&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;csg{IntervalTest.java[IntervalTest" matchStrategy="1" name="Test_Interval" qualified="false" references="true" similarDeclarations="false" stamp="1337865922686" textual="false" version="1.0"/>
-</session>

@@ -1,6 +1,0 @@
-package csg.object.tree.factory;
-
-public class CSGTreeFactoryImpl implements CSGTreeFactory
-{
-
-}
