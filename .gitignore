@@ -1,5 +1,6 @@
 #Java files
 .settings/.metadata/
+.metadata
 .classpath
 .project
 .groovy
