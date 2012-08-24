@@ -1,6 +1,7 @@
 package primitives;
 
 import util.Library;
+import util.Util;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
@@ -15,9 +16,9 @@ public class Triangle extends Surface
 	private Point b;
 	private Point c;
 	
-	public Triangle(Color incomingCR, Color incomingCL, Color incomingCA, Point incomingA, Point incomingB, 
-					Point incomingC, Effects incomingEffects)
+	public Triangle(Color incomingCR, Color incomingCL, Color incomingCA, Point incomingA, Point incomingB,	Point incomingC, Effects incomingEffects, Util incomingOps)
 	{
+		ops = incomingOps;
 		cA = incomingCA;
 		cL = incomingCL;
 		cR = incomingCR;
@@ -87,7 +88,7 @@ public class Triangle extends Surface
 		smallestT = Library.getSmallestT(retTArray);
 		Point p = Library.getP(smallestT,r);
 		Vector normal = getNormal(p, r);
-		HitData hit = new HitData(smallestT, this, normal, p, retTArray);
+		HitData hit = new HitData(smallestT, this, normal, p, retTArray, ops);
 		return hit;
 	}
 	

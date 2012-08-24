@@ -1,0 +1,19 @@
+package csg.object.tree;
+
+import primitives.Surface;
+import math.Point;
+import math.Vector;
+import etc.Ray;
+
+public class Test_CSGTreeHelper
+{
+	public static Ray getTestRay()
+	{
+		return new Ray(new Vector(0.0,0.0,0.0), new Point(0.0,0.0,0.0));
+	}
+	
+	public static void addHitDataToSurface(Surface s, Ray r)
+	{
+		
+	}
+}

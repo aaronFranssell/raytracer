@@ -3,6 +3,7 @@ package primitives;
 import math.Point;
 import math.Vector;
 import util.Library;
+import util.Util;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
@@ -17,11 +18,10 @@ public class Sphere extends Surface
 	protected int w;
 	protected int h;
 
-	public Sphere(Point incomingCenter, double incomingRadius,
-			Color incomingCR, Color incomingCA, Color incomingCL,
-			Effects incomingEffects, String filePath,
-			double incomingTextureScale)
+	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, String filePath,
+				  double incomingTextureScale, Util incomingOps)
 	{
+		ops = incomingOps;
 		center = incomingCenter;
 		radius = incomingRadius;
 		cR = incomingCR;
@@ -38,12 +38,11 @@ public class Sphere extends Surface
 	}
 
 	@Override
-	public Color getColor(Point light, Point eye, int phongExponent,
-			boolean inShadow, Vector n)
+	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n, Point p)
 	{
 		if (image == null)
 		{
-			return super.getColor(light, eye, phongExponent, inShadow, n);
+			return super.getColor(light, eye, phongExponent, inShadow, n, p);
 		}
 		Color returnValue = new Color(0.0, 0.0, 0.0);
 
@@ -96,7 +95,7 @@ public class Sphere extends Surface
 		double smallestT = Library.getSmallestT(retTArray);
 		Point p = Library.getP(smallestT, r);
 		Vector normal = getNormal(p, r);
-		return new HitData(smallestT, this, normal, p, retTArray);
+		return new HitData(smallestT, this, normal, p, retTArray, ops);
 	}
 
 	public Vector getNormal(Point p, Ray r)

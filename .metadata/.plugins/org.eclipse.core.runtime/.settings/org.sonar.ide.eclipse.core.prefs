@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+servers/http\:\\2f\\2flocalhost\:9000/auth=false
+servers/http\:\\2f\\2fnemo.sonarsource.org/auth=false

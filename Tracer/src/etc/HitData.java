@@ -2,7 +2,7 @@ package etc;
 
 import primitives.Surface;
 import util.Constants;
-import util.Library;
+import util.Util;
 import math.Point;
 import math.Vector;
 
@@ -13,20 +13,21 @@ public class HitData
 	private Vector normal;
 	private Surface surface;
 	private double[] hitTs;
+	private Util ops;
 	
 	public HitData()
 	{
 		smallestT = Double.NaN;
 	}
 	
-	public HitData(double incomingSmallestT, Surface incomingS, Vector incomingNormal, Point incomingHitPoint, 
-				   double[] incomingHitTs)
-	{		
+	public HitData(double incomingSmallestT, Surface incomingS, Vector incomingNormal, Point incomingHitPoint, double[] incomingHitTs, Util incomingOps)
+	{
+		ops = incomingOps;
 		p = incomingHitPoint;
 		surface = incomingS;
 		normal = incomingNormal;
 		smallestT = incomingSmallestT;
-		hitTs = Library.sort(incomingHitTs);
+		hitTs = ops.sort(incomingHitTs);
 	}
 	
 	public String toString()

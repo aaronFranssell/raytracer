@@ -10,6 +10,7 @@ import math.Point;
 import math.Vector;
 import noise.NoiseColor;
 import util.Library;
+import util.Util;
 
 
 public abstract class Surface
@@ -17,7 +18,7 @@ public abstract class Surface
 	protected Color cR;
 	protected Color cA;
 	protected Color cL;
-	protected Point p;
+	protected Util ops;
 	
 	public enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone};
 	
@@ -29,7 +30,7 @@ public abstract class Surface
 	
 	public abstract HitData getHitData(Ray r) throws RaytracerException;
 	
-	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n)
+	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n, Point p)
 	{
 		Vector normal = n;
 		if(effects.getBumpMapClass() != null)

@@ -8,15 +8,16 @@ import math.Point;
 import math.Vector;
 import util.Constants;
 import util.Library;
+import util.Util;
 
 
 public class Plane extends Surface
 {
 	private Vector n;
 	private Point pointOnPlane;
-	public Plane(Vector incomingN, Point incomingPoint, Color incomingCR, Color incomingCL, Color incomingCA, 
-				  Effects incomingEffects)
+	public Plane(Vector incomingN, Point incomingPoint, Color incomingCR, Color incomingCL, Color incomingCA, Effects incomingEffects, Util incomingOps)
 	{
+		ops = incomingOps;
 		n = incomingN;
 		pointOnPlane = incomingPoint;
 		cR = incomingCR;
@@ -58,12 +59,12 @@ public class Plane extends Surface
 		retTArray[0] = calcT(r);
 		double smallestT = Library.getSmallestT(retTArray);
 		Point p = Library.getP(smallestT, r);
-		HitData hit = new HitData(smallestT, this, n, p, retTArray);
+		HitData hit = new HitData(smallestT, this, n, p, retTArray, ops);
 		return hit; 
 	}
-
-	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Color cR, Point p, Color cA, 
-						  Color cL, Vector n)
+	
+	@Override
+	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n, Point p)
 	{
 		Color returnColor;
 		Color white = new Color(0.75,0.75,0.75);

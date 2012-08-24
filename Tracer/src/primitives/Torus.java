@@ -8,6 +8,7 @@ import math.Point;
 import math.Transform;
 import math.Vector;
 import util.Library;
+import util.Util;
 
 public class Torus extends Surface
 {
@@ -20,9 +21,10 @@ public class Torus extends Surface
 	public static final Vector ZERO = new Vector(0.0,0.0,0.0);
 	public static final Vector SURFACE_DIRECTION = new Vector(0.0,0.0,1.0);
 	
-	public Torus(Point incomingCenter, Vector incomingDirection, double incomingLargeR, double incomingSmallR, 
-				 Color incomingCR,Color incomingCA, Color incomingCL, Effects incomingEffects) throws Exception
+	public Torus(Point incomingCenter, Vector incomingDirection, double incomingLargeR, double incomingSmallR, Color incomingCR,Color incomingCA, Color incomingCL,
+				 Effects incomingEffects, Util incomingOps) throws Exception
 	{
+		ops = incomingOps;
 		smallR = incomingSmallR;
 		largeR = incomingLargeR;
 		cR = incomingCR;
@@ -71,7 +73,7 @@ public class Torus extends Surface
 		Point p = Library.getP(smallestT, transformedRay);
 		Vector normal = transform.translateVectorToWorld(getLocalNormal(p));
 		p = transform.transformPointToWorld(p);
-		HitData hit = new HitData(smallestT, this, normal, p, retTArray);
+		HitData hit = new HitData(smallestT, this, normal, p, retTArray, ops);
 		return hit;
 	}
 	

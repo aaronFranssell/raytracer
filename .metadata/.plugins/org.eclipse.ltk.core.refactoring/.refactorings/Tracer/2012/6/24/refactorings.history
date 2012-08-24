@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private CSGNode getBottomLeftChild()&apos; from &apos;csg.CSGTree.getCA()&apos; to &apos;csg.CSGTree&apos;&#x0D;&#x0A;- Original project: &apos;Tracer&apos;&#x0D;&#x0A;- Method name: &apos;getBottomLeftChild&apos;&#x0D;&#x0A;- Destination type: &apos;csg.CSGTree&apos;&#x0D;&#x0A;- Declared visibility: &apos;private&apos;&#x0D;&#x0A;- Replace occurrences of statements with method" comments="false" description="Extract method &apos;getBottomLeftChild&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;csg{CSGTree.java" name="getBottomLeftChild" replace="true" selection="2341 98" stamp="1339422680723" version="1.0" visibility="2"/>
+</session>

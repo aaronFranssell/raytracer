@@ -61,6 +61,4 @@ public class Constants
 	public static double refractiveN = 1.0;
 	public static double refractiveNT = 1.0;
 	
-	public static String pathToIMGDirectory = "C:\\raytracer\\raytracer\\Tracer\\img\\";
-	public static String pathToLogDirectory = "C:\\raytracer\\raytracer\\Tracer\\debugging\\";
 }

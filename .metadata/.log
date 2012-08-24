@@ -1,0 +1,1009 @@
+!SESSION 2012-05-03 16:03:00.429 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_03
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -data C:\raytracer\raytracer -os win32 -ws win32 -arch x86_64 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.help.base 4 4 2012-05-08 14:19:18.127
+!MESSAGE Help documentation could not be indexed completely.
+!SUBENTRY 1 org.eclipse.help.base 4 4 2012-05-08 14:19:18.127
+!MESSAGE Help document /org.eclipse.mylyn.help.ui/doc/notices.html cannot be opened.
+!SESSION 2012-06-06 16:29:10.480 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.6.0_12
+java.vendor=Sun Microsystems Inc.
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface 2 0 2012-06-06 16:29:43.709
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-06-06 16:29:43.709
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-06-08 14:13:23.092 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_04
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface 2 0 2012-06-08 14:14:01.808
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-06-08 14:14:01.808
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-06-08 15:17:49.433 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_04
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.jface 2 0 2012-06-08 15:18:23.213
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-06-08 15:18:23.213
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-06-11 10:19:29.576 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_04
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-06-11 10:19:51.654
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-06-11 10:20:03.357
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-06-11 10:20:03.357
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-07-03 11:01:38.028 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-07-03 11:01:49.559
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-07-03 11:02:09.629
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-07-03 11:02:09.629
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-07-03 17:10:47.592 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-07-03 17:10:55.677
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-07-03 17:11:00.735
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-07-03 17:11:00.735
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-07-05 15:02:32.905 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-07-05 15:02:43.759
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-07-05 15:02:54.689
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-07-05 15:02:54.689
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.search 4 0 2012-07-06 14:24:11.167
+!MESSAGE Problems encountered during text search.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.167
+!MESSAGE File 'Tracer/img/yonPicture.png' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Tracer/img/yonPicture.png'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Tracer/img/yonPicture.png'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Tracer/img/yonPicture.png'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/torus/GenCodeToruzZAxis.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeToruzZAxis.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeToruzZAxis.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:40)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeToruzZAxis.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/torus/GenCodeToruzZAxis.class' has been skipped, problem while reading: ('Error retrieving content description for resource '/Algebra/src/primitives/torus/GenCodeToruzZAxis.class'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Algebra/src/primitives/torus/GenCodeToruzZAxis.class)[381]: java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\torus\GenCodeToruzZAxis.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 381 2012-07-06 14:24:11.183
+!MESSAGE Error retrieving content description for resource '/Algebra/src/primitives/torus/GenCodeToruzZAxis.class'.
+!STACK 0
+java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\torus\GenCodeToruzZAxis.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.class' has been skipped, problem while reading: ('Error retrieving content description for resource '/Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.class'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.class)[381]: java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\torus\GenCodeTorusZAxisArbitraryLocation.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 381 2012-07-06 14:24:11.183
+!MESSAGE Error retrieving content description for resource '/Algebra/src/primitives/torus/GenCodeTorusZAxisArbitraryLocation.class'.
+!STACK 0
+java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\torus\GenCodeTorusZAxisArbitraryLocation.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/torus/GenCodeArbitraryTorus.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeArbitraryTorus.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeArbitraryTorus.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/primitives/torus/GenCodeArbitraryTorus.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/torus/GenCodeArbitraryTorus.class' has been skipped, problem while reading: ('Error retrieving content description for resource '/Algebra/src/primitives/torus/GenCodeArbitraryTorus.class'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Algebra/src/primitives/torus/GenCodeArbitraryTorus.class)[381]: java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\torus\GenCodeArbitraryTorus.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 381 2012-07-06 14:24:11.183
+!MESSAGE Error retrieving content description for resource '/Algebra/src/primitives/torus/GenCodeArbitraryTorus.class'.
+!STACK 0
+java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\torus\GenCodeArbitraryTorus.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/cylinder/BasicCylinder.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/primitives/cylinder/BasicCylinder.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/primitives/cylinder/BasicCylinder.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/primitives/cylinder/BasicCylinder.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/cylinder/BasicCylinder.class' has been skipped, problem while reading: ('Error retrieving content description for resource '/Algebra/src/primitives/cylinder/BasicCylinder.class'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException(/Algebra/src/primitives/cylinder/BasicCylinder.class)[381]: java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\cylinder\BasicCylinder.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 381 2012-07-06 14:24:11.183
+!MESSAGE Error retrieving content description for resource '/Algebra/src/primitives/cylinder/BasicCylinder.class'.
+!STACK 0
+java.io.IOException: File not found: C:\raytracer\Algebra\src\primitives\cylinder\BasicCylinder.class.
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.ensureOpened(ContentDescriptionManager.java:157)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager$LazyFileInputStream.read(ContentDescriptionManager.java:167)
+	at java.io.InputStream.read(Unknown Source)
+	at org.eclipse.core.internal.content.LazyInputStream.loadBlock(LazyInputStream.java:99)
+	at org.eclipse.core.internal.content.LazyInputStream.ensureAvailable(LazyInputStream.java:64)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:132)
+	at org.eclipse.core.internal.content.LazyInputStream.read(LazyInputStream.java:128)
+	at org.eclipse.core.runtime.content.BinarySignatureDescriber.describe(BinarySignatureDescriber.java:69)
+	at org.eclipse.core.internal.content.ContentType.describe(ContentType.java:161)
+	at org.eclipse.core.internal.content.ContentType.internalGetDescriptionFor(ContentType.java:458)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:356)
+	at org.eclipse.core.internal.content.ContentTypeCatalog.getDescriptionFor(ContentTypeCatalog.java:360)
+	at org.eclipse.core.internal.content.ContentTypeMatcher.getDescriptionFor(ContentTypeMatcher.java:86)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.readDescription(ContentDescriptionManager.java:445)
+	at org.eclipse.core.internal.resources.ContentDescriptionManager.getDescriptionFor(ContentDescriptionManager.java:355)
+	at org.eclipse.core.internal.resources.File.internalGetCharset(File.java:246)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:207)
+	at org.eclipse.core.internal.resources.File.getCharset(File.java:194)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:276)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/primitives/cone/GenerateConeCode.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/primitives/cone/GenerateConeCode.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/primitives/cone/GenerateConeCode.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/primitives/cone/GenerateConeCode.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/algebra/Variable.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/algebra/Variable.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/algebra/Variable.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/algebra/Variable.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/algebra/Term.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/algebra/Term.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/algebra/Term.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/algebra/Term.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/algebra/GenerateCode.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/algebra/GenerateCode.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/algebra/GenerateCode.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/algebra/GenerateCode.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/algebra/ExpressionOp.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/algebra/ExpressionOp.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/algebra/ExpressionOp.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/algebra/ExpressionOp.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/algebra/Expression.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/algebra/Expression.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/algebra/Expression.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/algebra/Expression.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/src/algebra/Equation.java' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/src/algebra/Equation.java'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/src/algebra/Equation.java'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/src/algebra/Equation.java'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/.settings/org.eclipse.jdt.core.prefs' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/.settings/org.eclipse.jdt.core.prefs'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/.settings/org.eclipse.jdt.core.prefs'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/.settings/org.eclipse.jdt.core.prefs'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/.project' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/.project'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/.project'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/.project'.
+!SUBENTRY 1 org.eclipse.search 4 4 2012-07-06 14:24:11.183
+!MESSAGE File 'Algebra/.classpath' has been skipped, problem while reading: ('Resource is out of sync with the file system: '/Algebra/.classpath'.').
+!STACK 1
+org.eclipse.core.internal.resources.ResourceException: Resource is out of sync with the file system: '/Algebra/.classpath'.
+	at org.eclipse.core.internal.localstore.FileSystemResourceManager.read(FileSystemResourceManager.java:793)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:289)
+	at org.eclipse.core.internal.resources.File.getContents(File.java:278)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.getInputStream(FileCharSequenceProvider.java:283)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.initializeReader(FileCharSequenceProvider.java:277)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.reset(FileCharSequenceProvider.java:269)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider$FileCharSequence.<init>(FileCharSequenceProvider.java:255)
+	at org.eclipse.search.internal.core.text.FileCharSequenceProvider.newCharSequence(FileCharSequenceProvider.java:36)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFile(TextSearchVisitor.java:260)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.processFiles(TextSearchVisitor.java:196)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:172)
+	at org.eclipse.search.internal.core.text.TextSearchVisitor.search(TextSearchVisitor.java:184)
+	at org.eclipse.search.core.text.TextSearchEngine$1.search(TextSearchEngine.java:54)
+	at org.eclipse.search.internal.ui.text.FileSearchQuery.run(FileSearchQuery.java:182)
+	at org.eclipse.search2.internal.ui.InternalSearchUI$InternalSearchJob.run(InternalSearchUI.java:91)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:54)
+!SUBENTRY 2 org.eclipse.core.resources 4 274 2012-07-06 14:24:11.183
+!MESSAGE Resource is out of sync with the file system: '/Algebra/.classpath'.
+!SESSION 2012-07-18 12:51:17.864 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-07-18 12:51:42.693
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-07-18 12:51:54.426
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-07-18 12:51:54.426
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-08-08 12:10:22.226 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-08-08 12:10:39.054
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-08-08 12:10:59.867
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-08-08 12:10:59.867
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-08-20 15:14:37.562 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-08-20 15:14:51.297
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-08-20 15:15:08.744
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-08-20 15:15:08.744
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-08-21 00:04:56.640 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-08-21 00:05:40.500
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-08-21 00:06:07.234
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-08-21 00:06:07.234
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-08-23 12:38:49.503 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-08-23 12:39:44.564
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-08-23 12:40:58.094
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-08-23 12:40:58.094
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+!SESSION 2012-08-24 10:22:22.125 -----------------------------------------------
+eclipse.buildId=M20120208-0800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=en_US
+Framework arguments:  -product org.eclipse.epp.package.jee.product
+Command-line arguments:  -os win32 -ws win32 -arch x86 -product org.eclipse.epp.package.jee.product
+
+!ENTRY org.eclipse.mylyn.tasks.ui 4 0 2012-08-24 10:22:42.579
+!MESSAGE Could not load repository template extension contributed by org.sonar.ide.eclipse.mylyn.ui with connectorKind jira
+
+!ENTRY org.eclipse.jface 2 0 2012-08-24 10:23:59.822
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2012-08-24 10:23:59.822
+!MESSAGE A conflict occurred for CTRL+DEL:
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.datatools.sqltools.result.removeInstance,Remove Result,
+		,
+		Category(org.eclipse.datatools.sqltools.result.category,SQL Results View,null,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+DEL,
+	ParameterizedCommand(Command(org.eclipse.graphiti.ui.internal.action.RemoveAction,Remove,
+		Remove selected Pictogram Elements,
+		Category(org.eclipse.graphiti.ui.Graphiti_Category,Edit,Graphiti Diagram Editor,true),
+		,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)

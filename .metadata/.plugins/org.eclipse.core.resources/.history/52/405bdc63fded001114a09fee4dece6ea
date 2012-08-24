@@ -1,0 +1,18 @@
+package csg.object.tree;
+
+import static org.mockito.Mockito.when;
+import primitives.Surface;
+import math.Point;
+import math.Vector;
+import etc.HitData;
+import etc.Ray;
+import etc.RaytracerException;
+
+public class Test_CSGTreeHelper
+{
+	public static Ray getTestRay()
+	{
+		return new Ray(new Vector(0.0,0.0,0.0), new Point(0.0,0.0,0.0));
+	}
+	
+}

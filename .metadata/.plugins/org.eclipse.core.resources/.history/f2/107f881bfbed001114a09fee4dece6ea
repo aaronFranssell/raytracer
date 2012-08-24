@@ -1,0 +1,22 @@
+package csg.object.tree;
+
+import static org.mockito.Mockito.when;
+import primitives.Surface;
+import math.Point;
+import math.Vector;
+import etc.HitData;
+import etc.Ray;
+
+public class Test_CSGTreeHelper
+{
+	public static Ray getTestRay()
+	{
+		return new Ray(new Vector(0.0,0.0,0.0), new Point(0.0,0.0,0.0));
+	}
+	
+	public static void addHitDataToSurface(Surface s, Ray r)
+	{
+		HitData testHitData = new HitData();
+		when(testSurface.getHitData(testRay)).thenReturn(testHitData);
+	}
+}

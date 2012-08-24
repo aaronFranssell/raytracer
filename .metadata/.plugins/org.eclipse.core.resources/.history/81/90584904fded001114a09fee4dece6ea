@@ -1,0 +1,188 @@
+package csg.object.tree;
+
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+import junit.framework.Assert;
+import math.Point;
+import math.Vector;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import primitives.Plane;
+import primitives.Surface;
+import util.Constants;
+import util.Util;
+import csg.operation.BoundedBy;
+import etc.Color;
+import etc.Effects;
+import etc.HitData;
+import etc.Ray;
+import etc.RaytracerException;
+public class Test_CSGTree
+{
+	private Util ops;
+	private Surface testSurface;
+	private Color cL;
+	private Color cR;
+	
+	@Before
+	public void setUp() throws RaytracerException
+	{
+		ops = mock(Util.class);
+		cR = new Color(0.4,0.8,0.4);
+		cL = new Color(0.4,0.4,0.4);
+		Effects effects = new Effects();
+		effects.setPhong(true);
+		effects.setReflective(true);
+		Point point = new Point(0.0,-2.5,0.0);
+		Vector normal =new Vector(0.0,1.0,0.0);
+		testSurface = new Plane(normal, point, cR,cL, Constants.cA, effects, ops);
+	}
+	
+	@Test(expected=RaytracerException.class)
+	public void setRoot_NullSurface_ExpectNullPointerException() throws Exception
+	{
+		//Arrange
+		CSGNode node = null;
+		CSGTree classUnderTest = new CSGTree();
+		
+		//Act
+		classUnderTest.setRoot(node);
+		
+		//Assert
+		throw new Exception("Expected exception not thrown.");
+	}
+	
+	@Test(expected=RaytracerException.class)
+	public void setRoot_OperationNullChildren_ExpectException() throws Exception
+	{
+		//Arrange
+		CSGTree classUnderTest = new CSGTree();
+		CSGNode node = new CSGNode(new BoundedBy(classUnderTest));
+		
+		//Act
+		classUnderTest.setRoot(node);
+		
+		//Assert
+		throw new Exception("Expected exception not thrown.");
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void setRoot_OperationNullLeftChild_ExpectException() throws Exception
+	{
+		//Arrange
+		CSGNode rightChild = new CSGNode(testSurface);
+		CSGTree classUnderTest = new CSGTree();
+		CSGNode node = new CSGNode(new BoundedBy(classUnderTest));
+		node.setRightChild(rightChild);
+		
+		//Act
+		classUnderTest.setRoot(node);
+		
+		//Assert
+		throw new Exception("Expected exception not thrown.");
+	}
+	
+	@Test(expected=NullPointerException.class)
+	public void setRoot_OperationNullRightChild_ExpectException() throws Exception
+	{
+		//Arrange
+		CSGNode leftChild = new CSGNode(testSurface);
+		CSGTree classUnderTest = new CSGTree();
+		CSGNode node = new CSGNode(new BoundedBy(classUnderTest));
+		node.setLeftChild(leftChild);
+		
+		//Act
+		classUnderTest.setRoot(node);
+		
+		//Assert
+		throw new Exception("Expected exception not thrown.");
+	}
+	
+	@Test(expected=RaytracerException.class)
+	public void setRoot_SurfaceWithChildren_ExpectException() throws Exception
+	{
+		//Arrange
+		CSGNode leftChild = new CSGNode(testSurface);
+		CSGNode rightChild = new CSGNode(testSurface);
+		rightChild.setLeftChild(leftChild);
+		rightChild.setRightChild(rightChild);
+		CSGTree classUnderTest = new CSGTree();
+		CSGNode node = new CSGNode(new BoundedBy(classUnderTest));
+		node.setLeftChild(leftChild);
+		node.setRightChild(rightChild);
+		
+		//Act
+		classUnderTest.setRoot(node);
+		
+		//Assert
+		throw new Exception("Expected exception not thrown.");
+	}
+	
+	@Test
+	public void setRoot_OpWithChildren_ExpectNoException() throws Exception
+	{
+		//Arrange
+		CSGNode leftChild = new CSGNode(testSurface);
+		CSGNode rightChild = new CSGNode(testSurface);
+		CSGTree classUnderTest = new CSGTree();
+		CSGNode node = new CSGNode(new BoundedBy(classUnderTest));
+		node.setLeftChild(leftChild);
+		node.setRightChild(rightChild);
+		
+		//Act
+		classUnderTest.setRoot(node);
+		
+		//Assert
+	}
+	
+	@Test
+	public void setRoot_OpWithUnbalancedTree_ExpectNoException() throws Exception
+	{
+		//Arrange
+		CSGNode leftChild = new CSGNode(testSurface);
+		CSGTree classUnderTest = new CSGTree();
+		CSGNode rightChild = new CSGNode(new BoundedBy(classUnderTest));
+		CSGNode node = new CSGNode(new BoundedBy(classUnderTest));
+		rightChild.setLeftChild(leftChild);
+		rightChild.setRightChild(new CSGNode(testSurface));
+		node.setLeftChild(leftChild);
+		node.setRightChild(rightChild);
+		
+		//Act
+		classUnderTest.setRoot(node);
+		
+		//Assert
+	}
+	
+	@Test(expected=RaytracerException.class)
+	public void getHitData_WithNoRootSet_ExpectException() throws RaytracerException
+	{
+		//Arrange
+		CSGTree classUnderTest = new CSGTree();
+		Ray testRay = Test_CSGTreeHelper.getTestRay();
+		
+		//Act
+		classUnderTest.getHitData(testRay);
+		
+		//Assert
+		Assert.fail("Expected exception not thrown.");
+	}
+	
+	@Test 
+	public void getHitData_WithSurfaceInRoot_ExpectSurfaceHitData() throws RaytracerException
+	{
+		//Arrange
+		CSGNode node = new CSGNode(testSurface);
+		Ray testRay = Test_CSGTreeHelper.getTestRay();
+		CSGTree classUnderTest = new CSGTree();
+		classUnderTest.setRoot(node);
+		Test_CSGTreeHelper.addHitDataToSurface(classUnderTest, testRay)
+		
+		//Act
+		classUnderTest.getHitData(testRay);
+		
+		
+	}
+}

@@ -39,7 +39,7 @@ public class ScenePixel
 			return new Color(0.0,0.0,0.0);
 		}
 		currHit = shootRay(surfaceList,r);
-		if(currHit == null || !currHit.isHit())
+		if(!currHit.isHit())
 		{
 			return new Color(0.0,0.0,0.0);
 		}
@@ -49,7 +49,7 @@ public class ScenePixel
 	private HitData shootRay(LinkedList<Surface> surfaceList, Ray r) throws RaytracerException
 	{
 		Iterator<Surface> surfaceListIt = surfaceList.iterator();
-		HitData hit = null;
+		HitData hit = new HitData();
 		while(surfaceListIt.hasNext())
 		{
 			Surface currentSurface = (Surface) surfaceListIt.next();
@@ -74,7 +74,7 @@ public class ScenePixel
 		Color reflectReturnColor = getReflectedColor(r, surfaceList, currentDepth, hit, currSurface);
 		Color refractReturnColor = getRefractedColor(r, surfaceList, currentDepth, hit, currSurface);
 		boolean inShadow = Library.isInShadow(currSurface, surfaceList, light, hit);
-		surfaceColor =  currSurface.getColor(light, eye, Constants.PHONG_EXPONENT, inShadow, hit.getNormal());
+		surfaceColor =  currSurface.getColor(light, eye, Constants.PHONG_EXPONENT, inShadow, hit.getNormal(), hit.getP());
 
 		surfaceColor = surfaceColor.scaleReturn(Constants.scaleReturnColor);
 		

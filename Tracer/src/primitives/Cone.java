@@ -2,6 +2,7 @@ package primitives;
 
 import util.Constants;
 import util.Library;
+import util.Util;
 import math.Point;
 import math.Vector;
 import etc.Color;
@@ -29,8 +30,9 @@ public class Cone extends Surface
 	 * @throws Exception When the base point is not on the same line as the vertex and the direction.
 	 */
 	public Cone(Vector incomingDirection, Point incomingVertex, double incomingAlpha, Point incomingBasePoint, double incomingLength, 
-				Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects) throws Exception
+				Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, Util incomingOps) throws Exception
 	{
+		ops = incomingOps;
 		direction = incomingDirection;
 		direction.normalize();
 		vertex = incomingVertex;
@@ -152,7 +154,7 @@ public class Cone extends Surface
 		{
 			Point p = Library.getP(smallestT, r);
 			Vector normal = getNormal(p, r);
-			return new HitData(smallestT, this, normal, p, retTArray);
+			return new HitData(smallestT, this, normal, p, retTArray, ops);
 		}
 		else
 		{

@@ -1,13 +1,14 @@
 package util;
 
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 public class LogToFile
 {
 	private static Writer out = null;
-	public static final String filePath = Constants.pathToLogDirectory+"output.txt";
+	private static String filePath = null;
 	public static final int bufferSize = 2000000;
 	private static StringBuffer buffer = new StringBuffer();
 	public static void logln(String output)
@@ -37,6 +38,20 @@ public class LogToFile
 		{
 			e.printStackTrace();
 			System.exit(0);
+		}
+		if(filePath == null)
+		{
+			FileLocator loc;
+			try
+			{
+				loc = new FileLocator();
+				filePath = loc.getDebuggingDirectory() + "output.txt";
+			}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+				System.exit(0);
+			}
 		}
 	}
 	

@@ -445,39 +445,7 @@ public class Library
 		}
 		return smallestT;
 	}
-	/**
-	 * I'm gonna bubble sort this, I know its O(n^2), but probably will be less than 10 "t"s at a time, so who cares? 
-	 */
-	public static double[] sort(double[] incomingTArray)
-	{
-		double[] temp = new double[incomingTArray.length];
-		for(int i = 0; i < incomingTArray.length; i++)
-		{
-			temp[i] = incomingTArray[i];
-		}
-		if(temp.length == 1)
-		{
-			return temp;
-		}//if
-		boolean switchMade;
-		do
-		{
-			switchMade = false;
-			for(int i = 0; i < temp.length-1; i++)
-			{
-				if(temp[i] > temp[i + 1])
-				{
-					switchMade = true;
-					double tempVal = temp[i + 1];
-					temp[i + 1] = temp[i];
-					temp[i] = tempVal;
-				}//if
-			}//for
-		}//do
-		while(switchMade);
-		return temp;
-	}
-	
+
 	/**
 	 * This function determines if two doubles are roughly equivalent. If they are within the inputted tolerance of one another,
 	 * then this function returns true. False if otherwise.

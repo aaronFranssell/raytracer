@@ -3,6 +3,7 @@ package primitives;
 import math.Point;
 import math.Vector;
 import util.Library;
+import util.Util;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
@@ -20,10 +21,10 @@ public class Cylinder extends Surface
 	private double d;
 	private Point top;
 	
-	public Cylinder(Point incomingBottom, double incomingRadius, Color incomingCR, Color incomingCA,
-					Color incomingCL, double incomingHeight, Vector incomingDirection,
-					Effects incomingEffects)
+	public Cylinder(Point incomingBottom, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, double incomingHeight, Vector incomingDirection,
+					Effects incomingEffects, Util incomingOps)
 	{
+		ops = incomingOps;
 		bottom = incomingBottom;
 		radius = incomingRadius;
 		cR = incomingCR;
@@ -146,7 +147,7 @@ public class Cylinder extends Surface
 		}
 		Point hitPoint = Library.getP(smallestT, r);
 		Vector normal = getNormal(hitPoint, r);
-		HitData hit = new HitData(smallestT,this, normal, hitPoint, hitTs);
+		HitData hit = new HitData(smallestT,this, normal, hitPoint, hitTs, ops);
 		return hit;
 	}
 	

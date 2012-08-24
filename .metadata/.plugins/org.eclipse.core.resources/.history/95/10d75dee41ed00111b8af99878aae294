@@ -1,0 +1,9 @@
+package csg.object.tree.factory;
+
+import csg.object.tree.CSGNode;
+import csg.object.tree.CSGTree;
+
+public interface CSGTreeFactory
+{
+	CSGTree createTree(CSGNode node);
+}

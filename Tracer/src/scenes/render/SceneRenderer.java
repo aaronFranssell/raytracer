@@ -22,6 +22,7 @@ import math.UVW;
 import math.Vector;
 import primitives.Surface;
 import util.Constants;
+import util.FileLocator;
 import util.Library;
 
 public class SceneRenderer
@@ -74,10 +75,9 @@ public class SceneRenderer
 		surfaceList = incomingSurfaceList;
 	}
 	
-	public void render()
+	public void render() throws IOException
 	{
 		GregorianCalendar start = new GregorianCalendar();
-		String writeToFile = Constants.pathToIMGDirectory + fileName;
 		int[][][] imageData = new int[width][height][3];
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		WritableRaster raster = image.getRaster();
@@ -190,15 +190,9 @@ public class SceneRenderer
 				raster.setPixel(w,((height-1)-h),imageData[w][h]);
 			}
 		}
-		try
-		{
-			ImageIO.write(image,"PNG",new File(writeToFile + ".png"));
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-			System.exit(0);
-		}
-		
+		FileLocator loc = new FileLocator();
+		String writeToFile = loc.getImageDirectory() + fileName;
+		ImageIO.write(image,"PNG",new File(writeToFile + ".png"));
 		GregorianCalendar end = new GregorianCalendar();
 		displayDifference(start, end);
 	}

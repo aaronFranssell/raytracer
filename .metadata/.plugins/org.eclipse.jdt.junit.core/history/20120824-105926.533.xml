@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="Test_CSGTree" project="TracerTest" tests="9" started="9" failures="0" errors="0" ignored="0">
+  <testsuite name="csg.object.tree.Test_CSGTree" time="0.125">
+    <testcase name="setRoot_OperationNullLeftChild_ExpectException" classname="csg.object.tree.Test_CSGTree" time="0.125"/>
+    <testcase name="setRoot_OpWithChildren_ExpectNoException" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+    <testcase name="setRoot_SurfaceWithChildren_ExpectException" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+    <testcase name="setRoot_OperationNullRightChild_ExpectException" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+    <testcase name="setRoot_OpWithUnbalancedTree_ExpectNoException" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+    <testcase name="getHitData_WithSurfaceInRoot_ExpectSurfaceHitData" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+    <testcase name="getHitData_WithNoRootSet_ExpectException" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+    <testcase name="setRoot_NullSurface_ExpectNullPointerException" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+    <testcase name="setRoot_OperationNullChildren_ExpectException" classname="csg.object.tree.Test_CSGTree" time="0.0"/>
+  </testsuite>
+</testrun>
