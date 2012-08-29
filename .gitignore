@@ -5,12 +5,13 @@
 .project
 .groovy
 Servers/
+debugging/
 
 #OS junk files
 [Tt]humbs.db
 *.DS_Store
 
-#Visual Studio files
+#Visual Studio files/Java files
 *.[Oo]bj
 *.user
 *.aps
