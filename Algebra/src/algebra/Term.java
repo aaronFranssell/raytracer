@@ -196,7 +196,6 @@ public class Term
 			try {
 				throw new Exception("Trying to add two terms that can't be added!");
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			System.exit(0);
