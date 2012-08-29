@@ -1,0 +1,17 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+
+task wrapper(type: Wrapper) {
+	gradleVersion = '1.0-rc-3'
+	jarFile = 'wrapper/wrapper.jar'
+}
+
+dependencies {
+	compile 'junit:junit:4.10'
+	compile 'org.apache.commons:commons-math:2.0'
+	compile 'org.mockito:mockito-all:1.9.5-rc1'
+}
+
+repositories {
+	mavenCentral()
+}
