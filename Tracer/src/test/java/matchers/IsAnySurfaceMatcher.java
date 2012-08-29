@@ -2,7 +2,8 @@ package matchers;
 
 import org.mockito.ArgumentMatcher;
 
-import primitives.Surface;
+import surface.Surface;
+
 
 public class IsAnySurfaceMatcher extends ArgumentMatcher<Surface>
 {

@@ -4,7 +4,8 @@ import java.util.LinkedList;
 
 import math.Point;
 import math.Vector;
-import primitives.Surface;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import surface.Surface;
 import util.Constants;
 import util.Library;
 
@@ -47,7 +48,8 @@ public class ScenePixel
 	
 	private HitData shootRay(LinkedList<Surface> surfaceList, Ray r) throws RaytracerException
 	{
-		HitData returnHit = new HitData();
+		throw new NotImplementedException();
+		/*HitData returnHit = new HitData();
 		for(Surface currentSurface : surfaceList)
 		{
 			HitData currentHit = currentSurface.getHitData(r); 
@@ -56,7 +58,7 @@ public class ScenePixel
 				returnHit = currentHit;
 			}
 		}
-		return returnHit;
+		return returnHit;*/
 	}
 	
 	private Color colorPixel(Ray r, LinkedList<Surface> surfaceList, int currentDepth, Point eye, HitData hit) throws RaytracerException

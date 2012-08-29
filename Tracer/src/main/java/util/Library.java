@@ -19,7 +19,8 @@ import etc.HitData;
 import etc.Ray;
 import etc.RaytracerException;
 
-import primitives.Surface;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+import surface.Surface;
 
 
 
@@ -165,7 +166,7 @@ public class Library
 	
 	public static boolean isInShadow(Surface currSurface, LinkedList<Surface> surfaceList, Point light, HitData hitData) throws RaytracerException
 	{
-		Vector d = light.minus(hitData.getP());
+		/*Vector d = light.minus(hitData.getP());
 				
 		double distanceToLight = d.magnitude();
 		
@@ -186,7 +187,8 @@ public class Library
 				}
 			}
 		}
-		return false;
+		return false;*/
+		throw new NotImplementedException();
 	}
 	
 	public static Color getColorLambertian(Color cR, Color cA, Color cL, Vector n, Point light, Point p, 

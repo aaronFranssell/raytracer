@@ -1,54 +1,40 @@
 package etc;
 
-import primitives.Surface;
-import util.Constants;
-import util.UtilImpl;
-import util.Util;
 import math.Point;
 import math.Vector;
+import surface.Surface;
 
 public class HitData
 {
-	private double smallestT;
+	private double t;
 	private Point p;
 	private Vector normal;
 	private Surface surface;
-	private double[] hitTs;
 	
 	public HitData()
 	{
-		smallestT = Double.NaN;
+		t = Double.NaN;
 	}
 	
-	public HitData(double incomingSmallestT, Surface incomingS, Vector incomingNormal, Point incomingHitPoint, double[] incomingHitTs)
-	{
-		this(incomingSmallestT, incomingS, incomingNormal, incomingHitPoint, incomingHitTs, new UtilImpl());
-	}
-	
-	public HitData(double incomingSmallestT, Surface incomingS, Vector incomingNormal, Point incomingHitPoint, double[] incomingHitTs, Util ops)
+	public HitData(double incomingT, Surface incomingS, Vector incomingNormal, Point incomingHitPoint)
 	{
 		p = incomingHitPoint;
 		surface = incomingS;
 		normal = incomingNormal;
-		smallestT = incomingSmallestT;
-		hitTs = ops.sort(incomingHitTs);
+		t = incomingT;
 	}
 	
 	public String toString()
 	{
-		String retString = "is hit: "+isHit()+"\nsmallestT: " + smallestT + "\np: " + p + "\nnormal: " + normal +
+		String retString = "is hit: "+isHit()+"\nt: " + t + "\np: " + p + "\nnormal: " + normal +
 						   "\nhit ts: ";
-		for(int i = 0; i < hitTs.length; i++)
-		{
-			retString += hitTs[i] + ", ";
-		}
 		retString += "\nsurfaceType: " + surface.getType();
 		return retString;
 	}
 
 	public boolean isHit()
 	{
-		return !Double.isNaN(smallestT);
+		return !Double.isNaN(t);
 	}
 
 	public Vector getNormal()
@@ -66,38 +52,13 @@ public class HitData
 		return p;
 	}
 
-	public double getSmallestT()
+	public double getT()
 	{
-		return smallestT;
+		return t;
 	}
 	
 	public Surface getSurface()
 	{
 		return surface;
-	}
-
-	public double[] getHitTs()
-	{
-		return hitTs;
-	}
-	
-	/**
-	 * This function returns all positive hit Ts for the object
-	 * @return Sorted array of all positive hit Ts
-	 */
-	public double[] getPositiveHitTs()
-	{
-		int i = 0;
-		for(i = 0; hitTs[i] <= Constants.POSITIVE_ZERO; i++){}
-		
-		double[] retTs = new double[hitTs.length - i];
-		
-		int currI = i;
-		for(; i < hitTs.length; i++)
-		{
-			retTs[i - currI] = hitTs[i];
-		}
-		
-		return retTs;
 	}
 }
