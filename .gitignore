@@ -4,6 +4,7 @@
 .classpath
 .project
 .groovy
+Servers/
 
 #OS junk files
 [Tt]humbs.db
