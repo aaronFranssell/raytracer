@@ -1,6 +1,6 @@
 package util;
 
-import etc.Ray;
+import scene.ray.Ray;
 import math.Point;
 
 public class UtilImpl implements Util

@@ -16,9 +16,10 @@ import org.apache.commons.math.complex.Complex;
 
 import etc.Color;
 import etc.HitData;
-import etc.Ray;
 import etc.RaytracerException;
 
+import scene.Scene;
+import scene.ray.Ray;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import surface.Surface;
 
@@ -164,7 +165,7 @@ public class Library
 		return newRay;
 	}
 	
-	public static boolean isInShadow(Surface currSurface, LinkedList<Surface> surfaceList, Point light, HitData hitData) throws RaytracerException
+	public static boolean isInShadow(Surface currSurface, Scene scene, Point light, HitData hitData) throws RaytracerException
 	{
 		/*Vector d = light.minus(hitData.getP());
 				

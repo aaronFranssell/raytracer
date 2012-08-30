@@ -2,7 +2,9 @@ package matchers;
 
 import org.mockito.ArgumentMatcher;
 
-import etc.Ray;
+import scene.ray.Ray;
+
+
 
 public class IsAnyRayMatcher extends ArgumentMatcher<Ray>
 {

@@ -4,6 +4,14 @@ package math;
 public class UVW
 {
 	private Vector  u,v,w;
+	
+	public UVW(Vector incomingU, Vector incomingV, Vector incomingW)
+	{
+		u = incomingU;
+		v = incomingV;
+		w = incomingW;
+	}
+	
 	public UVW(Vector up, Vector gaze)
 	{
 		
@@ -16,7 +24,7 @@ public class UVW
 		u = wCrossT;
 		//i know my textbook says w cross u, but the v vector is pointing the wrong way!
 		v = u.cross(w);
-	}//UVW
+	}
 	public Vector getU() {
 		return u;
 	}
