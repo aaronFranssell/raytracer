@@ -22,6 +22,7 @@ import math.UVWFactory;
 import math.UVWFactoryImpl;
 import math.Vector;
 import scene.Scene;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import util.Constants;
 import util.FileLocator;
 import util.Library;
@@ -96,7 +97,8 @@ public class SceneRenderer
 		for(int i = 0; i < numThreads; i++)
 		{
 			int startHeight = i * threadHeight;
-			tasks.add(new RenderThread(eye, left, right, bottom, top, width, height, basis, light, scene, startHeight, threadHeight));
+			//tasks.add(new RenderThread(eye, left, right, bottom, top, width, height, basis, light, scene, startHeight, threadHeight));
+			throw new NotImplementedException();
 		}
 		List<Future<int[][][]>> results = null;
 		try
