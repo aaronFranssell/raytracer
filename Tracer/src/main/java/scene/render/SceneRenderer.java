@@ -134,6 +134,10 @@ public class SceneRenderer
 						totalSamples += 3;
 						imageData[w][h + offsetHeight][0] = anImage[w][h][0];
 						totalRGBValues += anImage[w][h][0];
+						//TODO: convert double 0.0-1.0 to 0-255 using SceneRenderer.convertToInt()
+						/*imageData[w][h][0] = SceneRenderer.convertToInt(red);
+						imageData[w][h][1] = SceneRenderer.convertToInt(green);
+						imageData[w][h][2] = SceneRenderer.convertToInt(blue);*/
 						if(anImage[w][h][0] > largestIntColorValue)
 						{
 							largestIntColorValue = anImage[w][h][0];

@@ -1,5 +1,8 @@
-package etc;
+package scene.pixel;
 
+import etc.Color;
+import etc.HitData;
+import etc.RaytracerException;
 import math.Point;
 import math.Vector;
 import scene.Scene;
@@ -8,7 +11,7 @@ import surface.Surface;
 import util.Constants;
 import util.Library;
 
-public class ScenePixel
+public class ScenePixelImpl implements ScenePixel
 {
 	public Ray r;
 	public Scene scene;
@@ -16,7 +19,7 @@ public class ScenePixel
 	private Point eye;
 	private Point light;
 	
-	public ScenePixel(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight)
+	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight)
 	{
 		r = incomingRay;
 		scene = incomingScene;
@@ -25,7 +28,7 @@ public class ScenePixel
 		light = incomingLight;
 	}
 	
-	public Color getPixelColor() throws Exception
+	public Color getPixelColor() throws RaytracerException
 	{
 		return recurse(r,scene,currentDepth);
 	}
@@ -89,5 +92,30 @@ public class ScenePixel
 			Library.clamp(reflectReturnColor);
 		}
 		return reflectReturnColor.scaleReturn(Constants.scaleReflectReturnColor);
+	}
+
+	public Ray getR()
+	{
+		return r;
+	}
+
+	public Scene getScene()
+	{
+		return scene;
+	}
+
+	public int getCurrentDepth()
+	{
+		return currentDepth;
+	}
+
+	public Point getEye()
+	{
+		return eye;
+	}
+
+	public Point getLight()
+	{
+		return light;
 	}
 }
