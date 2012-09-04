@@ -23,7 +23,7 @@ public class ScenePixelFactoryImpl_UnitTests
 		ScenePixelFactoryImpl classUnderTest = new ScenePixelFactoryImpl();
 		
 		//When
-		ScenePixelImpl ret = classUnderTest.createScenePixel(ray, scene, eye, light);
+		ScenePixel ret = classUnderTest.createScenePixel(ray, scene, eye, light);
 		
 		//Then
 		Assert.assertTrue(ret.getEye().equals(eye));

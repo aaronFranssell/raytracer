@@ -8,7 +8,7 @@ public class ScenePixelFactoryImpl implements ScenePixelFactory
 {
 
 	@Override
-	public ScenePixelImpl createScenePixel(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight)
+	public ScenePixel createScenePixel(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight)
 	{
 		return new ScenePixelImpl(incomingRay, incomingScene, incomingEye, incomingLight);
 	}

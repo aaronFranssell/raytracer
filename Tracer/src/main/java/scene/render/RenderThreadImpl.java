@@ -5,7 +5,7 @@ import java.util.concurrent.Callable;
 import math.Point;
 import math.UVW;
 import scene.Scene;
-import scene.pixel.ScenePixelImpl;
+import scene.pixel.ScenePixel;
 import scene.pixel.ScenePixelFactory;
 import scene.pixel.ScenePixelFactoryImpl;
 import scene.ray.Ray;
@@ -63,11 +63,11 @@ public class RenderThreadImpl implements Callable<double[][][]>, RenderThread
 			for(int h = 0; h < threadHeight; h++)
 			{
 				Ray r = rayFactory.createRay(volume, eye, basis, pictureWidth, pictureHeight, w, h + startHeight);
-				ScenePixelImpl pixel = pixelFactory.createScenePixel(r, scene, eye, light);
+				ScenePixel pixel = pixelFactory.createScenePixel(r, scene, eye, light);
 				Color returnColor = pixel.getPixelColor();
-				imageData[w][h][0] = returnColor.red;
-				imageData[w][h][1] = returnColor.green;
-				imageData[w][h][2] = returnColor.blue;
+				imageData[w][h][RenderThread.RED_INDEX] = returnColor.red;
+				imageData[w][h][RenderThread.GREEN_INDEX] = returnColor.green;
+				imageData[w][h][RenderThread.BLUE_INDEX] = returnColor.blue;
 			}
 		}
 		return imageData;
