@@ -1,6 +1,8 @@
 package scene.render;
 
-public interface RenderThread
+import java.util.concurrent.Callable;
+
+public interface RenderThread extends Callable<double[][][]>
 {
 	public static final int RED_INDEX = 0;
 	public static final int GREEN_INDEX = 1;

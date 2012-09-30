@@ -22,20 +22,23 @@ import math.UVWFactory;
 import math.UVWFactoryImpl;
 import math.Vector;
 import scene.Scene;
+import scene.render.factory.RenderThreadFactory;
+import scene.render.factory.RenderThreadFactoryImpl;
+import scene.viewer.ViewingVolume;
+import scene.viewer.factory.ViewingVolumeFactory;
+import scene.viewer.factory.ViewingVolumeFactoryImpl;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import util.Constants;
 import util.FileLocator;
 import util.Library;
+import util.stopwatch.StopWatch;
+import util.stopwatch.StopWatchImpl;
 
 public class SceneRenderer
 {
 	private Vector up;
 	private Vector gaze;
 	private Point eye;
-	private int left;
-	private int right;
-	private int top;
-	private int bottom;
 	private int width;
 	private int height;
 	private int numThreads;
@@ -43,11 +46,17 @@ public class SceneRenderer
 	private String fileName;
 	private UVW basis;
 	private Point light;
+	private StopWatch stopWatch;
+	private RenderResult renderResult;
+	private BufferedImage image;
+	private RenderThreadFactory renderThreadFactory;
+	private ViewingVolume viewVolume;
 	
 	private static final ExecutorService workers = Executors.newCachedThreadPool();
 	
 	public SceneRenderer(Vector incomingUp, Vector incomingGaze, Point incomingEye, int incomingLeft, int incomingRight, int incomingTop, int incomingBottom, int incomingWidth,
-						 int incomingHeight, int incomingNumThreads, Scene incomingScene, String incomingFileName, Point incomingLight, UVWFactory factory) throws RaytracerException
+						 int incomingHeight, int incomingNumThreads, Scene incomingScene, String incomingFileName, Point incomingLight, UVWFactory factory,
+						 StopWatch incomingStopWatch, RenderThreadFactory incomingRenderThreadFactory, ViewingVolumeFactory incomingViewingVolumeFactory) throws RaytracerException
 	{
 		if(incomingNumThreads <= 0)
 		{
@@ -57,38 +66,32 @@ public class SceneRenderer
 		up = incomingUp;
 		gaze = incomingGaze;
 		eye = incomingEye;
-		left = incomingLeft;
-		right = incomingRight;
-		top = incomingTop;
-		bottom = incomingBottom;
 		width = incomingWidth;
 		height = incomingHeight;
 		basis = factory.createUVW(up, gaze);
 		fileName = incomingFileName;
 		light = incomingLight;
 		scene = incomingScene;
+		stopWatch = incomingStopWatch;
+		renderResult = new RenderResult();
+		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+		renderThreadFactory = incomingRenderThreadFactory;
+		viewVolume = incomingViewingVolumeFactory.getVolume(incomingLeft, incomingRight, incomingBottom, incomingTop);
 	}
 	
 	public SceneRenderer(Vector incomingUp, Vector incomingGaze, Point incomingEye, int incomingLeft, int incomingRight, int incomingTop, int incomingBottom, int incomingWidth,
 			 int incomingHeight, int incomingNumThreads, Scene incomingScene, String incomingFileName, Point incomingLight) throws RaytracerException
 	{
 		this(incomingUp, incomingGaze, incomingEye, incomingLeft, incomingRight, incomingTop, incomingBottom, incomingWidth, incomingHeight,
-			 incomingNumThreads, incomingScene, incomingFileName, incomingLight, new UVWFactoryImpl());
+			 incomingNumThreads, incomingScene, incomingFileName, incomingLight, new UVWFactoryImpl(), new StopWatchImpl(), new RenderThreadFactoryImpl(), new ViewingVolumeFactoryImpl());
 	}
 	
-	public void render() throws IOException
+	public RenderResult render() throws IOException
 	{
-		GregorianCalendar start = new GregorianCalendar();
-		int[][][] imageData = new int[width][height][3];
-		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-		WritableRaster raster = image.getRaster();
+		stopWatch.start();
+		double[][][] imageData = new double[width][height][3];
 		
-		int largestIntColorValue = 0;
-		int totalSamples = 0;
-		int totalRGBValues  = 0;
-		int numberAbove255 = 0;
-		
-		Collection<Callable<int[][][]>> tasks = new ArrayList<Callable<int[][][]>>();
+		Collection<Callable<double[][][]>> tasks = new ArrayList<Callable<double[][][]>>();
 		
 		int threadHeight = height / numThreads;
 		
@@ -97,25 +100,20 @@ public class SceneRenderer
 		for(int i = 0; i < numThreads; i++)
 		{
 			int startHeight = i * threadHeight;
-			//tasks.add(new RenderThread(eye, left, right, bottom, top, width, height, basis, light, scene, startHeight, threadHeight));
-			throw new NotImplementedException();
+			RenderThread thread = renderThreadFactory.getRenderThread(eye, viewVolume, width, height, basis, light, scene, startHeight, threadHeight);
+			tasks.add(thread);
 		}
-		List<Future<int[][][]>> results = null;
-		try
-		{
-			results = workers.invokeAll(tasks);
-		}
-		catch (InterruptedException e)
-		{
-			e.printStackTrace();
-			System.exit(0);
-		}
+		List<Future<double[][][]>> results = workers.invokeAll(tasks);
 		
 		int index = 0;
 		System.out.println("Merging...");
-		for (Future<int[][][]> f : results)
+		int largestIntColorValue = 0;
+		int totalSamples = 0;
+		int totalRGBValues  = 0;
+		int numberAbove255 = 0;
+		for (Future<double[][][]> f : results)
 		{
-			int[][][] anImage = null;
+			double[][][] anImage = null;
 			try
 			{
 				anImage = f.get();
@@ -182,7 +180,8 @@ public class SceneRenderer
 		}
 		System.out.println("Writing to files...");
 		Library.scale2(imageData, Constants.imagePctScale, totalRGBValues, totalSamples, largestIntColorValue, numberAbove255, width, height);
-		
+
+		WritableRaster raster = image.getRaster();
 		for(int w = 0; w < width; w++)
 		{
 			for(int h = 0; h < height; h++)
@@ -190,26 +189,16 @@ public class SceneRenderer
 				raster.setPixel(w,((height-1)-h),imageData[w][h]);
 			}
 		}
+		
 		FileLocator loc = new FileLocator();
 		String writeToFile = loc.getImageDirectory() + fileName;
 		ImageIO.write(image,"PNG",new File(writeToFile + ".png"));
-		GregorianCalendar end = new GregorianCalendar();
-		displayDifference(start, end);
+		renderResult.setImage(image);
+		renderResult.setStopWatch(stopWatch);
+		stopWatch.stop();
+		return renderResult;
 	}
-	
-	private void displayDifference(GregorianCalendar start, GregorianCalendar end)
-	{
-		long span = end.getTimeInMillis() - start.getTimeInMillis();
-	    long mins = 1000*60;
-	    long numMins = span/mins;
-	    span -= mins * numMins;
-	    
-	    long secs = 1000;
-	    long numSecs = span/secs; 
-	    
-	    System.out.println("Executed in " + numMins + " minute(s) and " + numSecs + " seconds.");
-	}
-	
+		
 	public static int convertToInt(double incoming)
 	{
 		return (int) ((int) (255 * incoming));

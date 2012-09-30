@@ -14,7 +14,7 @@ import scene.ray.RayFactoryImpl;
 import scene.viewer.ViewingVolume;
 import etc.Color;
 
-public class RenderThreadImpl implements Callable<double[][][]>, RenderThread
+public class RenderThreadImpl implements RenderThread
 {
 	private Point eye;
 	private ViewingVolume volume;
