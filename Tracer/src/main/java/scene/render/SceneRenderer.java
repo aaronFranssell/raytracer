@@ -86,101 +86,23 @@ public class SceneRenderer
 			 incomingNumThreads, incomingScene, incomingFileName, incomingLight, new UVWFactoryImpl(), new StopWatchImpl(), new RenderThreadFactoryImpl(), new ViewingVolumeFactoryImpl());
 	}
 	
-	public RenderResult render() throws IOException
+	public RenderResult render() throws IOException, InterruptedException
 	{
 		stopWatch.start();
 		double[][][] imageData = new double[width][height][3];
-		
-		Collection<Callable<double[][][]>> tasks = new ArrayList<Callable<double[][][]>>();
 		
 		int threadHeight = height / numThreads;
 		
 		int leftOverThreadHeight = height % numThreads;
 		
-		for(int i = 0; i < numThreads; i++)
-		{
-			int startHeight = i * threadHeight;
-			RenderThread thread = renderThreadFactory.getRenderThread(eye, viewVolume, width, height, basis, light, scene, startHeight, threadHeight);
-			tasks.add(thread);
-		}
-		List<Future<double[][][]>> results = workers.invokeAll(tasks);
+		List<Future<double[][][]>> results = renderScene(threadHeight, leftOverThreadHeight);
 		
 		int index = 0;
-		System.out.println("Merging...");
 		int largestIntColorValue = 0;
 		int totalSamples = 0;
 		int totalRGBValues  = 0;
 		int numberAbove255 = 0;
-		for (Future<double[][][]> f : results)
-		{
-			double[][][] anImage = null;
-			try
-			{
-				anImage = f.get();
-				int finalHeight = threadHeight;
-				if(index == 0)
-				{
-					finalHeight += leftOverThreadHeight;
-				}
-				int offsetHeight = index * threadHeight;
-				
-				index++;
-				for(int w = 0; w < width; w++)
-				{
-					for(int h = 0; h < finalHeight; h++)
-					{
-						totalSamples += 3;
-						imageData[w][h + offsetHeight][0] = anImage[w][h][0];
-						totalRGBValues += anImage[w][h][0];
-						//TODO: convert double 0.0-1.0 to 0-255 using SceneRenderer.convertToInt()
-						/*imageData[w][h][0] = SceneRenderer.convertToInt(red);
-						imageData[w][h][1] = SceneRenderer.convertToInt(green);
-						imageData[w][h][2] = SceneRenderer.convertToInt(blue);*/
-						if(anImage[w][h][0] > largestIntColorValue)
-						{
-							largestIntColorValue = anImage[w][h][0];
-						}
-						imageData[w][h + offsetHeight][1] = anImage[w][h][1];
-						totalRGBValues += anImage[w][h][1];
-						if(anImage[w][h][1] > largestIntColorValue)
-						{
-							largestIntColorValue = anImage[w][h][1];
-						}
-						imageData[w][h + offsetHeight][2] = anImage[w][h][2];
-						totalRGBValues += anImage[w][h][2];
-						if(anImage[w][h][2] > largestIntColorValue)
-						{
-							largestIntColorValue = anImage[w][h][2];
-						}
-						if(anImage[w][h][0] > 255)
-						{
-							numberAbove255++;
-						}
-						if(anImage[w][h][1] > 255)
-						{
-							numberAbove255++;
-						}
-						if(anImage[w][h][2] > 255)
-						{
-							numberAbove255++;
-						}
-					}
-				}
-			}
-			catch (InterruptedException e)
-			{
-				e.printStackTrace();
-				System.exit(0);
-			}
-			catch (ExecutionException e)
-			{
-				e.printStackTrace();
-				System.exit(0);
-			}
-		}
-		System.out.println("Writing to files...");
-		Library.scale2(imageData, Constants.imagePctScale, totalRGBValues, totalSamples, largestIntColorValue, numberAbove255, width, height);
-
+		
 		WritableRaster raster = image.getRaster();
 		for(int w = 0; w < width; w++)
 		{
@@ -197,6 +119,26 @@ public class SceneRenderer
 		renderResult.setStopWatch(stopWatch);
 		stopWatch.stop();
 		return renderResult;
+	}
+
+	private List<Future<double[][][]>> renderScene(int threadHeight, int leftOverThreadHeight) throws InterruptedException
+	{
+		Collection<Callable<double[][][]>> tasks = new ArrayList<Callable<double[][][]>>();
+		
+		for(int i = 0; i < numThreads; i++)
+		{
+			int startHeight = i * threadHeight;
+			
+			if(i == 0)
+			{
+				threadHeight += leftOverThreadHeight;
+			}
+			
+			RenderThread thread = renderThreadFactory.getRenderThread(eye, viewVolume, width, height, basis, light, scene, startHeight, threadHeight);
+			tasks.add(thread);
+		}
+		List<Future<double[][][]>> results = workers.invokeAll(tasks);
+		return results;
 	}
 		
 	public static int convertToInt(double incoming)

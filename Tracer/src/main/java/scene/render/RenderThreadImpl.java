@@ -1,7 +1,5 @@
 package scene.render;
 
-import java.util.concurrent.Callable;
-
 import math.Point;
 import math.UVW;
 import scene.Scene;

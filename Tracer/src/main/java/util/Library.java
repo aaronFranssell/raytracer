@@ -27,61 +27,6 @@ import surface.Surface;
 
 public class Library 
 {
-		
-	//this scales the image so that all color values over %75 of 255 are scaled uniformly between 
-	//~191 and 255
-	public static void scale2(int[][][] imageData, double pctScaleStart, int totalRGBValues, int totalSamples,
-							   int largestIntColorValue, int numberAbove255, int width, int height)
-	{
-		System.out.println("avg color val: " + (totalRGBValues/totalSamples));
-		System.out.println("largest (int) color value: " + largestIntColorValue);
-		System.out.println("totalSamples: " + totalSamples);
-		System.out.println("numberAbove255: " + numberAbove255);
-		int startValue = (int) (pctScaleStart * 255);
-		System.out.println("startValue: " + startValue);
-		for(int w = 0; w < width; w++)
-		{
-			for(int h = 0; h < height; h++)
-			{
-				if(imageData[w][h][0] > startValue)
-				{
-					imageData[w][h][0] = startValue + calcValue(imageData[w][h][0],255 - startValue,
-															    largestIntColorValue);
-				}
-				if(imageData[w][h][1] > startValue)
-				{
-					imageData[w][h][1] = startValue + calcValue(imageData[w][h][1],255 - startValue,
-						    									largestIntColorValue);
-				}
-				if(imageData[w][h][2] > startValue)
-				{
-					imageData[w][h][2] = startValue + calcValue(imageData[w][h][2],255 - startValue,
-						    									largestIntColorValue);
-				}
-			}
-		}
-	}
-	
-	private static int calcValue(int currValue, int difference, int largestIntColorValue)
-	{
-		return difference*currValue/largestIntColorValue;
-	}
-	
-	//This scales the image so 255 is the highest individual pixel color (437->255 in one case)
-	public static void scale(int[][][] imageData, int largestIntColorValue, int width, int height)
-	{
-		System.out.println("largest (int) color value: " + largestIntColorValue);
-		for(int w = 0; w < width; w++)
-		{
-			for(int h = 0; h < height; h++)
-			{
-				imageData[w][h][0] = 255*imageData[w][h][0]/largestIntColorValue;
-				imageData[w][h][1] = 255*imageData[w][h][1]/largestIntColorValue;
-				imageData[w][h][2] = 255*imageData[w][h][2]/largestIntColorValue;
-			}
-		}
-	}
-	
 	public static double max(double num1, double num2)
 	{
 		if(num1 > num2)
