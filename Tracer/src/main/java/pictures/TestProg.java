@@ -1,6 +1,9 @@
 package pictures;
 
+import java.io.File;
 import java.util.ArrayList;
+
+import javax.imageio.ImageIO;
 
 import math.Point;
 import math.Vector;
@@ -8,6 +11,7 @@ import noise.noiseClasses.NoiseStone;
 import noise.noiseClasses.NoiseWood;
 import scene.Scene;
 import scene.SceneImpl;
+import scene.render.RenderResult;
 import scene.render.SceneRenderer;
 import surface.Surface;
 import surface.primitives.Cone;
@@ -141,8 +145,9 @@ public class TestProg
 		Point light = new Point(0.0,100.0, 100.0);
 		
 		Scene scene = new SceneImpl(surfaceList);
-				
-		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, "yonPicture", light);
-		renderer.render();
+		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, light);
+		RenderResult result = renderer.render();
+		System.out.println("scene rendered in: " + result.getStopWatch().getDifference());
+		ImageIO.write(result.getImage(), "PNG", new File("C:\\raytracer\\Tracer\\img\\yonPicture.png"));
 	}
 }

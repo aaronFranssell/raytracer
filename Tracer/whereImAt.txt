@@ -1,4 +1,4 @@
-Finishing up the refactoring for SceneRenderer... Now I need unit tests for everything.
+Finishing up the refactoring for SceneRenderer... Now I need unit tests for everything, start with ResultsScalerImpl and work up the call hiearchy.
 
 Hmmm a THEORY about some BUGS I noticed...
 	The reason I am thinking I'm getting odd results from CSG toruses is because I'm returning some Nans along with valid hits from the Torus.getHitData().

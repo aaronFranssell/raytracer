@@ -14,14 +14,12 @@ import math.Vector;
 
 import org.apache.commons.math.complex.Complex;
 
+import scene.Scene;
+import scene.ray.Ray;
+import surface.Surface;
 import etc.Color;
 import etc.HitData;
 import etc.RaytracerException;
-
-import scene.Scene;
-import scene.ray.Ray;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import surface.Surface;
 
 
 
@@ -112,7 +110,7 @@ public class Library
 	
 	public static boolean isInShadow(Surface currSurface, Scene scene, Point light, HitData hitData) throws RaytracerException
 	{
-		/*Vector d = light.minus(hitData.getP());
+		Vector d = light.minus(hitData.getP());
 				
 		double distanceToLight = d.magnitude();
 		
@@ -120,21 +118,17 @@ public class Library
 		
 		Ray rayShotToLight = new Ray(d, hitData.getP());
 		
-		for(Surface inFrontSurface : surfaceList)
+		HitData shadowData = scene.getSmallestPositiveHitDataOrReturnMiss(rayShotToLight);
+		if(shadowData.isHit() && shadowData.getSurface().getType() != Surface.SurfaceType.Outersphere)
 		{
-			HitData shadowData = inFrontSurface.getHitData(rayShotToLight);
-			if(shadowData.isHit() && inFrontSurface.getType() != Surface.SurfaceType.Outersphere)
+			//if the light point occurs closer to a hit point than this object, then the object is not in shadow
+			double distanceToClosePoint = shadowData.getP().minus(hitData.getP()).magnitude();
+			if(distanceToClosePoint < distanceToLight)
 			{
-				//if the light point occurs closer to a hit point than this object, then the object is not in shadow
-				double distanceToClosePoint = shadowData.getP().minus(hitData.getP()).magnitude();
-				if(distanceToClosePoint < distanceToLight)
-				{
-					return true;
-				}
+				return true;
 			}
 		}
-		return false;*/
-		throw new NotImplementedException();
+		return false;
 	}
 	
 	public static Color getColorLambertian(Color cR, Color cA, Color cL, Vector n, Point light, Point p, 

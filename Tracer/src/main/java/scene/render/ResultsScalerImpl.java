@@ -3,6 +3,7 @@ package scene.render;
 public class ResultsScalerImpl implements ResultsScaler
 {
 	private final double PCT_VALUE_START_SCALE = 0.75;
+	
 	@Override
 	public int[][][] scale(int[][][] image)
 	{

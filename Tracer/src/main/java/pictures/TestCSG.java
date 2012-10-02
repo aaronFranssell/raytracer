@@ -109,7 +109,7 @@ public class TestCSG
 		
 		Scene scene = new SceneImpl(surfaceList);
 				
-		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, "yonPicture", light);
+		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, light);
 		renderer.render();
 	}
 }

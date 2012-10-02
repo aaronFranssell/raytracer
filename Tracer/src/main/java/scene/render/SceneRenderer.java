@@ -1,20 +1,15 @@
 package scene.render;
 
 import java.awt.image.BufferedImage;
-import java.awt.image.WritableRaster;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
-import etc.RaytracerException;
-import javax.imageio.ImageIO;
 
 import math.Point;
 import math.UVW;
@@ -24,15 +19,14 @@ import math.Vector;
 import scene.Scene;
 import scene.render.factory.RenderThreadFactory;
 import scene.render.factory.RenderThreadFactoryImpl;
+import scene.render.factory.ResultsConverterFactory;
+import scene.render.factory.ResultsConverterFactoryImpl;
 import scene.viewer.ViewingVolume;
 import scene.viewer.factory.ViewingVolumeFactory;
 import scene.viewer.factory.ViewingVolumeFactoryImpl;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-import util.Constants;
-import util.FileLocator;
-import util.Library;
 import util.stopwatch.StopWatch;
 import util.stopwatch.StopWatchImpl;
+import etc.RaytracerException;
 
 public class SceneRenderer
 {
@@ -43,20 +37,20 @@ public class SceneRenderer
 	private int height;
 	private int numThreads;
 	private Scene scene;
-	private String fileName;
 	private UVW basis;
 	private Point light;
 	private StopWatch stopWatch;
 	private RenderResult renderResult;
-	private BufferedImage image;
 	private RenderThreadFactory renderThreadFactory;
 	private ViewingVolume viewVolume;
+	private ResultsConverterFactory resultsConverterFactory;
 	
 	private static final ExecutorService workers = Executors.newCachedThreadPool();
 	
 	public SceneRenderer(Vector incomingUp, Vector incomingGaze, Point incomingEye, int incomingLeft, int incomingRight, int incomingTop, int incomingBottom, int incomingWidth,
-						 int incomingHeight, int incomingNumThreads, Scene incomingScene, String incomingFileName, Point incomingLight, UVWFactory factory,
-						 StopWatch incomingStopWatch, RenderThreadFactory incomingRenderThreadFactory, ViewingVolumeFactory incomingViewingVolumeFactory) throws RaytracerException
+						 int incomingHeight, int incomingNumThreads, Scene incomingScene, Point incomingLight, UVWFactory factory,
+						 StopWatch incomingStopWatch, RenderThreadFactory incomingRenderThreadFactory, ViewingVolumeFactory incomingViewingVolumeFactory,
+						 ResultsConverterFactory incomingResultsConverterFactory) throws RaytracerException
 	{
 		if(incomingNumThreads <= 0)
 		{
@@ -69,52 +63,37 @@ public class SceneRenderer
 		width = incomingWidth;
 		height = incomingHeight;
 		basis = factory.createUVW(up, gaze);
-		fileName = incomingFileName;
 		light = incomingLight;
 		scene = incomingScene;
 		stopWatch = incomingStopWatch;
 		renderResult = new RenderResult();
-		image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 		renderThreadFactory = incomingRenderThreadFactory;
 		viewVolume = incomingViewingVolumeFactory.getVolume(incomingLeft, incomingRight, incomingBottom, incomingTop);
+		resultsConverterFactory = incomingResultsConverterFactory;
 	}
 	
 	public SceneRenderer(Vector incomingUp, Vector incomingGaze, Point incomingEye, int incomingLeft, int incomingRight, int incomingTop, int incomingBottom, int incomingWidth,
-			 int incomingHeight, int incomingNumThreads, Scene incomingScene, String incomingFileName, Point incomingLight) throws RaytracerException
+			 int incomingHeight, int incomingNumThreads, Scene incomingScene, Point incomingLight) throws RaytracerException
 	{
 		this(incomingUp, incomingGaze, incomingEye, incomingLeft, incomingRight, incomingTop, incomingBottom, incomingWidth, incomingHeight,
-			 incomingNumThreads, incomingScene, incomingFileName, incomingLight, new UVWFactoryImpl(), new StopWatchImpl(), new RenderThreadFactoryImpl(), new ViewingVolumeFactoryImpl());
+			 incomingNumThreads, incomingScene, incomingLight, new UVWFactoryImpl(), new StopWatchImpl(), new RenderThreadFactoryImpl(), new ViewingVolumeFactoryImpl(),
+			 new ResultsConverterFactoryImpl());
 	}
 	
-	public RenderResult render() throws IOException, InterruptedException
+	public RenderResult render() throws IOException, InterruptedException, ExecutionException
 	{
 		stopWatch.start();
-		double[][][] imageData = new double[width][height][3];
-		
+
 		int threadHeight = height / numThreads;
 		
 		int leftOverThreadHeight = height % numThreads;
 		
 		List<Future<double[][][]>> results = renderScene(threadHeight, leftOverThreadHeight);
 		
-		int index = 0;
-		int largestIntColorValue = 0;
-		int totalSamples = 0;
-		int totalRGBValues  = 0;
-		int numberAbove255 = 0;
+		ResultsConverter resultsConverter = resultsConverterFactory.getConverter(results, width, height);
 		
-		WritableRaster raster = image.getRaster();
-		for(int w = 0; w < width; w++)
-		{
-			for(int h = 0; h < height; h++)
-			{
-				raster.setPixel(w,((height-1)-h),imageData[w][h]);
-			}
-		}
+		BufferedImage image = resultsConverter.getImageFromResults();
 		
-		FileLocator loc = new FileLocator();
-		String writeToFile = loc.getImageDirectory() + fileName;
-		ImageIO.write(image,"PNG",new File(writeToFile + ".png"));
 		renderResult.setImage(image);
 		renderResult.setStopWatch(stopWatch);
 		stopWatch.stop();
@@ -139,10 +118,5 @@ public class SceneRenderer
 		}
 		List<Future<double[][][]>> results = workers.invokeAll(tasks);
 		return results;
-	}
-		
-	public static int convertToInt(double incoming)
-	{
-		return (int) ((int) (255 * incoming));
 	}
 }

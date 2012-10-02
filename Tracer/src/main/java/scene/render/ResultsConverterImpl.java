@@ -1,6 +1,7 @@
 package scene.render;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.WritableRaster;
 import java.util.Collection;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
@@ -10,11 +11,21 @@ public class ResultsConverterImpl implements ResultsConverter
 	private Collection<Future<double[][][]>> results;
 	private int width;
 	private int height;
+	private ResultsScaler resultsScaler;
+	private BufferedImage image;
 	
 	public ResultsConverterImpl(Collection<Future<double[][][]>> incomingResults, int incomingWidth, int incomingHeight)
 	{
+		this(incomingResults, incomingWidth, incomingHeight, new ResultsScalerImpl(), new BufferedImage(incomingWidth, incomingHeight, BufferedImage.TYPE_INT_RGB));
+	}
+
+	public ResultsConverterImpl(Collection<Future<double[][][]>> incomingResults, int incomingWidth, int incomingHeight, ResultsScaler incomingResultsScaler, BufferedImage incomingImage)
+	{
+		resultsScaler = incomingResultsScaler;
 		results = incomingResults;
 		height = incomingHeight;
+		image = incomingImage;
+		width = incomingWidth;
 	}
 	
 	@Override
@@ -32,14 +43,32 @@ public class ResultsConverterImpl implements ResultsConverter
 			{
 				for(int h = 0; h < threadHeight; h++)
 				{
-					imageData[w][h + offsetHeight][RenderThread.RED_INDEX] = (int) anImage[w][h][RenderThread.RED_INDEX] * MAX_COLOR_INT_VAL;
-					imageData[w][h + offsetHeight][RenderThread.GREEN_INDEX] = (int) anImage[w][h][RenderThread.GREEN_INDEX] * MAX_COLOR_INT_VAL;
-					imageData[w][h + offsetHeight][RenderThread.BLUE_INDEX] = (int) anImage[w][h][RenderThread.BLUE_INDEX] * MAX_COLOR_INT_VAL;
+					for(int c = 0; c < anImage[w][h].length; c++)
+					{
+						imageData[w][h + offsetHeight][c] = (int) (anImage[w][h][c] * MAX_COLOR_INT_VAL);
+					}
 				}
 			}
 			
 			offsetHeight += threadHeight;
 		}
-		return null;
+		
+		imageData = resultsScaler.scale(imageData);
+		
+		setBufferedImageFromData(imageData);
+		
+		return image;
+	}
+	
+	private void setBufferedImageFromData(int[][][] imageData)
+	{
+		WritableRaster raster = image.getRaster();
+		for(int w = 0; w < width; w++)
+		{
+			for(int h = 0; h < height; h++)
+			{
+				raster.setPixel(w,((height-1)-h),imageData[w][h]);
+			}
+		}
 	}
 }
