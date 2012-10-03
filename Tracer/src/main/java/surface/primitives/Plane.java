@@ -78,7 +78,7 @@ public class Plane extends Surface
 	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n, Point p)
 	{
 		Color returnColor;
-		Color white = new Color(0.75,0.75,0.75);
+		Color white = new Color(0.7,0.7,0.7);
 		Color black = new Color(0.1,0.1,0.1);
 		if(Math.cos(p.z) > 0)
 		{

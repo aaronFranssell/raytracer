@@ -21,7 +21,7 @@ public class ResultsScalerImpl implements ResultsScaler
 					int value = image[w][h][c];
 					if(value > scaleBeginValue)
 					{
-						image[w][h][c] = scaleBeginValue + getOffset(value, largestColorValue, scaleBasis);
+						image[w][h][c] = getScaledValue(value, largestColorValue, scaleBasis, scaleBeginValue);
 					}
 				}
 			}
@@ -50,9 +50,9 @@ public class ResultsScalerImpl implements ResultsScaler
 		return largest;
 	}
 
-	private int getOffset(int currValue, int largestIntColorValue, int scaleBasis)
+	private int getScaledValue(int currValue, int largestIntColorValue, int scaleBasis, int scaleBeginValue)
 	{
-		int difference = largestIntColorValue - currValue;
-		return difference/scaleBasis;
+		int offset = (int) (((double) currValue)/largestIntColorValue * (ResultsConverter.MAX_COLOR_INT_VAL - scaleBeginValue));
+		return scaleBeginValue + offset;
 	}
 }

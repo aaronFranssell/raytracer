@@ -144,9 +144,9 @@ public class Library
 		Color RGBValue = new Color(0,0,0);
 		if(!inShadow)
 		{
-			RGBValue.red = cR.red*(cA.red + cL.red*max(0,nDotL)*Constants.LAMBERTIAN_COSIGN_BUMP_UP);
-			RGBValue.green = cR.green*(cA.green + cL.green*max(0,nDotL)*Constants.LAMBERTIAN_COSIGN_BUMP_UP);
-			RGBValue.blue = cR.blue*(cA.blue + cL.blue*max(0,nDotL)*Constants.LAMBERTIAN_COSIGN_BUMP_UP);
+			RGBValue.red = cR.red*(cA.red + cL.red*max(0,nDotL));
+			RGBValue.green = cR.green*(cA.green + cL.green*max(0,nDotL));
+			RGBValue.blue = cR.blue*(cA.blue + cL.blue*max(0,nDotL));
 		}//if
 		else
 		{
@@ -181,9 +181,9 @@ public class Library
 		double phongHighlight = max(0,n.dot(h));
 		
 		Color phong = new Color(0.0,0.0,0.0);
-		phong.red = cL.red * Constants.cP * Math.pow(phongHighlight,exponent);
-		phong.green = cL.green * Constants.cP * Math.pow(phongHighlight,exponent);
-		phong.blue = cL.blue * Constants.cP * Math.pow(phongHighlight,exponent);
+		phong.red = cL.red * Math.pow(phongHighlight,exponent);
+		phong.green = cL.green * Math.pow(phongHighlight,exponent);
+		phong.blue = cL.blue * Math.pow(phongHighlight,exponent);
 		
 		RGBValue.red += cR.red*phong.red;
 		RGBValue.green += cR.green*phong.green;

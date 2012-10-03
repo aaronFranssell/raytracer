@@ -145,9 +145,9 @@ public class TestProg
 		Point light = new Point(0.0,100.0, 100.0);
 		
 		Scene scene = new SceneImpl(surfaceList);
-		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, light);
+		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light);
 		RenderResult result = renderer.render();
-		System.out.println("scene rendered in: " + result.getStopWatch().getDifference());
+		System.out.println(result.getStopWatch().getDifference());
 		ImageIO.write(result.getImage(), "PNG", new File("C:\\raytracer\\Tracer\\img\\yonPicture.png"));
 	}
 }

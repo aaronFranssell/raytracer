@@ -75,7 +75,7 @@ public class ScenePixelImpl implements ScenePixel
 			refractReturnColor = recurse(newRay, scene,currentDepth+1);
 			Library.clamp(refractReturnColor);
 		}
-		return refractReturnColor.scaleReturn(Constants.scaleRefractReturnColor);
+		return refractReturnColor;
 	}
 
 	private Color getReflectedColor(Ray r, int currentDepth, HitData hit, Surface currSurface) throws RaytracerException
@@ -91,7 +91,7 @@ public class ScenePixelImpl implements ScenePixel
 			reflectReturnColor = recurse(newRay, scene, currentDepth + 1);
 			Library.clamp(reflectReturnColor);
 		}
-		return reflectReturnColor.scaleReturn(Constants.scaleReflectReturnColor);
+		return reflectReturnColor;
 	}
 
 	public Ray getR()

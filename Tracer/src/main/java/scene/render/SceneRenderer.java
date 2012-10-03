@@ -100,12 +100,13 @@ public class SceneRenderer
 		return renderResult;
 	}
 
-	private List<Future<double[][][]>> renderScene(int threadHeight, int leftOverThreadHeight) throws InterruptedException
+	private List<Future<double[][][]>> renderScene(int incomingThreadHeight, int leftOverThreadHeight) throws InterruptedException
 	{
 		Collection<Callable<double[][][]>> tasks = new ArrayList<Callable<double[][][]>>();
 		
 		for(int i = 0; i < numThreads; i++)
 		{
+			int threadHeight = incomingThreadHeight;
 			int startHeight = i * threadHeight;
 			
 			if(i == 0)
