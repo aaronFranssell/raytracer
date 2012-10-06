@@ -7,7 +7,7 @@ import math.Vector;
 import noise.noiseClasses.NoiseStone;
 import scene.Scene;
 import scene.SceneImpl;
-import scene.render.SceneRenderer;
+import scene.render.SceneRendererImpl;
 import surface.Surface;
 import surface.csg.operation.BoundedBy;
 import surface.csg.operation.Intersection;
@@ -109,7 +109,7 @@ public class TestCSG
 		
 		Scene scene = new SceneImpl(surfaceList);
 				
-		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, light);
+		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, light);
 		renderer.render();
 	}
 }

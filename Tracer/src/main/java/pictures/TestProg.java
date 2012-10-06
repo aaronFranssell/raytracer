@@ -12,7 +12,7 @@ import noise.noiseClasses.NoiseWood;
 import scene.Scene;
 import scene.SceneImpl;
 import scene.render.RenderResult;
-import scene.render.SceneRenderer;
+import scene.render.SceneRendererImpl;
 import surface.Surface;
 import surface.primitives.Cone;
 import surface.primitives.Cylinder;
@@ -145,7 +145,7 @@ public class TestProg
 		Point light = new Point(0.0,100.0, 100.0);
 		
 		Scene scene = new SceneImpl(surfaceList);
-		SceneRenderer renderer = new SceneRenderer(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light);
+		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light);
 		RenderResult result = renderer.render();
 		System.out.println(result.getStopWatch().getDifference());
 		ImageIO.write(result.getImage(), "PNG", new File("C:\\raytracer\\Tracer\\img\\yonPicture.png"));
