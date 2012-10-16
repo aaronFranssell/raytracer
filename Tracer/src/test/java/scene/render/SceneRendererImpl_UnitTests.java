@@ -29,7 +29,7 @@ import scene.viewer.ViewingVolume;
 import scene.viewer.factory.ViewingVolumeFactory;
 import util.stopwatch.StopWatch;
 
-public class SceneRenderer_UnitTests
+public class SceneRendererImpl_UnitTests
 {
 	@Test
 	public void render_WithMocks_ExpectCall() throws RaytracerException, InterruptedException, ExecutionException, IOException

@@ -14,14 +14,10 @@ import etc.HitData;
 
 public class Cylinder extends Surface
 {
-	private Vector preComputedEyeMinusBottom;
-	private Vector preComputedRCrossA;
-	
 	private Point bottom;
 	private double radius;
 	private double height;
 	private Vector direction;
-	private double d;
 	private Point top;
 	
 	public Cylinder(Point incomingBottom, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, double incomingHeight, Vector incomingDirection,
@@ -33,8 +29,7 @@ public class Cylinder extends Surface
 		cA = incomingCA;
 		cL = incomingCL;
 		height = incomingHeight;
-		direction = incomingDirection;
-		direction.normalize();
+		direction = incomingDirection.normalizeReturn();
 		effects = incomingEffects;
 		top = new Point(direction.x * height, direction.y * height, direction.z * height);
 		//Displace the top point by the bottom
@@ -50,38 +45,10 @@ public class Cylinder extends Surface
 		this(incomingBottom, incomingRadius, incomingCR, incomingCA, incomingCL, incomingHeight, incomingDirection, incomingEffects, new UtilImpl());
 	}
 	
-	private double[] getHitTs(Ray r)
-	{
-		/*
-		 * this value gives the "t" distance to the point on the ray closest to the direction vector of the cylinder.
-		 * Br is eyepoint, Bc is a point on the cylinder centerline, A is the direction, R is the ray direction.
-		 * {(Br - Bc) X A} * (R X A)
-		 * ------------------------
-		 *          |R X A|^2
-		 */
-		double numerator = preComputedEyeMinusBottom.cross(direction).dot(preComputedRCrossA);
-		double denominator = preComputedRCrossA.magnitude() * preComputedRCrossA.magnitude();
-		double distanceToCylinder = numerator/denominator;
-				
-		Vector O = preComputedRCrossA.cross(direction);
-		O.normalize();
-		
-		/*
-		 *s = abs(sqrt(r^2 - d^2)/(R*O)) 
-		 */
-		double s = Math.sqrt(radius*radius - d*d)/r.getD().dot(O);
-		double t1 = distanceToCylinder - s;
-		double t2 = distanceToCylinder + s;
-		double[] retTArray = new double[2];
-		retTArray[0] = onLimitedCylinder(t1, r) ? t1:Double.NaN;
-		retTArray[1] = onLimitedCylinder(t2, r) ? t2:Double.NaN;
-		return retTArray;
-	}
-	
 	public Vector getNormal(Point hitPoint, Ray r)
 	{
 		/*
-		 * i derived this myself so may be buggy :/
+		 * i derived this myself so may be buggy :-/
 		 * there is a right triangle formed between 3 points: the cylinder bottom, the hit point on the cylinder,
 		 * and the point on the centerline of the cylinder that is closest to the hitpoint. The normal will be
 		 * the vector that is the hit point minus the close centerline point. To find the centerline point,
@@ -90,8 +57,7 @@ public class Cylinder extends Surface
 		 */
 		Vector hitPointMinusBottom = hitPoint.minus(bottom);
 		//just the pythagorean theorem...
-		double distanceToClosePoint = Math.sqrt(hitPointMinusBottom.magnitude() * hitPointMinusBottom.magnitude()
-												- radius * radius);
+		double distanceToClosePoint = Math.sqrt(hitPointMinusBottom.magnitude() * hitPointMinusBottom.magnitude() - radius * radius);
 		
 		Vector vecToHitPoint = hitPointMinusBottom.copy();
 		vecToHitPoint.normalize();
@@ -124,16 +90,17 @@ public class Cylinder extends Surface
 		//take the dot product of (hit point - cylinder bottom point).dot(direction vector)
 		//if this is > 0, then the hit point lies in front of the bottom.
 		Vector bottomToP = pointOnCylinder.minus(bottom);
-		bottomToP.normalize();
+		bottomToP = bottomToP.normalizeReturn();
 		//the hit point is below the bottom of the cylinder, therefore a miss...
 		if(bottomToP.dot(direction) < 0)
 		{
 			return false;
 		}
+		
 		//Now do the same as above, except in reverse.	
 		Vector topToP = pointOnCylinder.minus(top);
-		topToP.normalize();
-		//now need to reverse the direction vector, in order to reverse the direction of the cylinder's direction
+		topToP = topToP.normalizeReturn();
+		//now need to reverse the direction vector, in order to reverse the direction of the cylinder
 		Vector reversedDirection = new Vector(direction.x * -1, direction.y * -1, direction.z * -1);
 		if(topToP.dot(reversedDirection) < 0)
 		{
@@ -144,14 +111,9 @@ public class Cylinder extends Surface
 	
 	public ArrayList<HitData> getHitData(Ray r)
 	{
-		if(!rayHitInfiniteCylinder(r))
-		{
-			return new ArrayList<HitData>();
-		}
 		double[] hitTs = getHitTs(r);
 		
 		ArrayList<HitData> retData = new ArrayList<HitData>();
-		
 		for(double t : hitTs)
 		{
 			Point hitPoint = ops.getP(t, r);
@@ -162,32 +124,35 @@ public class Cylinder extends Surface
 		return retData;
 	}
 	
-	private boolean rayHitInfiniteCylinder(Ray r)
+	public double[] getHitTs(Ray r)
 	{
-		preComputedEyeMinusBottom = bottom.minus(r.getEye());
-		
-		preComputedRCrossA = r.getD().cross(direction);
-		Vector tempRCrossA = preComputedRCrossA.copy();
-		tempRCrossA.normalize();
-		
-		//i don't want to think about this case. Eff parallel rays.
-		if(r.getD().x == 0.0/0.0 || r.getD().y == 0.0/0.0 || r.getD().z == 0.0/0.0)
-		{
-			return false;
-		}
-		
 		Vector eyeMinusBottom = r.getEye().minus(bottom);
-		//"d" represents the closest the ray will get to the center vector/line of the cylinder.
-		//if "d" <= the radius, then there is a hit somewhere, since i'm counting parallel rays as misses
-		d = Math.abs(eyeMinusBottom.dot(tempRCrossA));
-		if(d <= radius)
+		Vector rayCrossDirection = r.getD().cross(direction);
+		
+		double rayCrossDirectionMag = rayCrossDirection.magnitude();
+		rayCrossDirection = rayCrossDirection.normalizeReturn();
+		
+		double distance = Math.abs(eyeMinusBottom.dot(rayCrossDirection));
+		
+		boolean isHit = (distance <= radius);
+		if(!isHit)
 		{
-			return true;
+			return new double[0];
 		}
-		else
-		{
-			return false;
-		}
+		
+		double numerator = direction.cross(eyeMinusBottom).dot(rayCrossDirection);
+		double t = numerator/rayCrossDirectionMag;
+		
+		Vector O = rayCrossDirection.cross(direction);
+		O = O.normalizeReturn();
+		
+		double s = Math.abs(Math.sqrt(radius*radius - distance*distance)/r.getD().dot(O));
+		double t1 = t - s;
+		double t2 = t + s;
+		double[] retTArray = new double[2];
+		retTArray[0] = onLimitedCylinder(t1, r) ? t1:Double.NaN;
+		retTArray[1] = onLimitedCylinder(t2, r) ? t2:Double.NaN;
+		return retTArray;
 	}
 
 	@Override

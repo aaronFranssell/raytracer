@@ -1,9 +1,7 @@
-package pictures;
+package scene.render;
 
-import java.io.File;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
-
-import javax.imageio.ImageIO;
 
 import math.Point;
 import math.Vector;
@@ -11,8 +9,6 @@ import noise.noiseClasses.NoiseStone;
 import noise.noiseClasses.NoiseWood;
 import scene.Scene;
 import scene.SceneImpl;
-import scene.render.RenderResult;
-import scene.render.SceneRendererImpl;
 import surface.Surface;
 import surface.primitives.Cone;
 import surface.primitives.Cylinder;
@@ -22,16 +18,14 @@ import surface.primitives.Sphere;
 import surface.primitives.Torus;
 import surface.primitives.Triangle;
 import util.Constants;
-import util.FileLocator;
 import bumpMapping.StoneBump;
 import etc.Color;
 import etc.Effects;
 
-public class TestProg
+public class SceneRendererImpl_TestsHelper
 {
-	public static void main(String[] args) throws Exception
+	public static RenderResult getResult() throws Exception
 	{
-		FileLocator loc = new FileLocator();
 		Color cR;
 		Color cL = new Color(0.4,0.4,0.4);
 		Point center = new Point(3.0,0.0,1.5);
@@ -39,7 +33,6 @@ public class TestProg
 		cR = new Color(0.0,0.0,0.5);
 		Effects effects = new Effects();
 		effects.setPhong(true);
-		//effects.setReflective(true);
 		effects.setReflective(true);
 		effects.setNoiseMappedColorClass(new NoiseWood());
 		center = new Point(0.0,3.0,0.0);
@@ -56,18 +49,14 @@ public class TestProg
 		effects = new Effects();
 		effects.setPhong(true);
 		effects.setReflective(true);
-		//effects.setRefractive(true);
 		center = new Point(-2.0,0.0,0.0);
 		Sphere s6 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null,0.0);
 		
-		Point bottomCylinder = new Point(2.0,2.0,0.0);
+		Point bottomCylinder = new Point(1.5,1.5,0.0);
 		effects = new Effects();
 		effects.setPhong(true);
 		effects.setReflective(true);
-		//effects.setNoiseMappedColorClass(new NoiseStone());
-		//effects.setRefractive(true);
-		//effects.setLambertian(true);
-		Cylinder c3 = new Cylinder(bottomCylinder, 0.5, cR, Constants.cA, cL, 3.0, new Vector(1.0,1.0,1.0), effects);
+		Cylinder c3 = new Cylinder(bottomCylinder, 0.5, cR, Constants.cA, cL, 1.5, new Vector(1.0,1.0,1.0), effects);
 		
 		effects = new Effects();
 		effects.setPhong(true);
@@ -79,14 +68,12 @@ public class TestProg
 		ArrayList<Surface> surfaceList = new ArrayList<Surface>();
 		effects = new Effects();
 		effects.setPhong(true);
-		String filePath = loc.getImageDirectory() + "hubble.JPG";
+		String filePath = "src\\test\\resources\\hubble.JPG";
 		OuterSphere background = new OuterSphere(filePath,effects,Constants.cA,cL, 1.0);
 		
 		cR = new Color(0.0,0.7,0.5);
 		effects = new Effects();
-		//effects.setPhong(true);
 		effects.setLambertian(true);
-		//effects.setReflective(true);
 		effects.setNoiseMappedColorClass(new NoiseStone());
 		effects.setBumpMapClass(new StoneBump());
 		center = new Point(2.0,0.0,0.0);
@@ -102,10 +89,8 @@ public class TestProg
 		Triangle t = new Triangle(cR,cL, Constants.cA, a, b, c, effects);
 		
 		center = new Point(-2.0,5.0,-8.0);
-		filePath = loc.getImageDirectory() + "moonSurface.jpg";
+		filePath = "src\\test\\resources\\moonSurface.jpg";
 		effects = new Effects();
-		//effects.setPhong(true);
-		//effects.setReflective(true);
 		effects.setLambertian(true);
 		Sphere textureSphere = new Sphere(center,6.0, cR, Constants.cA, cL,effects, filePath, 0.65);
 		
@@ -113,7 +98,6 @@ public class TestProg
 		Point vertex = new Point(0.0,0.0,0.0);
 		Point basePoint = new Point(-1.0,-1.0,-1.0);
 		double length = 2.0;
-		//double alpha = Math.sqrt(2)/2;//45 degrees
 		double alpha = Math.sqrt(3)/2;//30 degrees
 		cR = new Color(0.0,0.5,0.0);
 		cL = new Color(0.3,0.3,0.3);
@@ -147,7 +131,39 @@ public class TestProg
 		Scene scene = new SceneImpl(surfaceList);
 		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light);
 		RenderResult result = renderer.render();
-		System.out.println(result.getStopWatch().getDifference());
-		ImageIO.write(result.getImage(), "PNG", new File("C:\\raytracer\\Tracer\\img\\yonPicture.png"));
+		
+		return result;
+	}
+	
+	public static boolean imagesAreEqual(BufferedImage b1, BufferedImage b2, int numDifferencesTolerated)
+	{
+		int[] pixelsB1 = getPixels(b1);
+		int[] pixelsB2 = getPixels(b2);
+		
+		if(pixelsB1.length != pixelsB2.length)
+		{
+			return false;
+		}
+		
+		int differences = 0;
+		for(int i = 0; i < pixelsB1.length; i++)
+		{
+			if(pixelsB1[i] != pixelsB2[i])
+			{
+				differences++;
+			}
+		}
+		
+		return differences <= numDifferencesTolerated;
+	}
+	
+	private static int[] getPixels(BufferedImage image)
+	{
+		int width = image.getWidth();
+		int height = image.getHeight();
+		int[] pixels = new int[width * height];
+		image.getRGB(0, 0, width, height, pixels, 0, width);
+		
+		return pixels;
 	}
 }
