@@ -132,6 +132,8 @@ public class SceneRendererImpl_TestsHelper
 		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light);
 		RenderResult result = renderer.render();
 		
+		//ImageIO.write(result.getImage(), "png", new File("src\\test\\resources\\result.png"));
+		
 		return result;
 	}
 	
@@ -154,7 +156,14 @@ public class SceneRendererImpl_TestsHelper
 			}
 		}
 		
-		return differences <= numDifferencesTolerated;
+		boolean result = (differences <= numDifferencesTolerated);
+		
+		if(!result)
+		{
+			System.out.println("Found " + differences + " differences.");
+		}
+		
+		return result;
 	}
 	
 	private static int[] getPixels(BufferedImage image)

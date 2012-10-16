@@ -2,7 +2,6 @@ package util;
 
 import scene.ray.Ray;
 import math.Point;
-
 public class UtilImpl implements Util
 {
 	@Override

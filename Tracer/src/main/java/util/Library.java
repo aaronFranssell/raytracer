@@ -9,10 +9,10 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.math3.complex.Complex;
+
 import math.Point;
 import math.Vector;
-
-import org.apache.commons.math.complex.Complex;
 
 import scene.Scene;
 import scene.ray.Ray;
@@ -101,7 +101,7 @@ public class Library
 		t.y = firstHalfN.y - secondHalfN.y;
 		t.z = firstHalfN.z - secondHalfN.z;
 		
-		t.normalize();
+		t = t.normalizeReturn();
 		
 		Ray newRay = new Ray(t, hitData.getP());
 		
@@ -114,7 +114,7 @@ public class Library
 				
 		double distanceToLight = d.magnitude();
 		
-		d.normalize();
+		d = d.normalizeReturn();
 		
 		Ray rayShotToLight = new Ray(d, hitData.getP());
 		
@@ -216,6 +216,7 @@ public class Library
 		*/
 		double c1 = - n.dot(r.getD());
 		Vector reflectedRay = r.getD().add(n.scaleReturn(2*c1));
+		reflectedRay = reflectedRay.normalizeReturn();
 		return new Ray(reflectedRay, p);
 	}
 	

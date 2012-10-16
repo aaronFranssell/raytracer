@@ -60,7 +60,9 @@ public class Transform
 	 */
 	public Vector translateVectorToLocal(Vector vec)
 	{
-		return translationMatrix.multiply(vec);
+		Vector retVec = translationMatrix.multiply(vec);
+		retVec = retVec.normalizeReturn();
+		return retVec;
 	}
 	
 	/**

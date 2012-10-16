@@ -11,7 +11,6 @@ public class Ray
 	public Ray(Vector incomingD, Point incomingEye)
 	{
 		d = incomingD;
-		d.normalize();
 		eye = incomingEye;
 	}
 
