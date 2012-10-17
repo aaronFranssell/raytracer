@@ -5,20 +5,7 @@ public class Color
 	public double red;
 	public double green;
 	public double blue;
-	
-	/**
-	 * 
-	 * @param incomingRed Assumed to be between 0-255.
-	 * @param incomingGreen Assumed to be between 0-255.
-	 * @param incomingBlue Assumed to be between 0-255.
-	 */
-	public Color(int incomingRed, int incomingGreen, int incomingBlue)
-	{
-		red = ((double)incomingRed)/255.0;
-		green = ((double)incomingGreen)/255.0;
-		blue = ((double)incomingBlue)/255.0;
-	}
-	
+
 	public Color scaleReturn(double val)
 	{
 		return new Color(red*val, green*val, blue*val);

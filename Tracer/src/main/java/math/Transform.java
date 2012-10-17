@@ -20,7 +20,6 @@ public class Transform
 	 * @throws Exception 
 	 */
 	public Transform(Vector incomingLocalDirection, Vector incomingWorldDirection,Point incomingWorldCenter)
-	throws Exception
 	{
 		//theta is the angle of rotation; in other words its the degree difference between the local direction
 		//and the world direction of the object.

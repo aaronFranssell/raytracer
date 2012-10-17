@@ -5,8 +5,8 @@ public class Matrix3
 	private double[][] matrix = new double[3][3];
 	
 	public Matrix3(double i1, double i2, double i3,
-				  double i4, double i5, double i6,
-				  double i7, double i8, double i9)
+				   double i4, double i5, double i6,
+				   double i7, double i8, double i9)
 	{
 		matrix[0][0] = i1; matrix[0][1] = i2; matrix[0][2] = i3;
 		matrix[1][0] = i4; matrix[1][1] = i5; matrix[1][2] = i6;
@@ -41,14 +41,5 @@ public class Matrix3
 		second = -1 * (matrix[0][1]*(matrix[1][0]*matrix[2][2] - matrix[1][2] * matrix[2][0]));
 		third = (matrix[0][2] * (matrix[1][0]*matrix[2][1] - matrix[1][1]*matrix[2][0]));
 		return (first + second + third);
-	}
-	
-	public Vector multiply(Vector other)
-	{
-		double x = matrix[0][0]*other.x + matrix[0][1]*other.y + matrix[0][2]*other.z;
-		double y = matrix[1][0]*other.x + matrix[1][1]*other.y + matrix[1][2]*other.z;
-		double z = matrix[2][0]*other.x + matrix[2][0]*other.y + matrix[2][2]*other.z;
-		
-		return new Vector(x,y,z);
 	}
 }

@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.math3.util.FastMath;
+
 import math.Point;
 import math.Vector;
 import noise.noiseClasses.NoiseStone;
@@ -113,8 +115,8 @@ public class TestProg
 		Point vertex = new Point(0.0,0.0,0.0);
 		Point basePoint = new Point(-1.0,-1.0,-1.0);
 		double length = 2.0;
-		//double alpha = Math.sqrt(2)/2;//45 degrees
-		double alpha = Math.sqrt(3)/2;//30 degrees
+		//double alpha = FastMath.sqrt(2)/2;//45 degrees
+		double alpha = FastMath.sqrt(3)/2;//30 degrees
 		cR = new Color(0.0,0.5,0.0);
 		cL = new Color(0.3,0.3,0.3);
 		effects = new Effects();

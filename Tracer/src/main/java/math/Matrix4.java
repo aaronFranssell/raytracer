@@ -1,7 +1,5 @@
 package math;
 
-
-
 public class Matrix4
 {
 	private double[][] matrix = new double[4][4];
@@ -30,39 +28,6 @@ public class Matrix4
 		matrix = incomingMatrix;
 	}
 	
-	/**
-	 * 
-	 * @param u The row of the matrix.
-	 * @param v The column of the matrix.
-	 * @return The double value at the specified index.
-	 */
-	public double getVal(int u, int v)
-	{
-		return matrix[u][v];
-	}
-	
-	public static void main(String args[])
-	{
-		Matrix4 m = new Matrix4(1,0,0,2,
-							    0,1,0,0,
-							    0,0,1,0,
-							    0,0,0,1);
-		System.out.println("det: " + m.det());
-		System.out.println("adjoint:\n" + m.getAdjoint());
-		try
-		{
-			Matrix4 inverse = m.getInverse();
-			System.out.println("inverse:\n" + inverse);
-			System.out.println("multiplied:\n" + m.multiply(inverse));
-			
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		}
-		
-	}
-	
 	public Matrix4 multiply(Matrix4 rightMatrix)
 	{
 		double[][] right = rightMatrix.getMatrix();
@@ -82,33 +47,30 @@ public class Matrix4
 		return new Matrix4(retMatrix);
 	}
 	
-	public double det()
+	private double det()
 	{
 		double retVal = 0;
-		double[] partialDet = new double[4];
+		double[] partialDet = new double[matrix.length];
 		int partialDetIndex = 0;
 		int row = 0;
-		for(int i = 0; i < 4; i++)
+		for(int i = 0; i < matrix.length; i++)
 		{
 			double outside = matrix[row][i];
-			if(i%2 == 1)
-			{
-				outside *= -1;
-			}
+			outside = i%2 == 1 ? outside * -1 : outside;
 			double[][] matrix3 = new double[3][3];
 			int m3row = 0;
 			int m3col = 0;
-			for(int a = 0; a < 4; a++)
+			for(int m = 0; m < matrix[i].length; m++)
 			{
 				m3col = 0;
 				//if the current row in the matrix is the outer part of the determinant
-				if(a != row)
+				if(m != row)
 				{
 					for(int e = 0; e < 4; e++)
 					{
 						if(e != i)
 						{
-							matrix3[m3row][m3col] = matrix[a][e];
+							matrix3[m3row][m3col] = matrix[m][e];
 							m3col++;
 						}
 					}
@@ -126,7 +88,7 @@ public class Matrix4
 		return retVal;
 	}
 	
-	public Matrix4 getMinors()
+	private Matrix4 getMinors()
 	{
 		double[][] retMatrix = new double[4][4];
 		for(int i = 0; i < 4; i++)
@@ -160,7 +122,7 @@ public class Matrix4
 		return new Matrix4(retMatrix);
 	}
 	
-	public Matrix4 transpose()
+	private Matrix4 transpose()
 	{
 		double[][] retMatrix = new double[4][4];
 		for(int i = 0; i < 4; i++)
@@ -173,7 +135,7 @@ public class Matrix4
 		return new Matrix4(retMatrix);
 	}
 	
-	public Matrix4 getAdjoint()
+	private Matrix4 getAdjoint()
 	{
 		Matrix4 minorMatrix = getMinors();
 		return minorMatrix.transpose();
@@ -196,19 +158,6 @@ public class Matrix4
 		return returnString;
 	}
 	
-	public Matrix4 divideBy(double scaleNum)
-	{
-		double[][] retMatrix = new double[4][4];
-		for(int i = 0; i < 4; i++)
-		{
-			for(int u = 0; u < 4; u++)
-			{
-				retMatrix[i][u] = matrix[i][u]/scaleNum; 
-			}
-		}
-		return new Matrix4(retMatrix);
-	}
-	
 	public Matrix4 multiplyBy(double mulNum)
 	{
 		double[][] retMatrix = new double[4][4];
@@ -222,16 +171,12 @@ public class Matrix4
 		return new Matrix4(retMatrix);
 	}
 	
-	public Matrix4 getInverse() throws Exception
+	public Matrix4 getInverse()
 	{
-		if(this.det() != 0)
-		{
-			return this.getAdjoint().divideBy(1/this.det());
-		}
-		else
-		{
-			throw new Exception("Determinant of this matrix is zero, may not get the inverse.");
-		}
+		Matrix4 adjoint = getAdjoint();
+		double determinant = det();
+		adjoint = adjoint.multiplyBy(1/determinant);
+		return adjoint;
 	}
 
 	public double[][] getMatrix() {
