@@ -26,11 +26,4 @@ public class Constants
 	 */
 	public static final double OUTERSPHERE_RADIUS = 100.0;
 	
-	/**
-	 * I dunno how these interact exactly. Their ratio means something about whether things appear bigger or 
-	 * smaller... Lolz.
-	 */
-	public static double refractiveN = 1.0;
-	public static double refractiveNT = 1.0;
-	
 }

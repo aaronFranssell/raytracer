@@ -9,7 +9,7 @@ public class Effects
 	private boolean lambertian;
 	private NoiseColor noiseMappedColorClass;
 	private boolean reflective;
-	private boolean refractive;
+	private Refractive refractive;
 	private BumpMap bumpMapClass;
 	
 	public Effects()
@@ -17,7 +17,7 @@ public class Effects
 		phong = false;
 		lambertian = false;
 		reflective = false;
-		refractive = false;
+		refractive = null;
 	}
 	private boolean bothLambertianAndPhong()
 	{
@@ -49,12 +49,6 @@ public class Effects
 	public void setReflective(boolean reflective) {
 		this.reflective = reflective;
 	}
-	public boolean isRefractive() {
-		return refractive;
-	}
-	public void setRefractive(boolean refractive) {
-		this.refractive = refractive;
-	}
 	public NoiseColor getNoiseMappedColorClass() {
 		return noiseMappedColorClass;
 	}
@@ -68,5 +62,13 @@ public class Effects
 	public void setBumpMapClass(BumpMap bumpMapClass)
 	{
 		this.bumpMapClass = bumpMapClass;
+	}
+	public Refractive getRefractive()
+	{
+		return refractive;
+	}
+	public void setRefractive(Refractive refractive)
+	{
+		this.refractive = refractive;
 	}
 }

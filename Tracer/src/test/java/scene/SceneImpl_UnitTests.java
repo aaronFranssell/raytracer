@@ -13,7 +13,7 @@ import scene.ray.Ray;
 import surface.Surface;
 
 
-public class Scene_UnitTests
+public class SceneImpl_UnitTests
 {
 	@Test
 	public void getSmallestPositiveHitData_WithNoHits_ExpectMiss() throws RaytracerException

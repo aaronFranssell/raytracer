@@ -28,6 +28,7 @@ import util.FileLocator;
 import bumpMapping.StoneBump;
 import etc.Color;
 import etc.Effects;
+import etc.Refractive;
 
 public class TestProg
 {
@@ -99,7 +100,10 @@ public class TestProg
 		Point c = new Point(2.0,0.0,0.0);
 		effects = new Effects();
 		effects.setPhong(true);
-		effects.setRefractive(true);
+		Refractive refractive = new Refractive();
+		refractive.setN(1.0);
+		refractive.setnT(1.0);
+		effects.setRefractive(refractive);
 		cR = new Color(0.5,0.3,0.3);
 		Triangle t = new Triangle(cR,cL, Constants.cA, a, b, c, effects);
 		

@@ -71,7 +71,9 @@ public class Library
 		double refractiveNTSquared = refractiveNT*refractiveNT;
 		double secondHalf = (1 - (refractiveNSquared * (1 - dDotNSquared)) /refractiveNTSquared);
 		if(secondHalf < 0)
+		{
 			return null;
+		}
 		secondHalf = Math.pow(secondHalf, 0.5);
 		Vector secondHalfN = new Vector(n.x, n.y, n.z);
 

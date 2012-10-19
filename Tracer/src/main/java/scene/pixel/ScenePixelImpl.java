@@ -3,6 +3,7 @@ package scene.pixel;
 import etc.Color;
 import etc.HitData;
 import etc.RaytracerException;
+import etc.Refractive;
 import math.Point;
 import math.Vector;
 import scene.Scene;
@@ -69,9 +70,14 @@ public class ScenePixelImpl implements ScenePixel
 	{
 		Ray newRay;
 		Color refractReturnColor = new Color(0.0,0.0,0.0);
-		if(currSurface.getEffects().isRefractive())
+		if(currSurface.getEffects().getRefractive() != null)
 		{
-			newRay = Library.getRefractedRay(r.getD(), Constants.refractiveN,Constants.refractiveNT, hit);
+			Refractive refractive = currSurface.getEffects().getRefractive();
+			newRay = Library.getRefractedRay(r.getD(), refractive.getN(),refractive.getnT(), hit);
+			if(newRay == null)
+			{
+				return refractReturnColor;
+			}
 			refractReturnColor = recurse(newRay, scene,currentDepth+1);
 			Library.clamp(refractReturnColor);
 		}
