@@ -101,4 +101,44 @@ public class Matrix4_UnitTests
 			}
 		}
 	}
+	
+	@Test
+	public void multiplyHomogeneousCoordinates_WithVector_ExpectVector()
+	{
+		//Given
+		Vector vec = new Vector(3.0,5.0,7.0);
+		Matrix4 classUnderTest = new Matrix4(1.0, 0.0, 3.0, -3.0,
+											 -1.0, 5.0, -5.0, 7.0,
+											 3.0, 2.5, 6.0, 0.0, 
+											 0.0, -2.5, 5.0, 9.0);
+		Vector answerVector = new Vector(24.0, -13.0, 63.5);
+		
+		//When
+		Vector result = classUnderTest.multiplyHomogeneousCoordinates(vec);
+		
+		//Then
+		Assert.assertEquals(answerVector.x, result.x, Constants.POSITIVE_ZERO);
+		Assert.assertEquals(answerVector.y, result.y, Constants.POSITIVE_ZERO);
+		Assert.assertEquals(answerVector.z, result.z, Constants.POSITIVE_ZERO);
+	}
+	
+	@Test
+	public void multiplyHomogeneousCoordinates_WithPoint_ExpectPoint()
+	{
+		//Given
+		Point point = new Point(3.0, -5.0, 7.0);
+		Matrix4 classUnderTest = new Matrix4(1.0, 0.0, 3.0, -3.0,
+											 -1.0, 5.0, -5.0, 7.0,
+											 3.0, 2.5, 6.0, 0.0, 
+											 0.0, -2.5, 5.0, 9.0);
+		Point expected = new Point(21.0, -56.0, 38.5);
+		
+		//When
+		Point result = classUnderTest.multiplyHomogeneousCoordinates(point);
+		
+		//Then
+		Assert.assertEquals(expected.x, result.x, Constants.POSITIVE_ZERO);
+		Assert.assertEquals(expected.y, result.y, Constants.POSITIVE_ZERO);
+		Assert.assertEquals(expected.z, result.z, Constants.POSITIVE_ZERO);
+	}
 }

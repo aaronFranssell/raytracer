@@ -187,18 +187,17 @@ public class Matrix4
 		this.matrix = matrix;
 	}
 	
-	public Vector multiply(Vector vec)
+	public Vector multiplyHomogeneousCoordinates(Vector vec)
 	{
 		Vector retVec = new Vector(0.0,0.0,0.0);
-		//vectors only have magnitude, so they are not multiplied by the final "1" in the bottom right corner of the
-		//4x4 matrix
+		//vector is assumed to be of the form [x,y,z,0] so the last row can be left off when multiplying by the 4x4 matrix.
 		retVec.x = matrix[0][0] * vec.x + matrix[0][1] * vec.y + matrix[0][2] * vec.z;
 		retVec.y = matrix[1][0] * vec.x + matrix[1][1] * vec.y + matrix[1][2] * vec.z;
 		retVec.z = matrix[2][0] * vec.x + matrix[2][1] * vec.y + matrix[2][2] * vec.z;
 		return retVec;
 	}
 	
-	public Point multiply(Point point)
+	public Point multiplyHomogeneousCoordinates(Point point)
 	{
 		Point newPoint = new Point(0.0,0.0,0.0);
 		//points have the final "1" homogenous coordinate. I don't need to multiply out the final row, since that

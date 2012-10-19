@@ -59,7 +59,7 @@ public class Transform
 	 */
 	public Vector translateVectorToLocal(Vector vec)
 	{
-		Vector retVec = translationMatrix.multiply(vec);
+		Vector retVec = translationMatrix.multiplyHomogeneousCoordinates(vec);
 		retVec = retVec.normalizeReturn();
 		return retVec;
 	}
@@ -70,7 +70,7 @@ public class Transform
 	 */
 	public Point transformPointToLocal(Point p)
 	{
-		return translationMatrix.multiply(p);
+		return translationMatrix.multiplyHomogeneousCoordinates(p);
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class Transform
 	 */
 	public Vector translateVectorToWorld(Vector vec)
 	{
-		return translationMatrixInverse.multiply(vec);
+		return translationMatrixInverse.multiplyHomogeneousCoordinates(vec);
 	}
 	
 	/**
@@ -88,7 +88,7 @@ public class Transform
 	 */
 	public Point transformPointToWorld(Point p)
 	{
-		return translationMatrixInverse.multiply(p);
+		return translationMatrixInverse.multiplyHomogeneousCoordinates(p);
 	}
 }
 
