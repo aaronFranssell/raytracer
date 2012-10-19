@@ -19,7 +19,7 @@ public class Transform
 	 * @param incomingWorldCenter The world center of the surface. 
 	 * @throws Exception 
 	 */
-	public Transform(Vector incomingLocalDirection, Vector incomingWorldDirection,Point incomingWorldCenter)
+	public Transform(Vector incomingLocalDirection, Vector incomingWorldDirection, Point incomingWorldCenter)
 	{
 		//theta is the angle of rotation; in other words its the degree difference between the local direction
 		//and the world direction of the object.
@@ -28,8 +28,7 @@ public class Transform
 		Vector axis = incomingWorldDirection.cross(incomingLocalDirection);
 		cosTheta = incomingWorldDirection.dot(incomingLocalDirection);
 		sinTheta = axis.magnitude();
-		//normalize the axis
-		axis.normalize();
+		axis = axis.normalizeReturn();
 		//this is how one represents the left side of a cross product vector in matrix form
 		Matrix4 crossProductMatrixOfAxis = new Matrix4(0.0, -axis.z, axis.y, 0.0,
 													   axis.z, 0.0, -axis.x, 0.0,
@@ -52,11 +51,7 @@ public class Transform
 		translationMatrix = translationMatrix.multiply(moveMatrix);
 		translationMatrixInverse = translationMatrix.getInverse();
 	}
-	
-	/**
-	 * @param vec The vector that is being translated
-	 * @return The translated vector
-	 */
+
 	public Vector translateVectorToLocal(Vector vec)
 	{
 		Vector retVec = translationMatrix.multiplyHomogeneousCoordinates(vec);
@@ -64,28 +59,16 @@ public class Transform
 		return retVec;
 	}
 	
-	/**
-	 * @param p The point to be translated
-	 * @return The translated point.
-	 */
 	public Point transformPointToLocal(Point p)
 	{
 		return translationMatrix.multiplyHomogeneousCoordinates(p);
 	}
 	
-	/**
-	 * @param vec The vector that is being translated
-	 * @return The translated vector
-	 */
 	public Vector translateVectorToWorld(Vector vec)
 	{
 		return translationMatrixInverse.multiplyHomogeneousCoordinates(vec);
 	}
 	
-	/**
-	 * @param p The point to be translated
-	 * @return The translated point.
-	 */
 	public Point transformPointToWorld(Point p)
 	{
 		return translationMatrixInverse.multiplyHomogeneousCoordinates(p);

@@ -74,8 +74,7 @@ public class Triangle extends Surface
 	{
 		Vector aB = a.minus(b);
 		Vector aC = a.minus(c);
-		Vector n = aB.cross(aC);
-		n.normalize();
+		Vector n = aB.cross(aC).normalizeReturn();
 		//we need to make the normal point back to the eye.
 		Vector tempD = new Vector(-r.getD().x, -r.getD().y,-r.getD().z);
 		double tempDDotN = tempD.dot(n);

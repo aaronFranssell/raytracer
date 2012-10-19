@@ -37,7 +37,7 @@ public class Point
 		if(other.x + Constants.POSITIVE_ZERO < x || other.x - Constants.POSITIVE_ZERO > x)
 		{
 			return false;
-		}//if
+		}
 		if(other.y + Constants.POSITIVE_ZERO < y || other.y - Constants.POSITIVE_ZERO > y)
 		{
 			return false;
@@ -45,7 +45,7 @@ public class Point
 		if(other.z + Constants.POSITIVE_ZERO < z || other.z - Constants.POSITIVE_ZERO > z)
 		{
 			return false;
-		}//if
+		}
 		return true;
 	}
 	
@@ -57,16 +57,6 @@ public class Point
 	public Vector minus(Point p2)
 	{
 		return new Vector(this.x - p2.x, this.y - p2.y, this.z - p2.z);
-	}
-	
-	public Vector add(Point p2)
-	{
-		return new Vector(this.x + p2.x,this.y + p2.y, this.z + p2.z);
-	}
-	
-	public Point copy()
-	{
-		return new Point(x,y,z);
 	}
 	
 	public String toString()

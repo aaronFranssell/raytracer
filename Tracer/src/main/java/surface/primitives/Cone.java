@@ -36,8 +36,7 @@ public class Cone extends Surface
 	public Cone(Vector incomingDirection, Point incomingVertex, double incomingAlpha, Point incomingBasePoint, double incomingLength, 
 				Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, Util incomingOps) throws Exception
 	{
-		direction = incomingDirection;
-		direction.normalize();
+		direction = incomingDirection.normalizeReturn();
 		vertex = incomingVertex;
 		alpha = incomingAlpha;
 		cosAlpha = Math.cos(alpha);
@@ -60,8 +59,7 @@ public class Cone extends Surface
 		     Library.doubleEqual(vertex.y, basePoint.y, Constants.POSITIVE_ZERO) &&
 		     Library.doubleEqual(vertex.z, basePoint.z, Constants.POSITIVE_ZERO)))
 		{
-			Vector basePointVertexDirection = basePoint.minus(vertex);
-			basePointVertexDirection.normalize();
+			Vector basePointVertexDirection = basePoint.minus(vertex).normalizeReturn();
 			if(!basePointVertexDirection.equals(direction) && !basePointVertexDirection.scaleReturn(-1.0).equals(direction))
 			{
 				throw new Exception("The base point: " + basePoint.toString() + " is not on the same line as the vertex: " 

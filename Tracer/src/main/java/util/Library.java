@@ -131,13 +131,10 @@ public class Library
 		return false;
 	}
 	
-	public static Color getColorLambertian(Color cR, Color cA, Color cL, Vector n, Point light, Point p, 
-										   boolean inShadow)
+	public static Color getColorLambertian(Color cR, Color cA, Color cL, Vector n, Point light, Point p, boolean inShadow)
 	{
-		Vector pointToLight = light.minus(p);
-		pointToLight.normalize();
-		
-		n.normalize();
+		Vector pointToLight = light.minus(p).normalizeReturn();
+		n = n.normalizeReturn();
 		
 		double nDotL = n.dot(pointToLight);
 		
@@ -168,16 +165,13 @@ public class Library
 			return RGBValue;
 		}
 		
-		Vector pointToLight = light.minus(p);
-		pointToLight.normalize();
+		Vector pointToLight = light.minus(p).normalizeReturn();
 		
-		Vector pointToEye = eye.minus(p);
-		pointToEye.normalize();
+		Vector pointToEye = eye.minus(p).normalizeReturn();
 		
 		//h is the halfway vector between the point to light, and the point to eye
 		//take the dot product with n to get an approximation for the specular highlight
-		Vector h = pointToLight.add(pointToEye);
-		h.normalize();
+		Vector h = pointToLight.add(pointToEye).normalizeReturn();
 		double phongHighlight = max(0,n.dot(h));
 		
 		Color phong = new Color(0.0,0.0,0.0);
@@ -382,14 +376,6 @@ public class Library
 		return smallestT;
 	}
 
-	/**
-	 * This function determines if two doubles are roughly equivalent. If they are within the inputted tolerance of one another,
-	 * then this function returns true. False if otherwise.
-	 * @param num1 The first number to compare.
-	 * @param num2 The second number to compare.
-	 * @param tolerance The tolerance (how close to each other the numbers must be to be equal). 
-	 * @return True or false depending on equality.
-	 */
 	public static boolean doubleEqual(double num1, double num2, double tolerance)
 	{
 		if(num1 + tolerance > num2 && num1 - tolerance < num2)
@@ -458,16 +444,6 @@ public class Library
 		}
 		
 		return hitTs;
-	}
-	
-	/**
-	 * This function will be the cosine function for the raytracer. I may change to a more efficient implementation if I find one.
-	 * @param inRadians
-	 * @return
-	 */
-	public static double cos(double inRadians)
-	{
-		return Math.cos(inRadians);
 	}
 	
 	public static int[] getCircleUVImageMapping(Point p, Point center, double radius, int w, int h)

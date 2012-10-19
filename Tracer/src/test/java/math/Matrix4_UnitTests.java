@@ -141,4 +141,39 @@ public class Matrix4_UnitTests
 		Assert.assertEquals(expected.y, result.y, Constants.POSITIVE_ZERO);
 		Assert.assertEquals(expected.z, result.z, Constants.POSITIVE_ZERO);
 	}
+	
+	@Test
+	public void add_WithOtherMatrix_ExpectMatrix()
+	{
+		//Given
+		Matrix4 classUnderTest = new Matrix4(1.0, 0.0, 3.0, -3.0,
+											 -1.0, 5.0, -5.0, 7.0,
+											 3.0, 2.5, 6.0, 0.0, 
+											 0.0, -2.5, 5.0, 9.0);
+		
+		Matrix4 otherMatrix = new Matrix4(1.0, 0.0, 3.0, -3.0,
+										  -1.0, 5.0, -5.0, 7.0,
+										  3.0, 2.5, 6.0, 0.0, 
+										  0.0, -2.5, 5.0, 9.0);
+		
+		Matrix4 answerMatrix = new Matrix4(2.0, 0.0, 6.0, -6.0,
+						 				   -2.0, 10.0, -10.0, 14.0,
+										   6.0, 5.0, 12.0, 0.0, 
+										   0.0, -5.0, 10.0, 18.0);
+
+		
+		//When
+		Matrix4 result = classUnderTest.add(otherMatrix);
+		
+		//Then
+		double[][] matrixArray = answerMatrix.getMatrix();
+		double[][] resultArray = result.getMatrix();
+		for(int i = 0; i < matrixArray.length; i++)
+		{
+			for(int m = 0; m < resultArray.length; m++)
+			{
+				Assert.assertEquals(matrixArray[i][m], resultArray[i][m], Constants.POSITIVE_ZERO);
+			}
+		}
+	}
 }

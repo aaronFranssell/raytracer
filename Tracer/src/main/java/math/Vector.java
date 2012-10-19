@@ -1,5 +1,7 @@
 package math;
 
+import org.apache.commons.math3.util.FastMath;
+
 import util.Constants;
 import util.Library;
 
@@ -8,13 +10,6 @@ public class Vector
 	public double x;
 	public double y;
 	public double z;
-	
-	public Vector()
-	{
-		x = 0.0;
-		y = 0.0;
-		z = 0.0;
-	}
 	
 	public Vector(double incomingX, double incomingY, double incomingZ)
 	{
@@ -68,7 +63,7 @@ public class Vector
 	
 	public double magnitude()
 	{
-		return java.lang.Math.sqrt(x*x + y*y + z*z);
+		return FastMath.sqrt(x*x + y*y + z*z);
 	}
 	
 	public String toString()
@@ -76,24 +71,9 @@ public class Vector
 		return ("x: " + x + ", y: " + y + ", z: " + z);
 	}
 	
-	public void scale(double constant)
-	{
-		x *= constant;
-		y *= constant;
-		z *= constant;
-	}
-	
 	public Vector scaleReturn(double constant)
 	{
 		return new Vector(x*constant, y*constant, z*constant);
-	}
-	
-	public void normalize()
-	{
-		double mag = magnitude();
-		x /= mag;
-		y /= mag;
-		z /= mag;
 	}
 	
 	public Vector normalizeReturn()

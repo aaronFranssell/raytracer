@@ -36,13 +36,11 @@ public class Torus extends Surface
 		
 		//because I couldn't find a generalized torus rendering algorithm, I will have to use matrix
 		//transformations in order to render things the way I want to :-(
-		direction = incomingDirection;
-		direction.normalize();
+		direction = incomingDirection.normalizeReturn();
 		if(SURFACE_DIRECTION.cross(direction).equals(ZERO))
 		{
 			System.out.println("WARNING: Torus world direction parallel to surface local direction, offseting by: " + OFFSET_DIRECTION_VECTOR);
-			direction = direction.add(OFFSET_DIRECTION_VECTOR);
-			direction.normalize();
+			direction = direction.add(OFFSET_DIRECTION_VECTOR).normalizeReturn();
 		}
 		transform = new Transform(SURFACE_DIRECTION, direction, incomingCenter);
 		ops = incomingOps;
@@ -61,7 +59,7 @@ public class Torus extends Surface
 		normal.y=4*p.y*(Math.pow(p.x,2)+Math.pow(p.y,2)+Math.pow(p.z,2)-Math.pow(smallR, 2)-Math.pow(largeR,2));
 		normal.z=4*p.z*(Math.pow(p.x,2) + Math.pow(p.y,2) + Math.pow(p.z,2) - Math.pow(smallR, 2) - Math.pow(largeR, 2))
 			  + 8 * Math.pow(largeR, 2) * p.z;
-		normal.normalize();
+		normal = normal.normalizeReturn();
 		return normal;
 	}
 	

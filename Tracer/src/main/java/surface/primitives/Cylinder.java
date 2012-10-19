@@ -59,8 +59,7 @@ public class Cylinder extends Surface
 		//just the pythagorean theorem...
 		double distanceToClosePoint = Math.sqrt(hitPointMinusBottom.magnitude() * hitPointMinusBottom.magnitude() - radius * radius);
 		
-		Vector vecToHitPoint = hitPointMinusBottom.copy();
-		vecToHitPoint.normalize();
+		Vector vecToHitPoint = hitPointMinusBottom.normalizeReturn();
 		
 		//this holds the cosine of vecToHitPoint.dot(direction)
 		//if cosDirection > 0, then the hit point happened in the direction of the direction vector.
@@ -79,7 +78,7 @@ public class Cylinder extends Surface
 		
 		//the normal is now the difference between the hit point and the close point
 		Vector normal = new Vector(hitPoint.x - pointOnLine.x,hitPoint.y - pointOnLine.y,hitPoint.z - pointOnLine.z);
-		normal.normalize();
+		normal = normal.normalizeReturn();
 		return normal;
 	}
 	

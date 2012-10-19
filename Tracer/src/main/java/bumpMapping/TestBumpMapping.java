@@ -11,8 +11,7 @@ public class TestBumpMapping implements BumpMap
 	{
 		double noise = NoiseColor.perlinNoise(p, 6, 2.0);//for a more fluid looking perturbation use 4 as the middle term
 		noise = (noise - (int)noise);
-		normal = new Vector(normal.x + noise, normal.y + noise, normal.z + noise);
-		normal.normalize();
+		normal = new Vector(normal.x + noise, normal.y + noise, normal.z + noise).normalizeReturn();
 		return normal;
 	}
 }

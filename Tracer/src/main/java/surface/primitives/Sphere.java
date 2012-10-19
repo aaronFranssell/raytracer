@@ -114,8 +114,7 @@ public class Sphere extends Surface
 
 	public Vector getNormal(Point p, Ray r)
 	{
-		Vector n = p.minus(center);
-		n.normalize();
+		Vector n = p.minus(center).normalizeReturn();
 		return n;
 	}
 

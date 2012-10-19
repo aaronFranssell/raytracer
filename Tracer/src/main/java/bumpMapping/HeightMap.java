@@ -45,7 +45,7 @@ public class HeightMap implements BumpMap
 		normal.y = normal.y + displacement;
 		normal.z = normal.z + displacement;
 		
-		normal.normalize();
+		normal = normal.normalizeReturn();
 		if(normal.dot(b4) < 0)
 		{
 			LogToFile.logln("behind");
