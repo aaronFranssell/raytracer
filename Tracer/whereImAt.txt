@@ -1,4 +1,4 @@
-Adding tests for Matrix4 class. I'm doing something weird for multiplying vectors and the matrix.
+
 
 Long term stuff...
 Have an abstract Bounder class extend Surface that will return an interval, and then I will need to merge intervals together and such if they overlap.

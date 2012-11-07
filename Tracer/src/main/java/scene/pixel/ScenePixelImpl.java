@@ -11,6 +11,8 @@ import scene.ray.Ray;
 import surface.Surface;
 import util.Constants;
 import util.Library;
+import util.Util;
+import util.UtilImpl;
 
 public class ScenePixelImpl implements ScenePixel
 {
@@ -19,14 +21,21 @@ public class ScenePixelImpl implements ScenePixel
 	public int currentDepth;
 	private Point eye;
 	private Point light;
+	private Util util;
 	
-	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight)
+	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight, Util incomingUtil)
 	{
 		r = incomingRay;
 		scene = incomingScene;
 		currentDepth = 0;
 		eye = incomingEye;
 		light = incomingLight;
+		util = incomingUtil;
+	}
+	
+	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight)
+	{
+		this(incomingRay, incomingScene, incomingEye, incomingLight, new UtilImpl());
 	}
 	
 	public Color getPixelColor() throws RaytracerException
@@ -73,7 +82,7 @@ public class ScenePixelImpl implements ScenePixel
 		if(currSurface.getEffects().getRefractive() != null)
 		{
 			Refractive refractive = currSurface.getEffects().getRefractive();
-			newRay = Library.getRefractedRay(r.getD(), refractive.getN(),refractive.getnT(), hit);
+			newRay = util.getRefractedRay(r.getD(), refractive.getN(),refractive.getnT(), hit);
 			if(newRay == null)
 			{
 				return refractReturnColor;
@@ -94,8 +103,12 @@ public class ScenePixelImpl implements ScenePixel
 		if(currSurface.getEffects().isReflective() && reversedD.dot(hit.getNormal()) > 0)
 		{
 			Ray newRay = Library.getReflectedRay(r, hit.getP(), hit.getNormal());
-			reflectReturnColor = recurse(newRay, scene, currentDepth + 1);
-			Library.clamp(reflectReturnColor);
+			//total internal reflection
+			if(newRay != null)
+			{
+				reflectReturnColor = recurse(newRay, scene, currentDepth + 1);
+				Library.clamp(reflectReturnColor);
+			}
 		}
 		return reflectReturnColor;
 	}

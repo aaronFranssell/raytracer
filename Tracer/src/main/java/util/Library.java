@@ -49,67 +49,6 @@ public class Library
 		return retArray;
 	}
 	
-	public static Ray getRefractedRay(Vector d, double refractiveN, double refractiveNT,
-									  HitData hitData)
-	{
-		Vector n = new Vector(hitData.getNormal().x, hitData.getNormal().y, hitData.getNormal().z);
-		//may need to reverse normal. Normally it points outwards, but if there is a refracted ray 
-		//shooting through the sphere the normal should point inwards. We can test this by seeing 
-		//if ((reversed d) * n) is greater than 0. If the cos is < 0, we need to reverse the normal.
-		Vector reveresedD = new Vector(-d.x,-d.y,-d.z);
-		double tempDDotN = reveresedD.dot(n);
-
-		if(tempDDotN < 0)
-		{
-			n.x -= 2*n.x;
-			n.y -= 2*n.y;
-			n.z -= 2*n.z;
-		}//if
-		double dDotN = d.dot(n);
-		double dDotNSquared = dDotN * dDotN;
-		double refractiveNSquared = refractiveN*refractiveN;
-		double refractiveNTSquared = refractiveNT*refractiveNT;
-		double secondHalf = (1 - (refractiveNSquared * (1 - dDotNSquared)) /refractiveNTSquared);
-		if(secondHalf < 0)
-		{
-			return null;
-		}
-		secondHalf = Math.pow(secondHalf, 0.5);
-		Vector secondHalfN = new Vector(n.x, n.y, n.z);
-
-		secondHalfN.x *= secondHalf;
-		secondHalfN.y *= secondHalf;
-		secondHalfN.z *= secondHalf;
-		
-		Vector firstHalfN = new Vector(n.x,n.y,n.z);
-		firstHalfN.x *= dDotN;
-		firstHalfN.y *= dDotN;
-		firstHalfN.z *= dDotN;
-		
-		firstHalfN.x = d.x - firstHalfN.x;
-		firstHalfN.y = d.y - firstHalfN.y;
-		firstHalfN.z = d.z - firstHalfN.z;
-		
-		firstHalfN.x *= refractiveN;
-		firstHalfN.y *= refractiveN;
-		firstHalfN.z *= refractiveN;
-		
-		firstHalfN.x /= refractiveNT;
-		firstHalfN.y /= refractiveNT;
-		firstHalfN.z /= refractiveNT;
-
-		Vector t = new Vector(0.0,0.0,0.0);
-		t.x = firstHalfN.x - secondHalfN.x;
-		t.y = firstHalfN.y - secondHalfN.y;
-		t.z = firstHalfN.z - secondHalfN.z;
-		
-		t = t.normalizeReturn();
-		
-		Ray newRay = new Ray(t, hitData.getP());
-		
-		return newRay;
-	}
-	
 	public static boolean isInShadow(Surface currSurface, Scene scene, Point light, HitData hitData) throws RaytracerException
 	{
 		Vector d = light.minus(hitData.getP());

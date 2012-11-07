@@ -1,7 +1,11 @@
 package util;
 
+import org.apache.commons.math3.util.FastMath;
+
+import etc.HitData;
 import scene.ray.Ray;
 import math.Point;
+import math.Vector;
 public class UtilImpl implements Util
 {
 	@Override
@@ -41,5 +45,30 @@ public class UtilImpl implements Util
 		return new Point(r.getEye().x + smallestT * r.getD().x,
 						 r.getEye().y + smallestT * r.getD().y,
 						 r.getEye().z + smallestT * r.getD().z);
+	}
+
+	@Override
+	public Ray getRefractedRay(Vector v, double originalN, double newN,	HitData hitData)
+	{
+		Vector normal = hitData.getNormal();
+		//may need to reverse normal. Normally it points outwards, but if there is a refracted ray 
+		//shooting through the sphere the normal should point inwards. We can test this by seeing 
+		//if ((reversed d) * n) is greater than 0. If the cos is < 0, we need to reverse the normal.
+		if(normal.dot(v) > 0)
+		{
+			normal = normal.scaleReturn(-1.0);
+		}
+		double c1 = normal.dot(v) * -1;
+		double n = originalN/newN;
+		double val = 1 - (n*n) * (1 - c1*c1);
+		if(val < 0.0)
+		{
+			return null;
+		}
+		double c2 = FastMath.sqrt(val);
+
+		Vector refracted = v.scaleReturn(n).add(normal.scaleReturn(n * c1 - c2));
+		refracted = refracted.normalizeReturn();
+		return new Ray(refracted, hitData.getP());
 	}
 }

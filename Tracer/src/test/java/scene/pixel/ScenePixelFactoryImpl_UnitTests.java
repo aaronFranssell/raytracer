@@ -16,7 +16,7 @@ public class ScenePixelFactoryImpl_UnitTests
 	public void createScenePixel_WithValidValue_ExpectScenePixel()
 	{
 		//Given
-		Ray ray = new Ray(new Vector(1.0,0.0,0.0), null);
+		Ray ray = new Ray(new Vector(1.0,0.0,0.0), new Point(1.0,0.0,0.0));
 		Scene scene = new SceneImpl(null);
 		Point eye = new Point(0.0,0.0,0.0);
 		Point light = new Point(0.0,0.0,0.0);

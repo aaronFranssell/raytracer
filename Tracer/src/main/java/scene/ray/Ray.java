@@ -13,6 +13,23 @@ public class Ray
 		d = incomingD;
 		eye = incomingEye;
 	}
+	
+	@Override
+	public boolean equals(Object o)
+	{
+		if(o == null || !(o instanceof Ray))
+		{
+			return false;
+		}
+		Ray other = (Ray) o;
+		return other.getD().equals(d) && other.getEye().equals(eye);
+	}
+	
+	@Override
+	public String toString()
+	{
+		return "d: " + d + "\neye: " + eye;
+	}
 
 	public Vector getD() {
 		return d;
