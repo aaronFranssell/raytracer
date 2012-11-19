@@ -9,5 +9,5 @@ import scene.viewer.ViewingVolume;
 public interface RenderThreadFactory
 {
 	public RenderThread getRenderThread(Point incomingEye, ViewingVolume incomingVolume, int incomingPictureWidth, int incomingPictureHeight, UVW incomingBasis,
-										Point incomingLight, Scene incomingScene, int incomingStartHeight, int incomingThreadHeight);
+										Point incomingLight, Scene incomingScene, int incomingStartHeight, int incomingThreadHeight, int incomingMaxDepth);
 }

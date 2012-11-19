@@ -105,11 +105,12 @@ public class TestCSG
 		int bottom = -1;
 		int width = 800;
 		int height = 800;
+		int maxDepth = 6;
 		Point light = new Point(0.0,100.0, 100.0);
 		
 		Scene scene = new SceneImpl(surfaceList);
 				
-		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, light);
+		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 1, scene, light, maxDepth);
 		renderer.render();
 	}
 }

@@ -26,10 +26,12 @@ public class RenderThreadFactoryImpl_UnitTests
 		Scene scene = Mockito.mock(Scene.class);
 		int startHeight = 7;
 		int threadHeight = 5;
+		int maxDepth = 6;
 		RenderThreadFactoryImpl classUnderTest = new RenderThreadFactoryImpl();
 		
 		//When
-		RenderThread ret = classUnderTest.getRenderThread(eye, volume, pictureWidth, pictureHeight, basis, light, scene, startHeight, threadHeight);
+		RenderThread ret = classUnderTest.getRenderThread(eye, volume, pictureWidth, pictureHeight, basis, light, scene, startHeight, threadHeight,
+														  maxDepth);
 		
 		//Then
 		Assert.assertNotNull(ret);

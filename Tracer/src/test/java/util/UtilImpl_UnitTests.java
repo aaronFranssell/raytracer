@@ -7,6 +7,7 @@ import math.Vector;
 import org.junit.Test;
 
 import scene.ray.Ray;
+import etc.Color;
 import etc.HitData;
 
 public class UtilImpl_UnitTests
@@ -168,5 +169,35 @@ public class UtilImpl_UnitTests
 		//Then
 		Assert.assertTrue(expected.equals(result.getD()));
 		Assert.assertEquals(result.getEye(), p);
+	}
+	
+	@Test
+	public void clamp_WithValuesOver1_Expect1s()
+	{
+		//Given
+		Color c = new Color(1.1, 1.4, 1.5);
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		Color actual = classUnderTest.clamp(c);
+		
+		//Then
+		Color expected = new Color(1.0,1.0,1.0);
+		Assert.assertTrue(expected.equals(actual));
+	}
+	
+	@Test
+	public void clamp_WithValuesUnder1_ExpectUnchanged()
+	{
+		//Given
+		Color c = new Color(0.1, 0.4, 0.5);
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		Color actual = classUnderTest.clamp(c);
+		
+		//Then
+		Color expected = new Color(0.1,0.4,0.5);
+		Assert.assertTrue(expected.equals(actual));
 	}
 }

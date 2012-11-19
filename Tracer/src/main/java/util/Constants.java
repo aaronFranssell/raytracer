@@ -14,16 +14,5 @@ public class Constants
 	 */
 	public static final Color cA = new Color(0.5, 0.5, 0.5);
 
-	/**
-	 * This is the max depth the ray will go. At most it will have 5 bounces total for reflection/refraction.
-	 */
-	public static int maxDepth = 6;
-
 	public static final int PHONG_EXPONENT = 32;
-	
-	/**
-	 * Outersphere radius. Just has to be sufficiently large enough so that no shapes are behind it.
-	 */
-	public static final double OUTERSPHERE_RADIUS = 100.0;
-	
 }

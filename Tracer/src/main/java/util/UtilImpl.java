@@ -2,6 +2,7 @@ package util;
 
 import org.apache.commons.math3.util.FastMath;
 
+import etc.Color;
 import etc.HitData;
 import scene.ray.Ray;
 import math.Point;
@@ -70,5 +71,24 @@ public class UtilImpl implements Util
 		Vector refracted = v.scaleReturn(n).add(normal.scaleReturn(n * c1 - c2));
 		refracted = refracted.normalizeReturn();
 		return new Ray(refracted, hitData.getP());
+	}
+
+	@Override
+	public Color clamp(Color c)
+	{
+		Color ret = new Color(c.red, c.green, c.blue);
+		if(ret.red > 1.0)
+		{
+			ret.red = 1.0;
+		}
+		if(ret.green > 1.0)
+		{
+			ret.green = 1.0;
+		}
+		if(ret.blue > 1.0)
+		{
+			ret.blue = 1.0;
+		}
+		return ret;
 	}
 }

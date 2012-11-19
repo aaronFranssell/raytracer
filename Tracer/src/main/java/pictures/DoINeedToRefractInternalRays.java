@@ -56,10 +56,11 @@ public class DoINeedToRefractInternalRays
 		int bottom = -1;
 		int width = 800;
 		int height = 800;
+		int maxDepth = 6;
 		Point light = new Point(0.0,100.0, 100.0);
 		
 		Scene scene = new SceneImpl(surfaceList);
-		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light);
+		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light, maxDepth);
 		RenderResult result = renderer.render();
 		System.out.println(result.getStopWatch().getDifference());
 		ImageIO.write(result.getImage(), "PNG", new File("C:\\raytracer\\Tracer\\img\\yonPicture.png"));

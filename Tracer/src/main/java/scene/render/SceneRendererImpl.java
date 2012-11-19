@@ -45,12 +45,13 @@ public class SceneRendererImpl
 	private ResultsConverterFactory resultsConverterFactory;
 	private ArrayList<Callable<double[][][]>> tasks;
 	private ExecutorService workers;
+	private int maxDepth;
 	
 	public SceneRendererImpl(Vector incomingUp, Vector incomingGaze, Point incomingEye, int incomingLeft, int incomingRight, int incomingTop, int incomingBottom, int incomingWidth,
 						 int incomingHeight, int incomingNumThreads, Scene incomingScene, Point incomingLight, UVWFactory factory,
 						 StopWatch incomingStopWatch, RenderThreadFactory incomingRenderThreadFactory, ViewingVolumeFactory incomingViewingVolumeFactory,
 						 ResultsConverterFactory incomingResultsConverterFactory, ArrayList<Callable<double[][][]>> incomingTasks,
-						 ExecutorServiceFactory serviceFactory) throws RaytracerException
+						 ExecutorServiceFactory serviceFactory, int incomingMaxDepth) throws RaytracerException
 	{
 		numThreads = incomingNumThreads;
 		up = incomingUp;
@@ -67,14 +68,15 @@ public class SceneRendererImpl
 		resultsConverterFactory = incomingResultsConverterFactory;
 		tasks = incomingTasks;
 		workers = serviceFactory.getExecutorService();
+		maxDepth = incomingMaxDepth;
 	}
 	
 	public SceneRendererImpl(Vector incomingUp, Vector incomingGaze, Point incomingEye, int incomingLeft, int incomingRight, int incomingTop, int incomingBottom, int incomingWidth,
-			 int incomingHeight, int incomingNumThreads, Scene incomingScene, Point incomingLight) throws RaytracerException
+			 int incomingHeight, int incomingNumThreads, Scene incomingScene, Point incomingLight, int incomingMaxDepth) throws RaytracerException
 	{
 		this(incomingUp, incomingGaze, incomingEye, incomingLeft, incomingRight, incomingTop, incomingBottom, incomingWidth, incomingHeight,
 			 incomingNumThreads, incomingScene, incomingLight, new UVWFactoryImpl(), new StopWatchImpl(), new RenderThreadFactoryImpl(), new ViewingVolumeFactoryImpl(),
-			 new ResultsConverterFactoryImpl(), new ArrayList<Callable<double[][][]>>(), new ExecutorServiceFactoryImpl());
+			 new ResultsConverterFactoryImpl(), new ArrayList<Callable<double[][][]>>(), new ExecutorServiceFactoryImpl(), incomingMaxDepth);
 	}
 	
 	public RenderResult render() throws IOException, InterruptedException, ExecutionException
@@ -112,7 +114,7 @@ public class SceneRendererImpl
 				threadHeight += leftOverThreadHeight;
 			}
 			
-			RenderThread thread = renderThreadFactory.getRenderThread(eye, viewVolume, width, height, basis, light, scene, startHeight, threadHeight);
+			RenderThread thread = renderThreadFactory.getRenderThread(eye, viewVolume, width, height, basis, light, scene, startHeight, threadHeight, maxDepth);
 			tasks.add(thread);
 		}
 		List<Future<double[][][]>> results = workers.invokeAll(tasks);

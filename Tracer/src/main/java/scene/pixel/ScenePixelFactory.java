@@ -6,5 +6,5 @@ import scene.ray.Ray;
 
 public interface ScenePixelFactory
 {
-	public ScenePixel createScenePixel(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight);
+	public ScenePixel createScenePixel(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight, int incomingMaxDepth);
 }

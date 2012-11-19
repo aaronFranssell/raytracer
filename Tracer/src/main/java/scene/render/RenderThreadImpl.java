@@ -26,10 +26,11 @@ public class RenderThreadImpl implements RenderThread
 	private int threadHeight;
 	private RayFactory rayFactory;
 	private ScenePixelFactory pixelFactory;
+	private int maxDepth;
 	
 	public RenderThreadImpl(Point incomingEye, ViewingVolume incomingVolume, int incomingPictureWidth, int incomingPictureHeight, UVW incomingBasis,
 						Point incomingLight, Scene incomingScene, int incomingStartHeight, int incomingThreadHeight, RayFactory incomingRayFactory,
-						ScenePixelFactory incomingPixelFactory)
+						ScenePixelFactory incomingPixelFactory, int incomingMaxDepth)
 	{
 		volume = incomingVolume;
 		eye = incomingEye;
@@ -43,13 +44,14 @@ public class RenderThreadImpl implements RenderThread
 		imageData = new double[pictureWidth][threadHeight][3];
 		rayFactory = incomingRayFactory;
 		pixelFactory = incomingPixelFactory;
+		maxDepth = incomingMaxDepth;
 	}
 	
 	public RenderThreadImpl(Point incomingEye, ViewingVolume incomingVolume, int incomingPictureWidth, int incomingPictureHeight, UVW incomingBasis,
-			Point incomingLight, Scene incomingScene, int incomingStartHeight, int incomingThreadHeight)
+			Point incomingLight, Scene incomingScene, int incomingStartHeight, int incomingThreadHeight, int incomingMaxDepth)
 	{
 		this(incomingEye, incomingVolume, incomingPictureWidth, incomingPictureHeight, incomingBasis, incomingLight, incomingScene, incomingStartHeight,
-			 incomingThreadHeight, new RayFactoryImpl(), new ScenePixelFactoryImpl());
+			 incomingThreadHeight, new RayFactoryImpl(), new ScenePixelFactoryImpl(), incomingMaxDepth);
 	}
 	
 	
@@ -61,7 +63,7 @@ public class RenderThreadImpl implements RenderThread
 			for(int h = 0; h < threadHeight; h++)
 			{
 				Ray r = rayFactory.createRay(volume, eye, basis, pictureWidth, pictureHeight, w, h + startHeight);
-				ScenePixel pixel = pixelFactory.createScenePixel(r, scene, eye, light);
+				ScenePixel pixel = pixelFactory.createScenePixel(r, scene, eye, light, maxDepth);
 				Color returnColor = pixel.getPixelColor();
 				imageData[w][h][RenderThread.RED_INDEX] = returnColor.red;
 				imageData[w][h][RenderThread.GREEN_INDEX] = returnColor.green;

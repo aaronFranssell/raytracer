@@ -45,6 +45,7 @@ public class SceneRendererImpl_UnitTests
 		int width = 800;
 		int height = 800;
 		int numThreads = 3;
+		int maxDepth = 6;
 		Scene scene = Mockito.mock(Scene.class);
 		Point light = Mockito.mock(Point.class);
 		UVW mockBasis = Mockito.mock(UVW.class);
@@ -64,16 +65,16 @@ public class SceneRendererImpl_UnitTests
 		
 		Mockito.when(mockUVWFactory.createUVW(up, gaze)).thenReturn(mockBasis);
 		Mockito.when(mockViewingVolumeFactory.getVolume(left, right, bottom, top)).thenReturn(mockVolume);
-		Mockito.when(mockRenderThreadFactory.getRenderThread(eye, mockVolume, width, height, mockBasis, light, scene, 0, 268)).thenReturn(mockThread);
-		Mockito.when(mockRenderThreadFactory.getRenderThread(eye, mockVolume, width, height, mockBasis, light, scene, 268, 266)).thenReturn(mockThread);
-		Mockito.when(mockRenderThreadFactory.getRenderThread(eye, mockVolume, width, height, mockBasis, light, scene, 534, 266)).thenReturn(mockThread);
+		Mockito.when(mockRenderThreadFactory.getRenderThread(eye, mockVolume, width, height, mockBasis, light, scene, 0, 268, maxDepth)).thenReturn(mockThread);
+		Mockito.when(mockRenderThreadFactory.getRenderThread(eye, mockVolume, width, height, mockBasis, light, scene, 268, 266, maxDepth)).thenReturn(mockThread);
+		Mockito.when(mockRenderThreadFactory.getRenderThread(eye, mockVolume, width, height, mockBasis, light, scene, 534, 266, maxDepth)).thenReturn(mockThread);
 		Mockito.when(mockExecutorServiceFactory.getExecutorService()).thenReturn(mockExecutorService);
 		Mockito.when(mockExecutorService.invokeAll(tasks)).thenReturn(results);
 		Mockito.when(mockConverterFactory.getConverter(results, width, height)).thenReturn(mockResultsConverter);
 		Mockito.when(mockResultsConverter.getImageFromResults()).thenReturn(retImage);
 		
 		SceneRendererImpl classUnderTest = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, numThreads, scene, light, mockUVWFactory,
-				 mockStopWatch, mockRenderThreadFactory, mockViewingVolumeFactory, mockConverterFactory, tasks, mockExecutorServiceFactory);
+				 mockStopWatch, mockRenderThreadFactory, mockViewingVolumeFactory, mockConverterFactory, tasks, mockExecutorServiceFactory, maxDepth);
 		
 		//When
 		RenderResult ret = classUnderTest.render();

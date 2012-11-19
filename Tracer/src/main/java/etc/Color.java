@@ -1,5 +1,8 @@
 package etc;
 
+import util.Constants;
+import util.Library;
+
 public class Color
 {
 	public double red;
@@ -10,13 +13,7 @@ public class Color
 	{
 		return new Color(red*val, green*val, blue*val);
 	}
-	
-	/**
-	 * 
-	 * @param incomingRed Assumed to be between 0-1.
-	 * @param incomingGreen Assumed to be between 0-1.
-	 * @param incomingBlue Assumed to be between 0-1.
-	 */
+
 	public Color(double incomingRed, double incomingGreen, double incomingBlue)
 	{
 		red = incomingRed;
@@ -32,5 +29,26 @@ public class Color
 	public String toString()
 	{
 		return "red: " + red + " green: " + green + " blue: " + blue;
+	}
+	
+	public boolean equals(Object other)
+	{
+		if(other == null)
+		{
+			return false;
+		}
+		
+		if(!(other instanceof Color))
+		{
+			return false;
+		}
+		Color otherVector = (Color) other;
+		if(Library.doubleEqual(otherVector.red, red, Constants.POSITIVE_ZERO) &&
+		   Library.doubleEqual(otherVector.green, green, Constants.POSITIVE_ZERO) &&
+		   Library.doubleEqual(otherVector.blue, blue, Constants.POSITIVE_ZERO))
+		{	
+			return true;
+		}
+		return false;
 	}
 }

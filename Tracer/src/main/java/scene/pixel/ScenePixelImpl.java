@@ -22,8 +22,9 @@ public class ScenePixelImpl implements ScenePixel
 	private Point eye;
 	private Point light;
 	private Util util;
+	private int maxDepth;
 	
-	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight, Util incomingUtil)
+	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight, Util incomingUtil, int incomingMaxDepth)
 	{
 		r = incomingRay;
 		scene = incomingScene;
@@ -31,26 +32,26 @@ public class ScenePixelImpl implements ScenePixel
 		eye = incomingEye;
 		light = incomingLight;
 		util = incomingUtil;
+		maxDepth = incomingMaxDepth;
 	}
 	
-	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight)
+	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight, int incomingMaxDepth)
 	{
-		this(incomingRay, incomingScene, incomingEye, incomingLight, new UtilImpl());
+		this(incomingRay, incomingScene, incomingEye, incomingLight, new UtilImpl(), incomingMaxDepth);
 	}
 	
 	public Color getPixelColor() throws RaytracerException
 	{
-		return recurse(r,scene,currentDepth);
+		return recurse(r,currentDepth);
 	}
 	
-	private Color recurse(Ray r, Scene scene, int currentDepth) throws RaytracerException
+	private Color recurse(Ray r, int currentDepth) throws RaytracerException
 	{
-		HitData currHit;
-		if(Constants.maxDepth == currentDepth)
+		if(maxDepth == currentDepth)
 		{
 			return new Color(0.0,0.0,0.0);
 		}
-		currHit = scene.getSmallestPositiveHitDataOrReturnMiss(r);
+		HitData currHit = scene.getSmallestPositiveHitDataOrReturnMiss(r);
 		if(!currHit.isHit())
 		{
 			return new Color(0.0,0.0,0.0);
@@ -77,19 +78,18 @@ public class ScenePixelImpl implements ScenePixel
 
 	private Color getRefractedColor(Ray r, int currentDepth, HitData hit, Surface currSurface) throws RaytracerException
 	{
-		Ray newRay;
-		Color refractReturnColor = new Color(0.0,0.0,0.0);
-		if(currSurface.getEffects().getRefractive() != null)
+		if(currSurface.getEffects().getRefractive() == null)
 		{
-			Refractive refractive = currSurface.getEffects().getRefractive();
-			newRay = util.getRefractedRay(r.getD(), refractive.getN(),refractive.getnT(), hit);
-			if(newRay == null)
-			{
-				return refractReturnColor;
-			}
-			refractReturnColor = recurse(newRay, scene,currentDepth+1);
-			Library.clamp(refractReturnColor);
+			return new Color(0.0,0.0,0.0);
 		}
+		Refractive refractive = currSurface.getEffects().getRefractive();
+		Ray newRay = util.getRefractedRay(r.getD(), refractive.getN(),refractive.getnT(), hit);
+		if(newRay == null)
+		{
+			return new Color(0.0,0.0,0.0);
+		}
+		Color refractReturnColor = recurse(newRay, currentDepth + 1);
+		refractReturnColor = util.clamp(refractReturnColor);
 		return refractReturnColor;
 	}
 
@@ -106,8 +106,8 @@ public class ScenePixelImpl implements ScenePixel
 			//total internal reflection
 			if(newRay != null)
 			{
-				reflectReturnColor = recurse(newRay, scene, currentDepth + 1);
-				Library.clamp(reflectReturnColor);
+				reflectReturnColor = recurse(newRay, currentDepth + 1);
+				reflectReturnColor = util.clamp(reflectReturnColor);
 			}
 		}
 		return reflectReturnColor;

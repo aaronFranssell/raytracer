@@ -126,22 +126,6 @@ public class Library
 		
 		return RGBValue;
 	}
-	
-	public static void clamp(Color vec)
-	{
-		if(vec.red > 1.0)
-		{
-			vec.red = 1.0;
-		}
-		if(vec.green > 1.0)
-		{
-			vec.green = 1.0;
-		}
-		if(vec.blue > 1.0)
-		{
-			vec.blue = 1.0;
-		}
-	}
 
 	public static Ray getReflectedRay(Ray r, Point p, Vector n)
 	{
