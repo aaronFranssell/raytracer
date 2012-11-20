@@ -126,18 +126,6 @@ public class Library
 		
 		return RGBValue;
 	}
-
-	public static Ray getReflectedRay(Ray r, Point p, Vector n)
-	{
-		/*V is the ray direction, N is the surface normal
-		c1 = -dot_product( N, V )
-		Rl = V + (2 * N * c1 )
-		*/
-		double c1 = - n.dot(r.getD());
-		Vector reflectedRay = r.getD().add(n.scaleReturn(2*c1));
-		reflectedRay = reflectedRay.normalizeReturn();
-		return new Ray(reflectedRay, p);
-	}
 	
 	public static double[] solveQuartic(double A,double B,double C,double D,double E)
 	{

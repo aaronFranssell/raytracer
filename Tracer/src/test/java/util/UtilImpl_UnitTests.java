@@ -5,10 +5,15 @@ import math.Point;
 import math.Vector;
 
 import org.junit.Test;
+import org.mockito.Mockito;
 
+import scene.pixel.ScenePixel;
 import scene.ray.Ray;
+import surface.Surface;
 import etc.Color;
+import etc.Effects;
 import etc.HitData;
+import etc.RaytracerException;
 
 public class UtilImpl_UnitTests
 {
@@ -199,5 +204,140 @@ public class UtilImpl_UnitTests
 		//Then
 		Color expected = new Color(0.1,0.4,0.5);
 		Assert.assertTrue(expected.equals(actual));
+	}
+	
+	@Test
+	public void getReflectedRay_WithValues_ExpectCall()
+	{
+		//Given
+		Vector d = new Vector(0.3,0.5,0.7);
+		Point eye = new Point(0.0,0.0,0.0);
+		Ray r = new Ray(d, eye);
+		Vector normal = new Vector(1.5,-0.5,2.5);
+		normal = normal.normalizeReturn();
+		UtilImpl classUnderTest = new UtilImpl();
+		Point p = new Point(0.5,0.5,0.5);
+		
+		//When
+		Ray actual = classUnderTest.getReflectedRay(r, p, normal);
+		
+		//Then
+		Vector expectedD = new Vector(-0.40455970110485867, 0.7934387936397616, -0.4547376485287172);
+		Point expectedEye = new Point(0.5,0.5,0.5);
+		Ray expected = new Ray(expectedD, expectedEye);
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void getReflectedReturnColor_WithNonReflectiveSurfaceMocked_ExpectBlack() throws RaytracerException
+	{
+		//Given
+		Effects mockEffects = Mockito.mock(Effects.class);
+		Mockito.when(mockEffects.isReflective()).thenReturn(false);
+		Surface mockSurface = Mockito.mock(Surface.class);
+		Mockito.when(mockSurface.getEffects()).thenReturn(mockEffects);
+		Ray r = Mockito.mock(Ray.class);
+		int currentDepth = -1;
+		HitData hit = Mockito.mock(HitData.class);
+		ScenePixel pixel = Mockito.mock(ScenePixel.class);
+		
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		Color actual = classUnderTest.getReflectedColor(r, currentDepth, hit, mockSurface, pixel);
+		
+		//Then
+		Color expected = new Color(0.0,0.0,0.0);
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void getReflectedReturnColor_WithMockedRayInsideOfSurface_ExpectBlack() throws RaytracerException
+	{
+		//Given
+		Effects mockEffects = Mockito.mock(Effects.class);
+		Mockito.when(mockEffects.isReflective()).thenReturn(true);
+		Surface mockSurface = Mockito.mock(Surface.class);
+		Vector mockVec = Mockito.mock(Vector.class);
+		Mockito.when(mockVec.dot(mockVec)).thenReturn(1.0);
+		Mockito.when(mockSurface.getEffects()).thenReturn(mockEffects);
+		Ray r = Mockito.mock(Ray.class);
+		Mockito.when(r.getD()).thenReturn(mockVec);
+		int currentDepth = -1;
+		HitData hit = Mockito.mock(HitData.class);
+		ScenePixel pixel = Mockito.mock(ScenePixel.class);
+		
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		Color actual = classUnderTest.getReflectedColor(r, currentDepth, hit, mockSurface, pixel);
+		
+		//Then
+		Color expected = new Color(0.0,0.0,0.0);
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void getReflectedReturnColor_WithMockedTotalInternalReflection_ExpectBlack() throws RaytracerException
+	{
+		//Given
+		Effects mockEffects = Mockito.mock(Effects.class);
+		Mockito.when(mockEffects.isReflective()).thenReturn(true);
+		Surface mockSurface = Mockito.mock(Surface.class);
+		Vector mockVec = Mockito.mock(Vector.class);
+		Mockito.when(mockVec.dot(mockVec)).thenReturn(-1.0);
+		Mockito.when(mockSurface.getEffects()).thenReturn(mockEffects);
+		Ray r = Mockito.mock(Ray.class);
+		Mockito.when(r.getD()).thenReturn(mockVec);
+		int currentDepth = -1;
+		Point mockPoint = Mockito.mock(Point.class);
+		HitData hit = Mockito.mock(HitData.class);
+		Mockito.when(hit.getNormal()).thenReturn(mockVec);
+		Mockito.when(hit.getP()).thenReturn(mockPoint);
+		ScenePixel pixel = Mockito.mock(ScenePixel.class);
+		
+		UtilImpl classUnderTest = Mockito.spy(new UtilImpl());
+		Mockito.doReturn(null).when(classUnderTest).getReflectedRay(r, mockPoint, mockVec);
+		
+		//When
+		Color actual = classUnderTest.getReflectedColor(r, currentDepth, hit, mockSurface, pixel);
+		
+		//Then
+		Color expected = new Color(0.0,0.0,0.0);
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void getReflectedReturnColor_WithRefractedRay_ExpectCall() throws RaytracerException
+	{
+		//Given
+		Effects mockEffects = Mockito.mock(Effects.class);
+		Mockito.when(mockEffects.isReflective()).thenReturn(true);
+		Surface mockSurface = Mockito.mock(Surface.class);
+		Vector mockVec = Mockito.mock(Vector.class);
+		Mockito.when(mockVec.dot(mockVec)).thenReturn(-1.0);
+		Mockito.when(mockSurface.getEffects()).thenReturn(mockEffects);
+		Ray r = Mockito.mock(Ray.class);
+		Mockito.when(r.getD()).thenReturn(mockVec);
+		int currentDepth = -1;
+		Point mockPoint = Mockito.mock(Point.class);
+		HitData hit = Mockito.mock(HitData.class);
+		Mockito.when(hit.getNormal()).thenReturn(mockVec);
+		Mockito.when(hit.getP()).thenReturn(mockPoint);
+		Color reflectReturn = Mockito.mock(Color.class);
+		ScenePixel pixel = Mockito.mock(ScenePixel.class);
+		Mockito.when(pixel.recurse(r, currentDepth + 1)).thenReturn(reflectReturn);
+		
+		UtilImpl classUnderTest = Mockito.spy(new UtilImpl());
+		Color clampReturn = new Color(0.1,0.3,0.7);
+		Mockito.doReturn(r).when(classUnderTest).getReflectedRay(r, mockPoint, mockVec);
+		Mockito.doReturn(clampReturn).when(classUnderTest).clamp(reflectReturn);
+		
+		//When
+		Color actual = classUnderTest.getReflectedColor(r, currentDepth, hit, mockSurface, pixel);
+		
+		//Then
+		Color expected = new Color(0.1,0.3,0.7);
+		Assert.assertEquals(expected, actual);
 	}
 }

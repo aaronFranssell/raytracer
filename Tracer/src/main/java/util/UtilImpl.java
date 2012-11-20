@@ -4,7 +4,10 @@ import org.apache.commons.math3.util.FastMath;
 
 import etc.Color;
 import etc.HitData;
+import etc.RaytracerException;
+import scene.pixel.ScenePixel;
 import scene.ray.Ray;
+import surface.Surface;
 import math.Point;
 import math.Vector;
 public class UtilImpl implements Util
@@ -44,8 +47,8 @@ public class UtilImpl implements Util
 	public Point getP(double smallestT, Ray r)
 	{
 		return new Point(r.getEye().x + smallestT * r.getD().x,
-						 r.getEye().y + smallestT * r.getD().y,
-						 r.getEye().z + smallestT * r.getD().z);
+				r.getEye().y + smallestT * r.getD().y,
+				r.getEye().z + smallestT * r.getD().z);
 	}
 
 	@Override
@@ -74,6 +77,19 @@ public class UtilImpl implements Util
 	}
 
 	@Override
+	public Ray getReflectedRay(Ray r, Point p, Vector n)
+	{
+		/*V is the ray direction, N is the surface normal
+		c1 = -dot_product( N, V )
+		Rl = V + (2 * N * c1 )
+		 */
+		double c1 = - n.dot(r.getD());
+		Vector reflectedRay = r.getD().add(n.scaleReturn(2*c1));
+		reflectedRay = reflectedRay.normalizeReturn();
+		return new Ray(reflectedRay, p);
+	}
+
+	@Override
 	public Color clamp(Color c)
 	{
 		Color ret = new Color(c.red, c.green, c.blue);
@@ -90,5 +106,26 @@ public class UtilImpl implements Util
 			ret.blue = 1.0;
 		}
 		return ret;
+	}
+
+	@Override
+	public Color getReflectedColor(Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws RaytracerException
+	{
+		//r.getD().dot... code is for when the ray might be refracted inside of a surface.
+		//if the ray's dot product is > 0 then the ray is inside of a surface and does not need to
+		//be reflected
+		if(!currSurface.getEffects().isReflective() || r.getD().dot(hit.getNormal()) >= 0)
+		{
+			return new Color(0.0,0.0,0.0);
+		}
+		Ray newRay = getReflectedRay(r, hit.getP(), hit.getNormal());
+		//total internal reflection
+		if(newRay == null)
+		{
+			return new Color(0.0,0.0,0.0);
+		}
+		Color reflectReturnColor = pixel.recurse(newRay, currentDepth + 1);
+		reflectReturnColor = clamp(reflectReturnColor);
+		return reflectReturnColor;
 	}
 }

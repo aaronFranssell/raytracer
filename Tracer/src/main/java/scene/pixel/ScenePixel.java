@@ -10,6 +10,8 @@ public interface ScenePixel
 {
 	public Color getPixelColor() throws RaytracerException;
 	
+	public Color recurse(Ray r, int currentDepth) throws RaytracerException;
+	
 	public Ray getR();
 
 	public Scene getScene();

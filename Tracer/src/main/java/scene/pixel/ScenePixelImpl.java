@@ -5,7 +5,6 @@ import etc.HitData;
 import etc.RaytracerException;
 import etc.Refractive;
 import math.Point;
-import math.Vector;
 import scene.Scene;
 import scene.ray.Ray;
 import surface.Surface;
@@ -45,7 +44,8 @@ public class ScenePixelImpl implements ScenePixel
 		return recurse(r,currentDepth);
 	}
 	
-	private Color recurse(Ray r, int currentDepth) throws RaytracerException
+	@Override
+	public Color recurse(Ray r, int currentDepth) throws RaytracerException
 	{
 		if(maxDepth == currentDepth)
 		{
@@ -65,7 +65,7 @@ public class ScenePixelImpl implements ScenePixel
 		Color surfaceColor = new Color(0.0,0.0,0.0);
 		Surface currSurface = hit.getSurface();
 
-		Color reflectReturnColor = getReflectedColor(r, currentDepth, hit, currSurface);
+		Color reflectReturnColor = util.getReflectedColor(r, currentDepth, hit, currSurface, this);
 		Color refractReturnColor = getRefractedColor(r, currentDepth, hit, currSurface);
 		boolean inShadow = Library.isInShadow(currSurface, scene, light, hit);
 		surfaceColor = currSurface.getColor(light, eye, Constants.PHONG_EXPONENT, inShadow, hit.getNormal(), hit.getP());
@@ -91,26 +91,6 @@ public class ScenePixelImpl implements ScenePixel
 		Color refractReturnColor = recurse(newRay, currentDepth + 1);
 		refractReturnColor = util.clamp(refractReturnColor);
 		return refractReturnColor;
-	}
-
-	private Color getReflectedColor(Ray r, int currentDepth, HitData hit, Surface currSurface) throws RaytracerException
-	{
-		//reversedD.dot... code is for when the ray might be refracted inside of a surface.
-		//if the ray's dot product is < 0 then the ray is inside of a surface and does not need to
-		//be reflected
-		Vector reversedD = new Vector(-r.getD().x,-r.getD().y,-r.getD().z);
-		Color reflectReturnColor = new Color(0.0,0.0,0.0);
-		if(currSurface.getEffects().isReflective() && reversedD.dot(hit.getNormal()) > 0)
-		{
-			Ray newRay = Library.getReflectedRay(r, hit.getP(), hit.getNormal());
-			//total internal reflection
-			if(newRay != null)
-			{
-				reflectReturnColor = recurse(newRay, currentDepth + 1);
-				reflectReturnColor = util.clamp(reflectReturnColor);
-			}
-		}
-		return reflectReturnColor;
 	}
 
 	public Ray getR()
