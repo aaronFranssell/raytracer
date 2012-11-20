@@ -5,6 +5,7 @@ import org.apache.commons.math3.util.FastMath;
 import etc.Color;
 import etc.HitData;
 import etc.RaytracerException;
+import etc.Refractive;
 import scene.pixel.ScenePixel;
 import scene.ray.Ray;
 import surface.Surface;
@@ -119,13 +120,27 @@ public class UtilImpl implements Util
 			return new Color(0.0,0.0,0.0);
 		}
 		Ray newRay = getReflectedRay(r, hit.getP(), hit.getNormal());
+		Color reflectReturnColor = pixel.recurse(newRay, currentDepth + 1);
+		reflectReturnColor = clamp(reflectReturnColor);
+		return reflectReturnColor;
+	}
+	
+	@Override
+	public Color getRefractedColor(Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws RaytracerException
+	{
+		if(currSurface.getEffects().getRefractive() == null)
+		{
+			return new Color(0.0,0.0,0.0);
+		}
+		Refractive refractive = currSurface.getEffects().getRefractive();
+		Ray newRay = getRefractedRay(r.getD(), refractive.getN(),refractive.getnT(), hit);
 		//total internal reflection
 		if(newRay == null)
 		{
 			return new Color(0.0,0.0,0.0);
 		}
-		Color reflectReturnColor = pixel.recurse(newRay, currentDepth + 1);
-		reflectReturnColor = clamp(reflectReturnColor);
-		return reflectReturnColor;
+		Color refractReturnColor = pixel.recurse(newRay, currentDepth + 1);
+		refractReturnColor = clamp(refractReturnColor);
+		return refractReturnColor;
 	}
 }

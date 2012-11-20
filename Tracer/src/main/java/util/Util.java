@@ -15,4 +15,5 @@ public interface Util
 	public Color clamp(Color c);
 	public Ray getReflectedRay(Ray r, Point p, Vector n);
 	public Color getReflectedColor(Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws RaytracerException;
+	public Color getRefractedColor(Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws RaytracerException;
 }
