@@ -1,17 +1,15 @@
 package scene.pixel;
 
-import etc.Color;
-import etc.HitData;
-import etc.RaytracerException;
-import etc.Refractive;
 import math.Point;
 import scene.Scene;
 import scene.ray.Ray;
 import surface.Surface;
-import util.Constants;
 import util.Library;
 import util.Util;
 import util.UtilImpl;
+import etc.Color;
+import etc.HitData;
+import etc.RaytracerException;
 
 public class ScenePixelImpl implements ScenePixel
 {
@@ -66,31 +64,14 @@ public class ScenePixelImpl implements ScenePixel
 		Surface currSurface = hit.getSurface();
 
 		Color reflectReturnColor = util.getReflectedColor(r, currentDepth, hit, currSurface, this);
-		Color refractReturnColor = getRefractedColor(r, currentDepth, hit, currSurface);
+		Color refractReturnColor = util.getRefractedColor(r, currentDepth, hit, currSurface, this);
 		boolean inShadow = Library.isInShadow(currSurface, scene, light, hit);
-		surfaceColor = currSurface.getColor(light, eye, Constants.PHONG_EXPONENT, inShadow, hit.getNormal(), hit.getP());
+		surfaceColor = currSurface.getColor(light, eye, inShadow, hit.getNormal(), hit.getP());
 		
 		totalColor.red += reflectReturnColor.red + refractReturnColor.red + surfaceColor.red;
 		totalColor.blue += reflectReturnColor.blue + refractReturnColor.blue + surfaceColor.blue;
 		totalColor.green += reflectReturnColor.green + refractReturnColor.green + surfaceColor.green;
 		return totalColor;
-	}
-
-	private Color getRefractedColor(Ray r, int currentDepth, HitData hit, Surface currSurface) throws RaytracerException
-	{
-		if(currSurface.getEffects().getRefractive() == null)
-		{
-			return new Color(0.0,0.0,0.0);
-		}
-		Refractive refractive = currSurface.getEffects().getRefractive();
-		Ray newRay = util.getRefractedRay(r.getD(), refractive.getN(),refractive.getnT(), hit);
-		if(newRay == null)
-		{
-			return new Color(0.0,0.0,0.0);
-		}
-		Color refractReturnColor = recurse(newRay, currentDepth + 1);
-		refractReturnColor = util.clamp(refractReturnColor);
-		return refractReturnColor;
 	}
 
 	public Ray getR()

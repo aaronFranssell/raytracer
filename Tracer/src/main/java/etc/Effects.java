@@ -5,7 +5,7 @@ import noise.NoiseColor;
 
 public class Effects
 {
-	private boolean phong;
+	private Phong phong;
 	private boolean lambertian;
 	private NoiseColor noiseMappedColorClass;
 	private boolean reflective;
@@ -14,34 +14,26 @@ public class Effects
 	
 	public Effects()
 	{
-		phong = false;
+		phong = null;
 		lambertian = false;
 		reflective = false;
 		refractive = null;
 	}
-	private boolean bothLambertianAndPhong()
+	private boolean bothLambertianAndPhong() throws RaytracerException
 	{
-		if(lambertian && phong)
+		if(lambertian && phong != null)
 		{
-			System.err.println("Both phong and lambertian models are not allowed on the same surface.");
-			System.exit(0);
+			throw new RaytracerException("Both phong and lambertian models are not allowed on the same surface.");
 		}
 		return false;
 	}
-	public boolean isLambertian()
+	public boolean isLambertian() throws RaytracerException
 	{
 		bothLambertianAndPhong();
 		return lambertian;
 	}
 	public void setLambertian(boolean lambertian) {
 		this.lambertian = lambertian;
-	}
-	public boolean isPhong() {
-		bothLambertianAndPhong();
-		return phong;
-	}
-	public void setPhong(boolean phong) {
-		this.phong = phong;
 	}
 	public boolean isReflective() {
 		return reflective;
@@ -70,5 +62,13 @@ public class Effects
 	public void setRefractive(Refractive refractive)
 	{
 		this.refractive = refractive;
+	}
+	public Phong getPhong()
+	{
+		return phong;
+	}
+	public void setPhong(Phong phong)
+	{
+		this.phong = phong;
 	}
 }

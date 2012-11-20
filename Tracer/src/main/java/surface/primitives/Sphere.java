@@ -12,6 +12,7 @@ import util.UtilImpl;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
+import etc.RaytracerException;
 
 public class Sphere extends Surface
 {
@@ -48,11 +49,11 @@ public class Sphere extends Surface
 	}
 
 	@Override
-	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n, Point p)
+	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
 	{
 		if (image == null)
 		{
-			return super.getColor(light, eye, phongExponent, inShadow, n, p);
+			return super.getColor(light, eye, inShadow, n, p);
 		}
 		Color returnValue = new Color(0.0, 0.0, 0.0);
 

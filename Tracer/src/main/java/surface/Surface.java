@@ -32,7 +32,7 @@ public abstract class Surface
 	
 	public abstract ArrayList<HitData> getHitData(Ray r) throws RaytracerException;
 	
-	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n, Point p)
+	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
 	{
 		Vector normal = n;
 		if(effects.getBumpMapClass() != null)
@@ -45,9 +45,9 @@ public abstract class Surface
 			NoiseColor nc = effects.getNoiseMappedColorClass();
 			cR = nc.getColor(p);
 		}
-		if(effects.isPhong())
+		if(effects.getPhong() != null)
 		{
-			return Library.getColorPhong(cR, cA, cL, normal, light, eye, phongExponent, p, inShadow);
+			return Library.getColorPhong(cR, cA, cL, normal, light, eye, effects.getPhong().getExponent(), p, inShadow);
 		}
 		else if(effects.isLambertian())
 		{

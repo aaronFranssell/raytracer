@@ -75,7 +75,7 @@ public class Plane extends Surface
 	}
 	
 	@Override
-	public Color getColor(Point light, Point eye, int phongExponent, boolean inShadow, Vector n, Point p)
+	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p)
 	{
 		Color returnColor;
 		Color white = new Color(0.7,0.7,0.7);

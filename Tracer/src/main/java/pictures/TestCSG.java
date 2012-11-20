@@ -20,6 +20,7 @@ import util.Constants;
 import bumpMapping.StoneBump;
 import etc.Color;
 import etc.Effects;
+import etc.Phong;
 
 public class TestCSG
 {
@@ -28,25 +29,27 @@ public class TestCSG
 		Color cR;
 		Point center;
 		Effects effects = new Effects();
+		Phong phong = new Phong();
+		phong.setExponent(32);
 
 		Color cL = new Color(0.4,0.4,0.4);
 		center = new Point(1.0,0.0,0.0);
 		cR = new Color(0.4,0.0,0.0);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		Sphere s1 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
 		
 		center = new Point(0.0,0.0,0.0);
 		cR = new Color(0.0,0.0,0.8);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		Sphere s2 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
 
 		cL = new Color(0.4,0.4,0.4);
 		center = new Point(0.0,1.0,0.0);
 		cR = new Color(0.4,0.0,0.0);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		Sphere s3 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
 		
 		CSGTree aTree = new CSGTree();
@@ -61,7 +64,7 @@ public class TestCSG
 		aTree.setRoot(quarterSphere);
 		
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		effects.setReflective(true);
 		Point point = new Point(0.0,-2.5,0.0);
 		Vector normal =new Vector(0.0,1.0,0.0);

@@ -21,6 +21,7 @@ import util.Constants;
 import bumpMapping.StoneBump;
 import etc.Color;
 import etc.Effects;
+import etc.Phong;
 import etc.Refractive;
 
 public class SceneRendererImpl_TestsHelper
@@ -30,10 +31,12 @@ public class SceneRendererImpl_TestsHelper
 		Color cR;
 		Color cL = new Color(0.4,0.4,0.4);
 		Point center = new Point(3.0,0.0,1.5);
+		Phong phong = new Phong();
+		phong.setExponent(32);
 		
 		cR = new Color(0.0,0.0,0.5);
 		Effects effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		effects.setReflective(true);
 		effects.setNoiseMappedColorClass(new NoiseWood());
 		center = new Point(0.0,3.0,0.0);
@@ -41,26 +44,26 @@ public class SceneRendererImpl_TestsHelper
 		
 		cR = new Color(0.0,0.0,0.5);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		effects.setReflective(true);
 		center = new Point(-2.0,2.0,0.0);
 		Sphere s7 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null, 0.0);
 				
 		cR = new Color(0.5,0.0,0.0);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		effects.setReflective(true);
 		center = new Point(-2.0,0.0,0.0);
 		Sphere s6 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null,0.0);
 		
 		Point bottomCylinder = new Point(1.5,1.5,0.0);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		effects.setReflective(true);
 		Cylinder c3 = new Cylinder(bottomCylinder, 0.5, cR, Constants.cA, cL, 1.5, new Vector(1.0,1.0,1.0), effects);
 		
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		effects.setReflective(true);
 		Point point = new Point(0.0,-2.5,0.0);
 		Vector normal =new Vector(0.0,1.0,0.0); 
@@ -68,7 +71,7 @@ public class SceneRendererImpl_TestsHelper
 		
 		ArrayList<Surface> surfaceList = new ArrayList<Surface>();
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		String filePath = "src\\test\\resources\\hubble.JPG";
 		OuterSphere background = new OuterSphere(filePath,effects,Constants.cA,cL, 1.0);
 		
@@ -84,7 +87,7 @@ public class SceneRendererImpl_TestsHelper
 		Point b = new Point(0.0,0.0,0.0);
 		Point c = new Point(2.0,0.0,0.0);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		Refractive refractive = new Refractive();
 		refractive.setN(1.0);
 		refractive.setnT(1.0);
@@ -106,7 +109,7 @@ public class SceneRendererImpl_TestsHelper
 		cR = new Color(0.0,0.5,0.0);
 		cL = new Color(0.3,0.3,0.3);
 		effects = new Effects();
-		effects.setPhong(true);
+		effects.setPhong(phong);
 		effects.setReflective(true);
 		Cone cone = new Cone(direction, vertex, alpha, basePoint, length, cR, Constants.cA, cL,effects);
 		
