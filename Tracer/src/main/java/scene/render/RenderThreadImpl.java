@@ -63,8 +63,8 @@ public class RenderThreadImpl implements RenderThread
 			for(int h = 0; h < threadHeight; h++)
 			{
 				Ray r = rayFactory.createRay(volume, eye, basis, pictureWidth, pictureHeight, w, h + startHeight);
-				ScenePixel pixel = pixelFactory.createScenePixel(r, scene, eye, light, maxDepth);
-				Color returnColor = pixel.getPixelColor();
+				ScenePixel pixel = pixelFactory.createScenePixel(scene, eye, light, maxDepth);
+				Color returnColor = pixel.getPixelColor(r, 0);
 				imageData[w][h][RenderThread.RED_INDEX] = returnColor.red;
 				imageData[w][h][RenderThread.GREEN_INDEX] = returnColor.green;
 				imageData[w][h][RenderThread.BLUE_INDEX] = returnColor.blue;

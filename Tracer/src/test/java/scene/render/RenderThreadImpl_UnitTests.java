@@ -41,10 +41,10 @@ public class RenderThreadImpl_UnitTests
 		double red = 0.7;
 		double green = 0.5;
 		double blue = 0.3;
-		Mockito.when(mockPixel.getPixelColor()).thenReturn(new Color(red,green,blue));
+		Mockito.when(mockPixel.getPixelColor(ray, 0)).thenReturn(new Color(red,green,blue));
 		
 		ScenePixelFactory mockPixelFactory = Mockito.mock(ScenePixelFactory.class);
-		Mockito.when(mockPixelFactory.createScenePixel(ray, mockScene, eye, light, maxDepth)).thenReturn(mockPixel);		
+		Mockito.when(mockPixelFactory.createScenePixel(mockScene, eye, light, maxDepth)).thenReturn(mockPixel);		
 		
 		RenderThreadImpl classUnderTest = new RenderThreadImpl(eye, volume, width, height, basis, light, mockScene, startHeight, threadHeight, mockRayFactory, mockPixelFactory, maxDepth);
 		
@@ -62,7 +62,7 @@ public class RenderThreadImpl_UnitTests
 				Mockito.verify(mockRayFactory, Mockito.times(1)).createRay(volume, eye, basis, width, height, i, m + startHeight);
 			}
 		}
-		Mockito.verify(mockPixelFactory, Mockito.times(width * threadHeight)).createScenePixel(ray, mockScene, eye, light, maxDepth);
-		Mockito.verify(mockPixel, Mockito.times(width * threadHeight)).getPixelColor();
+		Mockito.verify(mockPixelFactory, Mockito.times(width * threadHeight)).createScenePixel(mockScene, eye, light, maxDepth);
+		Mockito.verify(mockPixel, Mockito.times(width * threadHeight)).getPixelColor(ray, 0);
 	}
 }

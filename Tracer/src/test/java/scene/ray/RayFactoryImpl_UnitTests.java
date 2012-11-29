@@ -64,4 +64,20 @@ public class RayFactoryImpl_UnitTests
 		Assert.assertTrue(result.getD().equals(expectedD));
 		Assert.assertEquals(result.getD().magnitude(), 1.0, Constants.POSITIVE_ZERO);
 	}
+	
+	@Test
+	public void createRay_WithVectorAndEye_ExpectRay()
+	{
+		//Given
+		RayFactoryImpl classUnderTest = new RayFactoryImpl();
+		Vector d = new Vector(1.0,1.0, 5.0);
+		Point eye = new Point(5.0,7.0,11.0);
+		Ray expected =  new Ray(d, eye);
+		
+		//When
+		Ray result = classUnderTest.createRay(d, eye);
+		
+		//Then
+		Assert.assertTrue(expected.equals(result));
+	}
 }

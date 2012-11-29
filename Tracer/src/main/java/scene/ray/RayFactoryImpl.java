@@ -32,9 +32,17 @@ public class RayFactoryImpl implements RayFactory
 		
 		d = d.normalizeReturn();
 		
-		Ray ret = new Ray(d, eye);
+		Ray ret = createRay(d, eye);
 		
 		return ret;
 	}
 
+	@Override
+	public Ray createRay(Vector d, Point eye)
+	{
+		return new Ray(d, eye);
+	}
+
+	
+	
 }

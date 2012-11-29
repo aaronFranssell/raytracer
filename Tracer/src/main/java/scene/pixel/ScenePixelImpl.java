@@ -4,7 +4,6 @@ import math.Point;
 import scene.Scene;
 import scene.ray.Ray;
 import surface.Surface;
-import util.Library;
 import util.Util;
 import util.UtilImpl;
 import etc.Color;
@@ -13,7 +12,6 @@ import etc.RaytracerException;
 
 public class ScenePixelImpl implements ScenePixel
 {
-	public Ray r;
 	public Scene scene;
 	public int currentDepth;
 	private Point eye;
@@ -21,9 +19,8 @@ public class ScenePixelImpl implements ScenePixel
 	private Util util;
 	private int maxDepth;
 	
-	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight, Util incomingUtil, int incomingMaxDepth)
+	public ScenePixelImpl(Scene incomingScene, Point incomingEye, Point incomingLight, Util incomingUtil, int incomingMaxDepth)
 	{
-		r = incomingRay;
 		scene = incomingScene;
 		currentDepth = 0;
 		eye = incomingEye;
@@ -32,18 +29,13 @@ public class ScenePixelImpl implements ScenePixel
 		maxDepth = incomingMaxDepth;
 	}
 	
-	public ScenePixelImpl(Ray incomingRay, Scene incomingScene, Point incomingEye, Point incomingLight, int incomingMaxDepth)
+	public ScenePixelImpl(Scene incomingScene, Point incomingEye, Point incomingLight, int incomingMaxDepth)
 	{
-		this(incomingRay, incomingScene, incomingEye, incomingLight, new UtilImpl(), incomingMaxDepth);
-	}
-	
-	public Color getPixelColor() throws RaytracerException
-	{
-		return recurse(r,currentDepth);
+		this(incomingScene, incomingEye, incomingLight, new UtilImpl(), incomingMaxDepth);
 	}
 	
 	@Override
-	public Color recurse(Ray r, int currentDepth) throws RaytracerException
+	public Color getPixelColor(Ray r, int currentDepth) throws RaytracerException
 	{
 		if(maxDepth == currentDepth)
 		{
@@ -59,24 +51,17 @@ public class ScenePixelImpl implements ScenePixel
 	
 	private Color colorPixel(Ray r, Scene scene, int currentDepth, HitData hit) throws RaytracerException
 	{
-		Color totalColor = new Color(0.0,0.0,0.0);
-		Color surfaceColor = new Color(0.0,0.0,0.0);
 		Surface currSurface = hit.getSurface();
 
+		boolean inShadow = util.isInShadow(scene, light, hit);
+		Color surfaceColor = currSurface.getColor(light, eye, inShadow, hit.getNormal(), hit.getP());
 		Color reflectReturnColor = util.getReflectedColor(r, currentDepth, hit, currSurface, this);
 		Color refractReturnColor = util.getRefractedColor(r, currentDepth, hit, currSurface, this);
-		boolean inShadow = Library.isInShadow(currSurface, scene, light, hit);
-		surfaceColor = currSurface.getColor(light, eye, inShadow, hit.getNormal(), hit.getP());
 		
-		totalColor.red += reflectReturnColor.red + refractReturnColor.red + surfaceColor.red;
-		totalColor.blue += reflectReturnColor.blue + refractReturnColor.blue + surfaceColor.blue;
-		totalColor.green += reflectReturnColor.green + refractReturnColor.green + surfaceColor.green;
-		return totalColor;
-	}
-
-	public Ray getR()
-	{
-		return r;
+		double red = reflectReturnColor.red + refractReturnColor.red + surfaceColor.red;
+		double green = reflectReturnColor.green + refractReturnColor.green + surfaceColor.green;
+		double blue = reflectReturnColor.blue + refractReturnColor.blue + surfaceColor.blue;
+		return new Color(red, green, blue);
 	}
 
 	public Scene getScene()

@@ -6,13 +6,28 @@ import etc.Color;
 import etc.HitData;
 import etc.RaytracerException;
 import etc.Refractive;
+import scene.Scene;
 import scene.pixel.ScenePixel;
 import scene.ray.Ray;
+import scene.ray.RayFactory;
+import scene.ray.RayFactoryImpl;
 import surface.Surface;
 import math.Point;
 import math.Vector;
 public class UtilImpl implements Util
 {
+	private RayFactory rayFactory; 
+	
+	public UtilImpl()
+	{
+		this(new RayFactoryImpl());
+	}
+	
+	public UtilImpl(RayFactory incomingRayFactory)
+	{
+		rayFactory = incomingRayFactory;
+	}
+	
 	@Override
 	public double[] sort(double[] incomingTArray)
 	{
@@ -74,7 +89,7 @@ public class UtilImpl implements Util
 
 		Vector refracted = v.scaleReturn(n).add(normal.scaleReturn(n * c1 - c2));
 		refracted = refracted.normalizeReturn();
-		return new Ray(refracted, hitData.getP());
+		return rayFactory.createRay(refracted, hitData.getP());
 	}
 
 	@Override
@@ -87,7 +102,7 @@ public class UtilImpl implements Util
 		double c1 = - n.dot(r.getD());
 		Vector reflectedRay = r.getD().add(n.scaleReturn(2*c1));
 		reflectedRay = reflectedRay.normalizeReturn();
-		return new Ray(reflectedRay, p);
+		return rayFactory.createRay(reflectedRay, p);
 	}
 
 	@Override
@@ -120,7 +135,7 @@ public class UtilImpl implements Util
 			return new Color(0.0,0.0,0.0);
 		}
 		Ray newRay = getReflectedRay(r, hit.getP(), hit.getNormal());
-		Color reflectReturnColor = pixel.recurse(newRay, currentDepth + 1);
+		Color reflectReturnColor = pixel.getPixelColor(newRay, currentDepth + 1);
 		reflectReturnColor = clamp(reflectReturnColor);
 		return reflectReturnColor;
 	}
@@ -139,8 +154,30 @@ public class UtilImpl implements Util
 		{
 			return new Color(0.0,0.0,0.0);
 		}
-		Color refractReturnColor = pixel.recurse(newRay, currentDepth + 1);
+		Color refractReturnColor = pixel.getPixelColor(newRay, currentDepth + 1);
 		refractReturnColor = clamp(refractReturnColor);
 		return refractReturnColor;
+	}
+
+	@Override
+	public boolean isInShadow(Scene scene, Point light, HitData hitData) throws RaytracerException
+	{
+		Vector d = light.minus(hitData.getP());
+		double distanceToLight = d.magnitude();
+		d = d.normalizeReturn();
+		
+		Ray rayShotToLight = rayFactory.createRay(d, hitData.getP());
+		
+		HitData shadowData = scene.getSmallestPositiveHitDataOrReturnMiss(rayShotToLight);
+		if(shadowData.isHit() && shadowData.getSurface().getType() != Surface.SurfaceType.Outersphere)
+		{
+			//if the light point occurs closer to a hit point than this object, then the object is not in shadow
+			double distanceToClosePoint = shadowData.getP().minus(hitData.getP()).magnitude();
+			if(distanceToClosePoint < distanceToLight)
+			{
+				return true;
+			}
+		}
+		return false;
 	}
 }

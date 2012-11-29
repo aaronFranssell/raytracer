@@ -7,8 +7,10 @@ import math.Vector;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import scene.Scene;
 import scene.pixel.ScenePixel;
 import scene.ray.Ray;
+import scene.ray.RayFactory;
 import surface.Surface;
 import etc.Color;
 import etc.Effects;
@@ -78,8 +80,6 @@ public class UtilImpl_UnitTests
 	public void getRefractedRay_With1sForIndexesOfRefraction_ExpectUnchangedRefractedRay()
 	{
 		//Given
-		UtilImpl classUnderTest = new UtilImpl();
-
 		double originalN = 1.0;
 		double newN = 1.0;
 
@@ -91,20 +91,26 @@ public class UtilImpl_UnitTests
 		normal = normal.normalizeReturn();
 		HitData hitData = new HitData(1.0, null, normal, p);
 
+		Ray expectedRay = new Ray(r, p);
+		
+		RayFactory mockFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockFactory.createRay(r, p)).thenReturn(expectedRay);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockFactory);
+		
 		//When
 		Ray result = classUnderTest.getRefractedRay(r, originalN, newN, hitData);
 
 		//Then
 		Assert.assertTrue(result.getD().equals(r));
 		Assert.assertEquals(result.getEye(), p);
+		Mockito.verify(mockFactory).createRay(r, p);
 	}
 	
 	@Test
 	public void getRefractedRay_WithNewNGreater_ExpectUnchangedRefractedRay()
 	{
 		//Given
-		UtilImpl classUnderTest = new UtilImpl();
-
 		double originalN = 1.0;
 		double newN = 8.0;
 
@@ -117,6 +123,13 @@ public class UtilImpl_UnitTests
 		HitData hitData = new HitData(1.0, null, normal, p);
 		
 		Vector expected = new Vector(0.5492382799400274, 0.5909049466066941, 0.5909049466066941);
+		
+		Ray expectedRay = new Ray(expected, p);
+		
+		RayFactory mockFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockFactory.createRay(expected, p)).thenReturn(expectedRay);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockFactory);
 
 		//When
 		Ray result = classUnderTest.getRefractedRay(r, originalN, newN, hitData);
@@ -124,6 +137,7 @@ public class UtilImpl_UnitTests
 		//Then
 		Assert.assertTrue(result.getD().equals(expected));
 		Assert.assertEquals(result.getEye(), p);
+		Mockito.verify(mockFactory).createRay(expected, p);
 	}
 	
 	@Test
@@ -154,8 +168,6 @@ public class UtilImpl_UnitTests
 	public void getRefractedRay_WithOriginalNLess_ExpectNullRay()
 	{
 		//Given
-		UtilImpl classUnderTest = new UtilImpl();
-
 		double originalN = 1.5;
 		double newN = 1.0;
 
@@ -169,12 +181,20 @@ public class UtilImpl_UnitTests
 
 		Vector expected = new Vector(0.19371294336139655, 0.6937129433613966, 0.6937129433613966);
 		
+		Ray expectedRay = new Ray(expected, p);
+		
+		RayFactory mockFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockFactory.createRay(expected, p)).thenReturn(expectedRay);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockFactory);
+		
 		//When
 		Ray result = classUnderTest.getRefractedRay(r, originalN, newN, hitData);
 
 		//Then
 		Assert.assertTrue(expected.equals(result.getD()));
 		Assert.assertEquals(result.getEye(), p);
+		Mockito.verify(mockFactory).createRay(expected, p);
 	}
 	
 	@Test
@@ -216,17 +236,24 @@ public class UtilImpl_UnitTests
 		Ray r = new Ray(d, eye);
 		Vector normal = new Vector(1.5,-0.5,2.5);
 		normal = normal.normalizeReturn();
-		UtilImpl classUnderTest = new UtilImpl();
 		Point p = new Point(0.5,0.5,0.5);
+		Vector expectedD = new Vector(-0.40455970110485867, 0.7934387936397616, -0.4547376485287172);
+		Point expectedEye = new Point(0.5,0.5,0.5);
+		
+		Ray expectedRay = new Ray(expectedD, expectedEye);
+		
+		RayFactory mockFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockFactory.createRay(expectedD, expectedEye)).thenReturn(expectedRay);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockFactory);
 		
 		//When
 		Ray actual = classUnderTest.getReflectedRay(r, p, normal);
 		
 		//Then
-		Vector expectedD = new Vector(-0.40455970110485867, 0.7934387936397616, -0.4547376485287172);
-		Point expectedEye = new Point(0.5,0.5,0.5);
 		Ray expected = new Ray(expectedD, expectedEye);
 		Assert.assertEquals(expected, actual);
+		Mockito.verify(mockFactory).createRay(expectedD, expectedEye);
 	}
 	
 	@Test
@@ -297,7 +324,7 @@ public class UtilImpl_UnitTests
 		Mockito.when(hit.getP()).thenReturn(mockPoint);
 		Color reflectReturn = Mockito.mock(Color.class);
 		ScenePixel pixel = Mockito.mock(ScenePixel.class);
-		Mockito.when(pixel.recurse(r, currentDepth + 1)).thenReturn(reflectReturn);
+		Mockito.when(pixel.getPixelColor(r, currentDepth + 1)).thenReturn(reflectReturn);
 		
 		UtilImpl classUnderTest = Mockito.spy(new UtilImpl());
 		Color clampReturn = new Color(0.1,0.3,0.7);
@@ -395,7 +422,7 @@ public class UtilImpl_UnitTests
 		Color mockPixelReturnColor = Mockito.mock(Color.class);
 		
 		ScenePixel mockPixel = Mockito.mock(ScenePixel.class);
-		Mockito.when(mockPixel.recurse(mockRefractedRay, currentDepth + 1)).thenReturn(mockPixelReturnColor);
+		Mockito.when(mockPixel.getPixelColor(mockRefractedRay, currentDepth + 1)).thenReturn(mockPixelReturnColor);
 		
 		Color mockClampedColor = Mockito.mock(Color.class);
 		
@@ -408,5 +435,165 @@ public class UtilImpl_UnitTests
 		
 		//Then
 		Assert.assertTrue(mockClampedColor == actual);
+	}
+	
+	@Test
+	public void isInShadow_WithNoHits_ExpectFalse() throws RaytracerException
+	{
+		//Given
+		Point mockHitPoint = Mockito.mock(Point.class);
+		
+		HitData mockHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockHitData.getP()).thenReturn(mockHitPoint);
+		
+		Point mockLight = Mockito.mock(Point.class);
+		
+		Vector mockD = UtilImpl_TestsHelper.mockShadowD(mockLight, mockHitPoint);
+		
+		Ray mockRayShotToLight = Mockito.mock(Ray.class);
+		
+		RayFactory mockRayFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockRayFactory.createRay(mockD, mockHitPoint)).thenReturn(mockRayShotToLight);
+		
+		HitData mockShadowHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockShadowHitData.isHit()).thenReturn(false);
+		
+		Scene mockScene = Mockito.mock(Scene.class);
+		Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRayShotToLight)).thenReturn(mockShadowHitData);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
+		
+		//When
+		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
+		
+		//Then
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void isInShadow_HittingOutersphere_ExpectFalse() throws RaytracerException
+	{
+		//Given
+		Point mockHitPoint = Mockito.mock(Point.class);
+		
+		HitData mockHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockHitData.getP()).thenReturn(mockHitPoint);
+		
+		Point mockLight = Mockito.mock(Point.class);
+		
+		Vector mockD = UtilImpl_TestsHelper.mockShadowD(mockLight, mockHitPoint);
+		
+		Ray mockRayShotToLight = Mockito.mock(Ray.class);
+		
+		RayFactory mockRayFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockRayFactory.createRay(mockD, mockHitPoint)).thenReturn(mockRayShotToLight);
+		
+		Surface mockOutersphere = Mockito.mock(Surface.class);
+		Mockito.when(mockOutersphere.getType()).thenReturn(Surface.SurfaceType.Outersphere);
+		
+		HitData mockShadowHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockShadowHitData.isHit()).thenReturn(true);
+		Mockito.when(mockShadowHitData.getSurface()).thenReturn(mockOutersphere);
+		
+		Scene mockScene = Mockito.mock(Scene.class);
+		Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRayShotToLight)).thenReturn(mockShadowHitData);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
+		
+		//When
+		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
+		
+		//Then
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void isInShadow_HitObjectButLightIsCloser_ExpectFalse() throws RaytracerException
+	{
+		//Given
+		Point mockHitPoint = Mockito.mock(Point.class);
+		
+		HitData mockHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockHitData.getP()).thenReturn(mockHitPoint);
+		
+		Point mockLight = Mockito.mock(Point.class);
+		
+		Vector mockD = UtilImpl_TestsHelper.mockShadowD(mockLight, mockHitPoint);
+		Mockito.when(mockD.magnitude()).thenReturn(10.0);
+		
+		Ray mockRayShotToLight = Mockito.mock(Ray.class);
+		
+		RayFactory mockRayFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockRayFactory.createRay(mockD, mockHitPoint)).thenReturn(mockRayShotToLight);
+		
+		Surface mockOutersphere = Mockito.mock(Surface.class);
+		Mockito.when(mockOutersphere.getType()).thenReturn(Surface.SurfaceType.Sphere);
+		
+		Vector mockShadowPMinusMockHitPoint = Mockito.mock(Vector.class);
+		Mockito.when(mockShadowPMinusMockHitPoint.magnitude()).thenReturn(20.0);
+		
+		Point mockShadowHitPoint = Mockito.mock(Point.class);
+		Mockito.when(mockShadowHitPoint.minus(mockHitPoint)).thenReturn(mockShadowPMinusMockHitPoint);
+		
+		HitData mockShadowHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockShadowHitData.isHit()).thenReturn(true);
+		Mockito.when(mockShadowHitData.getSurface()).thenReturn(mockOutersphere);
+		Mockito.when(mockShadowHitData.getP()).thenReturn(mockShadowHitPoint);
+		
+		Scene mockScene = Mockito.mock(Scene.class);
+		Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRayShotToLight)).thenReturn(mockShadowHitData);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
+		
+		//When
+		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
+		
+		//Then
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void isInShadow_HitObjectCloserThanLight_ExpectTrue() throws RaytracerException
+	{
+		//Given
+		Point mockHitPoint = Mockito.mock(Point.class);
+		
+		HitData mockHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockHitData.getP()).thenReturn(mockHitPoint);
+		
+		Point mockLight = Mockito.mock(Point.class);
+		
+		Vector mockD = UtilImpl_TestsHelper.mockShadowD(mockLight, mockHitPoint);
+		Mockito.when(mockD.magnitude()).thenReturn(10.0);
+		
+		Ray mockRayShotToLight = Mockito.mock(Ray.class);
+		
+		RayFactory mockRayFactory = Mockito.mock(RayFactory.class);
+		Mockito.when(mockRayFactory.createRay(mockD, mockHitPoint)).thenReturn(mockRayShotToLight);
+		
+		Surface mockOutersphere = Mockito.mock(Surface.class);
+		Mockito.when(mockOutersphere.getType()).thenReturn(Surface.SurfaceType.Sphere);
+		
+		Vector mockShadowPMinusMockHitPoint = Mockito.mock(Vector.class);
+		Mockito.when(mockShadowPMinusMockHitPoint.magnitude()).thenReturn(5.0);
+		
+		Point mockShadowHitPoint = Mockito.mock(Point.class);
+		Mockito.when(mockShadowHitPoint.minus(mockHitPoint)).thenReturn(mockShadowPMinusMockHitPoint);
+		
+		HitData mockShadowHitData = Mockito.mock(HitData.class);
+		Mockito.when(mockShadowHitData.isHit()).thenReturn(true);
+		Mockito.when(mockShadowHitData.getSurface()).thenReturn(mockOutersphere);
+		Mockito.when(mockShadowHitData.getP()).thenReturn(mockShadowHitPoint);
+		
+		Scene mockScene = Mockito.mock(Scene.class);
+		Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRayShotToLight)).thenReturn(mockShadowHitData);
+		
+		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
+		
+		//When
+		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
+		
+		//Then
+		Assert.assertTrue(result);
 	}
 }
