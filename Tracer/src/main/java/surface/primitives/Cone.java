@@ -109,7 +109,7 @@ public class Cone extends Surface
 	 * be reversed.
 	 */
 	@Override
-	public Vector getNormal(Point p, Ray r)
+	protected Vector getNormal(Point p, Ray r)
 	{		
 		Point Nh;
 		Vector pMinusV = p.minus(vertex);
@@ -123,7 +123,12 @@ public class Cone extends Surface
 			Nh = (direction.scaleReturn(hypotenuse).add(vertex)).toPoint();
 		}
 		Vector normal = p.minus(Nh);
-		return normal.normalizeReturn();
+		normal = normal.normalizeReturn();
+		if(normal.dot(r.getD()) > 0)
+		{
+			normal = normal.scaleReturn(-1.0);
+		}
+		return normal;
 	}
 
 	@Override

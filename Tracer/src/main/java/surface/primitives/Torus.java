@@ -63,7 +63,8 @@ public class Torus extends Surface
 		return normal;
 	}
 	
-	public Vector getNormal(Point p, Ray r)
+	@Override
+	protected Vector getNormal(Point p, Ray r)
 	{
 		Vector localNormal = getLocalNormal(transform.transformPointToLocal(p));
 		return transform.translateVectorToWorld(localNormal);

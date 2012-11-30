@@ -23,7 +23,7 @@ public abstract class Surface
 	
 	public enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone};
 	
-	public abstract Vector getNormal(Point p, Ray r);
+	protected abstract Vector getNormal(Point p, Ray r);
 	
 	public abstract SurfaceType getType();
 	

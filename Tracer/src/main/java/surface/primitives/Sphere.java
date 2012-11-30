@@ -113,7 +113,8 @@ public class Sphere extends Surface
 		return retList;
 	}
 
-	public Vector getNormal(Point p, Ray r)
+	@Override
+	protected Vector getNormal(Point p, Ray r)
 	{
 		Vector n = p.minus(center).normalizeReturn();
 		return n;

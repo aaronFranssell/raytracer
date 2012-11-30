@@ -70,7 +70,8 @@ public class Triangle extends Surface
 		return detTTop/detA;
 	}
 	
-	public Vector getNormal(Point p, Ray r)
+	@Override
+	protected Vector getNormal(Point p, Ray r)
 	{
 		Vector aB = a.minus(b);
 		Vector aC = a.minus(c);

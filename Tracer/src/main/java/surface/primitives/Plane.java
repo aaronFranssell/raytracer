@@ -57,7 +57,8 @@ public class Plane extends Surface
 		return hitT;
 	}
 	
-	public Vector getNormal(Point p, Ray r)
+	@Override
+	protected Vector getNormal(Point p, Ray r)
 	{
 		return n;
 	}
