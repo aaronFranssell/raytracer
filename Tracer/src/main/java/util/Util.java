@@ -18,4 +18,6 @@ public interface Util
 	public Color getReflectedColor(Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws RaytracerException;
 	public Color getRefractedColor(Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws RaytracerException;
 	public boolean isInShadow(Scene scene, Point light, HitData hitData) throws RaytracerException;
+	public Color getColorLambertian(Color cR, Color cA, Color cL, Vector n, Point light, Point p, boolean inShadow);
+	public Color getColorPhong(Color cR, Color cA, Color cL, Vector n, Point light, Point eye, int exponent, Point p, boolean inShadow);
 }

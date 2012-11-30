@@ -9,7 +9,7 @@ import scene.ray.Ray;
 import scene.ray.RayFactory;
 import scene.viewer.ViewingVolume;
 
-public class RenderThreadImpl_Helper
+public class RenderThreadImpl_TestsHelper
 {
 	public static RayFactory getMockRayFactory(int width, int threadHeight, Ray ray, ViewingVolume volume, Point eye, UVW basis, int height, int startHeight)
 	{

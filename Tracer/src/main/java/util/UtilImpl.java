@@ -180,4 +180,60 @@ public class UtilImpl implements Util
 		}
 		return false;
 	}
+
+	@Override
+	public Color getColorLambertian(Color cR, Color cA, Color cL, Vector n,	Point light, Point p, boolean inShadow)
+	{
+		Vector pointToLight = light.minus(p).normalizeReturn();
+		n = n.normalizeReturn();
+		
+		double nDotL = n.dot(pointToLight);
+		
+		Color RGBValue = new Color(0.0,0.0,0.0);
+		if(inShadow)
+		{
+			RGBValue.red = cR.red*cA.red;
+			RGBValue.green = cR.green*cA.green;
+			RGBValue.blue = cR.blue*cA.blue;
+		}
+		else
+		{
+			RGBValue.red = cR.red*(cA.red + cL.red*FastMath.max(0,nDotL));
+			RGBValue.green = cR.green*(cA.green + cL.green*FastMath.max(0,nDotL));
+			RGBValue.blue = cR.blue*(cA.blue + cL.blue*FastMath.max(0,nDotL));
+		}
+		return RGBValue;
+	}
+
+	@Override
+	public Color getColorPhong(Color cR, Color cA, Color cL, Vector n, Point light, Point eye, int exponent, Point p, boolean inShadow)
+	{
+		Color RGBValue = getColorLambertian(cR, cA, cL, n,light,p, inShadow);
+		//if the point is in shadow, just return the lambertian lighting model (since there will be no
+		//specular highlight if the object is in shadow).
+		if(inShadow)
+		{
+			return RGBValue;
+		}
+		
+		Vector pointToLight = light.minus(p).normalizeReturn();
+		
+		Vector pointToEye = eye.minus(p).normalizeReturn();
+		
+		//h is the halfway vector between the point to light, and the point to eye
+		//take the dot product with n to get an approximation for the specular highlight
+		Vector h = pointToLight.add(pointToEye).normalizeReturn();
+		double phongHighlight = FastMath.max(0,n.dot(h));
+		
+		Color phong = new Color(0.0,0.0,0.0);
+		phong.red = cL.red * FastMath.pow(phongHighlight,exponent);
+		phong.green = cL.green * FastMath.pow(phongHighlight,exponent);
+		phong.blue = cL.blue * FastMath.pow(phongHighlight,exponent);
+		
+		RGBValue.red += cR.red*phong.red;
+		RGBValue.green += cR.green*phong.green;
+		RGBValue.blue += cR.blue*phong.blue;
+		
+		return RGBValue;
+	}
 }

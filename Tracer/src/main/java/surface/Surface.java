@@ -6,7 +6,6 @@ import math.Point;
 import math.Vector;
 import noise.NoiseColor;
 import scene.ray.Ray;
-import util.Library;
 import util.Util;
 import bumpMapping.BumpMap;
 import etc.Color;
@@ -34,7 +33,7 @@ public abstract class Surface
 	
 	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
 	{
-		Vector normal = n;
+		Vector normal = n.copy();
 		if(effects.getBumpMapClass() != null)
 		{
 			BumpMap map = effects.getBumpMapClass();
@@ -47,11 +46,11 @@ public abstract class Surface
 		}
 		if(effects.getPhong() != null)
 		{
-			return Library.getColorPhong(cR, cA, cL, normal, light, eye, effects.getPhong().getExponent(), p, inShadow);
+			return ops.getColorPhong(cR, cA, cL, normal, light, eye, effects.getPhong().getExponent(), p, inShadow);
 		}
 		else if(effects.isLambertian())
 		{
-			return Library.getColorLambertian(cR, cA, cL, normal, light, p, inShadow);
+			return ops.getColorLambertian(cR, cA, cL, normal, light, p, inShadow);
 		}
 		return new Color(0.0,0.0,0.0);
 	}
@@ -104,5 +103,20 @@ public abstract class Surface
 	public void setcL(Color cL)
 	{
 		this.cL = cL;
+	}
+
+	public Util getOps()
+	{
+		return ops;
+	}
+
+	public void setOps(Util ops)
+	{
+		this.ops = ops;
+	}
+
+	public void setEffects(Effects effects)
+	{
+		this.effects = effects;
 	}
 }

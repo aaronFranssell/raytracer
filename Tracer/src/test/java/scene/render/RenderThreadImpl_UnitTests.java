@@ -35,7 +35,7 @@ public class RenderThreadImpl_UnitTests
 		int maxDepth = 6;
 		
 		Ray ray = new Ray(new Vector(1.0,0.0,0.0), eye);
-		RayFactory mockRayFactory = RenderThreadImpl_Helper.getMockRayFactory(width, threadHeight, ray, volume, eye, basis, height, startHeight);
+		RayFactory mockRayFactory = RenderThreadImpl_TestsHelper.getMockRayFactory(width, threadHeight, ray, volume, eye, basis, height, startHeight);
 		
 		ScenePixel mockPixel = Mockito.mock(ScenePixel.class);
 		double red = 0.7;

@@ -13,6 +13,7 @@ import math.Point;
 import math.Vector;
 
 import org.apache.commons.math3.complex.Complex;
+import org.apache.commons.math3.util.FastMath;
 
 import scene.ray.Ray;
 import etc.Color;
@@ -22,15 +23,6 @@ import etc.RaytracerException;
 
 public class Library 
 {
-	public static double max(double num1, double num2)
-	{
-		if(num1 > num2)
-		{
-			return num1;
-		}
-		return num2;
-	}
-	
 	public static double[] solveQuadratic(double a, double b, double c)
 	{
 		double[] retArray = new double[2];
@@ -53,13 +45,13 @@ public class Library
 		
 		double nDotL = n.dot(pointToLight);
 		
-		Color RGBValue = new Color(0,0,0);
+		Color RGBValue = new Color(0.0,0.0,0.0);
 		if(!inShadow)
 		{
-			RGBValue.red = cR.red*(cA.red + cL.red*max(0,nDotL));
-			RGBValue.green = cR.green*(cA.green + cL.green*max(0,nDotL));
-			RGBValue.blue = cR.blue*(cA.blue + cL.blue*max(0,nDotL));
-		}//if
+			RGBValue.red = cR.red*(cA.red + cL.red*FastMath.max(0,nDotL));
+			RGBValue.green = cR.green*(cA.green + cL.green*FastMath.max(0,nDotL));
+			RGBValue.blue = cR.blue*(cA.blue + cL.blue*FastMath.max(0,nDotL));
+		}
 		else
 		{
 			RGBValue.red = cR.red*cA.red;
@@ -87,12 +79,12 @@ public class Library
 		//h is the halfway vector between the point to light, and the point to eye
 		//take the dot product with n to get an approximation for the specular highlight
 		Vector h = pointToLight.add(pointToEye).normalizeReturn();
-		double phongHighlight = max(0,n.dot(h));
+		double phongHighlight = FastMath.max(0,n.dot(h));
 		
 		Color phong = new Color(0.0,0.0,0.0);
-		phong.red = cL.red * Math.pow(phongHighlight,exponent);
-		phong.green = cL.green * Math.pow(phongHighlight,exponent);
-		phong.blue = cL.blue * Math.pow(phongHighlight,exponent);
+		phong.red = cL.red * FastMath.pow(phongHighlight,exponent);
+		phong.green = cL.green * FastMath.pow(phongHighlight,exponent);
+		phong.blue = cL.blue * FastMath.pow(phongHighlight,exponent);
 		
 		RGBValue.red += cR.red*phong.red;
 		RGBValue.green += cR.green*phong.green;
