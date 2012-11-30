@@ -86,7 +86,7 @@ public class Cone extends Surface
 	 * H = (P-Vertex).magnitude()/cos(alpha)
 	 * 
 	 * Scale the direction vector by H and offset that vector by the Vertex. That is the point from which
-	 * we can get the normal. Call this point Nh, or normal on the hypotenuse. Get the from P to Nh and normalize
+	 * we can get the normal. Call this point Nh, or normal on the hypotenuse. Get the vector from P to Nh and normalize
 	 * it.
 	 * 
 	 * The only catch to all this is if the P-Vertex vector does not lie in the same direction as the Direction
@@ -104,9 +104,9 @@ public class Cone extends Surface
 			     /      \
 	      Vertex/-------------> Direction
 	 * 
-	 * 
-	 * 
-	 * 
+	 * One more wrinkle, the normal will be pointing in the wrong direction if the ray hits the cone on the inside of the
+	 * cone "cup". If the dot product of the normal/ray is positive, they are pointing the same direction, and the normal should
+	 * be reversed.
 	 */
 	@Override
 	public Vector getNormal(Point p, Ray r)
@@ -158,7 +158,7 @@ public class Cone extends Surface
 		if(!Double.isNaN(smallestT))
 		{
 			//determine if the hit point p is to far away from the base point
-			retTArray = Library.getHitTsByLimitingLength(retTArray, direction, basePoint, length, r, ops);
+			retTArray = getHitTsByLimitingLength(retTArray, direction, basePoint, length, r);
 		}
 		if(!Double.isNaN(Library.getSmallestT(retTArray)))
 		{
@@ -175,5 +175,62 @@ public class Cone extends Surface
 		{
 			return new ArrayList<HitData>();
 		}
+	}
+	
+	/**
+	 * This function determines whether or not the incoming hit t values are still hits base on whether or not they occur past the
+	 * solid length. For instance a point my hit an infinite cylinder, but it will be past the length, or before the base point, so
+	 * it should count as a miss.
+	 * @param incomingHitTs The default hit t values. These must be valid hits.
+	 * @param solidDirection The direction vector of the solid.
+	 * @param basePoint The point on the direction vector.
+	 * @param length The length of the solid.
+	 * @param r The ray.
+	 * @return The correct t values, or NaN if there is a miss.
+	 * @throws Exception 
+	 */
+	private double[] getHitTsByLimitingLength(double[] incomingHitTs, Vector solidDirection, Point basePoint, double length, Ray r) throws RaytracerException
+	{
+		double[] hitTs = new double[incomingHitTs.length];
+		for(int i = 0; i < incomingHitTs.length; i++)
+		{
+			if(Double.isNaN(incomingHitTs[i]))
+			{
+				throw new RaytracerException("Hit t value is NaN, these values must be valid hits.");
+			}
+			Point hitP = ops.getP(incomingHitTs[i], r);
+			
+			Vector vectorToHitPointFromBase = hitP.minus(basePoint);
+			Vector vectorToHitPointFromBaseNormalized = vectorToHitPointFromBase.normalizeReturn(); 
+			
+			//if the dot product is < 0, then the hit occurs behind the base point, so it is a miss
+			if(solidDirection.dot(vectorToHitPointFromBaseNormalized) < 0)
+			{
+				hitTs[i] = Double.NaN;
+			}//if
+			else
+			{
+				/*
+				Length is not simply the distance between the hitP and basePoint, it is the distance along the solidDirection
+				vector. We will set up a triangle having points basePoint and hitP. The angle between solidDirection and 
+				vectorToHitPointFromBase is alpha. The distance along the solidDirection vector of the point is:
+				cos(alpha) * vectorToHitPointFromBase.magnitude()
+				by the properties of cos. 
+				*/
+				double solidDirectionLength = solidDirection.dot(vectorToHitPointFromBaseNormalized) * 
+											  vectorToHitPointFromBase.magnitude();
+				if(solidDirectionLength > length)
+				{
+					hitTs[i] = Double.NaN;
+				}//if
+				else
+				{
+					//simply copy over the hitT
+					hitTs[i] = incomingHitTs[i];
+				}
+			}
+		}
+		
+		return hitTs;
 	}
 }

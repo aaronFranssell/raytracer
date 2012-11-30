@@ -10,14 +10,9 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import math.Point;
-import math.Vector;
 
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.util.FastMath;
-
-import scene.ray.Ray;
-import etc.Color;
-import etc.RaytracerException;
 
 
 
@@ -33,64 +28,9 @@ public class Library
 			retArray[1] = Double.NaN;
 			return retArray;
 		}//if
-		retArray[0] = ((b*-1) + Math.pow(discriminant,0.5))/(2*a);
-		retArray[1] = ((b*-1) - Math.pow(discriminant,0.5))/(2*a);
+		retArray[0] = ((b*-1) + FastMath.pow(discriminant,0.5))/(2*a);
+		retArray[1] = ((b*-1) - FastMath.pow(discriminant,0.5))/(2*a);
 		return retArray;
-	}
-	
-	public static Color getColorLambertian(Color cR, Color cA, Color cL, Vector n, Point light, Point p, boolean inShadow)
-	{
-		Vector pointToLight = light.minus(p).normalizeReturn();
-		n = n.normalizeReturn();
-		
-		double nDotL = n.dot(pointToLight);
-		
-		Color RGBValue = new Color(0.0,0.0,0.0);
-		if(!inShadow)
-		{
-			RGBValue.red = cR.red*(cA.red + cL.red*FastMath.max(0,nDotL));
-			RGBValue.green = cR.green*(cA.green + cL.green*FastMath.max(0,nDotL));
-			RGBValue.blue = cR.blue*(cA.blue + cL.blue*FastMath.max(0,nDotL));
-		}
-		else
-		{
-			RGBValue.red = cR.red*cA.red;
-			RGBValue.green = cR.green*cA.green;
-			RGBValue.blue = cR.blue*cA.blue;
-		}
-		return RGBValue;
-	}
-	
-	public static Color getColorPhong(Color cR, Color cA, Color cL, Vector n, Point light, Point eye, 
-									  int exponent, Point p, boolean inShadow)
-	{
-		Color RGBValue = getColorLambertian(cR, cA, cL, n,light,p, inShadow);
-		//if the point is in shadow, just return the lambertian lighting model (since there will be no
-		//specular highlight if the object is in shadow).
-		if(inShadow)
-		{
-			return RGBValue;
-		}
-		
-		Vector pointToLight = light.minus(p).normalizeReturn();
-		
-		Vector pointToEye = eye.minus(p).normalizeReturn();
-		
-		//h is the halfway vector between the point to light, and the point to eye
-		//take the dot product with n to get an approximation for the specular highlight
-		Vector h = pointToLight.add(pointToEye).normalizeReturn();
-		double phongHighlight = FastMath.max(0,n.dot(h));
-		
-		Color phong = new Color(0.0,0.0,0.0);
-		phong.red = cL.red * FastMath.pow(phongHighlight,exponent);
-		phong.green = cL.green * FastMath.pow(phongHighlight,exponent);
-		phong.blue = cL.blue * FastMath.pow(phongHighlight,exponent);
-		
-		RGBValue.red += cR.red*phong.red;
-		RGBValue.green += cR.green*phong.green;
-		RGBValue.blue += cR.blue*phong.blue;
-		
-		return RGBValue;
 	}
 	
 	public static double[] solveQuartic(double A,double B,double C,double D,double E)
@@ -265,64 +205,6 @@ public class Library
 		{
 			return false;
 		}
-	}
-	
-	/**
-	 * This function determines whether or not the incoming hit t values are still hits base on whether or not they occur past the
-	 * solid length. For instance a point my hit an infinite cylinder, but it will be past the length, or before the base point, so
-	 * it should count as a miss.
-	 * @param incomingHitTs The default hit t values. These must be valid hits.
-	 * @param solidDirection The direction vector of the solid.
-	 * @param basePoint The point on the direction vector.
-	 * @param length The length of the solid.
-	 * @param r The ray.
-	 * @return The correct t values, or NaN if there is a miss.
-	 * @throws Exception 
-	 */
-	public static double[] getHitTsByLimitingLength(double[] incomingHitTs, Vector solidDirection, Point basePoint,
-													 double length, Ray r, Util ops) throws RaytracerException
-	{
-		double[] hitTs = new double[incomingHitTs.length];
-		for(int i = 0; i < incomingHitTs.length; i++)
-		{
-			if(Double.isNaN(incomingHitTs[i]))
-			{
-				throw new RaytracerException("Hit t value is NaN, these values must be valid hits.");
-			}
-			Point hitP = ops.getP(incomingHitTs[i], r);
-			
-			Vector vectorToHitPointFromBase = hitP.minus(basePoint);
-			Vector vectorToHitPointFromBaseNormalized = vectorToHitPointFromBase.normalizeReturn(); 
-			
-			//if the dot product is < 0, then the hit occurs behind the base point, so it is a miss
-			if(solidDirection.dot(vectorToHitPointFromBaseNormalized) < 0)
-			{
-				hitTs[i] = Double.NaN;
-			}//if
-			else
-			{
-				/*
-				Length is not simply the distance between the hitP and basePoint, it is the distance along the solidDirection
-				vector. We will set up a triangle having points basePoint and hitP. The angle between solidDirection and 
-				vectorToHitPointFromBase is alpha. The distance along the solidDirection vector of the point is:
-				cos(alpha) * vectorToHitPointFromBase.magnitude()
-				by the properties of cos. 
-				*/
-				double solidDirectionLength = solidDirection.dot(vectorToHitPointFromBaseNormalized) * 
-											  vectorToHitPointFromBase.magnitude();
-				if(solidDirectionLength > length)
-				{
-					hitTs[i] = Double.NaN;
-				}//if
-				else
-				{
-					//simply copy over the hitT
-					hitTs[i] = incomingHitTs[i];
-				}
-			}
-		}
-		
-		return hitTs;
 	}
 	
 	public static int[] getCircleUVImageMapping(Point p, Point center, double radius, int w, int h)

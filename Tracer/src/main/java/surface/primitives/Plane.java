@@ -102,7 +102,14 @@ public class Plane extends Surface
 				returnColor =  white;
 			}
 		}
-		return Library.getColorLambertian(returnColor, cA, cL, n, light, p, inShadow);
+		if(effects.getPhong() != null)
+		{
+			return ops.getColorPhong(returnColor, cL, cA, n, light, eye, effects.getPhong().getExponent(), p, inShadow);
+		}
+		else
+		{
+			return ops.getColorLambertian(returnColor, cA, cL, n, light, p, inShadow);
+		}
 	}
 	
 	@Override

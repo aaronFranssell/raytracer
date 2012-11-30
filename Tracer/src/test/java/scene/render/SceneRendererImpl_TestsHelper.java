@@ -140,7 +140,7 @@ public class SceneRendererImpl_TestsHelper
 		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light, maxDepth);
 		RenderResult result = renderer.render();
 		
-		//ImageIO.write(result.getImage(), "png", new File("src\\test\\resources\\result.png"));
+		//javax.imageio.ImageIO.write(result.getImage(), "png", new java.io.File("src\\test\\resources\\result.png"));
 		
 		return result;
 	}
