@@ -2,6 +2,8 @@ package surface.primitives;
 
 import java.util.ArrayList;
 
+import org.apache.commons.math3.util.FastMath;
+
 import math.Point;
 import math.Vector;
 import scene.ray.Ray;
@@ -49,16 +51,17 @@ public class Cylinder extends Surface
 	protected Vector getNormal(Point hitPoint, Ray r)
 	{
 		/*
-		 * i derived this myself so may be buggy :-/
-		 * there is a right triangle formed between 3 points: the cylinder bottom, the hit point on the cylinder,
+		 * I derived this myself so may be buggy :-/
+		 * There is a right triangle formed between 3 points: the cylinder bottom, the hit point on the cylinder,
 		 * and the point on the centerline of the cylinder that is closest to the hitpoint. The normal will be
-		 * the vector that is the hit point minus the close centerline point. To find the centerline point,
+		 * the vector that is the hit point minus the close centerline point. To find the center-line point,
 		 * find the distance between the close point and bottom of the cylinder point. Once that distance is found,
 		 * scale the direction vector by that amount, and then displace that vector by the bottom of the cylinder point.
+		 * If the ray strikes the cylinder on the inside, then the normal needs to point back towards the eye.
 		 */
 		Vector hitPointMinusBottom = hitPoint.minus(bottom);
 		//just the pythagorean theorem...
-		double distanceToClosePoint = Math.sqrt(hitPointMinusBottom.magnitude() * hitPointMinusBottom.magnitude() - radius * radius);
+		double distanceToClosePoint = FastMath.sqrt(hitPointMinusBottom.magnitude() * hitPointMinusBottom.magnitude() - radius * radius);
 		
 		Vector vecToHitPoint = hitPointMinusBottom.normalizeReturn();
 		
@@ -66,10 +69,8 @@ public class Cylinder extends Surface
 		//if cosDirection > 0, then the hit point happened in the direction of the direction vector.
 		//if cosDirection < 0, then the hit point happened in the opposite direction of the direction vector
 		double cosDirection = vecToHitPoint.dot(direction);
-		if(cosDirection < 0)
-		{
-			distanceToClosePoint *= -1;
-		}
+		distanceToClosePoint = cosDirection < 0 ? distanceToClosePoint * -1:distanceToClosePoint;
+		
 		Vector pointOnLine = new Vector(direction.x * distanceToClosePoint, direction.y * distanceToClosePoint, 
 										direction.z * distanceToClosePoint);		
 		//displace the scaled vector by the center, and that is the close point
@@ -80,12 +81,16 @@ public class Cylinder extends Surface
 		//the normal is now the difference between the hit point and the close point
 		Vector normal = new Vector(hitPoint.x - pointOnLine.x,hitPoint.y - pointOnLine.y,hitPoint.z - pointOnLine.z);
 		normal = normal.normalizeReturn();
+		if(normal.dot(r.getD()) > 0)
+		{
+			normal = normal.scaleReturn(-1.0);
+		}
 		return normal;
 	}
 	
-	private boolean onLimitedCylinder(double aT, Ray r)
+	private boolean onLimitedCylinder(double t, Ray r)
 	{
-		Point pointOnCylinder = ops.getP(aT, r);
+		Point pointOnCylinder = ops.getP(t, r);
 		//calculate if hit point is in the height of the cylinder specified
 		//take the dot product of (hit point - cylinder bottom point).dot(direction vector)
 		//if this is > 0, then the hit point lies in front of the bottom.
@@ -111,7 +116,7 @@ public class Cylinder extends Surface
 	
 	public ArrayList<HitData> getHitData(Ray r)
 	{
-		double[] hitTs = getHitTs(r);
+		ArrayList<Double> hitTs = getHitTs(r);
 		
 		ArrayList<HitData> retData = new ArrayList<HitData>();
 		for(double t : hitTs)
@@ -124,7 +129,7 @@ public class Cylinder extends Surface
 		return retData;
 	}
 	
-	public double[] getHitTs(Ray r)
+	public ArrayList<Double> getHitTs(Ray r)
 	{
 		Vector eyeMinusBottom = r.getEye().minus(bottom);
 		Vector rayCrossDirection = r.getD().cross(direction);
@@ -132,12 +137,12 @@ public class Cylinder extends Surface
 		double rayCrossDirectionMag = rayCrossDirection.magnitude();
 		rayCrossDirection = rayCrossDirection.normalizeReturn();
 		
-		double distance = Math.abs(eyeMinusBottom.dot(rayCrossDirection));
+		double distance = FastMath.abs(eyeMinusBottom.dot(rayCrossDirection));
 		
 		boolean isHit = (distance <= radius);
 		if(!isHit)
 		{
-			return new double[0];
+			return new ArrayList<Double>();
 		}
 		
 		double numerator = direction.cross(eyeMinusBottom).dot(rayCrossDirection);
@@ -146,13 +151,19 @@ public class Cylinder extends Surface
 		Vector O = rayCrossDirection.cross(direction);
 		O = O.normalizeReturn();
 		
-		double s = Math.abs(Math.sqrt(radius*radius - distance*distance)/r.getD().dot(O));
+		double s = FastMath.abs(FastMath.sqrt(radius*radius - distance*distance)/r.getD().dot(O));
 		double t1 = t - s;
 		double t2 = t + s;
-		double[] retTArray = new double[2];
-		retTArray[0] = onLimitedCylinder(t1, r) ? t1:Double.NaN;
-		retTArray[1] = onLimitedCylinder(t2, r) ? t2:Double.NaN;
-		return retTArray;
+		ArrayList<Double> retTs = new ArrayList<Double>();
+		if(onLimitedCylinder(t1, r))
+		{
+			retTs.add(t1);
+		}
+		if(onLimitedCylinder(t2, r))
+		{
+			retTs.add(t2);
+		}
+		return retTs;
 	}
 
 	@Override
