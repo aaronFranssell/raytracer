@@ -7,6 +7,7 @@ import math.Vector;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Constants;
+import util.Library;
 import util.Util;
 import util.UtilImpl;
 import etc.Color;
@@ -16,11 +17,11 @@ import etc.HitData;
 
 public class Plane extends Surface
 {
-	private Vector n;
+	private Vector normal;
 	private Point pointOnPlane;
-	public Plane(Vector incomingN, Point incomingPoint, Color incomingCR, Color incomingCL, Color incomingCA, Effects incomingEffects, Util incomingOps)
+	public Plane(Vector incomingNormal, Point incomingPoint, Color incomingCR, Color incomingCL, Color incomingCA, Effects incomingEffects, Util incomingOps)
 	{
-		n = incomingN;
+		normal = incomingNormal.normalizeReturn();
 		pointOnPlane = incomingPoint;
 		cR = incomingCR;
 		cL = incomingCA;
@@ -36,38 +37,37 @@ public class Plane extends Surface
 	
 	private double calcT(Ray r)
 	{
-		double dDotN = r.getD().dot(n);
-		if (dDotN == 0.0)
+		double dDotN = r.getD().dot(normal);
+		if (Library.doubleEqual(dDotN, 0.0, Constants.POSITIVE_ZERO))
 		{
-			return Double.MAX_VALUE;
+			return Double.NaN;
 		}
 		
 		Vector tempD = r.getD();
 		Vector pMinusE = pointOnPlane.minus(r.getEye());
 				
-		double top = pMinusE.dot(n);
-		double bottom = tempD.dot(n);
+		double top = pMinusE.dot(normal);
+		double bottom = tempD.dot(normal);
 		double hitT = top/bottom;
-		
-		if(hitT < Constants.POSITIVE_ZERO)
-		{
-			return Double.MAX_VALUE;
-		}
 		return hitT;
 	}
 	
 	@Override
 	protected Vector getNormal(Point p, Ray r)
 	{
-		return n;
+		return normal;
 	}
 		
 	public ArrayList<HitData> getHitData(Ray r)
 	{
-		double smallestT = calcT(r);
-		Point p = ops.getP(smallestT, r);
-		HitData hit = new HitData(smallestT, this, n, p);
 		ArrayList<HitData> retHitData = new ArrayList<HitData>();
+		double smallestT = calcT(r);
+		if(Double.isNaN(smallestT))
+		{
+			return retHitData;
+		}
+		Point p = ops.getP(smallestT, r);
+		HitData hit = new HitData(smallestT, this, normal, p);
 		retHitData.add(hit);
 		return retHitData; 
 	}
