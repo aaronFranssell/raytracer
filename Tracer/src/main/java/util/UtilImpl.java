@@ -236,4 +236,33 @@ public class UtilImpl implements Util
 		
 		return RGBValue;
 	}
+
+	@Override
+	public double[] solveQuadratic(double a, double b, double c)
+	{
+		double[] retArray = new double[2];
+		double discriminant = b*b - 4*a*c;
+		if(discriminant < 0)
+		{
+			retArray[0] = Double.NaN;
+			retArray[1] = Double.NaN;
+			return retArray;
+		}
+		retArray[0] = ((b*-1) + FastMath.pow(discriminant,0.5))/(2*a);
+		retArray[1] = ((b*-1) - FastMath.pow(discriminant,0.5))/(2*a);
+		return retArray;
+	}
+
+	@Override
+	public boolean hasHits(double[] hits)
+	{
+		for(int i = 0; i < hits.length; i++)
+		{
+			if(Double.isNaN(hits[i]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 }

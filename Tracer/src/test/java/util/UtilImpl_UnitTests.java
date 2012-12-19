@@ -1,5 +1,6 @@
 package util;
 
+import helper.TestsHelper;
 import junit.framework.Assert;
 import math.Point;
 import math.Vector;
@@ -813,5 +814,67 @@ public class UtilImpl_UnitTests
 
 		//Then
 		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void solveQuadratic_WithImaginaryDiscriminant_ExpectNans()
+	{
+		//Given
+		double[] expected = new double[] {Double.NaN, Double.NaN};
+		double a = 2;
+		double b = 4;
+		double c = 8;
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		double[] actual = classUnderTest.solveQuadratic(a, b, c);
+		
+		//Then
+		TestsHelper.doubleArraysSubsets(expected, actual);
+	}
+	
+	@Test
+	public void solveQuadratic_WithRealDiscriminant_ExpectNans()
+	{
+		//Given
+		double[] expected = new double[] {-0.45861873485089033, -6.541381265149109};
+		double a = 1;
+		double b = 7;
+		double c = 3;
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		double[] actual = classUnderTest.solveQuadratic(a, b, c);
+		
+		//Then
+		TestsHelper.doubleArraysSubsets(expected, actual);
+	}
+	
+	@Test
+	public void hasHits_WithANaN_ExpectFalse()
+	{
+		//Given
+		double[] hits = new double[]{1.0, Double.NaN};
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		boolean result = classUnderTest.hasHits(hits);
+		
+		//Then
+		Assert.assertFalse(result);
+	}
+	
+	@Test
+	public void hasHits_WithNoNaNs_ExpectTrue()
+	{
+		//Given
+		double[] hits = new double[]{1.0, -1.0};
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		boolean result = classUnderTest.hasHits(hits);
+		
+		//Then
+		Assert.assertTrue(result);
 	}
 }

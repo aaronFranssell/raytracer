@@ -12,27 +12,11 @@ import javax.imageio.ImageIO;
 import math.Point;
 
 import org.apache.commons.math3.complex.Complex;
-import org.apache.commons.math3.util.FastMath;
 
 
 
 public class Library 
 {
-	public static double[] solveQuadratic(double a, double b, double c)
-	{
-		double[] retArray = new double[2];
-		double discriminant = b*b - 4*a*c;
-		if(discriminant < 0)
-		{
-			retArray[0] = Double.NaN;
-			retArray[1] = Double.NaN;
-			return retArray;
-		}//if
-		retArray[0] = ((b*-1) + FastMath.pow(discriminant,0.5))/(2*a);
-		retArray[1] = ((b*-1) - FastMath.pow(discriminant,0.5))/(2*a);
-		return retArray;
-	}
-	
 	public static double[] solveQuartic(double A,double B,double C,double D,double E)
 	{
 		double [] returnTs = new double[4];
@@ -166,33 +150,6 @@ public class Library
 			break;
 		}
 		return R;
-	}
-	
-	/**
-	 * This function returns the smallest t in a double array. The double array can include negative numbers, NaNs, and normal
-	 * t values. 
-	 * @param tArray The array of ts
-	 * @return The smallest non-negative, non-zero, non-NaN t in the array. NaN if there isn't one.
-	 */
-	public static double getSmallestT(double[] tArray)
-	{
-		if(tArray == null)
-		{
-			return Double.NaN;
-		}
-		double smallestT = Double.MAX_VALUE;
-		for(int i = 0; i < tArray.length; i++)
-		{
-			if(!Double.isNaN(tArray[i]) && tArray[i] > Constants.POSITIVE_ZERO && tArray[i] < smallestT)
-			{
-				smallestT = tArray[i];
-			}
-		}
-		if(smallestT == Double.MAX_VALUE)
-		{
-			return Double.NaN;
-		}
-		return smallestT;
 	}
 
 	public static boolean doubleEqual(double num1, double num2, double tolerance)

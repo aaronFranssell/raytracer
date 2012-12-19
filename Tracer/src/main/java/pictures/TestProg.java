@@ -45,7 +45,6 @@ public class TestProg
 		cR = new Color(0.0,0.0,0.5);
 		Effects effects = new Effects();
 		effects.setPhong(phong);
-		//effects.setReflective(true);
 		effects.setReflective(true);
 		effects.setNoiseMappedColorClass(new NoiseWood());
 		center = new Point(0.0,3.0,0.0);
@@ -62,18 +61,14 @@ public class TestProg
 		effects = new Effects();
 		effects.setPhong(phong);
 		effects.setReflective(true);
-		//effects.setRefractive(true);
 		center = new Point(-2.0,0.0,0.0);
 		Sphere s6 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null,0.0);
 		
-		Point bottomCylinder = new Point(2.0,2.0,0.0);
+		Point bottomCylinder = new Point(1.5,1.5,0.0);
 		effects = new Effects();
 		effects.setPhong(phong);
 		effects.setReflective(true);
-		//effects.setNoiseMappedColorClass(new NoiseStone());
-		//effects.setRefractive(true);
-		//effects.setLambertian(true);
-		Cylinder c3 = new Cylinder(bottomCylinder, 0.5, cR, Constants.cA, cL, 3.0, new Vector(1.0,1.0,1.0), effects);
+		Cylinder c3 = new Cylinder(bottomCylinder, 0.5, cR, Constants.cA, cL, 1.5, new Vector(1.0,1.0,1.0), effects);
 		
 		effects = new Effects();
 		effects.setPhong(phong);
@@ -90,9 +85,7 @@ public class TestProg
 		
 		cR = new Color(0.0,0.7,0.5);
 		effects = new Effects();
-		//effects.setPhong(true);
 		effects.setLambertian(true);
-		//effects.setReflective(true);
 		effects.setNoiseMappedColorClass(new NoiseStone());
 		effects.setBumpMapClass(new StoneBump());
 		center = new Point(2.0,0.0,0.0);
@@ -113,8 +106,6 @@ public class TestProg
 		center = new Point(-2.0,5.0,-8.0);
 		filePath = loc.getImageDirectory() + "moonSurface.jpg";
 		effects = new Effects();
-		//effects.setPhong(true);
-		//effects.setReflective(true);
 		effects.setLambertian(true);
 		Sphere textureSphere = new Sphere(center,6.0, cR, Constants.cA, cL,effects, filePath, 0.65);
 		

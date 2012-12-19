@@ -7,7 +7,6 @@ import math.Vector;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Constants;
-import util.Library;
 import util.Util;
 import util.UtilImpl;
 import etc.Color;
@@ -65,9 +64,7 @@ public class Plane extends Surface
 		
 	public ArrayList<HitData> getHitData(Ray r)
 	{
-		double[] retTArray = new double[1];
-		retTArray[0] = calcT(r);
-		double smallestT = Library.getSmallestT(retTArray);
+		double smallestT = calcT(r);
 		Point p = ops.getP(smallestT, r);
 		HitData hit = new HitData(smallestT, this, n, p);
 		ArrayList<HitData> retHitData = new ArrayList<HitData>();

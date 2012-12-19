@@ -20,4 +20,6 @@ public interface Util
 	public boolean isInShadow(Scene scene, Point light, HitData hitData) throws RaytracerException;
 	public Color getColorLambertian(Color cR, Color cA, Color cL, Vector n, Point light, Point p, boolean inShadow);
 	public Color getColorPhong(Color cR, Color cA, Color cL, Vector n, Point light, Point eye, int exponent, Point p, boolean inShadow);
+	public double[] solveQuadratic(double a, double b, double c);
+	public boolean hasHits(double[] hits);
 }
