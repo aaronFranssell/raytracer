@@ -23,6 +23,7 @@ import etc.Color;
 import etc.Effects;
 import etc.Phong;
 import etc.Refractive;
+import etc.mapper.CircleMapper;
 
 public class SceneRendererImpl_TestsHelper
 {
@@ -40,21 +41,21 @@ public class SceneRendererImpl_TestsHelper
 		effects.setReflective(true);
 		effects.setNoiseMappedColorClass(new NoiseWood());
 		center = new Point(0.0,3.0,0.0);
-		Sphere s5 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null, 0.0);
+		Sphere s5 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null);
 		
 		cR = new Color(0.0,0.0,0.5);
 		effects = new Effects();
 		effects.setPhong(phong);
 		effects.setReflective(true);
 		center = new Point(-2.0,2.0,0.0);
-		Sphere s7 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null, 0.0);
+		Sphere s7 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null);
 				
 		cR = new Color(0.5,0.0,0.0);
 		effects = new Effects();
 		effects.setPhong(phong);
 		effects.setReflective(true);
 		center = new Point(-2.0,0.0,0.0);
-		Sphere s6 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null,0.0);
+		Sphere s6 = new Sphere(center,1.0, cR, Constants.cA, cL,effects, null);
 		
 		Point bottomCylinder = new Point(1.5,1.5,0.0);
 		effects = new Effects();
@@ -73,7 +74,7 @@ public class SceneRendererImpl_TestsHelper
 		effects = new Effects();
 		effects.setPhong(phong);
 		String filePath = "src\\test\\resources\\hubble.JPG";
-		OuterSphere background = new OuterSphere(filePath,effects,Constants.cA,cL, 1.0);
+		OuterSphere background = new OuterSphere(filePath,effects,Constants.cA,cL, new CircleMapper(filePath, center, OuterSphere.RADIUS, 1.0));
 		
 		cR = new Color(0.0,0.7,0.5);
 		effects = new Effects();
@@ -99,7 +100,8 @@ public class SceneRendererImpl_TestsHelper
 		filePath = "src\\test\\resources\\moonSurface.jpg";
 		effects = new Effects();
 		effects.setLambertian(true);
-		Sphere textureSphere = new Sphere(center,6.0, cR, Constants.cA, cL,effects, filePath, 0.65);
+		double radius = 6.0;
+		Sphere textureSphere = new Sphere(center,radius, cR, Constants.cA, cL,effects, new CircleMapper(filePath, center, radius, 0.65));
 		
 		Vector direction = new Vector(1.0,1.0,1.0);
 		Point vertex = new Point(0.0,0.0,0.0);

@@ -1,15 +1,8 @@
 package util;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.imageio.ImageIO;
-
-import math.Point;
 
 import org.apache.commons.math3.complex.Complex;
 
@@ -162,66 +155,5 @@ public class Library
 		{
 			return false;
 		}
-	}
-	
-	public static int[] getCircleUVImageMapping(Point p, Point center, double radius, int w, int h)
-	{
-		double theta;
-		double phi;
-	
-		theta = Math.acos((p.y - center.y) / radius);
-		phi = Math.atan2(p.z - center.z, p.x - center.x);
-		if (phi < 0.0)
-		{
-			phi += 2 * Math.PI;
-		}// if
-	
-		double u = phi / (2 * Math.PI);
-		double v = (Math.PI - theta) / Math.PI;
-	
-		// System.out.println("u: " + u);
-		// System.out.println("v: " + v);
-	
-		// u,v is in the unit square, so we need to convert them to the image
-		// coordinates
-		int uFinal = (int) ((int) w * u);
-		int vFinal = (int) ((int) h * v);
-		
-		int[] retArray = new int[2];
-		retArray[0] = uFinal;
-		retArray[1] = vFinal;
-		
-		return retArray;
-	}
-	
-	public static int[][][] readImage(String filePath)
-	{
-		int[][][] image;
-		BufferedImage fileImage = null;
-		try
-		{
-			File yonFile = new File(filePath);
-			fileImage = ImageIO.read(yonFile);
-		} catch (IOException e)
-		{
-			System.err.println("File path: " + filePath);
-			e.printStackTrace();
-		}
-		int w = fileImage.getWidth();
-		int h = fileImage.getHeight();
-		image = new int[w][h][3];
-		int pixel;
-		for (int t = 0; t < h; t++)
-		{
-			for (int i = 0; i < w; i++)
-			{
-				pixel = fileImage.getRGB(i, t);
-				image[i][t][0] = (pixel >> 16) & 0xff;
-				image[i][t][1] = (pixel >> 8) & 0xff;
-				image[i][t][2] = pixel & 0xff;
-			}
-		}
-		
-		return image;
 	}
 }

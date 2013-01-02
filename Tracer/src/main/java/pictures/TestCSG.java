@@ -37,20 +37,20 @@ public class TestCSG
 		cR = new Color(0.4,0.0,0.0);
 		effects = new Effects();
 		effects.setPhong(phong);
-		Sphere s1 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
+		Sphere s1 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null);
 		
 		center = new Point(0.0,0.0,0.0);
 		cR = new Color(0.0,0.0,0.8);
 		effects = new Effects();
 		effects.setPhong(phong);
-		Sphere s2 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
+		Sphere s2 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null);
 
 		cL = new Color(0.4,0.4,0.4);
 		center = new Point(0.0,1.0,0.0);
 		cR = new Color(0.4,0.0,0.0);
 		effects = new Effects();
 		effects.setPhong(phong);
-		Sphere s3 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null,0.0);
+		Sphere s3 = new Sphere(center,2.0, cR, Constants.cA, cL,effects, null);
 		
 		CSGTree aTree = new CSGTree();
 		CSGNode halfSphere = new CSGNode(new BoundedBy(aTree));

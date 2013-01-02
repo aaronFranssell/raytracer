@@ -3,15 +3,16 @@ package surface.primitives;
 import math.Point;
 import etc.Color;
 import etc.Effects;
+import etc.mapper.ImageMapper;
 
 
 public class OuterSphere extends Sphere
 {
-	private static int RADIUS = 100;
+	public static int RADIUS = 100;
 	
-	public OuterSphere(String incomingFilePath, Effects incomingEffects,Color incomingCA, Color incomingCL, double incomingTextureScale)
+	public OuterSphere(String incomingFilePath, Effects incomingEffects,Color incomingCA, Color incomingCL, ImageMapper imageMapper)
 	{
-		super(new Point(0.0,0.0,0.0), RADIUS, null, incomingCA, incomingCL, incomingEffects, incomingFilePath, incomingTextureScale);
+		super(new Point(0.0,0.0,0.0), RADIUS, null, incomingCA, incomingCL, incomingEffects, imageMapper);
 	}
 	
 	@Override

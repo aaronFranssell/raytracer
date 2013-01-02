@@ -1,5 +1,11 @@
 package util;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+
 import org.apache.commons.math3.util.FastMath;
 
 import etc.Color;
@@ -264,5 +270,30 @@ public class UtilImpl implements Util
 			}
 		}
 		return true;
+	}
+	
+	@Override
+	public int[][][] readImage(String filePath) throws IOException
+	{
+		int[][][] image;
+		BufferedImage fileImage = null;
+		File yonFile = new File(filePath);
+		fileImage = ImageIO.read(yonFile);
+		int w = fileImage.getWidth();
+		int h = fileImage.getHeight();
+		image = new int[w][h][3];
+		int pixel;
+		for (int t = 0; t < h; t++)
+		{
+			for (int i = 0; i < w; i++)
+			{
+				pixel = fileImage.getRGB(i, t);
+				image[i][t][0] = (pixel >> 16) & 0xff;
+				image[i][t][1] = (pixel >> 8) & 0xff;
+				image[i][t][2] = pixel & 0xff;
+			}
+		}
+		
+		return image;
 	}
 }

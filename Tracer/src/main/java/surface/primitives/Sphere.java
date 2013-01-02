@@ -6,25 +6,22 @@ import math.Point;
 import math.Vector;
 import scene.ray.Ray;
 import surface.Surface;
-import util.Library;
 import util.Util;
 import util.UtilImpl;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
 import etc.RaytracerException;
+import etc.mapper.ImageMapper;
 
 public class Sphere extends Surface
 {
 	protected Point center;
 	protected double radius;
-	protected int[][][] image;
-	protected double textureScale;
-	protected int w;
-	protected int h;
+	protected ImageMapper mapper;
 
-	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, String filePath,
-				  double incomingTextureScale, Util incomingOps)
+	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, ImageMapper incomingMapper,
+				  Util incomingOps)
 	{
 		center = incomingCenter;
 		radius = incomingRadius;
@@ -32,46 +29,26 @@ public class Sphere extends Surface
 		cA = incomingCA;
 		cL = incomingCL;
 		effects = incomingEffects;
-		textureScale = incomingTextureScale;
-		if (filePath != null)
+		if (incomingMapper != null)
 		{
-			image = Library.readImage(filePath);
-			w = image.length;
-			h = image[0].length;
+			mapper = incomingMapper;
 		}
 		ops = incomingOps;
 	}
 	
-	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, String filePath,
-			  double incomingTextureScale)
+	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, ImageMapper incomingMapper)
 	{
-		this(incomingCenter, incomingRadius, incomingCR, incomingCA, incomingCL, incomingEffects, filePath, incomingTextureScale, new UtilImpl());
+		this(incomingCenter, incomingRadius, incomingCR, incomingCA, incomingCL, incomingEffects, incomingMapper, new UtilImpl());
 	}
 
 	@Override
 	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
 	{
-		if (image == null)
+		if (mapper == null)
 		{
 			return super.getColor(light, eye, inShadow, n, p);
 		}
-		Color returnValue = new Color(0.0, 0.0, 0.0);
-
-		int[] UVArray = Library.getCircleUVImageMapping(p, center, radius, w, h);
-
-		int uFinal = UVArray[0];
-		int vFinal = UVArray[1];
-		
-		returnValue.red = image[uFinal][vFinal][0];
-		returnValue.green = image[uFinal][vFinal][1];
-		returnValue.blue = image[uFinal][vFinal][2];
-
-		// convert to between 0-1
-		returnValue.red = returnValue.red / 255.0 * textureScale;
-		returnValue.green = returnValue.green / 255.0 * textureScale;
-		returnValue.blue = returnValue.blue / 255.0 * textureScale;
-
-		return returnValue;
+		return mapper.getColor(p);
 	}
 
 	private double getDiscriminant(Ray r)
@@ -125,4 +102,5 @@ public class Sphere extends Surface
 	{
 		return SurfaceType.Sphere;
 	}
+
 }

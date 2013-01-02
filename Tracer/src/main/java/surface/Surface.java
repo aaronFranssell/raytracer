@@ -46,11 +46,11 @@ public abstract class Surface
 		}
 		if(effects.getPhong() != null)
 		{
-			return ops.getColorPhong(cR, cA, cL, normal, light, eye, effects.getPhong().getExponent(), p, inShadow);
+			return ops.getColorPhong(getCR(), cA, cL, normal, light, eye, effects.getPhong().getExponent(), p, inShadow);
 		}
 		else if(effects.isLambertian())
 		{
-			return ops.getColorLambertian(cR, cA, cL, normal, light, p, inShadow);
+			return ops.getColorLambertian(getCR(), cA, cL, normal, light, p, inShadow);
 		}
 		return new Color(0.0,0.0,0.0);
 	}
