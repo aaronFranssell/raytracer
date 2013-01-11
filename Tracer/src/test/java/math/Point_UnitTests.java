@@ -39,4 +39,19 @@ public class Point_UnitTests
 		Assert.assertEquals(8.0, result.y, Constants.POSITIVE_ZERO);
 		Assert.assertEquals(0.0, result.z, Constants.POSITIVE_ZERO);
 	}
+	
+	@Test
+	public void add_WithVector_ExpectPoint()
+	{
+		//Given
+		Point classUnderTest = new Point(1.0,3.0,5.0);
+		Vector v = new Vector(-7.0, 5.0, 11.0);
+		Point expected = new Point(-6.0,8.0,16.0);
+		
+		//When
+		Point actual = classUnderTest.add(v);
+		
+		//Then
+		Assert.assertTrue(expected.equals(actual));
+	}
 }

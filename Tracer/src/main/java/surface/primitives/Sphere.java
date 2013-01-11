@@ -11,15 +11,13 @@ import util.UtilImpl;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import etc.mapper.ImageMapper;
 
 public class Sphere extends Surface
 {
 	protected Point center;
 	protected double radius;
 
-	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, ImageMapper incomingMapper,
-				  Util incomingOps)
+	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, Util incomingOps)
 	{
 		center = incomingCenter;
 		radius = incomingRadius;
@@ -27,16 +25,12 @@ public class Sphere extends Surface
 		cA = incomingCA;
 		cL = incomingCL;
 		effects = incomingEffects;
-		if (incomingMapper != null)
-		{
-			mapper = incomingMapper;
-		}
 		ops = incomingOps;
 	}
 	
-	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, ImageMapper incomingMapper)
+	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects)
 	{
-		this(incomingCenter, incomingRadius, incomingCR, incomingCA, incomingCL, incomingEffects, incomingMapper, new UtilImpl());
+		this(incomingCenter, incomingRadius, incomingCR, incomingCA, incomingCL, incomingEffects, new UtilImpl());
 	}
 
 	private double getDiscriminant(Ray r)

@@ -28,7 +28,7 @@ public class Sphere_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray ray = new Ray(d, eye);
 
-		Sphere classUnderTest = new Sphere(center, radius, null,null,null, null, null, ops);
+		Sphere classUnderTest = new Sphere(center, radius, null,null,null, null, ops);
 		
 		//When
 		ArrayList<HitData> list = classUnderTest.getHitData(ray);
@@ -49,7 +49,7 @@ public class Sphere_IntegrationTests
 		Point eye = new Point(1.0,0.0,4.0);
 		Ray ray = new Ray(d, eye);
 
-		Sphere classUnderTest = new Sphere(center, radius, null, null, null, null, null, ops);
+		Sphere classUnderTest = new Sphere(center, radius, null, null, null, null, ops);
 		
 		ArrayList<HitData> expectedHitData = new ArrayList<HitData>();
 		HitData hit = new HitData(2.0, classUnderTest, new Vector(0.0,0.0,1.0), new Point(1.0,0.0,2.0));

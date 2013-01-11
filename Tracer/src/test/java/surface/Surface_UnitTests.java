@@ -83,6 +83,7 @@ public class Surface_UnitTests
 		Effects effects = new Effects();
 		effects.setBumpMapClass(mockBump);
 		effects.setNoiseMappedColorClass(mockNoise);
+		effects.setImageMapper(mockMapper);
 		effects.setPhong(phong);
 
 		Surface classUnderTest = Mockito.mock(Surface.class, Mockito.CALLS_REAL_METHODS);
@@ -91,7 +92,6 @@ public class Surface_UnitTests
 		classUnderTest.setcL(mockCL);
 		classUnderTest.setOps(mockUtil);
 		classUnderTest.setcR(cR);
-		classUnderTest.setMapper(mockMapper);
 
 		Color expected = new Color(0.2,0.2,0.2);
 		

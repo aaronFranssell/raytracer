@@ -21,9 +21,8 @@ public abstract class Surface
 	protected Color cA;
 	protected Color cL;
 	protected Util ops;
-	protected ImageMapper mapper;
 	
-	public enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone};
+	public enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone, Parallelogram};
 	
 	public abstract SurfaceType getType();
 	
@@ -45,8 +44,9 @@ public abstract class Surface
 			NoiseColor nc = effects.getNoiseMappedColorClass();
 			currentCR = nc.getColor(p);
 		}
-		if(mapper != null)
+		if(effects.getImageMapper() != null)
 		{
+			ImageMapper mapper = effects.getImageMapper();
 			currentCR = mapper.getColor(p).add(currentCR);
 		}
 		if(effects.getPhong() != null)
@@ -123,15 +123,5 @@ public abstract class Surface
 	public void setEffects(Effects effects)
 	{
 		this.effects = effects;
-	}
-
-	public ImageMapper getMapper()
-	{
-		return mapper;
-	}
-
-	public void setMapper(ImageMapper mapper)
-	{
-		this.mapper = mapper;
 	}
 }

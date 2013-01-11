@@ -47,6 +47,11 @@ public class Point
 		return new Point(x*val, y*val, z*val);
 	}
 	
+	public Point add(Vector v)
+	{
+		return new Point(x + v.x, y + v.y, z + v.z);
+	}
+	
 	public Vector minus(Point p2)
 	{
 		return new Vector(this.x - p2.x, this.y - p2.y, this.z - p2.z);

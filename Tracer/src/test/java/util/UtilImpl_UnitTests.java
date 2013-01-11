@@ -997,4 +997,60 @@ public class UtilImpl_UnitTests
 		//Then
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
+	
+	@Test
+	public void getGreaterValue_WithNanVal1_ExpectVal2()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double expected = 1.0;
+		
+		//When
+		double actual = classUnderTest.getGreaterValue(Double.NaN, 1.0);
+		
+		//Then
+		Assert.assertEquals(expected, actual, Constants.POSITIVE_ZERO);
+	}
+	
+	@Test
+	public void getGreaterValue_WithNanVal2_ExpectVal1()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double expected = 1.0;
+		
+		//When
+		double actual = classUnderTest.getGreaterValue(1.0, Double.NaN);
+		
+		//Then
+		Assert.assertEquals(expected, actual, Constants.POSITIVE_ZERO);
+	}
+	
+	@Test
+	public void getGreaterValue_WithVal1GreaterThanVal2_ExpectVal1()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double expected = 1.0;
+		
+		//When
+		double actual = classUnderTest.getGreaterValue(1.0, -1.0);
+		
+		//Then
+		Assert.assertEquals(expected, actual, Constants.POSITIVE_ZERO);
+	}
+	
+	@Test
+	public void getGreaterValue_WithVal2GreaterThanVal1_ExpectVal2()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double expected = 1.0;
+		
+		//When
+		double actual = classUnderTest.getGreaterValue(-1.0, 1.0);
+		
+		//Then
+		Assert.assertEquals(expected, actual, Constants.POSITIVE_ZERO);
+	}
 }

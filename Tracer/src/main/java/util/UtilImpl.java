@@ -445,4 +445,22 @@ public class UtilImpl implements Util
 		}
 		return R;
 	}
+
+	@Override
+	public double getGreaterValue(double val1, double val2)
+	{
+		if(Double.isNaN(val1))
+		{
+			return val2;
+		}
+		if(Double.isNaN(val2))
+		{
+			return val1;
+		}
+		if(val1 > val2)
+		{
+			return val1;
+		}
+		return val2;
+	}
 }

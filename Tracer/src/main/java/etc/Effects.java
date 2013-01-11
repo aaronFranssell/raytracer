@@ -1,5 +1,6 @@
 package etc;
 
+import etc.mapper.ImageMapper;
 import bumpMapping.BumpMap;
 import noise.NoiseColor;
 
@@ -11,6 +12,7 @@ public class Effects
 	private boolean reflective;
 	private Refractive refractive;
 	private BumpMap bumpMapClass;
+	private ImageMapper imageMapper;
 	
 	public Effects()
 	{
@@ -70,5 +72,13 @@ public class Effects
 	public void setPhong(Phong phong)
 	{
 		this.phong = phong;
+	}
+	public ImageMapper getImageMapper()
+	{
+		return imageMapper;
+	}
+	public void setImageMapper(ImageMapper imageMapper)
+	{
+		this.imageMapper = imageMapper;
 	}
 }
