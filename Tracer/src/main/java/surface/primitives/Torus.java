@@ -25,7 +25,7 @@ public class Torus extends Surface
 	public static final Vector SURFACE_DIRECTION = new Vector(0.0,0.0,1.0);
 	
 	public Torus(Point incomingCenter, Vector incomingDirection, double incomingLargeR, double incomingSmallR, Color incomingCR,Color incomingCA, Color incomingCL,
-				 Effects incomingEffects, Util incomingOps) throws Exception
+				 Effects incomingEffects, Util incomingOps)
 	{
 		smallR = incomingSmallR;
 		largeR = incomingLargeR;
@@ -37,7 +37,7 @@ public class Torus extends Surface
 		//because I couldn't find a generalized torus rendering algorithm, I will have to use matrix
 		//transformations in order to render things the way I want to :-(
 		direction = incomingDirection.normalizeReturn();
-		if(SURFACE_DIRECTION.cross(direction).equals(ZERO))
+		if(direction.cross(SURFACE_DIRECTION).equals(ZERO))
 		{
 			System.out.println("WARNING: Torus world direction parallel to surface local direction, offseting by: " + OFFSET_DIRECTION_VECTOR);
 			direction = direction.add(OFFSET_DIRECTION_VECTOR).normalizeReturn();
@@ -116,5 +116,15 @@ public class Torus extends Surface
 	public SurfaceType getType()
 	{
 		return SurfaceType.Torus;
+	}
+
+	public Vector getDirection()
+	{
+		return direction;
+	}
+
+	public void setDirection(Vector direction)
+	{
+		this.direction = direction;
 	}
 }
