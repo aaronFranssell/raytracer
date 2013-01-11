@@ -12,6 +12,7 @@ import etc.Color;
 import etc.Effects;
 import etc.HitData;
 import etc.RaytracerException;
+import etc.mapper.ImageMapper;
 
 
 public abstract class Surface
@@ -20,10 +21,9 @@ public abstract class Surface
 	protected Color cA;
 	protected Color cL;
 	protected Util ops;
+	protected ImageMapper mapper;
 	
 	public enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone};
-	
-	protected abstract Vector getNormal(Point p, Ray r);
 	
 	public abstract SurfaceType getType();
 	
@@ -33,6 +33,7 @@ public abstract class Surface
 	
 	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
 	{
+		Color currentCR = cR.copy();
 		Vector normal = n.copy();
 		if(effects.getBumpMapClass() != null)
 		{
@@ -42,15 +43,19 @@ public abstract class Surface
 		if(effects.getNoiseMappedColorClass() != null)
 		{
 			NoiseColor nc = effects.getNoiseMappedColorClass();
-			cR = nc.getColor(p);
+			currentCR = nc.getColor(p);
+		}
+		if(mapper != null)
+		{
+			currentCR = mapper.getColor(p).add(currentCR);
 		}
 		if(effects.getPhong() != null)
 		{
-			return ops.getColorPhong(getCR(), cA, cL, normal, light, eye, effects.getPhong().getExponent(), p, inShadow);
+			return ops.getColorPhong(currentCR, cA, cL, normal, light, eye, effects.getPhong().getExponent(), p, inShadow);
 		}
 		else if(effects.isLambertian())
 		{
-			return ops.getColorLambertian(getCR(), cA, cL, normal, light, p, inShadow);
+			return ops.getColorLambertian(currentCR, cA, cL, normal, light, p, inShadow);
 		}
 		return new Color(0.0,0.0,0.0);
 	}
@@ -118,5 +123,15 @@ public abstract class Surface
 	public void setEffects(Effects effects)
 	{
 		this.effects = effects;
+	}
+
+	public ImageMapper getMapper()
+	{
+		return mapper;
+	}
+
+	public void setMapper(ImageMapper mapper)
+	{
+		this.mapper = mapper;
 	}
 }

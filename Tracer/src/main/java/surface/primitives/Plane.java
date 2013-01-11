@@ -7,7 +7,6 @@ import math.Vector;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Constants;
-import util.Library;
 import util.Util;
 import util.UtilImpl;
 import etc.Color;
@@ -38,7 +37,7 @@ public class Plane extends Surface
 	private double calcT(Ray r)
 	{
 		double dDotN = r.getD().dot(normal);
-		if (Library.doubleEqual(dDotN, 0.0, Constants.POSITIVE_ZERO))
+		if (UtilImpl.doubleEqual(dDotN, 0.0, Constants.POSITIVE_ZERO))
 		{
 			return Double.NaN;
 		}
@@ -52,7 +51,6 @@ public class Plane extends Surface
 		return hitT;
 	}
 	
-	@Override
 	protected Vector getNormal(Point p, Ray r)
 	{
 		return normal;

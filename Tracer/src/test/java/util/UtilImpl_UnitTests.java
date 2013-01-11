@@ -877,4 +877,124 @@ public class UtilImpl_UnitTests
 		//Then
 		Assert.assertTrue(result);
 	}
+	
+	@Test
+	public void solveQuartic_HittingFirstSecondIf_ExpectZeros()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double a = 1.0;
+		double b = 0.0;
+		double c = 0.0;
+		double d = 0.0;
+		double e = 0.0;
+		
+		double expected[] = new double[4];
+		expected[0] = 0.0;
+		expected[1] = 0.0;
+		expected[2] = 0.0;
+		expected[3] = 0.0;
+		
+		//When
+		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
+		
+		//Then
+		TestsHelper.doubleArraysSubsets(expected, actual);
+	}
+	
+	@Test
+	public void solveQuartic_HittingFirstThirdIf_ExpectZeros()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double a = 1.0;
+		double b = 0.0;
+		double c = 0.0;
+		double d = 0.0;
+		double e = 1.0;
+		
+		double expected[] = new double[4];
+		expected[0] = Double.NaN;
+		expected[1] = Double.NaN;
+		expected[2] = Double.NaN;
+		expected[3] = Double.NaN;
+		
+		//When
+		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
+		
+		//Then
+		TestsHelper.doubleArraysSubsets(expected, actual);
+	}
+	
+	@Test
+	public void solveQuartic_HittingFifthSixthSeventhIf_ExpectZeros()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double a = 1.0;
+		double b = 0.0;
+		double c = 0.0;
+		double d = 1.0;
+		double e = 0.0;
+		
+		double expected[] = new double[4];
+		expected[0] = Double.NaN;
+		expected[1] = Double.NaN;
+		expected[2] = 0.0;
+		expected[3] = -1.0;
+		
+		//When
+		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
+		
+		//Then
+		TestsHelper.doubleArraysSubsets(expected, actual);
+	}
+	
+	@Test
+	public void solveQuartic_HittingFourthSixthIf_ExpectZeros()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double a = 1.0;
+		double b = 1.0;
+		double c = 0.0;
+		double d = 0.0;
+		double e = 0.0;
+		
+		double expected[] = new double[4];
+		expected[0] = 0.0;
+		expected[1] = 0.0;
+		expected[2] = 0.0;
+		expected[3] = -1.0;
+		
+		//When
+		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
+		
+		//Then
+		TestsHelper.doubleArraysSubsets(expected, actual);
+	}
+	
+	@Test
+	public void solveQuartic_WithTypicalCall_ExpectZeros()
+	{
+		//Given
+		UtilImpl classUnderTest = new UtilImpl();
+		double a = 2.0;
+		double b = 3.0;
+		double c = -4.0;
+		double d = 5.0;
+		double e = 6.0;
+		
+		double expected[] = new double[4];
+		expected[0] = Double.NaN;
+		expected[1] = Double.NaN;
+		expected[2] = -0.6992823840584236;
+		expected[3] = -2.505678468626153;
+		
+		//When
+		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
+		
+		//Then
+		TestsHelper.doubleArraysSubsets(expected, actual);
+	}
 }

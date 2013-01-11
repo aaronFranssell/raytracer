@@ -139,7 +139,6 @@ public class CSGTree extends Surface
 		return node;
 	}
 
-	@Override
 	public Vector getNormal(Point p, Ray r)
 	{
 		return lastHitResult.getNormal();

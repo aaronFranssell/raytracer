@@ -13,6 +13,4 @@ public class Constants
 	 * This is the ambient light constant. This is the base color "strength" of an object.
 	 */
 	public static final Color cA = new Color(0.5, 0.5, 0.5);
-
-	public static final int PHONG_EXPONENT = 32;
 }

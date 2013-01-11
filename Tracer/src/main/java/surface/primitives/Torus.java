@@ -7,11 +7,11 @@ import math.Transform;
 import math.Vector;
 import scene.ray.Ray;
 import surface.Surface;
-import util.Library;
+import util.Util;
+import util.UtilImpl;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import util.*;
 
 public class Torus extends Surface
 {
@@ -63,7 +63,6 @@ public class Torus extends Surface
 		return normal;
 	}
 	
-	@Override
 	protected Vector getNormal(Point p, Ray r)
 	{
 		Vector localNormal = getLocalNormal(transform.transformPointToLocal(p));
@@ -77,14 +76,17 @@ public class Torus extends Surface
 		double[] retTArray = getTArray(transformedRay);
 		ArrayList<HitData> retList = new ArrayList<HitData>();
 		//the ray direction + ray eye are being transformed, the eye will stay the same "t" distance away from the torus,
-		//since the magnitude of the eye point will stay the same relative to the torus. I think. I hope...
+		//since the magnitude of the eye point will stay the same relative to the torus.
 		for(double t : retTArray)
 		{
-			Point p = ops.getP(t, transformedRay);
-			Vector normal = transform.translateVectorToWorld(getLocalNormal(p));
-			p = transform.transformPointToWorld(p);
-			HitData hit = new HitData(t, this, normal, p);
-			retList.add(hit);
+			if(!Double.isNaN(t))
+			{
+				Point p = ops.getP(t, transformedRay);
+				Vector normal = transform.translateVectorToWorld(getLocalNormal(p));
+				p = transform.transformPointToWorld(p);
+				HitData hit = new HitData(t, this, normal, p);
+				retList.add(hit);
+			}
 		}
 		return retList;
 	}
@@ -107,7 +109,7 @@ public class Torus extends Surface
 		double D = 4.0*Math.pow(Px,3)*Dx + 4.0*Math.pow(Px,2)*Py*Dy + 4.0*Math.pow(Px,2)*Pz*Dz + 4.0*Px*Dx*Math.pow(Py,2) + 4.0*Px*Dx*Math.pow(Pz,2)-4.0*Px*Dx*Math.pow(smallR,2)-4.0*Px*Dx*Math.pow(largeR,2) + 4.0*Math.pow(Py,3)*Dy + 4.0*Math.pow(Py,2)*Pz*Dz + 4.0*Py*Dy*Math.pow(Pz,2)-4.0*Py*Dy*Math.pow(smallR,2)-4.0*Py*Dy*Math.pow(largeR,2) + 4.0*Math.pow(Pz,3)*Dz-4.0*Pz*Dz*Math.pow(smallR,2) + 4.0*Pz*Dz*Math.pow(largeR,2);
 		double E = 1.0*Math.pow(Px,4) + 2.0*Math.pow(Px,2)*Math.pow(Py,2) + 2.0*Math.pow(Px,2)*Math.pow(Pz,2)-2.0*Math.pow(Px,2)*Math.pow(smallR,2)-2.0*Math.pow(Px,2)*Math.pow(largeR,2) + 1.0*Math.pow(Py,4) + 2.0*Math.pow(Py,2)*Math.pow(Pz,2)-2.0*Math.pow(Py,2)*Math.pow(smallR,2)-2.0*Math.pow(Py,2)*Math.pow(largeR,2) + 1.0*Math.pow(Pz,4)-2.0*Math.pow(Pz,2)*Math.pow(smallR,2) + 2.0*Math.pow(Pz,2)*Math.pow(largeR,2) + 1.0*Math.pow(smallR,4)-2.0*Math.pow(smallR,2)*Math.pow(largeR,2) + 1.0*Math.pow(largeR,4);
 
-		return Library.solveQuartic(A, B, C, D, E);
+		return ops.solveQuartic(A, B, C, D, E);
 	}
 	
 	@Override

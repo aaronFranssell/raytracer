@@ -16,6 +16,7 @@ import etc.Color;
 import etc.Effects;
 import etc.Phong;
 import etc.RaytracerException;
+import etc.mapper.ImageMapper;
 
 public class Surface_UnitTests
 {
@@ -29,11 +30,13 @@ public class Surface_UnitTests
 		Vector n = Mockito.mock(Vector.class);
 		Mockito.when(n.copy()).thenReturn(n);
 		Point p = Mockito.mock(Point.class);
-
+		Color cR = new Color(0.5, 0.5, 0.5);
+		
 		Effects effects = new Effects();
 
 		Surface classUnderTest = Mockito.mock(Surface.class, Mockito.CALLS_REAL_METHODS);
 		classUnderTest.setEffects(effects);
+		classUnderTest.setcR(cR);
 		
 		Color expected = new Color(0.0,0.0,0.0);
 
@@ -57,7 +60,11 @@ public class Surface_UnitTests
 		Vector n = Mockito.mock(Vector.class);
 		Mockito.when(n.copy()).thenReturn(n);
 		Point p = Mockito.mock(Point.class);
+		Color cR = new Color(0.5, 0.5, 0.5);
 
+		ImageMapper mockMapper = Mockito.mock(ImageMapper.class);
+		Mockito.when(mockMapper.getColor(p)).thenReturn(cR);
+		
 		Vector mockedBumpVector = Mockito.mock(Vector.class);
 		BumpMap mockBump = Mockito.mock(BumpMap.class);
 		Mockito.when(mockBump.getBump(p, n)).thenReturn(mockedBumpVector);
@@ -68,7 +75,7 @@ public class Surface_UnitTests
 		
 		Color phongColor = new Color(0.2,0.2,0.2);
 		Util mockUtil = Mockito.mock(Util.class);
-		Mockito.when(mockUtil.getColorPhong(noiseColor, mockCA, mockCL, mockedBumpVector, light, eye, exponent, p, inShadow)).thenReturn(phongColor);
+		Mockito.when(mockUtil.getColorPhong(cR, mockCA, mockCL, mockedBumpVector, light, eye, exponent, p, inShadow)).thenReturn(phongColor);
 		
 		Phong phong = new Phong();
 		phong.setExponent(exponent);
@@ -83,6 +90,8 @@ public class Surface_UnitTests
 		classUnderTest.setcA(mockCA);
 		classUnderTest.setcL(mockCL);
 		classUnderTest.setOps(mockUtil);
+		classUnderTest.setcR(cR);
+		classUnderTest.setMapper(mockMapper);
 
 		Color expected = new Color(0.2,0.2,0.2);
 		
@@ -99,17 +108,17 @@ public class Surface_UnitTests
 		//Given
 		Color mockCA = Mockito.mock(Color.class);
 		Color mockCL = Mockito.mock(Color.class);
-		Color mockCR = Mockito.mock(Color.class);
 		Point light = Mockito.mock(Point.class);
 		Point eye = Mockito.mock(Point.class);
 		boolean inShadow = false;
 		Vector n = Mockito.mock(Vector.class);
 		Mockito.when(n.copy()).thenReturn(n);
 		Point p = Mockito.mock(Point.class);
+		Color cR = new Color(0.5, 0.5, 0.5);
 		
 		Color lambertianColor = new Color(0.2,0.2,0.2);
 		Util mockUtil = Mockito.mock(Util.class);
-		Mockito.when(mockUtil.getColorLambertian(mockCR, mockCA, mockCL, n, light, p, inShadow)).thenReturn(lambertianColor);
+		Mockito.when(mockUtil.getColorLambertian(cR, mockCA, mockCL, n, light, p, inShadow)).thenReturn(lambertianColor);
 		
 		Effects effects = new Effects();
 		effects.setLambertian(true);
@@ -118,7 +127,7 @@ public class Surface_UnitTests
 		classUnderTest.setEffects(effects);
 		classUnderTest.setcA(mockCA);
 		classUnderTest.setcL(mockCL);
-		classUnderTest.setcR(mockCR);
+		classUnderTest.setcR(cR);
 		classUnderTest.setOps(mockUtil);
 
 		Color expected = new Color(0.2,0.2,0.2);

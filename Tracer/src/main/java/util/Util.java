@@ -25,4 +25,5 @@ public interface Util
 	public double[] solveQuadratic(double a, double b, double c);
 	public boolean hasHits(double[] hits);
 	public int[][][] readImage(String filePath) throws IOException;
+	public double[] solveQuartic(double A,double B,double C,double D,double E);
 }

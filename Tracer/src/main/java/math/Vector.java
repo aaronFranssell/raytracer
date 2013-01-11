@@ -3,7 +3,7 @@ package math;
 import org.apache.commons.math3.util.FastMath;
 
 import util.Constants;
-import util.Library;
+import util.UtilImpl;
 
 public class Vector
 {
@@ -30,9 +30,9 @@ public class Vector
 			return false;
 		}
 		Vector otherVector = (Vector) other;
-		if(Library.doubleEqual(otherVector.x, x, Constants.POSITIVE_ZERO) &&
-		   Library.doubleEqual(otherVector.y, y, Constants.POSITIVE_ZERO) &&
-		   Library.doubleEqual(otherVector.z, z, Constants.POSITIVE_ZERO))
+		if(UtilImpl.doubleEqual(otherVector.x, x, Constants.POSITIVE_ZERO) &&
+		   UtilImpl.doubleEqual(otherVector.y, y, Constants.POSITIVE_ZERO) &&
+		   UtilImpl.doubleEqual(otherVector.z, z, Constants.POSITIVE_ZERO))
 		{	
 			return true;
 		}

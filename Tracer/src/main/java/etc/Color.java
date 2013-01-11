@@ -1,7 +1,7 @@
 package etc;
 
 import util.Constants;
-import util.Library;
+import util.UtilImpl;
 
 public class Color
 {
@@ -43,12 +43,17 @@ public class Color
 			return false;
 		}
 		Color otherVector = (Color) other;
-		if(Library.doubleEqual(otherVector.red, red, Constants.POSITIVE_ZERO) &&
-		   Library.doubleEqual(otherVector.green, green, Constants.POSITIVE_ZERO) &&
-		   Library.doubleEqual(otherVector.blue, blue, Constants.POSITIVE_ZERO))
+		if(UtilImpl.doubleEqual(otherVector.red, red, Constants.POSITIVE_ZERO) &&
+		   UtilImpl.doubleEqual(otherVector.green, green, Constants.POSITIVE_ZERO) &&
+		   UtilImpl.doubleEqual(otherVector.blue, blue, Constants.POSITIVE_ZERO))
 		{	
 			return true;
 		}
 		return false;
+	}
+
+	public Color copy()
+	{
+		return new Color(red, green, blue);
 	}
 }

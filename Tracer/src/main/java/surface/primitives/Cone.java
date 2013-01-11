@@ -11,7 +11,6 @@ import org.apache.commons.lang.ArrayUtils;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Constants;
-import util.Library;
 import util.Util;
 import util.UtilImpl;
 import etc.Color;
@@ -59,9 +58,9 @@ public class Cone extends Surface
 		
 		//this gives the direction of the vector between the vertex and the basePoint
 		//if this direction vector is within spitting distance of the direction vector then they are on the same line.
-		if(!(Library.doubleEqual(vertex.x, basePoint.x, Constants.POSITIVE_ZERO) &&
-		     Library.doubleEqual(vertex.y, basePoint.y, Constants.POSITIVE_ZERO) &&
-		     Library.doubleEqual(vertex.z, basePoint.z, Constants.POSITIVE_ZERO)))
+		if(!(UtilImpl.doubleEqual(vertex.x, basePoint.x, Constants.POSITIVE_ZERO) &&
+			 UtilImpl.doubleEqual(vertex.y, basePoint.y, Constants.POSITIVE_ZERO) &&
+			 UtilImpl.doubleEqual(vertex.z, basePoint.z, Constants.POSITIVE_ZERO)))
 		{
 			Vector basePointVertexDirection = basePoint.minus(vertex).normalizeReturn();
 			if(!basePointVertexDirection.equals(direction) && !basePointVertexDirection.scaleReturn(-1.0).equals(direction))
@@ -112,7 +111,6 @@ public class Cone extends Surface
 	 * cone "cup". If the dot product of the normal/ray is positive, they are pointing the same direction, and the normal should
 	 * be reversed.
 	 */
-	@Override
 	protected Vector getNormal(Point p, Ray r)
 	{		
 		Point Nh;

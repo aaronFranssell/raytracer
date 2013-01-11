@@ -4,7 +4,7 @@ import math.Point;
 import math.Vector;
 import surface.Surface;
 import util.Constants;
-import util.Library;
+import util.UtilImpl;
 
 public class HitData
 {
@@ -58,7 +58,7 @@ public class HitData
 		{
 			return false;
 		}
-		if(!Library.doubleEqual(t, other.getT(), Constants.POSITIVE_ZERO))
+		if(!UtilImpl.doubleEqual(t, other.getT(), Constants.POSITIVE_ZERO))
 		{
 			return false;
 		}

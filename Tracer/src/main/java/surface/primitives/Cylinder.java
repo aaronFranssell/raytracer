@@ -47,7 +47,6 @@ public class Cylinder extends Surface
 		this(incomingBottom, incomingRadius, incomingCR, incomingCA, incomingCL, incomingHeight, incomingDirection, incomingEffects, new UtilImpl());
 	}
 	
-	@Override
 	protected Vector getNormal(Point hitPoint, Ray r)
 	{
 		/*

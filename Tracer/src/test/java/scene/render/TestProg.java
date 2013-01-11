@@ -12,6 +12,6 @@ public class TestProg
 	{
 		RenderResult result = SceneRendererImpl_TestsHelper.getResult();
 		System.out.println(result.getStopWatch().getDifference());
-		ImageIO.write(result.getImage(), "PNG", new File("K:\\raytracer\\Tracer\\img\\yonPicture.png"));
+		ImageIO.write(result.getImage(), "PNG", new File("C:\\raytracer\\Tracer\\img\\yonPicture.png"));
 	}
 }

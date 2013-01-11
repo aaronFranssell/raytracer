@@ -2,9 +2,9 @@ package helper;
 
 import java.util.ArrayList;
 
-import util.Constants;
-import util.Library;
 import junit.framework.Assert;
+import util.Constants;
+import util.UtilImpl;
 
 public class TestsHelper
 {
@@ -56,7 +56,7 @@ public class TestsHelper
 			boolean found = false;
 			for(int m = 0; m < actual.length; m++)
 			{
-				if(Library.doubleEqual(expected[i], actual[m], Constants.POSITIVE_ZERO) || areNans(expected[i], actual[m]))
+				if(UtilImpl.doubleEqual(expected[i], actual[m], Constants.POSITIVE_ZERO) || areNans(expected[i], actual[m]))
 				{
 					found = true;
 					break;
@@ -73,7 +73,7 @@ public class TestsHelper
 			boolean found = false;
 			for(int m = 0; m < expected.length; m++)
 			{
-				if(Library.doubleEqual(expected[m], actual[i], Constants.POSITIVE_ZERO) || areNans(expected[i], actual[m]))
+				if(UtilImpl.doubleEqual(expected[m], actual[i], Constants.POSITIVE_ZERO) || areNans(expected[i], actual[m]))
 				{
 					found = true;
 					break;

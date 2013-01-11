@@ -74,7 +74,9 @@ public class SceneRendererImpl_TestsHelper
 		effects = new Effects();
 		effects.setPhong(phong);
 		String filePath = "src\\test\\resources\\hubble.JPG";
-		OuterSphere background = new OuterSphere(filePath,effects,Constants.cA,cL, new CircleMapper(filePath, center, OuterSphere.RADIUS, 1.0));
+		cR = new Color(0.0,0.0,0.0);
+		OuterSphere background = new OuterSphere(filePath,effects, cR, new Color(0.7,0.7,0.7),new Color(0.7,0.7,0.7),
+												 new CircleMapper(filePath, center,OuterSphere.RADIUS,1.0));
 		
 		cR = new Color(0.0,0.7,0.5);
 		effects = new Effects();
@@ -101,6 +103,7 @@ public class SceneRendererImpl_TestsHelper
 		effects = new Effects();
 		effects.setLambertian(true);
 		double radius = 6.0;
+		cR = new Color(0.0,0.0,0.0);
 		Sphere textureSphere = new Sphere(center,radius, cR, Constants.cA, cL,effects, new CircleMapper(filePath, center, radius, 0.65));
 		
 		Vector direction = new Vector(1.0,1.0,1.0);
@@ -142,7 +145,7 @@ public class SceneRendererImpl_TestsHelper
 		SceneRendererImpl renderer = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light, maxDepth);
 		RenderResult result = renderer.render();
 		
-		//javax.imageio.ImageIO.write(result.getImage(), "png", new java.io.File("src\\test\\resources\\result.png"));
+		//javax.imageio.ImageIO.write(result.getImage(), "PNG", new java.io.File("src\\test\\resources\\result.png"));
 		
 		return result;
 	}

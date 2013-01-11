@@ -11,14 +11,12 @@ import util.UtilImpl;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import etc.RaytracerException;
 import etc.mapper.ImageMapper;
 
 public class Sphere extends Surface
 {
 	protected Point center;
 	protected double radius;
-	protected ImageMapper mapper;
 
 	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, ImageMapper incomingMapper,
 				  Util incomingOps)
@@ -39,16 +37,6 @@ public class Sphere extends Surface
 	public Sphere(Point incomingCenter, double incomingRadius, Color incomingCR, Color incomingCA, Color incomingCL, Effects incomingEffects, ImageMapper incomingMapper)
 	{
 		this(incomingCenter, incomingRadius, incomingCR, incomingCA, incomingCL, incomingEffects, incomingMapper, new UtilImpl());
-	}
-
-	@Override
-	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
-	{
-		if (mapper == null)
-		{
-			return super.getColor(light, eye, inShadow, n, p);
-		}
-		return mapper.getColor(p);
 	}
 
 	private double getDiscriminant(Ray r)
@@ -90,7 +78,6 @@ public class Sphere extends Surface
 		return retList;
 	}
 
-	@Override
 	protected Vector getNormal(Point p, Ray r)
 	{
 		Vector n = p.minus(center).normalizeReturn();
