@@ -57,7 +57,7 @@ public abstract class Surface
 		{
 			return ops.getColorLambertian(currentCR, cA, cL, normal, light, p, inShadow);
 		}
-		return new Color(0.0,0.0,0.0);
+		throw new RaytracerException("No lighting model present. Must be either lambertian or phong.");
 	}
 	
 	public Color getCA()

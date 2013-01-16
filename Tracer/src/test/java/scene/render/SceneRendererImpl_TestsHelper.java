@@ -24,7 +24,8 @@ import etc.Color;
 import etc.Effects;
 import etc.Phong;
 import etc.Refractive;
-import etc.mapper.CircleMapper;
+import etc.mapper.ParallelogramMapper;
+import etc.mapper.SphereMapper;
 
 public class SceneRendererImpl_TestsHelper
 {
@@ -75,7 +76,7 @@ public class SceneRendererImpl_TestsHelper
 		String filePath = "src\\test\\resources\\hubble.JPG";
 		effects = new Effects();
 		effects.setPhong(phong);
-		effects.setImageMapper(new CircleMapper(filePath, center,OuterSphere.RADIUS,1.0));
+		effects.setImageMapper(new SphereMapper(filePath, center,OuterSphere.RADIUS,1.0));
 		cR = new Color(0.0,0.0,0.0);
 		OuterSphere background = new OuterSphere(filePath,effects, cR, new Color(0.7,0.7,0.7),new Color(0.7,0.7,0.7));
 		
@@ -99,12 +100,14 @@ public class SceneRendererImpl_TestsHelper
 		cR = new Color(0.5,0.3,0.3);
 		Triangle t = new Triangle(cR,cL, Constants.cA, a, b, c, effects);
 		
-		Point parallelogramBasePoint = new Point(-0.5,2.0,0.0);
+		Point parallelogramBasePoint = new Point(-1.0,2.0,0.0);
 		Vector v1 = new Vector(0.0,-1.5,0.0);
-		Vector v2 = new Vector(-1.0,0.0,-0.5);
-		cR = new Color(0.3,0.7,0.7);
+		Vector v2 = new Vector(1.0,0.0,-0.5);
+		cR = new Color(0.0,0.0,0.0);
+		ParallelogramMapper parallelogramMapper = new ParallelogramMapper("src\\test\\resources\\americanFlag.jpg", v1, v2, parallelogramBasePoint, 1.0);
 		effects = new Effects();
-		effects.setPhong(phong);
+		effects.setLambertian(true);
+		effects.setImageMapper(parallelogramMapper);
 		refractive = new Refractive();
 		refractive.setN(1.0);
 		refractive.setnT(2.5);
@@ -116,7 +119,7 @@ public class SceneRendererImpl_TestsHelper
 		filePath = "src\\test\\resources\\moonSurface.jpg";
 		effects = new Effects();
 		effects.setLambertian(true);
-		effects.setImageMapper(new CircleMapper(filePath, center, radius, 0.65));
+		effects.setImageMapper(new SphereMapper(filePath, center, radius, 0.65));
 		cR = new Color(0.0,0.0,0.0);
 		Sphere textureSphere = new Sphere(center,radius, cR, Constants.cA, cL,effects);
 		

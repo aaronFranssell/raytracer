@@ -32,7 +32,7 @@ public class CircleMapper_UnitTests
 		int w = 101;
 		int h = 103;
 		
-		CircleMapper classUnderTest = new CircleMapper(filePath, center, radius, textureScale, mockUtil);
+		SphereMapper classUnderTest = new SphereMapper(filePath, center, radius, textureScale, mockUtil);
 		
 		//When
 		int[] actual = classUnderTest.getCircleUVImageMapping(hitPoint, center, radius, w, h);
@@ -57,7 +57,7 @@ public class CircleMapper_UnitTests
 		int w = 101;
 		int h = 103;
 		
-		CircleMapper classUnderTest = new CircleMapper(filePath, center, radius, textureScale, mockUtil);
+		SphereMapper classUnderTest = new SphereMapper(filePath, center, radius, textureScale, mockUtil);
 		
 		//When
 		int[] actual = classUnderTest.getCircleUVImageMapping(hitPoint, center, radius, w, h);
@@ -87,7 +87,7 @@ public class CircleMapper_UnitTests
 		
 		Mockito.doReturn(fileBytes).when(mockUtil).readImage(filePath);
 		
-		CircleMapper classUnderTest = Mockito.spy(new CircleMapper(filePath, center, radius, textureScale, mockUtil));
+		SphereMapper classUnderTest = Mockito.spy(new SphereMapper(filePath, center, radius, textureScale, mockUtil));
 		
 		Mockito.doReturn(uvArray).when(classUnderTest).getCircleUVImageMapping(hitPoint, center, radius, fileBytes.length,
 				   															   fileBytes[fileBytes.length - 1].length);

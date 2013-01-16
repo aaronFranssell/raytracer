@@ -6,6 +6,10 @@ task wrapper(type: Wrapper) {
 	jarFile = 'wrapper/wrapper.jar'
 }
 
+test {
+	jvmArgs '-Xmx1250m'
+}
+
 dependencies {
 	compile 'commons-lang:commons-lang:2.6'
 	compile 'junit:junit:4.10'

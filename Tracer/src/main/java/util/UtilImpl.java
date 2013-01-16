@@ -1,7 +1,7 @@
 package util;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -9,21 +9,22 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import math.Point;
+import math.Vector;
+
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.util.FastMath;
 
-import etc.Color;
-import etc.HitData;
-import etc.RaytracerException;
-import etc.Refractive;
 import scene.Scene;
 import scene.pixel.ScenePixel;
 import scene.ray.Ray;
 import scene.ray.RayFactory;
 import scene.ray.RayFactoryImpl;
 import surface.Surface;
-import math.Point;
-import math.Vector;
+import etc.Color;
+import etc.HitData;
+import etc.RaytracerException;
+import etc.Refractive;
 public class UtilImpl implements Util
 {
 	private RayFactory rayFactory; 
@@ -292,9 +293,8 @@ public class UtilImpl implements Util
 	public int[][][] readImage(String filePath) throws IOException
 	{
 		int[][][] image;
-		BufferedImage fileImage = null;
-		File yonFile = new File(filePath);
-		fileImage = ImageIO.read(yonFile);
+		FileInputStream stream = new FileInputStream(filePath);
+		BufferedImage fileImage = ImageIO.read(stream);
 		int w = fileImage.getWidth();
 		int h = fileImage.getHeight();
 		image = new int[w][h][3];
@@ -309,12 +309,12 @@ public class UtilImpl implements Util
 				image[i][t][2] = pixel & 0xff;
 			}
 		}
-		
+		stream.close();
 		return image;
 	}
 	
 	@Override
-	public double[] solveQuartic(double A,double B,double C,double D,double E)
+	public double[] solveQuartic(double A, double B, double C, double D, double E)
 	{
 		double [] returnTs = new double[4];
 		double smallDis;

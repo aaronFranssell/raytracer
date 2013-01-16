@@ -20,8 +20,8 @@ import etc.mapper.ImageMapper;
 
 public class Surface_UnitTests
 {
-	@Test
-	public void getColor_WithNoLightingModel_ExpectBlack() throws RaytracerException
+	@Test(expected = RaytracerException.class)
+	public void getColor_WithNoLightingModel_ExpectException() throws RaytracerException
 	{
 		//Given
 		Point light = Mockito.mock(Point.class);
@@ -37,14 +37,12 @@ public class Surface_UnitTests
 		Surface classUnderTest = Mockito.mock(Surface.class, Mockito.CALLS_REAL_METHODS);
 		classUnderTest.setEffects(effects);
 		classUnderTest.setcR(cR);
-		
-		Color expected = new Color(0.0,0.0,0.0);
 
 		//When
-		Color actual = classUnderTest.getColor(light, eye, inShadow, n, p);
+		classUnderTest.getColor(light, eye, inShadow, n, p);
 
 		//Then
-		Assert.assertEquals(expected, actual);
+		Assert.fail("Expected exception not thrown.");
 	}
 
 	@Test
