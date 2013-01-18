@@ -78,7 +78,7 @@ public class SceneRendererImpl_TestsHelper
 		effects.setPhong(phong);
 		effects.setImageMapper(new SphereMapper(filePath, center,OuterSphere.RADIUS,1.0));
 		cR = new Color(0.0,0.0,0.0);
-		OuterSphere background = new OuterSphere(filePath,effects, cR, new Color(0.7,0.7,0.7),new Color(0.7,0.7,0.7));
+		OuterSphere background = new OuterSphere(effects, cR, new Color(0.7,0.7,0.7),new Color(0.7,0.7,0.7));
 		
 		cR = new Color(0.0,0.0,0.0);
 		effects = new Effects();
