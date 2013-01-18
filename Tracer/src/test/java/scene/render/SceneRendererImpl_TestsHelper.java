@@ -18,6 +18,7 @@ import surface.primitives.Plane;
 import surface.primitives.Sphere;
 import surface.primitives.Torus;
 import surface.primitives.Triangle;
+import surface.primitives.extension.ChessPlane;
 import util.Constants;
 import bumpMapping.StoneBump;
 import etc.Color;
@@ -70,7 +71,7 @@ public class SceneRendererImpl_TestsHelper
 		effects.setReflective(true);
 		Point point = new Point(0.0,-2.5,0.0);
 		Vector normal =new Vector(0.0,1.0,0.0); 
-		Plane f = new Plane(normal, point, cR,cL, Constants.cA, effects);
+		ChessPlane floor = new ChessPlane(normal, point, cR,cL, Constants.cA, effects);
 		
 		ArrayList<Surface> surfaceList = new ArrayList<Surface>();
 		String filePath = "src\\test\\resources\\hubble.JPG";
@@ -142,7 +143,7 @@ public class SceneRendererImpl_TestsHelper
 		surfaceList.add(t);
 		surfaceList.add(s5);
 		surfaceList.add(c3);
-		surfaceList.add(f);
+		surfaceList.add(floor);
 		surfaceList.add(torus);
 		surfaceList.add(cone);
 		surfaceList.add(parallelogram);
