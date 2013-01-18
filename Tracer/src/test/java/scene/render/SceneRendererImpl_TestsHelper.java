@@ -14,7 +14,6 @@ import surface.primitives.Cone;
 import surface.primitives.Cylinder;
 import surface.primitives.OuterSphere;
 import surface.primitives.Parallelogram;
-import surface.primitives.Plane;
 import surface.primitives.Sphere;
 import surface.primitives.Torus;
 import surface.primitives.Triangle;
