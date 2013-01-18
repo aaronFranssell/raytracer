@@ -37,7 +37,7 @@ public class SceneRendererImpl_TestsHelper
 		Phong phong = new Phong();
 		phong.setExponent(32);
 		
-		cR = new Color(0.0,0.0,0.5);
+		cR = new Color(0.0,0.0,0.0);
 		Effects effects = new Effects();
 		effects.setPhong(phong);
 		effects.setReflective(true);
@@ -80,7 +80,7 @@ public class SceneRendererImpl_TestsHelper
 		cR = new Color(0.0,0.0,0.0);
 		OuterSphere background = new OuterSphere(filePath,effects, cR, new Color(0.7,0.7,0.7),new Color(0.7,0.7,0.7));
 		
-		cR = new Color(0.0,0.7,0.5);
+		cR = new Color(0.0,0.0,0.0);
 		effects = new Effects();
 		effects.setLambertian(true);
 		effects.setNoiseMappedColorClass(new NoiseStone());

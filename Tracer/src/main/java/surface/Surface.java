@@ -42,7 +42,7 @@ public abstract class Surface
 		if(effects.getNoiseMappedColorClass() != null)
 		{
 			NoiseColor nc = effects.getNoiseMappedColorClass();
-			currentCR = nc.getColor(p);
+			currentCR = nc.getColor(p).add(currentCR);
 		}
 		if(effects.getImageMapper() != null)
 		{

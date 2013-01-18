@@ -68,6 +68,7 @@ public class Surface_UnitTests
 		Mockito.when(mockBump.getBump(p, n)).thenReturn(mockedBumpVector);
 		
 		Color noiseColor = Mockito.mock(Color.class);
+		Mockito.when(noiseColor.add(cR)).thenReturn(noiseColor);
 		NoiseColor mockNoise = Mockito.mock(NoiseColor.class);
 		Mockito.when(mockNoise.getColor(p)).thenReturn(noiseColor);
 		
