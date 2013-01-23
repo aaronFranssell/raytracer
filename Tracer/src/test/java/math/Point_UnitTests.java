@@ -54,4 +54,19 @@ public class Point_UnitTests
 		//Then
 		Assert.assertTrue(expected.equals(actual));
 	}
+	
+	@Test
+	public void add_WithPoint_ExpectPoint()
+	{
+		//Given
+		Point classUnderTest = new Point(3.0, 7.0, -3.0);
+		Point toAdd = new Point(7.0, 11.0, 17.0);
+		Point expected = new Point(10.0, 18.0, 14.0);
+		
+		//When
+		Point actual = classUnderTest.add(toAdd);
+		
+		//Then
+		Assert.assertEquals(expected, actual);
+	}
 }

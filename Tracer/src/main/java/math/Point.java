@@ -57,6 +57,11 @@ public class Point
 		return new Vector(this.x - p2.x, this.y - p2.y, this.z - p2.z);
 	}
 	
+	public Point add(Point p2)
+	{
+		return new Point(x + p2.x, y + p2.y, z + p2.z);
+	}
+	
 	public String toString()
 	{
 		return "x: " + x + ", y: " + y + ", z: " + z;
