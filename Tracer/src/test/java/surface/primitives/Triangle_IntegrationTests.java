@@ -5,17 +5,13 @@ import helper.TestsHelper;
 import java.util.ArrayList;
 
 import junit.framework.Assert;
-
 import math.Point;
 import math.Vector;
-import math.simplex.factory.BarycentricSimplexFactoryImpl;
 
 import org.junit.Test;
 
-import etc.HitData;
-
 import scene.ray.Ray;
-import util.UtilImpl;
+import etc.HitData;
 
 public class Triangle_IntegrationTests
 {
@@ -31,7 +27,7 @@ public class Triangle_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new Ray(d, eye);
 		
-		Triangle classUnderTest = new Triangle(null, null, null, a, b, c, null, new UtilImpl(), new BarycentricSimplexFactoryImpl());
+		Triangle classUnderTest = new Triangle(null, null, null, a, b, c, null);
 		
 		//When
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
@@ -52,7 +48,7 @@ public class Triangle_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new Ray(d, eye);
 		
-		Triangle classUnderTest = new Triangle(null, null, null, a, b, c, null, new UtilImpl(), new BarycentricSimplexFactoryImpl());
+		Triangle classUnderTest = new Triangle(null, null, null, a, b, c, null);
 
 		HitData hit = new HitData(4.5, classUnderTest, new Vector(0.3333333333333333, 0.6666666666666666, 0.6666666666666666), new Point(0.0,0.0,-0.5));
 		ArrayList<HitData> expected = new ArrayList<HitData>();

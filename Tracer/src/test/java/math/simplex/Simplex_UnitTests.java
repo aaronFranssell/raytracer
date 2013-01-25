@@ -21,7 +21,7 @@ public class Simplex_UnitTests
 		Point a = new Point(-2.0,-2.0,0.0);
 		Point b = new Point(0.0,2.0,0.0);
 		Point c = new Point(2.0,-2.0,0.0);
-		BarycentricSimplexImpl classUnderTest = new BarycentricSimplexImpl(a,b,c);
+		ParametricSimplexImpl classUnderTest = new ParametricSimplexImpl(a,b,c);
 		
 		Point hit = new Point(0.0,0.0,0.0);
 		Vector expected = new Vector(0.0,0.0,1.0);
@@ -44,7 +44,7 @@ public class Simplex_UnitTests
 		Point a = new Point(-2.0,-2.0,0.0);
 		Point b = new Point(0.0,2.0,0.0);
 		Point c = new Point(2.0,-2.0,0.0);
-		BarycentricSimplexImpl classUnderTest = new BarycentricSimplexImpl(a,b,c);
+		ParametricSimplexImpl classUnderTest = new ParametricSimplexImpl(a,b,c);
 		
 		Point hit = new Point(0.0,0.0,0.0);
 		Vector expected = new Vector(0.0,0.0,-1.0);

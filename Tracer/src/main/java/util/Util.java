@@ -27,4 +27,5 @@ public interface Util
 	public int[][][] readImage(String filePath) throws IOException;
 	public double[] solveQuartic(double A,double B,double C,double D,double E);
 	public double getGreaterValue(double val1, double val2);
+	public double getTOnPlane(Ray r, Point pointOnPlane, Vector normal);
 }

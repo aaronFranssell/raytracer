@@ -4,31 +4,32 @@ import java.util.ArrayList;
 
 import math.Point;
 import math.Vector;
-import math.simplex.BarycentricSimplexImpl;
-
-import etc.Color;
-import etc.Effects;
-import etc.HitData;
-import etc.RaytracerException;
+import math.simplex.Simplex;
+import math.simplex.factory.ParametricSimplexFactoryImpl;
+import math.simplex.factory.SimplexFactory;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Util;
 import util.UtilImpl;
+import etc.Color;
+import etc.Effects;
+import etc.HitData;
+import etc.RaytracerException;
 
 public class Parallelogram extends Surface
 {
 	private Vector normal;
-	private BarycentricSimplexImpl abc;
-	private BarycentricSimplexImpl bcd;
+	private Simplex abc;
+	private Simplex bcd;
 	
 	public Parallelogram(Point incomingBasePoint, Vector incomingV1, Vector incomingV2, Color incomingCR, Color incomingCL, Color incomingCA,
 						 Effects incomingEffects)
 	{
-		this(incomingBasePoint, incomingV1, incomingV2, incomingCR, incomingCL, incomingCA, incomingEffects, new UtilImpl());
+		this(incomingBasePoint, incomingV1, incomingV2, incomingCR, incomingCL, incomingCA, incomingEffects, new UtilImpl(), new ParametricSimplexFactoryImpl());
 	}
 	
 	public Parallelogram(Point incomingBasePoint, Vector incomingV1, Vector incomingV2, Color incomingCR, Color incomingCL, Color incomingCA,
-			 			 Effects incomingEffects, Util incomingUtil)
+			 			 Effects incomingEffects, Util incomingUtil, SimplexFactory simplexFactory)
 	{
 		ops = incomingUtil;
 		cR = incomingCR;
@@ -42,8 +43,8 @@ public class Parallelogram extends Surface
 		Point b = a.add(v1);
 		Point c = a.add(v2);
 		Point d = c.add(v1);
-		abc = new BarycentricSimplexImpl(a,b,c);
-		bcd = new BarycentricSimplexImpl(b,c,d);
+		abc = simplexFactory.getSimplex(a, b, c);
+		bcd = simplexFactory.getSimplex(b, c, d);
 		normal = v1.cross(v2).normalizeReturn();
 	}
 	

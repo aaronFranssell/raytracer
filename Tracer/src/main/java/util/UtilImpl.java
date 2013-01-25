@@ -463,4 +463,14 @@ public class UtilImpl implements Util
 		}
 		return val2;
 	}
+
+	@Override
+	public double getTOnPlane(Ray r, Point pointOnPlane, Vector normal)
+	{
+		Vector pMinusE = pointOnPlane.minus(r.getEye());
+		double top = pMinusE.dot(normal);
+		double bottom = r.getD().dot(normal);
+		double hitT = top/bottom;
+		return hitT;
+	}
 }

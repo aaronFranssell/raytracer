@@ -4,9 +4,8 @@ import java.util.ArrayList;
 
 import math.Point;
 import math.Vector;
-import math.simplex.BarycentricSimplexImpl;
 import math.simplex.Simplex;
-import math.simplex.factory.BarycentricSimplexFactoryImpl;
+import math.simplex.factory.ParametricSimplexFactoryImpl;
 import math.simplex.factory.SimplexFactory;
 import scene.ray.Ray;
 import surface.Surface;
@@ -32,14 +31,14 @@ public class Triangle extends Surface
 		a = incomingA;
 		b = incomingB;
 		c = incomingC;
-		simplex = new BarycentricSimplexImpl(a,b,c);
+		simplex = simplexFactory.getSimplex(a, b, c);
 		effects = incomingEffects;
 		ops = incomingOps;
 	}
 	
 	public Triangle(Color incomingCR, Color incomingCL, Color incomingCA, Point incomingA, Point incomingB,	Point incomingC, Effects incomingEffects)
 	{
-		this(incomingCR, incomingCL, incomingCA, incomingA, incomingB, incomingC, incomingEffects, new UtilImpl(), new BarycentricSimplexFactoryImpl());
+		this(incomingCR, incomingCL, incomingCA, incomingA, incomingB, incomingC, incomingEffects, new UtilImpl(), new ParametricSimplexFactoryImpl());
 	}
 	
 	protected Vector getNormal(Point p, Ray r)

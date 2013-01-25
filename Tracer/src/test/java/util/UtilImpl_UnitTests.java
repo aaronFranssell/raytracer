@@ -1053,4 +1053,25 @@ public class UtilImpl_UnitTests
 		//Then
 		Assert.assertEquals(expected, actual, Constants.POSITIVE_ZERO);
 	}
+	
+	@Test
+	public void getTOnPlane_WithRay_ExpectT()
+	{
+		//Given
+		Vector d = new Vector(0.0,0.0,-1.0);
+		Point eye = new Point(0.0,0.0,4.0);
+		Ray r = new Ray(d,eye);
+		
+		Vector normal = (new Vector(0.0,1.0,1.0)).normalizeReturn();
+		Point pointOnPlane = new Point(-1.0,0.0,0.0);
+		
+		UtilImpl classUnderTest = new UtilImpl();
+		double expected = 4.0;
+		
+		//When
+		double actual = classUnderTest.getTOnPlane(r, pointOnPlane, normal);
+		
+		//Then
+		Assert.assertEquals(expected, actual, Constants.POSITIVE_ZERO);
+	}
 }
