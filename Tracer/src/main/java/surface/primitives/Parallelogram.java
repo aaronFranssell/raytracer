@@ -2,9 +2,9 @@ package surface.primitives;
 
 import java.util.ArrayList;
 
-import math.BarycentricSimplex;
 import math.Point;
 import math.Vector;
+import math.simplex.BarycentricSimplexImpl;
 
 import etc.Color;
 import etc.Effects;
@@ -18,8 +18,8 @@ import util.UtilImpl;
 public class Parallelogram extends Surface
 {
 	private Vector normal;
-	private BarycentricSimplex abc;
-	private BarycentricSimplex bcd;
+	private BarycentricSimplexImpl abc;
+	private BarycentricSimplexImpl bcd;
 	
 	public Parallelogram(Point incomingBasePoint, Vector incomingV1, Vector incomingV2, Color incomingCR, Color incomingCL, Color incomingCA,
 						 Effects incomingEffects)
@@ -42,8 +42,8 @@ public class Parallelogram extends Surface
 		Point b = a.add(v1);
 		Point c = a.add(v2);
 		Point d = c.add(v1);
-		abc = new BarycentricSimplex(a,b,c);
-		bcd = new BarycentricSimplex(b,c,d);
+		abc = new BarycentricSimplexImpl(a,b,c);
+		bcd = new BarycentricSimplexImpl(b,c,d);
 		normal = v1.cross(v2).normalizeReturn();
 	}
 	

@@ -46,12 +46,9 @@ public class Vector
 
 	public Vector cross(Vector right)
 	{
-		double newX;
-		double newY;
-		double newZ;
-		newX = y*right.z - z*right.y;
-		newY = -(x*right.z - z*right.x);
-		newZ = x*right.y - y*right.x;
+		double newX = y*right.z - z*right.y;
+		double newY = -(x*right.z - z*right.x);
+		double newZ = x*right.y - y*right.x;
 		Vector vector = new Vector(newX,newY,newZ);
 		return vector;
 	}

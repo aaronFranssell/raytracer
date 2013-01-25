@@ -1,20 +1,20 @@
-package math;
+package math.simplex;
 
+import math.Matrix3;
+import math.Point;
 import scene.ray.Ray;
 
-public class BarycentricSimplex
+public class BarycentricSimplexImpl extends Simplex
 {
-	private Point a;
-	private Point b;
-	private Point c;
-
-	public BarycentricSimplex(Point incomingA, Point incomingB, Point incomingC)
+	public BarycentricSimplexImpl(Point incomingA, Point incomingB, Point incomingC)
 	{
 		a = incomingA;
 		b = incomingB;
 		c = incomingC;
+		calcNormal();
 	}
 
+	@Override
 	public double getT(Ray r)
 	{
 		Matrix3 A = new Matrix3(a.x - b.x, a.x - c.x, r.getD().x,

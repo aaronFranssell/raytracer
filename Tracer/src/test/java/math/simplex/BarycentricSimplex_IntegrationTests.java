@@ -1,6 +1,10 @@
-package math;
+package math.simplex;
 
 import junit.framework.Assert;
+
+import math.Point;
+import math.Vector;
+import math.simplex.BarycentricSimplexImpl;
 
 import org.junit.Test;
 
@@ -22,7 +26,7 @@ public class BarycentricSimplex_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new Ray(d,eye);
 		
-		BarycentricSimplex classUnderTest = new BarycentricSimplex(a,b,c);
+		BarycentricSimplexImpl classUnderTest = new BarycentricSimplexImpl(a,b,c);
 		
 		//When
 		double actual = classUnderTest.getT(r);
@@ -43,7 +47,7 @@ public class BarycentricSimplex_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new Ray(d,eye);
 		
-		BarycentricSimplex classUnderTest = new BarycentricSimplex(a,b,c);
+		BarycentricSimplexImpl classUnderTest = new BarycentricSimplexImpl(a,b,c);
 		
 		//When
 		double actual = classUnderTest.getT(r);
@@ -64,7 +68,7 @@ public class BarycentricSimplex_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new Ray(d,eye);
 		
-		BarycentricSimplex classUnderTest = new BarycentricSimplex(a,b,c);
+		BarycentricSimplexImpl classUnderTest = new BarycentricSimplexImpl(a,b,c);
 		
 		//When
 		double actual = classUnderTest.getT(r);
@@ -85,7 +89,7 @@ public class BarycentricSimplex_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new Ray(d,eye);
 		
-		BarycentricSimplex classUnderTest = new BarycentricSimplex(a,b,c);
+		BarycentricSimplexImpl classUnderTest = new BarycentricSimplexImpl(a,b,c);
 		
 		//When
 		double actual = classUnderTest.getT(r);
@@ -106,7 +110,7 @@ public class BarycentricSimplex_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new Ray(d,eye);
 		
-		BarycentricSimplex classUnderTest = new BarycentricSimplex(a,b,c);
+		BarycentricSimplexImpl classUnderTest = new BarycentricSimplexImpl(a,b,c);
 		
 		//When
 		double actual = classUnderTest.getT(r);

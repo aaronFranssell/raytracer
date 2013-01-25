@@ -2,9 +2,12 @@ package surface.primitives;
 
 import java.util.ArrayList;
 
-import math.BarycentricSimplex;
 import math.Point;
 import math.Vector;
+import math.simplex.BarycentricSimplexImpl;
+import math.simplex.Simplex;
+import math.simplex.factory.BarycentricSimplexFactoryImpl;
+import math.simplex.factory.SimplexFactory;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Util;
@@ -18,10 +21,10 @@ public class Triangle extends Surface
 	private Point a;
 	private Point b;
 	private Point c;
-	private BarycentricSimplex simplex;
+	private Simplex simplex;
 	
 	public Triangle(Color incomingCR, Color incomingCL, Color incomingCA, Point incomingA, Point incomingB,	Point incomingC, Effects incomingEffects,
-					Util incomingOps)
+					Util incomingOps, SimplexFactory simplexFactory)
 	{
 		cA = incomingCA;
 		cL = incomingCL;
@@ -29,27 +32,19 @@ public class Triangle extends Surface
 		a = incomingA;
 		b = incomingB;
 		c = incomingC;
-		simplex = new BarycentricSimplex(a,b,c);
+		simplex = new BarycentricSimplexImpl(a,b,c);
 		effects = incomingEffects;
 		ops = incomingOps;
 	}
 	
 	public Triangle(Color incomingCR, Color incomingCL, Color incomingCA, Point incomingA, Point incomingB,	Point incomingC, Effects incomingEffects)
 	{
-		this(incomingCR, incomingCL, incomingCA, incomingA, incomingB, incomingC, incomingEffects, new UtilImpl());
+		this(incomingCR, incomingCL, incomingCA, incomingA, incomingB, incomingC, incomingEffects, new UtilImpl(), new BarycentricSimplexFactoryImpl());
 	}
 	
 	protected Vector getNormal(Point p, Ray r)
 	{
-		Vector aB = a.minus(b);
-		Vector aC = a.minus(c);
-		Vector n = aB.cross(aC).normalizeReturn();
-		//we need to make the normal point back to the eye.
-		if(r.getD().dot(n) > 0)
-		{
-			n = n.scaleReturn(-1.0);
-		}
-		return n;
+		return simplex.getNormal(p, r);
 	}
 	
 	public ArrayList<HitData> getHitData(Ray r)
