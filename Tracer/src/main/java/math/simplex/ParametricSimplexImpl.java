@@ -3,11 +3,15 @@ package math.simplex;
 import math.Point;
 import math.Vector;
 import scene.ray.Ray;
+import util.Constants;
 import util.Util;
 import util.UtilImpl;
 
 public class ParametricSimplexImpl extends Simplex
 {
+	private static final double S_AND_T_LIMIT = 0.0 - Constants.POSITIVE_ZERO;
+	private static final double S_PLUS_T_LIMIT = 1.0 + Constants.POSITIVE_ZERO;
+	
 	private Util ops;
 	private Vector u;
 	private Vector v;
@@ -30,7 +34,7 @@ public class ParametricSimplexImpl extends Simplex
 		uDotV = u.dot(v);
 		uDotU = u.dot(u);
 		vDotV = v.dot(v);
-		precalculatedDenominator = uDotV*uDotV - u.dot(u)*v.dot(v);
+		precalculatedDenominator = uDotV*uDotV - uDotU*vDotV;
 	}
 	
 	@Override
@@ -46,7 +50,8 @@ public class ParametricSimplexImpl extends Simplex
 		double wDotV = w.dot(v);
 		double s1 = (uDotV*wDotV - vDotV*wDotU)/precalculatedDenominator;
 		double t1 = (uDotV*wDotU - uDotU*wDotV)/precalculatedDenominator;
-		if(s1 >= 0.0 && t1 >= 0.0 && s1 + t1 <= 1.0)
+		//offset this just a little bit so floating point ops don't screw me over
+		if(s1 >= S_AND_T_LIMIT && t1 >= S_AND_T_LIMIT && s1 + t1 <= S_PLUS_T_LIMIT)
 		{
 			return t;
 		}

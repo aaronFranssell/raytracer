@@ -20,7 +20,7 @@ public abstract class Simplex
 		normal = aB.cross(aC).normalizeReturn();
 	}
 	
-	public Vector getNormal(Point p, Ray r)
+	public Vector getNormal(Ray r)
 	{
 		//we need to make the normal point back to the eye.
 		if(r.getD().dot(normal) > 0)
@@ -28,6 +28,11 @@ public abstract class Simplex
 			return normal.scaleReturn(-1.0);
 		}
 		return normal;
+	}
+	
+	public String toString()
+	{
+		return "a: " + a.toString() + "\nb: " + b.toString() + "\nc: " + c.toString();
 	}
 	
 	public Point getA()

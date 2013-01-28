@@ -23,11 +23,10 @@ public class Simplex_UnitTests
 		Point c = new Point(2.0,-2.0,0.0);
 		ParametricSimplexImpl classUnderTest = new ParametricSimplexImpl(a,b,c);
 		
-		Point hit = new Point(0.0,0.0,0.0);
 		Vector expected = new Vector(0.0,0.0,1.0);
 		
 		//When
-		Vector actual = classUnderTest.getNormal(hit, r);
+		Vector actual = classUnderTest.getNormal(r);
 		
 		//Then
 		Assert.assertEquals(expected, actual);
@@ -46,11 +45,10 @@ public class Simplex_UnitTests
 		Point c = new Point(2.0,-2.0,0.0);
 		ParametricSimplexImpl classUnderTest = new ParametricSimplexImpl(a,b,c);
 		
-		Point hit = new Point(0.0,0.0,0.0);
 		Vector expected = new Vector(0.0,0.0,-1.0);
 		
 		//When
-		Vector actual = classUnderTest.getNormal(hit, r);
+		Vector actual = classUnderTest.getNormal(r);
 		
 		//Then
 		Assert.assertEquals(expected, actual);

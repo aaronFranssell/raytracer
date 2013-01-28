@@ -41,11 +41,6 @@ public class Triangle extends Surface
 		this(incomingCR, incomingCL, incomingCA, incomingA, incomingB, incomingC, incomingEffects, new UtilImpl(), new ParametricSimplexFactoryImpl());
 	}
 	
-	protected Vector getNormal(Point p, Ray r)
-	{
-		return simplex.getNormal(p, r);
-	}
-	
 	public ArrayList<HitData> getHitData(Ray r)
 	{
 		double smallestT = simplex.getT(r);
@@ -54,7 +49,7 @@ public class Triangle extends Surface
 			return new ArrayList<HitData>();
 		}
 		Point p = ops.getP(smallestT,r);
-		Vector normal = getNormal(p, r);
+		Vector normal = simplex.getNormal(r);
 		HitData hit = new HitData(smallestT, this, normal, p);
 		ArrayList<HitData> retList = new ArrayList<HitData>();
 		retList.add(hit);
