@@ -50,7 +50,8 @@ public class RayImpl implements Ray
 	@Override
 	public double getDistance(Point p)
 	{
-		return 0;
+		Vector vectorToPoint = p.minus(eye);
+		return vectorToPoint.cross(d).magnitude();
 	}
 
 }
