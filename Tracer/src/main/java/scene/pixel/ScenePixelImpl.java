@@ -54,7 +54,7 @@ public class ScenePixelImpl implements ScenePixel
 		Surface currSurface = hit.getSurface();
 
 		boolean inShadow = util.isInShadow(scene, light, hit);
-		Color surfaceColor = currSurface.getColor(light, eye, inShadow, hit.getNormal(), hit.getP());
+		Color surfaceColor = currSurface.getColor(r, light, eye, inShadow, hit.getNormal(), hit.getP());
 		Color reflectReturnColor = util.getReflectedColor(r, currentDepth, hit, currSurface, this);
 		Color refractReturnColor = util.getRefractedColor(r, currentDepth, hit, currSurface, this);
 		

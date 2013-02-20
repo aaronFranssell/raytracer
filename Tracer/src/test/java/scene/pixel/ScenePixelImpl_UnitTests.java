@@ -88,7 +88,7 @@ public class ScenePixelImpl_UnitTests
 		Util mockUtil = Mockito.mock(Util.class);
 		Mockito.when(mockUtil.isInShadow(mockScene, mockLight, mockHit)).thenReturn(inShadow);
 				
-		Mockito.when(mockSurface.getColor(mockLight, mockEye, inShadow, mockNormal, mockHitPoint)).thenReturn(surfaceColor);
+		Mockito.when(mockSurface.getColor(mockRay, mockLight, mockEye, inShadow, mockNormal, mockHitPoint)).thenReturn(surfaceColor);
 		
 		ScenePixelImpl classUnderTest = new ScenePixelImpl(mockScene, mockEye, mockLight, mockUtil, 6);
 		

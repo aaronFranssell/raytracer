@@ -11,6 +11,7 @@ import math.Vector;
 import org.junit.Test;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 import util.UtilImpl;
 import etc.HitData;
 
@@ -26,7 +27,7 @@ public class Sphere_IntegrationTests
 		
 		Vector d = new Vector(0.0,1.0,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray ray = new Ray(d, eye);
+		Ray ray = new RayImpl(d, eye);
 
 		Sphere classUnderTest = new Sphere(center, radius, null,null,null, null, ops);
 		
@@ -47,7 +48,7 @@ public class Sphere_IntegrationTests
 		
 		Vector d = new Vector(0.0,0.0,-1.0);
 		Point eye = new Point(1.0,0.0,4.0);
-		Ray ray = new Ray(d, eye);
+		Ray ray = new RayImpl(d, eye);
 
 		Sphere classUnderTest = new Sphere(center, radius, null, null, null, null, ops);
 		

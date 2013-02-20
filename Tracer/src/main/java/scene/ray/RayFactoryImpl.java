@@ -40,7 +40,7 @@ public class RayFactoryImpl implements RayFactory
 	@Override
 	public Ray createRay(Vector d, Point eye)
 	{
-		return new Ray(d, eye);
+		return new RayImpl(d, eye);
 	}
 
 	

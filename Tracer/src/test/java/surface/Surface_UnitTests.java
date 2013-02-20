@@ -8,6 +8,7 @@ import noise.NoiseColor;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import scene.ray.Ray;
 import util.Util;
 
 import bumpMapping.BumpMap;
@@ -24,6 +25,7 @@ public class Surface_UnitTests
 	public void getColor_WithNoLightingModel_ExpectException() throws RaytracerException
 	{
 		//Given
+		Ray mockRay = Mockito.mock(Ray.class);
 		Point light = Mockito.mock(Point.class);
 		Point eye = Mockito.mock(Point.class);
 		boolean inShadow = false;
@@ -39,7 +41,7 @@ public class Surface_UnitTests
 		classUnderTest.setcR(cR);
 
 		//When
-		classUnderTest.getColor(light, eye, inShadow, n, p);
+		classUnderTest.getColor(mockRay, light, eye, inShadow, n, p);
 
 		//Then
 		Assert.fail("Expected exception not thrown.");
@@ -49,6 +51,7 @@ public class Surface_UnitTests
 	public void getColor_WithPhongAndMockedBumpAndNose_ExpectCalls() throws RaytracerException
 	{
 		//Given
+		Ray mockRay = Mockito.mock(Ray.class);
 		Color mockCA = Mockito.mock(Color.class);
 		Color mockCL = Mockito.mock(Color.class);
 		int exponent = 32;
@@ -65,7 +68,7 @@ public class Surface_UnitTests
 		
 		Vector mockedBumpVector = Mockito.mock(Vector.class);
 		BumpMap mockBump = Mockito.mock(BumpMap.class);
-		Mockito.when(mockBump.getBump(p, n)).thenReturn(mockedBumpVector);
+		Mockito.when(mockBump.getBump(mockRay, p, n)).thenReturn(mockedBumpVector);
 		
 		Color noiseColor = Mockito.mock(Color.class);
 		Mockito.when(noiseColor.add(cR)).thenReturn(noiseColor);
@@ -95,7 +98,7 @@ public class Surface_UnitTests
 		Color expected = new Color(0.2,0.2,0.2);
 		
 		//When
-		Color actual = classUnderTest.getColor(light, eye, inShadow, n, p);
+		Color actual = classUnderTest.getColor(mockRay, light, eye, inShadow, n, p);
 
 		//Then
 		Assert.assertEquals(expected, actual);
@@ -105,6 +108,7 @@ public class Surface_UnitTests
 	public void getColor_WithLambertian_ExpectCalls() throws RaytracerException
 	{
 		//Given
+		Ray mockRay = Mockito.mock(Ray.class);
 		Color mockCA = Mockito.mock(Color.class);
 		Color mockCL = Mockito.mock(Color.class);
 		Point light = Mockito.mock(Point.class);
@@ -132,7 +136,7 @@ public class Surface_UnitTests
 		Color expected = new Color(0.2,0.2,0.2);
 		
 		//When
-		Color actual = classUnderTest.getColor(light, eye, inShadow, n, p);
+		Color actual = classUnderTest.getColor(mockRay, light, eye, inShadow, n, p);
 
 		//Then
 		Assert.assertEquals(expected, actual);

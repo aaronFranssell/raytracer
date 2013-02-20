@@ -11,6 +11,7 @@ import math.Vector;
 import org.junit.Test;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 import etc.HitData;
 
 public class Triangle_IntegrationTests
@@ -25,7 +26,7 @@ public class Triangle_IntegrationTests
 		
 		Vector d = (new Vector(1.0,1.0,-1.0)).normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 		
 		Triangle classUnderTest = new Triangle(null, null, null, a, b, c, null);
 		
@@ -46,7 +47,7 @@ public class Triangle_IntegrationTests
 		
 		Vector d = (new Vector(0.0,0.0,-1.0)).normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 		
 		Triangle classUnderTest = new Triangle(null, null, null, a, b, c, null);
 

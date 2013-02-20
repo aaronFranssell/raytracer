@@ -2,6 +2,7 @@ package surface.primitives.extension;
 
 import math.Point;
 import math.Vector;
+import scene.ray.Ray;
 import surface.primitives.Plane;
 import etc.Color;
 import etc.Effects;
@@ -14,7 +15,7 @@ public class ChessPlane extends Plane
 	}
 	
 	@Override
-	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p)
+	public Color getColor(Ray r, Point light, Point eye, boolean inShadow, Vector n, Point p)
 	{
 		Color returnColor;
 		Color white = new Color(0.7,0.7,0.7);

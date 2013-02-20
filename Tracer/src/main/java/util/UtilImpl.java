@@ -1,8 +1,12 @@
 package util;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -472,5 +476,46 @@ public class UtilImpl implements Util
 		double bottom = r.getD().dot(normal);
 		double hitT = top/bottom;
 		return hitT;
+	}
+
+	@Override
+	public ArrayList<String> readTextFile(String filePath) throws IOException
+	{
+		ArrayList<String> ret = new ArrayList<String>();
+		FileInputStream stream = new FileInputStream(filePath);
+		DataInputStream in = new DataInputStream(stream);
+		BufferedReader br = new BufferedReader(new InputStreamReader(in));
+		
+		String line;
+		while((line = br.readLine()) != null)
+		{
+			ret.add(line);
+		}
+		return ret;
+	}
+
+	@Override
+	public int[] getCircleUVImageMapping(Point p, Point center, double radius, int w, int h)
+	{
+		double theta = FastMath.acos((p.y - center.y) / radius);
+		double phi = FastMath.atan2(p.z - center.z, p.x - center.x);
+		if (phi < 0.0)
+		{
+			phi += 2 * FastMath.PI;
+		}
+	
+		double u = phi / (2 * FastMath.PI);
+		double v = (FastMath.PI - theta) / FastMath.PI;
+	
+		// u,v is in the unit square, so we need to convert them to the image
+		// coordinates
+		int uFinal = (int) ((int) w * u);
+		int vFinal = (int) ((int) h * v);
+		
+		int[] retArray = new int[2];
+		retArray[0] = uFinal;
+		retArray[1] = vFinal;
+		
+		return retArray;
 	}
 }

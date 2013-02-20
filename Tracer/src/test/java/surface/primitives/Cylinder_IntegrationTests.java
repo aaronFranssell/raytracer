@@ -14,6 +14,7 @@ import org.junit.Test;
 import etc.HitData;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 
 public class Cylinder_IntegrationTests
 {
@@ -28,7 +29,7 @@ public class Cylinder_IntegrationTests
 		
 		Vector d = new Vector(0.0,1.0,-1.0);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,e);
+		Ray r = new RayImpl(d,e);
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
@@ -50,7 +51,7 @@ public class Cylinder_IntegrationTests
 		
 		Vector d = new Vector(0.0,-1.0,-1.0);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,e);
+		Ray r = new RayImpl(d,e);
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
@@ -72,7 +73,7 @@ public class Cylinder_IntegrationTests
 		
 		Vector d = new Vector(0.0,0.0,-1.0);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,e);
+		Ray r = new RayImpl(d,e);
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
@@ -94,7 +95,7 @@ public class Cylinder_IntegrationTests
 		
 		Vector d = new Vector(-2.0,0.0,-0.2);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,e);
+		Ray r = new RayImpl(d,e);
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
@@ -116,7 +117,7 @@ public class Cylinder_IntegrationTests
 		
 		Vector d = new Vector(2.0,0.0,-0.2);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,e);
+		Ray r = new RayImpl(d,e);
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
@@ -138,7 +139,7 @@ public class Cylinder_IntegrationTests
 		
 		Vector d = new Vector(0.1,0.1,-1.0);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,e);
+		Ray r = new RayImpl(d,e);
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
@@ -168,7 +169,7 @@ public class Cylinder_IntegrationTests
 		
 		Vector d = new Vector(0.0,0.2,-1.0);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,e);
+		Ray r = new RayImpl(d,e);
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		

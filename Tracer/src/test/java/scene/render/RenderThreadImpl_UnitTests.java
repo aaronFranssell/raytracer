@@ -13,6 +13,7 @@ import scene.pixel.ScenePixel;
 import scene.pixel.ScenePixelFactory;
 import scene.ray.Ray;
 import scene.ray.RayFactory;
+import scene.ray.RayImpl;
 import scene.viewer.ViewingVolume;
 import util.Constants;
 import etc.Color;
@@ -34,7 +35,7 @@ public class RenderThreadImpl_UnitTests
 		int threadHeight = 20;
 		int maxDepth = 6;
 		
-		Ray ray = new Ray(new Vector(1.0,0.0,0.0), eye);
+		Ray ray = new RayImpl(new Vector(1.0,0.0,0.0), eye);
 		RayFactory mockRayFactory = RenderThreadImpl_TestsHelper.getMockRayFactory(width, threadHeight, ray, volume, eye, basis, height, startHeight);
 		
 		ScenePixel mockPixel = Mockito.mock(ScenePixel.class);

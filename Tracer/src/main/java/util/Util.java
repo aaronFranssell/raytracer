@@ -1,5 +1,6 @@
 package util;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import math.Point;
 import math.Vector;
@@ -28,4 +29,6 @@ public interface Util
 	public double[] solveQuartic(double A,double B,double C,double D,double E);
 	public double getGreaterValue(double val1, double val2);
 	public double getTOnPlane(Ray r, Point pointOnPlane, Vector normal);
+	public ArrayList<String> readTextFile(String filePath) throws IOException;
+	public int[] getCircleUVImageMapping(Point p, Point center, double radius, int w, int h);
 }

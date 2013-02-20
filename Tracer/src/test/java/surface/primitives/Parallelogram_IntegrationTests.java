@@ -11,6 +11,7 @@ import math.Vector;
 import org.junit.Test;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 import etc.HitData;
 import etc.RaytracerException;
 
@@ -26,7 +27,7 @@ public class Parallelogram_IntegrationTests
 		
 		Vector d = new Vector(0.0,1.0,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 		
 		Parallelogram classUnderTest = new Parallelogram(basePoint, v1, v2, null, null, null, null);
 		
@@ -47,7 +48,7 @@ public class Parallelogram_IntegrationTests
 		
 		Vector d = new Vector(0.0,0.1,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 		
 		Parallelogram classUnderTest = new Parallelogram(basePoint, v1, v2, null, null, null, null);
 		

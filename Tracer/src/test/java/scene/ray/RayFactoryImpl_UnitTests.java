@@ -72,7 +72,7 @@ public class RayFactoryImpl_UnitTests
 		RayFactoryImpl classUnderTest = new RayFactoryImpl();
 		Vector d = new Vector(1.0,1.0, 5.0);
 		Point eye = new Point(5.0,7.0,11.0);
-		Ray expected =  new Ray(d, eye);
+		Ray expected =  new RayImpl(d, eye);
 		
 		//When
 		Ray result = classUnderTest.createRay(d, eye);

@@ -13,6 +13,7 @@ import org.apache.commons.math3.util.FastMath;
 import org.junit.Test;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 
 import etc.HitData;
 import etc.RaytracerException;
@@ -34,7 +35,7 @@ public class Cone_IntegrationTests
 		Vector d = new Vector(0.0,1.0,-1.0);
 		d = d.normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 
 		//When
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
@@ -58,7 +59,7 @@ public class Cone_IntegrationTests
 		Vector d = new Vector(0.0,-1.0,-1.0);
 		d = d.normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 
 		//When
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
@@ -82,7 +83,7 @@ public class Cone_IntegrationTests
 		Vector d = new Vector(-4.0,0.0,-1.0);
 		d = d.normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 
 		//When
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
@@ -106,7 +107,7 @@ public class Cone_IntegrationTests
 		Vector d = new Vector(4.0,0.0,-1.0);
 		d = d.normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 
 		//When
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
@@ -128,7 +129,7 @@ public class Cone_IntegrationTests
 		Vector d = new Vector(-0.2,0.0,-1.0);
 		d = d.normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 
 		Cone classUnderTest = new Cone(direction, vertex, alpha, basePoint, length, null, null, null, null);
 
@@ -160,7 +161,7 @@ public class Cone_IntegrationTests
 		Vector d = new Vector(0.2,0.0,-1.0);
 		d = d.normalizeReturn();
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 
 		Cone classUnderTest = new Cone(direction, vertex, alpha, basePoint, length, null, null, null, null);
 
@@ -192,7 +193,7 @@ public class Cone_IntegrationTests
 		Vector d = new Vector(-1.0,0.2,0.0);
 		d = d.normalizeReturn();
 		Point eye = new Point(4.0,0.0,0.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 
 		Cone classUnderTest = new Cone(direction, vertex, alpha, basePoint, length, null, null, null, null);
 

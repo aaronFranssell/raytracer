@@ -30,14 +30,14 @@ public abstract class Surface
 	
 	public abstract ArrayList<HitData> getHitData(Ray r) throws RaytracerException;
 	
-	public Color getColor(Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
+	public Color getColor(Ray r, Point light, Point eye, boolean inShadow, Vector n, Point p) throws RaytracerException
 	{
 		Color currentCR = cR.copy();
 		Vector normal = n.copy();
 		if(effects.getBumpMapClass() != null)
 		{
 			BumpMap map = effects.getBumpMapClass();
-			normal = map.getBump(p, normal);
+			normal = map.getBump(r, p, normal);
 		}
 		if(effects.getNoiseMappedColorClass() != null)
 		{

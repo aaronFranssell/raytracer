@@ -9,16 +9,16 @@ public class Color
 	public double green;
 	public double blue;
 
-	public Color scaleReturn(double val)
-	{
-		return new Color(red*val, green*val, blue*val);
-	}
-
 	public Color(double incomingRed, double incomingGreen, double incomingBlue)
 	{
 		red = incomingRed;
 		green = incomingGreen;
 		blue = incomingBlue;
+	}
+	
+	public Color scaleReturn(double val)
+	{
+		return new Color(red*val, green*val, blue*val);
 	}
 	
 	public Color add(Color other)

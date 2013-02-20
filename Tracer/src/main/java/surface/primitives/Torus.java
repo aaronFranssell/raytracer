@@ -6,6 +6,7 @@ import math.Point;
 import math.Transform;
 import math.Vector;
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 import surface.Surface;
 import util.Util;
 import util.UtilImpl;
@@ -71,7 +72,7 @@ public class Torus extends Surface
 	
 	public ArrayList<HitData> getHitData(Ray r)
 	{
-		Ray transformedRay = new Ray(transform.translateVectorToLocal(r.getD()),
+		Ray transformedRay = new RayImpl(transform.translateVectorToLocal(r.getD()),
 									 transform.transformPointToLocal(r.getEye()));
 		double[] retTArray = getTArray(transformedRay);
 		ArrayList<HitData> retList = new ArrayList<HitData>();

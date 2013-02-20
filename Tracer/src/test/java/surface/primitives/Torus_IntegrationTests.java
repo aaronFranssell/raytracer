@@ -11,6 +11,7 @@ import math.Vector;
 import org.junit.Test;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 import util.UtilImpl;
 import etc.HitData;
 
@@ -59,7 +60,7 @@ public class Torus_IntegrationTests
 		
 		Vector d = new Vector(0.0,1.0,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray ray = new Ray(d, eye);
+		Ray ray = new RayImpl(d, eye);
 		
 		Torus classUnderTest = new Torus(center, direction, largeR, smallR, null, null, null, null, new UtilImpl());
 		
@@ -81,7 +82,7 @@ public class Torus_IntegrationTests
 		
 		Vector d = new Vector(0.0,0.0,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray ray = new Ray(d, eye);
+		Ray ray = new RayImpl(d, eye);
 		
 		Torus classUnderTest = new Torus(center, direction, largeR, smallR, null, null, null, null, new UtilImpl());
 		
@@ -113,7 +114,7 @@ public class Torus_IntegrationTests
 		
 		Vector d = new Vector(0.0,0.0,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray ray = new Ray(d, eye);
+		Ray ray = new RayImpl(d, eye);
 		
 		Torus classUnderTest = new Torus(center, direction, largeR, smallR, null, null, null, null, new UtilImpl());
 		

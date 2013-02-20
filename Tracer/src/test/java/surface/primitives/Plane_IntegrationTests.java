@@ -12,6 +12,7 @@ import org.junit.Test;
 import etc.HitData;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 
 public class Plane_IntegrationTests
 {
@@ -26,7 +27,7 @@ public class Plane_IntegrationTests
 		
 		Vector d = new Vector(1.0,0.0,0.2);
 		Point e = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d, e);
+		Ray r = new RayImpl(d, e);
 		
 		ArrayList<HitData> expected = new ArrayList<HitData>();
 		HitData expectedHitData = new HitData(-20, classUnderTest, normal, new Point(-20.0, 0.0, 0.0));

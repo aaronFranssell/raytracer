@@ -7,6 +7,7 @@ import math.Vector;
 import org.junit.Test;
 
 import scene.ray.Ray;
+import scene.ray.RayImpl;
 
 public class Simplex_UnitTests
 {
@@ -16,7 +17,7 @@ public class Simplex_UnitTests
 		//Given
 		Point eye = new Point(0.0,0.0,4.0);
 		Vector d = new Vector(0.0,0.0,-1.0);
-		Ray r = new Ray(d,eye);
+		Ray r = new RayImpl(d,eye);
 		
 		Point a = new Point(-2.0,-2.0,0.0);
 		Point b = new Point(0.0,2.0,0.0);
@@ -38,7 +39,7 @@ public class Simplex_UnitTests
 		//Given
 		Point eye = new Point(0.0,0.0,-4.0);
 		Vector d = new Vector(0.0,0.0,1.0);
-		Ray r = new Ray(d,eye);
+		Ray r = new RayImpl(d,eye);
 		
 		Point a = new Point(-2.0,-2.0,0.0);
 		Point b = new Point(0.0,2.0,0.0);

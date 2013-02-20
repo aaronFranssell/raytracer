@@ -1,5 +1,7 @@
 package util;
 
+import java.io.IOException;
+
 import helper.TestsHelper;
 import junit.framework.Assert;
 import math.Point;
@@ -12,6 +14,7 @@ import scene.Scene;
 import scene.pixel.ScenePixel;
 import scene.ray.Ray;
 import scene.ray.RayFactory;
+import scene.ray.RayImpl;
 import surface.Surface;
 import etc.Color;
 import etc.Effects;
@@ -57,9 +60,9 @@ public class UtilImpl_UnitTests
 	public void getP_WithValues_ExpectP()
 	{
 		//Given
-		Ray r1 = new Ray(new Vector(1.0,1.0,1.0), new Point(1.0,1.0,1.0));
+		Ray r1 = new RayImpl(new Vector(1.0,1.0,1.0), new Point(1.0,1.0,1.0));
 		double t1 = 2.0;
-		Ray r2 = new Ray(new Vector(1.0,1.0,1.0), new Point(1.0,1.0,1.0));
+		Ray r2 = new RayImpl(new Vector(1.0,1.0,1.0), new Point(1.0,1.0,1.0));
 		double t2 = 0.0;
 
 		UtilImpl classUnderTest = new UtilImpl();
@@ -92,7 +95,7 @@ public class UtilImpl_UnitTests
 		normal = normal.normalizeReturn();
 		HitData hitData = new HitData(1.0, null, normal, p);
 
-		Ray expectedRay = new Ray(r, p);
+		Ray expectedRay = new RayImpl(r, p);
 
 		RayFactory mockFactory = Mockito.mock(RayFactory.class);
 		Mockito.when(mockFactory.createRay(r, p)).thenReturn(expectedRay);
@@ -125,7 +128,7 @@ public class UtilImpl_UnitTests
 
 		Vector expected = new Vector(0.5492382799400274, 0.5909049466066941, 0.5909049466066941);
 
-		Ray expectedRay = new Ray(expected, p);
+		Ray expectedRay = new RayImpl(expected, p);
 
 		RayFactory mockFactory = Mockito.mock(RayFactory.class);
 		Mockito.when(mockFactory.createRay(expected, p)).thenReturn(expectedRay);
@@ -182,7 +185,7 @@ public class UtilImpl_UnitTests
 
 		Vector expected = new Vector(0.19371294336139655, 0.6937129433613966, 0.6937129433613966);
 
-		Ray expectedRay = new Ray(expected, p);
+		Ray expectedRay = new RayImpl(expected, p);
 
 		RayFactory mockFactory = Mockito.mock(RayFactory.class);
 		Mockito.when(mockFactory.createRay(expected, p)).thenReturn(expectedRay);
@@ -234,14 +237,14 @@ public class UtilImpl_UnitTests
 		//Given
 		Vector d = new Vector(0.3,0.5,0.7);
 		Point eye = new Point(0.0,0.0,0.0);
-		Ray r = new Ray(d, eye);
+		Ray r = new RayImpl(d, eye);
 		Vector normal = new Vector(1.5,-0.5,2.5);
 		normal = normal.normalizeReturn();
 		Point p = new Point(0.5,0.5,0.5);
 		Vector expectedD = new Vector(-0.40455970110485867, 0.7934387936397616, -0.4547376485287172);
 		Point expectedEye = new Point(0.5,0.5,0.5);
 
-		Ray expectedRay = new Ray(expectedD, expectedEye);
+		Ray expectedRay = new RayImpl(expectedD, expectedEye);
 
 		RayFactory mockFactory = Mockito.mock(RayFactory.class);
 		Mockito.when(mockFactory.createRay(expectedD, expectedEye)).thenReturn(expectedRay);
@@ -252,7 +255,7 @@ public class UtilImpl_UnitTests
 		Ray actual = classUnderTest.getReflectedRay(r, p, normal);
 
 		//Then
-		Ray expected = new Ray(expectedD, expectedEye);
+		Ray expected = new RayImpl(expectedD, expectedEye);
 		Assert.assertEquals(expected, actual);
 		Mockito.verify(mockFactory).createRay(expectedD, expectedEye);
 	}
@@ -1060,7 +1063,7 @@ public class UtilImpl_UnitTests
 		//Given
 		Vector d = new Vector(0.0,0.0,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
-		Ray r = new Ray(d,eye);
+		Ray r = new RayImpl(d,eye);
 		
 		Vector normal = (new Vector(0.0,1.0,1.0)).normalizeReturn();
 		Point pointOnPlane = new Point(-1.0,0.0,0.0);
@@ -1073,5 +1076,45 @@ public class UtilImpl_UnitTests
 		
 		//Then
 		Assert.assertEquals(expected, actual, Constants.POSITIVE_ZERO);
+	}
+	
+	@Test
+	public void getCircleUVImageMapping_PhiGreaterThanZero_ExpectUVValue() throws IOException, RaytracerException
+	{
+		//Given
+		Point center = new Point(1.0,1.0,1.0);
+		double radius = 3.0;
+		Point hitPoint = new Point(3.0,4.0,7.0);
+		int w = 101;
+		int h = 103;
+		
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		int[] actual = classUnderTest.getCircleUVImageMapping(hitPoint, center, radius, w, h);
+		
+		//Then
+		Assert.assertEquals(20, actual[0]);
+		Assert.assertEquals(103, actual[1]);
+	}
+	
+	@Test
+	public void getCircleUVImageMapping_PhiLessThanZero_ExpectUVValue() throws IOException, RaytracerException
+	{
+		//Given
+		Point center = new Point(1.0,1.0,1.0);
+		double radius = 3.0;
+		Point hitPoint = new Point(-2.0,-2.0,-2.0);
+		int w = 101;
+		int h = 103;
+		
+		UtilImpl classUnderTest = new UtilImpl();
+		
+		//When
+		int[] actual = classUnderTest.getCircleUVImageMapping(hitPoint, center, radius, w, h);
+		
+		//Then
+		Assert.assertEquals(63, actual[0]);
+		Assert.assertEquals(0, actual[1]);
 	}
 }
