@@ -4,7 +4,6 @@ import math.Point;
 import math.Vector;
 import scene.ray.Ray;
 import util.Constants;
-import util.Util;
 import util.UtilImpl;
 
 public class ParametricSimplexImpl extends Simplex
@@ -12,7 +11,6 @@ public class ParametricSimplexImpl extends Simplex
 	private static final double S_AND_T_LIMIT = 0.0 - Constants.POSITIVE_ZERO;
 	private static final double S_PLUS_T_LIMIT = 1.0 + Constants.POSITIVE_ZERO;
 	
-	private Util ops;
 	private Vector u;
 	private Vector v;
 	private double precalculatedDenominator;

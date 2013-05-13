@@ -3,7 +3,6 @@ package surface.primitives;
 import java.util.ArrayList;
 
 import math.Point;
-import math.Vector;
 import math.simplex.Simplex;
 import math.simplex.factory.ParametricSimplexFactoryImpl;
 import math.simplex.factory.SimplexFactory;
@@ -48,9 +47,7 @@ public class Triangle extends Surface
 		{
 			return new ArrayList<HitData>();
 		}
-		Point p = ops.getP(smallestT,r);
-		Vector normal = simplex.getNormal(r);
-		HitData hit = new HitData(smallestT, this, normal, p);
+		HitData hit = simplex.getHitData(r, this);
 		ArrayList<HitData> retList = new ArrayList<HitData>();
 		retList.add(hit);
 		return retList;

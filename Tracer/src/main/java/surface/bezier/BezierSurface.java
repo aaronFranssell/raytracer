@@ -7,9 +7,6 @@ import math.Vector;
 import math.simplex.Simplex;
 import math.simplex.factory.ParametricSimplexFactoryImpl;
 import math.simplex.factory.SimplexFactory;
-
-import org.apache.commons.math3.util.FastMath;
-
 import scene.Scene;
 import scene.SceneImpl;
 import scene.ray.Ray;
@@ -31,6 +28,10 @@ public class BezierSurface extends Surface
 	private ArrayList<ArrayList<Point>> points;
 	private Scene boundingScene;
 	private SimplexFactory simplexFactory;
+	
+	//for unit testing
+	public BezierSurface()
+	{}
 
 	public BezierSurface(ArrayList<ArrayList<Point>> incomingPoints) throws RaytracerException
 	{
@@ -70,6 +71,7 @@ public class BezierSurface extends Surface
 	public ArrayList<HitData> getHitData(Ray r) throws RaytracerException
 	{
 		ArrayList<HitData> boundingSolidHits = getBoundingSolidHits(r);
+		//return boundingSolidHits;
 		if(boundingSolidHits.size() == 0)
 		{
 			return new ArrayList<HitData>();
@@ -87,19 +89,70 @@ public class BezierSurface extends Surface
 	private HitData getSurfaceHitData(Ray r)
 	{
 		//http://www.cs.mtu.edu/~shene/COURSES/cs3621/NOTES/surface/bspline-de-boor.html
-		//pick an arbitrary value for v... do a binary search for u
-		double u = getClosestU(0.5, LOWER_LIMIT, UPPER_LIMIT, r);
-		double v = getClosestV(u, LOWER_LIMIT, UPPER_LIMIT, r);
+		//subdivide the u/v unit square until the points on the surface are relatively close together...
+		double[] UVArray = getUV(r, LOWER_LIMIT, UPPER_LIMIT, LOWER_LIMIT, UPPER_LIMIT);
+		if(UVArray == null)
+		{
+			return new HitData();
+		}
+		double u = UVArray[0];
+		double v = UVArray[1];
 		Point surfacePoint = getSurfacePoint(u, v);
-		if(r.getDistance(surfacePoint) < Constants.POSITIVE_ZERO)
+		if(r.getDistance(surfacePoint) < -Constants.POSITIVE_ZERO)
 		{
 			return new HitData();
 		}
 		Simplex simplex = getSimplex(u,v,surfacePoint, r);
-		Vector normal = simplex.getNormal(r);
-		double t = simplex.getT(r);
-		Point p = ops.getP(t, r);
-		return new HitData(t, this, normal, p);
+		return simplex.getHitData(r, this);
+	}
+	
+	private double[] getUV(Ray r, double lowerU, double upperU, double lowerV, double upperV)
+	{
+		//subdivide the unit square formed by u/v coordinates...
+		/*
+		0,0     0,v
+		|-------|
+		| a | b |
+		|-------|
+		| c | d |
+		|-------|
+		u,0     u,v
+		*/
+		if(!rayHitSquare(r,lowerU, upperU, lowerV, upperV))
+		{
+			return null;
+		}
+		if(squareIsPoint(lowerU,upperU, lowerV, upperV))
+		{
+			return new double[] {lowerU, lowerV};
+		}
+		double[] aResult = getUV(r, lowerU, (lowerU + upperU)/2, lowerV, (lowerV + upperV)/2);
+		if(aResult != null) return aResult;
+		double[] bResult = getUV(r, lowerU, (lowerU + upperU)/2, (lowerV + upperV)/2, upperV);
+		if(bResult != null) return bResult;
+		double[] cResult = getUV(r, (lowerU + upperU)/2, upperU, lowerV, (lowerV + upperV)/2);
+		if(cResult != null) return cResult;
+		double[] dResult = getUV(r, (lowerU + upperU)/2, upperU, (lowerV + upperV)/2, upperV);
+		return dResult;
+	}
+	
+	private boolean squareIsPoint(double lowerU, double upperU, double lowerV, double upperV)
+	{
+		Point upperLeft = getSurfacePoint(lowerU, lowerV);
+		Point bottomRight = getSurfacePoint(upperU, upperV);
+		Vector distance = upperLeft.minus(bottomRight);
+		return distance.magnitude() < Constants.POSITIVE_ZERO;
+	}
+	
+	private boolean rayHitSquare(Ray r, double lowerU, double upperU, double lowerV, double upperV)
+	{
+		Point topLeft = getSurfacePoint(lowerU, lowerV);
+		Point topRight = getSurfacePoint(lowerU, upperV);
+		Point bottomLeft = getSurfacePoint(upperU, lowerV);
+		Point bottomRight = getSurfacePoint(upperU, upperV);
+		Simplex left = simplexFactory.getSimplex(topLeft, bottomLeft, bottomRight);
+		Simplex right = simplexFactory.getSimplex(topLeft, topRight, bottomRight);
+		return (left.isHit(r) || right.isHit(r));
 	}
 	
 	private Simplex getSimplex(double u, double v, Point hit, Ray r)
@@ -111,62 +164,32 @@ public class BezierSurface extends Surface
 		Point hitVPrime = getSurfacePoint(u, vPrime);
 		return simplexFactory.getSimplex(hit, hitUPrime, hitVPrime);
 	}
-	
-	private double getClosestV(double u, double lowerLimit, double upperLimit, Ray r)
-	{
-		if(FastMath.abs(lowerLimit - upperLimit) < Constants.POSITIVE_ZERO)
-		{
-			return lowerLimit;
-		}
-		double lowerPointDistance = r.getDistance(getSurfacePoint(u, lowerLimit));
-		double upperPointDistance = r.getDistance(getSurfacePoint(u, upperLimit));
-		if(lowerPointDistance < upperPointDistance)
-		{
-			return getClosestV(u, lowerLimit, (lowerLimit + upperLimit)/2.0, r);
-		}
-		else
-		{
-			return getClosestV(u, (lowerLimit + upperLimit)/2.0, upperLimit, r);
-		}
-	}
-	
-	private double getClosestU(double v, double lowerLimit, double upperLimit, Ray r)
-	{
-		if(FastMath.abs(lowerLimit - upperLimit) < Constants.POSITIVE_ZERO)
-		{
-			return lowerLimit;
-		}
-		double lowerPointDistance = r.getDistance(getSurfacePoint(lowerLimit, v));
-		double upperPointDistance = r.getDistance(getSurfacePoint(upperLimit, v));
-		if(lowerPointDistance < upperPointDistance)
-		{
-			return getClosestU(v, lowerLimit, (lowerLimit + upperLimit)/2.0, r);
-		}
-		else
-		{
-			return getClosestU(v, (lowerLimit + upperLimit)/2.0, upperLimit, r);
-		}
-	}
 
 	private Point getSurfacePoint(double u, double v)
 	{
 		ArrayList<Point> ithPoints = new ArrayList<Point>();
 		for(ArrayList<Point> row : points)
 		{
-			ithPoints.add(deCasteljau(v, row));
+			Point result = deCasteljau(v, row);
+			ithPoints.add(result);
 		}
 		return deCasteljau(u, ithPoints);
 	}
 
-	private Point deCasteljau(double t, ArrayList<Point> points)
+	protected Point deCasteljau(double t, ArrayList<Point> points)
 	{
 		if(points.size() == 1)
 		{
 			return points.get(0);
 		}
-		Point leftSide = deCasteljau(t, new ArrayList<Point>(points.subList(0, points.size() - 2))).scaledReturn(1-t);
-		Point rightSide = deCasteljau(t, new ArrayList<Point>(points.subList(1, points.size() - 1))).scaledReturn(t);
-		return leftSide.add(rightSide);
+		ArrayList<Point> leftPoints = new ArrayList<Point>(points.subList(0, points.size() - 1));
+		Point leftSide = deCasteljau(t, leftPoints);
+		leftSide = leftSide.scaledReturn(1-t);
+		ArrayList<Point> rightPoints = new ArrayList<Point>(points.subList(1, points.size()));
+		Point rightSide = deCasteljau(t, rightPoints);
+		rightSide = rightSide.scaledReturn(t);
+		Point result = leftSide.add(rightSide);
+		return result;
 	}
 
 	private ArrayList<HitData> getBoundingSolidHits(Ray r)	throws RaytracerException

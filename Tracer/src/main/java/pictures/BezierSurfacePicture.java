@@ -45,7 +45,7 @@ public class BezierSurfacePicture
 		
 		ArrayList<Point> row3 = new ArrayList<Point>();
 		row3.add(new Point(-2.0,0.0,2.0));
-		row3.add(new Point(0.0,2.0,2.0));
+		row3.add(new Point(0.0,0.0,2.0));
 		row3.add(new Point(2.0,0.0,2.0));
 		
 		ArrayList<ArrayList<Point>> rows = new ArrayList<ArrayList<Point>>();
@@ -55,6 +55,27 @@ public class BezierSurfacePicture
 		
 		return rows;
 	}
+	
+	/*private static ArrayList<ArrayList<Point>> getRows()
+	{
+		ArrayList<Point> topPoints = new ArrayList<Point>();
+		topPoints.add(new Point(-1.0,1.0,0.0));
+		topPoints.add(new Point(0.0,1.0,0.0));
+		topPoints.add(new Point(1.0,1.0,0.0));
+		ArrayList<Point> middlePoints = new ArrayList<Point>();
+		middlePoints.add(new Point(-1.0,0.0,0.0));
+		middlePoints.add(new Point(0.0,0.0,0.0));
+		middlePoints.add(new Point(1.0,0.0,0.0));
+		ArrayList<Point> bottomPoints = new ArrayList<Point>();
+		bottomPoints.add(new Point(-1.0,-1.0,0.0));
+		bottomPoints.add(new Point(0.0,-1.0,0.0));
+		bottomPoints.add(new Point(1.0,-1.0,0.0));
+		ArrayList<ArrayList<Point>> points = new ArrayList<ArrayList<Point>>();
+		points.add(topPoints);
+		points.add(middlePoints);
+		points.add(bottomPoints);
+		return points;
+	}*/
 	
 	private static SceneRendererImpl getSceneRenderer(ArrayList<Surface> surfaceList) throws RaytracerException
 	{
