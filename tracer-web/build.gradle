@@ -1,0 +1,16 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jetty'
+
+dependencies {
+	compile 'org.springframework:spring-webmvc:4.0.5.RELEASE'
+	compile 'javax.servlet:javax.servlet-api:3.1.0'
+	compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
+	compile 'org.json:json:20140107'
+	//compile project(':monopoly-game')
+}
+
+repositories {
+	mavenCentral()
+}

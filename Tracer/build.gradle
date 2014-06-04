@@ -1,14 +1,11 @@
 apply plugin: 'java'
 apply plugin: 'eclipse-wtp'
 
-task wrapper(type: Wrapper) {
-	gradleVersion = '1.4'
-}
-
 test {
 	jvmArgs '-Xmx1250m'
 }
 
+// apparently this is a bug in gradle with respect to java 1.8. Maybe future gradle versions will remove the necessity for this...
 tasks.withType(Test) {
     scanForTestClasses = false
     include "**/*Tests.class" // whatever Ant pattern matches your test class files
