@@ -3,7 +3,7 @@ package util;
 import java.io.IOException;
 
 import helper.TestsHelper;
-import junit.framework.Assert;
+import org.junit.Assert;
 import math.Point;
 import math.Vector;
 

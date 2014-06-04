@@ -1,7 +1,6 @@
 package etc;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import util.Constants;

@@ -22,7 +22,7 @@ public abstract class Surface
 	protected Color cL;
 	protected Util ops;
 	
-	public enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone, Parallelogram, Bezier};
+	public static enum SurfaceType { Cylinder, Sphere, Outersphere, Torus, Triangle, Plane, CSGTree, Cone, Parallelogram, Bezier};
 	
 	public abstract SurfaceType getType();
 	

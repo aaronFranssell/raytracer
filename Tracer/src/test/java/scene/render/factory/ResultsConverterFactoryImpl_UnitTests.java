@@ -3,7 +3,7 @@ package scene.render.factory;
 import java.util.Collection;
 import java.util.concurrent.Future;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
 

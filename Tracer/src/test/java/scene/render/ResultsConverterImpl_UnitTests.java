@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.hamcrest.BaseMatcher;
 import org.junit.Test;

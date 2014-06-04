@@ -1,10 +1,10 @@
 package scene.viewer.factory;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 import scene.viewer.ViewingVolume;
+import util.Constants;
 
 public class ViewVolumeFactoryImpl_UnitTests
 {
@@ -23,9 +23,9 @@ public class ViewVolumeFactoryImpl_UnitTests
 		ViewingVolume ret = classUnderTest.getVolume(left, right, bottom, top);
 		
 		//Then
-		Assert.assertEquals(ret.getTop(), top);
-		Assert.assertEquals(ret.getBottom(), bottom);
-		Assert.assertEquals(ret.getLeft(), left);
-		Assert.assertEquals(ret.getRight(), right);
+		Assert.assertEquals(ret.getTop(), top, Constants.POSITIVE_ZERO);
+		Assert.assertEquals(ret.getBottom(), bottom, Constants.POSITIVE_ZERO);
+		Assert.assertEquals(ret.getLeft(), left, Constants.POSITIVE_ZERO);
+		Assert.assertEquals(ret.getRight(), right, Constants.POSITIVE_ZERO);
 	}
 }

@@ -5,7 +5,7 @@ import java.io.File;
 
 import javax.imageio.ImageIO;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
 

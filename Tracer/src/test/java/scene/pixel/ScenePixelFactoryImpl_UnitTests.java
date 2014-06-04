@@ -1,6 +1,6 @@
 package scene.pixel;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import math.Point;
 
 import org.junit.Test;

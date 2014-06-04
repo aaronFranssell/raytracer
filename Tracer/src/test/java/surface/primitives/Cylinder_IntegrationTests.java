@@ -4,7 +4,7 @@ import helper.TestsHelper;
 
 import java.util.ArrayList;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import math.Point;
 import math.Vector;

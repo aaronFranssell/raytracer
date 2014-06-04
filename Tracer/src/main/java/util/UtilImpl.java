@@ -491,6 +491,8 @@ public class UtilImpl implements Util
 		{
 			ret.add(line);
 		}
+		
+		br.close();
 		return ret;
 	}
 

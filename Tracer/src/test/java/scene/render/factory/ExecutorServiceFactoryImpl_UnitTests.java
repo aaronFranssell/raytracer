@@ -2,7 +2,7 @@ package scene.render.factory;
 
 import java.util.concurrent.ExecutorService;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 
 import org.junit.Test;
 

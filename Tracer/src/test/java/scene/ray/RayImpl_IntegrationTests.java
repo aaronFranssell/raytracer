@@ -1,6 +1,6 @@
 package scene.ray;
 
-import junit.framework.Assert;
+import org.junit.Assert;
 import math.Point;
 import math.Vector;
 
