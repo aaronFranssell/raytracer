@@ -1,1 +1,1 @@
-include 'tracer','tracer-web'
+include ':tracer'

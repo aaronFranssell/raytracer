@@ -1,5 +1,6 @@
 #Java files
-.settings/.metadata/
+**/.settings/**
+.metadata/
 .metadata
 .classpath
 .project
