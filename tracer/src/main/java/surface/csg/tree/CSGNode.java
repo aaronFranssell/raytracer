@@ -3,52 +3,49 @@ package surface.csg.tree;
 import surface.Surface;
 import surface.csg.operation.Operation;
 
-public class CSGNode
-{
-	private Operation operation;
-	private Surface surface;
-	private CSGNode leftChild;
-	private CSGNode rightChild;
-	
-	public CSGNode(Operation incomingOperation)
-	{
-		operation = incomingOperation;
-	}
-	
-	public CSGNode(Surface incomingSurface)
-	{
-		surface = incomingSurface;
-	}
+public class CSGNode {
+  private Operation operation;
+  private Surface surface;
+  private CSGNode leftChild;
+  private CSGNode rightChild;
 
-	public Operation getOperation() {
-		return operation;
-	}
+  public CSGNode(Operation incomingOperation) {
+    operation = incomingOperation;
+  }
 
-	public Surface getSurface() {
-		return surface;
-	}
+  public CSGNode(Surface incomingSurface) {
+    surface = incomingSurface;
+  }
 
-	public CSGNode getLeftChild() {
-		return leftChild;
-	}
+  public Operation getOperation() {
+    return operation;
+  }
 
-	public CSGNode getRightChild() {
-		return rightChild;
-	}
+  public Surface getSurface() {
+    return surface;
+  }
 
-	public void setLeftChild(CSGNode leftChild) {
-		this.leftChild = leftChild;
-	}
+  public CSGNode getLeftChild() {
+    return leftChild;
+  }
 
-	public void setOperation(Operation operation) {
-		this.operation = operation;
-	}
+  public CSGNode getRightChild() {
+    return rightChild;
+  }
 
-	public void setRightChild(CSGNode rightChild) {
-		this.rightChild = rightChild;
-	}
+  public void setLeftChild(CSGNode leftChild) {
+    this.leftChild = leftChild;
+  }
 
-	public void setSurface(Surface surface) {
-		this.surface = surface;
-	}
+  public void setOperation(Operation operation) {
+    this.operation = operation;
+  }
+
+  public void setRightChild(CSGNode rightChild) {
+    this.rightChild = rightChild;
+  }
+
+  public void setSurface(Surface surface) {
+    this.surface = surface;
+  }
 }

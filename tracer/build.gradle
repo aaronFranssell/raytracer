@@ -1,3 +1,7 @@
+plugins {
+  id("com.diffplug.spotless") version "6.21.0"
+}
+
 test {
 	jvmArgs '-Xmx1250m'
 	useJUnitPlatform()
@@ -10,6 +14,15 @@ dependencies {
 	testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.10.0'
 	testImplementation 'org.mockito:mockito-core:5.4.0'
 	testImplementation 'org.hamcrest:hamcrest:2.2'
+}
+
+spotless {
+  java {
+    // don't need to set target, it is inferred from java
+
+    // apply a specific flavor of google-java-format
+    googleJavaFormat('1.17.0')
+  }
 }
 
 test {

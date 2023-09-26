@@ -1,9 +1,8 @@
 package surface.csg.factory;
 
-import surface.csg.tree.CSGTree;
 import etc.RaytracerException;
+import surface.csg.tree.CSGTree;
 
-public interface CSGTreeFactory
-{
-	CSGTree createTree() throws RaytracerException;
+public interface CSGTreeFactory {
+  CSGTree createTree() throws RaytracerException;
 }
