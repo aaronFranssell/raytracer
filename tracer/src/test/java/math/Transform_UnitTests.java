@@ -24,15 +24,15 @@ public class Transform_UnitTests
 	@Test
 	public void translateVectorToLocal_WithVector_ExpectTransformedVector()
 	{
-		//Given
+		
 		Vector vec = new Vector(3.21, -5.332, 7.87651);
 		Transform transform = new Transform(localDirection, worldDirection, worldCenter);
 		Vector answer = new Vector(0.385127744, 0.4111503898, 0.826215454);
 		
-		//When
+		
 		Vector result = transform.translateVectorToLocal(vec);
 		
-		//Then
+		
 		assertEquals(answer.x, result.x, Constants.POSITIVE_ZERO);
 		assertEquals(answer.y, result.y, Constants.POSITIVE_ZERO);
 		assertEquals(answer.z, result.z, Constants.POSITIVE_ZERO);
@@ -41,15 +41,15 @@ public class Transform_UnitTests
 	@Test
 	public void transformPointToLocal_WithPoint_ExpectTransformedPoint()
 	{
-		//Given
+		
 		Point point = new Point(3.4, -5.0, 2.11111);
 		Transform transform = new Transform(localDirection, worldDirection, worldCenter);
 		Point answer = new Point(221.99932735742436, -75.52901832400656, 368.73653264967993);
 		
-		//When
+		
 		Point result = transform.transformPointToLocal(point);
 		
-		//Then
+		
 		assertEquals(answer.x, result.x, Constants.POSITIVE_ZERO);
 		assertEquals(answer.y, result.y, Constants.POSITIVE_ZERO);
 		assertEquals(answer.z, result.z, Constants.POSITIVE_ZERO);
@@ -58,17 +58,17 @@ public class Transform_UnitTests
 	@Test
 	public void translateVectorToWorld_WithVector_ExpectTransformedVector()
 	{
-		//Given
+		
 		Vector vec = new Vector(0.385127744, 0.4111503898, 0.826215454);
 		Transform transform = new Transform(localDirection, worldDirection, worldCenter);
 		Vector answer = new Vector(3.21, -5.332, 7.87651);
 		answer = answer.normalizeReturn();
 		
-		//When
+		
 		Vector result = transform.translateVectorToWorld(vec);
 		result = result.normalizeReturn();
 		
-		//Then
+		
 		assertEquals(answer.x, result.x, Constants.POSITIVE_ZERO);
 		assertEquals(answer.y, result.y, Constants.POSITIVE_ZERO);
 		assertEquals(answer.z, result.z, Constants.POSITIVE_ZERO);
@@ -77,15 +77,15 @@ public class Transform_UnitTests
 	@Test
 	public void transformPointToWorld_WithPoint_ExpectTransformedPoint()
 	{
-		//Given
+		
 		Point point = new Point(221.99932735742436, -75.52901832400656, 368.73653264967993);
 		Transform transform = new Transform(localDirection, worldDirection, worldCenter);
 		Point answer = new Point(3.4, -5.0, 2.11111);
 				
-		//When
+		
 		Point result = transform.transformPointToWorld(point);
 				
-		//Then
+		
 		assertEquals(answer.x, result.x, Constants.POSITIVE_ZERO);
 		assertEquals(answer.y, result.y, Constants.POSITIVE_ZERO);
 		assertEquals(answer.z, result.z, Constants.POSITIVE_ZERO);

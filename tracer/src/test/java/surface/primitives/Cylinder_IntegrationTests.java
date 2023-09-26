@@ -18,7 +18,7 @@ public class Cylinder_IntegrationTests
 	@Test
 	public void getHitData_WithMissAboveCylinder_ExpectNoHitData()
 	{
-		//Given
+		
 		Point bottom = new Point(-1.0,0.0,0.0);
 		double radius = 0.5;
 		double height = 2.0;
@@ -30,17 +30,17 @@ public class Cylinder_IntegrationTests
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		assertEquals(0, actual.size());
 	}
 	
 	@Test
 	public void getHitData_WithMissBelowCylinder_ExpectNoHitData()
 	{
-		//Given
+		
 		Point bottom = new Point(-1.0,0.0,0.0);
 		double radius = 0.5;
 		double height = 2.0;
@@ -52,17 +52,17 @@ public class Cylinder_IntegrationTests
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		assertEquals(0, actual.size());
 	}
 	
 	@Test
 	public void getHitData_WithMissThroughCylinder_ExpectNoHitData()
 	{
-		//Given
+		
 		Point bottom = new Point(0.0,0.0,0.0);
 		double radius = 0.5;
 		double height = 2.0;
@@ -74,17 +74,17 @@ public class Cylinder_IntegrationTests
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		assertEquals(0, actual.size());
 	}
 	
 	@Test
 	public void getHitData_WithMissLeft_ExpectNoHitData()
 	{
-		//Given
+		
 		Point bottom = new Point(-1.0,0.0,0.0);
 		double radius = 0.5;
 		double height = 2.0;
@@ -96,17 +96,17 @@ public class Cylinder_IntegrationTests
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		assertEquals(0, actual.size());
 	}
 	
 	@Test
 	public void getHitData_WithMissRight_ExpectNoHitData()
 	{
-		//Given
+		
 		Point bottom = new Point(-1.0,0.0,0.0);
 		double radius = 0.5;
 		double height = 2.0;
@@ -118,17 +118,17 @@ public class Cylinder_IntegrationTests
 		
 		Cylinder classUnderTest = new Cylinder(bottom, radius, null, null, null, height, direction, null);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		assertEquals(0, actual.size());
 	}
 	
 	@Test
 	public void getHitData_WithHits_ExpectHitData()
 	{
-		//Given
+		
 		Point bottom = new Point(-1.0,0.0,0.0);
 		double radius = 0.5;
 		double height = 2.0;
@@ -148,17 +148,17 @@ public class Cylinder_IntegrationTests
 				  					  new Point(0.4261522897539517, 0.4261522897539517, -0.26152289753951674));
 		expected.add(expectedHitData);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 	
 	@Test
 	public void getHitData_WithHitInsideCylinder_ExpectHitData()
 	{
-		//Given
+		
 		Point bottom = new Point(0.0,0.0,0.0);
 		double radius = 1.0;
 		double height = 5.0;
@@ -175,10 +175,10 @@ public class Cylinder_IntegrationTests
 											  new Point(0.0, 1.0, -1.0));
 		expected.add(expectedHitData);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 }

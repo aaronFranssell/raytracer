@@ -73,7 +73,7 @@ public class SceneRendererImpl_TestsHelper
 		ChessPlane floor = new ChessPlane(normal, point, cR,cL, Constants.cA, effects);
 		
 		ArrayList<Surface> surfaceList = new ArrayList<Surface>();
-		String filePath = "src\\test\\resources\\hubble.JPG";
+		String filePath = getResourceFilePath("hubble.jpg");
 		effects = new Effects();
 		effects.setPhong(phong);
 		effects.setImageMapper(new SphereMapper(filePath, center,OuterSphere.RADIUS,1.0));
@@ -104,7 +104,7 @@ public class SceneRendererImpl_TestsHelper
 		Vector v1 = new Vector(0.0,-1.5,0.0);
 		Vector v2 = new Vector(1.0,0.0,-0.5);
 		cR = new Color(0.0,0.0,0.0);
-		ParallelogramMapper parallelogramMapper = new ParallelogramMapper("src\\test\\resources\\americanFlag.jpg", v1, v2, parallelogramBasePoint, 1.0);
+		ParallelogramMapper parallelogramMapper = new ParallelogramMapper(getResourceFilePath("americanFlag.jpg"), v1, v2, parallelogramBasePoint, 1.0);
 		effects = new Effects();
 		effects.setLambertian(true);
 		effects.setImageMapper(parallelogramMapper);
@@ -116,7 +116,7 @@ public class SceneRendererImpl_TestsHelper
 		
 		center = new Point(-2.0,5.0,-8.0);
 		double radius = 6.0;
-		filePath = "src\\test\\resources\\moonSurface.jpg";
+		filePath = getResourceFilePath("moonSurface.jpg");
 		effects = new Effects();
 		effects.setLambertian(true);
 		effects.setImageMapper(new SphereMapper(filePath, center, radius, 0.65));
@@ -166,6 +166,10 @@ public class SceneRendererImpl_TestsHelper
 		//javax.imageio.ImageIO.write(result.getImage(), "PNG", new java.io.File("src\\test\\resources\\result.png"));
 		
 		return result;
+	}
+	
+	private static String getResourceFilePath(String resourcesName) {
+		return SceneRendererImpl_TestsHelper.class.getClassLoader().getResource(resourcesName).getPath();
 	}
 	
 	public static boolean imagesAreEqual(BufferedImage b1, BufferedImage b2, int numDifferencesTolerated)

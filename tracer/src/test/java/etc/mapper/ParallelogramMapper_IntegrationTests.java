@@ -15,7 +15,7 @@ public class ParallelogramMapper_IntegrationTests
 	@Test
 	public void getColor_WithHitPointInMiddle_ExpectColor() throws Exception
 	{
-		//Given
+		
 		String filePath = "aFilePath";
 		int[][][] image = getImage();
 		Util mockUtil = getMockUtil(filePath, image);
@@ -27,10 +27,10 @@ public class ParallelogramMapper_IntegrationTests
 		
 		ParallelogramMapper classUnderTest = new ParallelogramMapper(filePath, v1, v2, point, 0.5, mockUtil);
 		
-		//When
+		
 		Color actual = classUnderTest.getColor(hitPoint);
 		
-		//Then
+		
 		Color expected = new Color(0.023529411764705882,0.023529411764705882, 0.023529411764705882);
 		assert expected.equals(actual);
 	}
@@ -38,7 +38,7 @@ public class ParallelogramMapper_IntegrationTests
 	@Test
 	public void getColor_WithHitPointTopLeft_ExpectColor() throws Exception
 	{
-		//Given
+		
 		String filePath = "aFilePath";
 		int[][][] image = getImage();
 		Util mockUtil = getMockUtil(filePath, image);
@@ -50,10 +50,10 @@ public class ParallelogramMapper_IntegrationTests
 		
 		ParallelogramMapper classUnderTest = new ParallelogramMapper(filePath, v1, v2, point, 1.0, mockUtil);
 		
-		//When
+		
 		Color actual = classUnderTest.getColor(hitPoint);
 		
-		//Then
+		
 		Color expected = new Color(0.054901960784313725,0.054901960784313725, 0.054901960784313725);
 		assert expected.equals(actual);
 	}
@@ -61,7 +61,7 @@ public class ParallelogramMapper_IntegrationTests
 	@Test
 	public void getColor_WithHitPointBottomRight_ExpectColor() throws Exception
 	{
-		//Given
+		
 		String filePath = "aFilePath";
 		int[][][] image = getImage();
 		Util mockUtil = getMockUtil(filePath, image);
@@ -73,10 +73,10 @@ public class ParallelogramMapper_IntegrationTests
 		
 		ParallelogramMapper classUnderTest = new ParallelogramMapper(filePath, v1, v2, point, 1.0, mockUtil);
 		
-		//When
+		
 		Color actual = classUnderTest.getColor(hitPoint);
 		
-		//Then
+		
 		Color expected = new Color(0.08627450980392157,0.08627450980392157, 0.08627450980392157);
 		assert expected.equals(actual);
 	}

@@ -16,7 +16,7 @@ public class CircleMapper_UnitTests
 	@Test
 	public void getColor_WithMocks_ExpectColor() throws IOException, RaytracerException
 	{
-		//Given
+		
 		int[][][] fileBytes = new int[1][1][3];
 		fileBytes[0][0][0] = 7;
 		fileBytes[0][0][1] = 13;
@@ -37,10 +37,10 @@ public class CircleMapper_UnitTests
 		
 		SphereMapper classUnderTest = new SphereMapper(filePath, center, radius, textureScale, mockUtil);
 		
-		//When
+		
 		Color actual = classUnderTest.getColor(hitPoint);
 		
-		//Then
+		
 		assert expected.equals(actual);
 	}
 }

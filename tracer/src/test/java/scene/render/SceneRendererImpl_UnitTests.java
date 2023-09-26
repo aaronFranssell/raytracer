@@ -32,7 +32,7 @@ public class SceneRendererImpl_UnitTests
 	@Test
 	public void render_WithMocks_ExpectCall() throws RaytracerException, InterruptedException, ExecutionException, IOException
 	{
-		//Given
+		
 		Vector up = Mockito.mock(Vector.class);
 		Vector gaze = Mockito.mock(Vector.class);
 		Point eye = Mockito.mock(Point.class);
@@ -74,10 +74,10 @@ public class SceneRendererImpl_UnitTests
 		SceneRendererImpl classUnderTest = new SceneRendererImpl(up, gaze, eye, left, right, top, bottom, width, height, numThreads, scene, light, mockUVWFactory,
 				 mockStopWatch, mockRenderThreadFactory, mockViewingVolumeFactory, mockConverterFactory, tasks, mockExecutorServiceFactory, maxDepth);
 		
-		//When
+		
 		RenderResult ret = classUnderTest.render();
 		
-		//Then
+		
 		assertEquals(ret.getStopWatch(),mockStopWatch);
 		assertEquals(ret.getImage(), retImage);
 		Mockito.verify(mockStopWatch, Mockito.times(1)).start();

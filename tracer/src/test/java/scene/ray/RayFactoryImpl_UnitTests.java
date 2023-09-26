@@ -16,7 +16,7 @@ public class RayFactoryImpl_UnitTests
 	@Test
 	public void createRay_WithValidValuesBottomRight_ExpectRay()
 	{
-		//Given
+		
 		Point eye = new Point(0.0,0.0,4.0);
 		Vector u = new Vector(1.0, 0.0, 0.0);
 		Vector v = new Vector(0.0, 1.0, 0.0);
@@ -31,10 +31,10 @@ public class RayFactoryImpl_UnitTests
 		RayFactoryImpl classUnderTest = new RayFactoryImpl();
 		Vector expectedD = new Vector(0.5775905291306759, -0.5761447455784088, -0.5783134209068094);
 		
-		//When
+		
 		Ray result = classUnderTest.createRay(volume, eye, uvw, pictureWidth, pictureHeight, currX, currY);
 		
-		//Then
+		
 		assertTrue(result.getEye().equals(eye));
 		assertTrue(result.getD().equals(expectedD));
 		assertEquals(result.getD().magnitude(), 1.0, Constants.POSITIVE_ZERO);
@@ -43,7 +43,7 @@ public class RayFactoryImpl_UnitTests
 	@Test
 	public void createRay_WithDiagonalDownLookValidValuesTopLeft_ExpectRay()
 	{
-		//Given
+		
 		Point eye = new Point(0.0,0.0,4.0);
 		Vector u = new Vector(0.7071067811865476, 0.0, -0.7071067811865476);
 		Vector v = new Vector(-0.4082482904638631, 0.8164965809277261, -0.4082482904638631);
@@ -58,10 +58,10 @@ public class RayFactoryImpl_UnitTests
 		RayFactoryImpl classUnderTest = new RayFactoryImpl();
 		Vector expectedD = new Vector(-0.9770856118857272, 0.13771128297491325, -0.16229389879874548);
 		
-		//When
+		
 		Ray result = classUnderTest.createRay(volume, eye, uvw, pictureWidth, pictureHeight, currX, currY);
 		
-		//Then
+		
 		assertTrue(result.getEye().equals(eye));
 		assertTrue(result.getD().equals(expectedD));
 		assertEquals(result.getD().magnitude(), 1.0, Constants.POSITIVE_ZERO);
@@ -70,16 +70,16 @@ public class RayFactoryImpl_UnitTests
 	@Test
 	public void createRay_WithVectorAndEye_ExpectRay()
 	{
-		//Given
+		
 		RayFactoryImpl classUnderTest = new RayFactoryImpl();
 		Vector d = new Vector(1.0,1.0, 5.0);
 		Point eye = new Point(5.0,7.0,11.0);
 		Ray expected =  new RayImpl(d, eye);
 		
-		//When
+		
 		Ray result = classUnderTest.createRay(d, eye);
 		
-		//Then
+		
 		assertTrue(expected.equals(result));
 	}
 }

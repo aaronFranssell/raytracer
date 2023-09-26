@@ -20,39 +20,39 @@ public class Torus_IntegrationTests
 	@Test
 	public void constructor_WithDirectionParallelToSurface_ExpectDirectionOffset()
 	{
-		//Given
+		
 		Point center = new Point(0.0,0.0,0.0);
 		Vector direction = new Vector(0.0,0.0,1.0);
 		double largeR = 5.0;
 		double smallR = 1.0;
 		
-		//When
+		
 		Torus classUnderTest = new Torus(center, direction, largeR, smallR, null, null, null, null, null);
 		
-		//Then
+		
 		assertTrue(classUnderTest.getDirection().y > 0.0);
 	}
 	
 	@Test
 	public void constructor_WithDirectionNotParallelToSurface_ExpectNoDirectionOffset()
 	{
-		//Given
+		
 		Point center = new Point(0.0,0.0,0.0);
 		Vector direction = new Vector(0.0,1.0,0.0);
 		double largeR = 5.0;
 		double smallR = 1.0;
 		
-		//When
+		
 		Torus classUnderTest = new Torus(center, direction, largeR, smallR, null, null, null, null, null);
 		
-		//Then
+		
 		assertTrue(classUnderTest.getDirection().y == 1.0);
 	}
 	
 	@Test
 	public void getHitData_WithMiss_ExpectNoHitData()
 	{
-		//Given
+		
 		Point center = new Point(0.0,0.0,0.0);
 		Vector direction = new Vector(0.0,1.0,0.0);
 		double largeR = 1.0;
@@ -64,17 +64,17 @@ public class Torus_IntegrationTests
 		
 		Torus classUnderTest = new Torus(center, direction, largeR, smallR, null, null, null, null, new UtilImpl());
 		
-		//When
+		
 		ArrayList<HitData> result = classUnderTest.getHitData(ray);
 		
-		//Then
+		
 		assertEquals(0, result.size());
 	}
 	
 	@Test
 	public void getHitData_With4Hits_ExpectHitData()
 	{
-		//Given
+		
 		Point center = new Point(0.0,0.0,0.0);
 		Vector direction = new Vector(0.0,1.0,0.0);
 		double largeR = 1.0;
@@ -96,17 +96,17 @@ public class Torus_IntegrationTests
 		hit = new HitData(-0.75, classUnderTest, new Vector(0.0,0.0, 1.0), new Point(0.0,0.0,4.75));
 		expected.add(hit);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(ray);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 	
 	@Test
 	public void getHitData_With2Hits_ExpectHitData()
 	{
-		//Given
+		
 		Point center = new Point(0.0,1.0,0.0);
 		Vector direction = new Vector(0.0,0.0,1.0);
 		double largeR = 1.0;
@@ -124,10 +124,10 @@ public class Torus_IntegrationTests
 		hit = new HitData(3.727036319405667, classUnderTest, new Vector(0.0,-0.021861129007357066, 0.9997610169628158), new Point(0.0,0.0,0.27296368059433335));
 		expected.add(hit);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(ray);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 }

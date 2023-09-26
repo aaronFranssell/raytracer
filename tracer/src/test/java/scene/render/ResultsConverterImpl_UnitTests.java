@@ -20,7 +20,7 @@ public class ResultsConverterImpl_UnitTests
 	@Test
 	public void getImageFromResults_WithMocks_ExpectImage() throws InterruptedException, ExecutionException
 	{
-		//Given
+		
 		combinedArray[0][0][0] = 76;
 		combinedArray[0][0][1] = 76;
 		combinedArray[0][0][2] = 76;
@@ -81,10 +81,10 @@ public class ResultsConverterImpl_UnitTests
 		
 		ResultsConverterImpl classUnderTest = new ResultsConverterImpl(resultsList, width, height, mockScaler, mockImage);
 		
-		//When
+		
 		BufferedImage retImage = classUnderTest.getImageFromResults();
 		
-		//Then
+		
 		Mockito.verify(result1, Mockito.times(1)).get();
 		Mockito.verify(result2, Mockito.times(1)).get();
 		Mockito.verify(mockScaler, Mockito.times(1)).scale(argThat(new ResultsConvertImplArugmentMatcher(combinedArray)));

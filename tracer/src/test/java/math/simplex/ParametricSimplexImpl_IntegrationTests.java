@@ -14,7 +14,7 @@ public class ParametricSimplexImpl_IntegrationTests
 	@Test
 	public void getT_WithMissS1LessThanZero_ExpectNan()
 	{
-		//Given
+		
 		Point a = new Point(-1.0,0.0,0.0);
 		Point b = new Point(0.0,1.0,0.0);
 		Point c = new Point(1.0,0.0,0.0);
@@ -25,17 +25,17 @@ public class ParametricSimplexImpl_IntegrationTests
 		
 		ParametricSimplexImpl classUnderTest = new ParametricSimplexImpl(a,b,c);
 		
-		//When
+		
 		double actual = classUnderTest.getT(r);
 		
-		//Then
+		
 		assertTrue(Double.isNaN(actual));
 	}
 	
 	@Test
 	public void getT_WithMissS1AndT1GreaterThan1_ExpectNan()
 	{
-		//Given
+		
 		Point a = new Point(-1.0,0.0,0.0);
 		Point b = new Point(0.0,1.0,0.0);
 		Point c = new Point(1.0,0.0,0.0);
@@ -46,17 +46,17 @@ public class ParametricSimplexImpl_IntegrationTests
 		
 		ParametricSimplexImpl classUnderTest = new ParametricSimplexImpl(a,b,c);
 		
-		//When
+		
 		double actual = classUnderTest.getT(r);
 		
-		//Then
+		
 		assertTrue(Double.isNaN(actual));
 	}
 	
 	@Test
 	public void getT_WithMissT1LessThan0_ExpectNan()
 	{
-		//Given
+		
 		Point a = new Point(-1.0,0.0,0.0);
 		Point b = new Point(0.0,1.0,0.0);
 		Point c = new Point(1.0,0.0,0.0);
@@ -67,10 +67,10 @@ public class ParametricSimplexImpl_IntegrationTests
 		
 		ParametricSimplexImpl classUnderTest = new ParametricSimplexImpl(a,b,c);
 		
-		//When
+		
 		double actual = classUnderTest.getT(r);
 		
-		//Then
+		
 		assertTrue(Double.isNaN(actual));
 	}
 }

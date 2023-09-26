@@ -16,7 +16,7 @@ public class RenderThreadFactoryImpl_UnitTests
 	@Test
 	public void getRenderThread_WithValues_ExpectRenderThread()
 	{
-		//Given
+		
 		Point eye = Mockito.mock(Point.class);
 		ViewingVolume volume = Mockito.mock(ViewingVolume.class);
 		int pictureWidth  = 10;
@@ -29,11 +29,11 @@ public class RenderThreadFactoryImpl_UnitTests
 		int maxDepth = 6;
 		RenderThreadFactoryImpl classUnderTest = new RenderThreadFactoryImpl();
 		
-		//When
+		
 		RenderThread ret = classUnderTest.getRenderThread(eye, volume, pictureWidth, pictureHeight, basis, light, scene, startHeight, threadHeight,
 														  maxDepth);
 		
-		//Then
+		
 		assertNotNull(ret);
 	}
 }

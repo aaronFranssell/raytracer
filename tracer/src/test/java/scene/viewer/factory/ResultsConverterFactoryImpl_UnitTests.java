@@ -16,17 +16,17 @@ public class ResultsConverterFactoryImpl_UnitTests
 	@Test
 	public void getConverter_WithValue_ExpectNotNull()
 	{
-		//Given
+		
 		Collection<Future<double[][][]>> incomingResults = new ArrayList<Future<double[][][]>>();
 		int incomingWidth = 5;
 		int incomingHeight = 7;
 		
 		ResultsConverterFactoryImpl classUnderTest = new ResultsConverterFactoryImpl();
 		
-		//When
+		
 		ResultsConverter ret = classUnderTest.getConverter(incomingResults, incomingWidth, incomingHeight);
 		
-		//Then
+		
 		assertNotNull(ret);
 	}
 }

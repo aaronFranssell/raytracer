@@ -11,13 +11,13 @@ public class ExecutorServiceFactoryImpl_UnitTests
 	@Test
 	public void getExecutorService_ExpectNotNull()
 	{
-		//Given
+		
 		ExecutorServiceFactoryImpl classUnderTest = new ExecutorServiceFactoryImpl();
 		
-		//When
+		
 		ExecutorService ret = classUnderTest.getExecutorService();
 		
-		//Then
+		
 		assertNotNull(ret);
 	}
 }

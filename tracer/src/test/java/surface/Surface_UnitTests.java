@@ -2,7 +2,6 @@ package surface;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -24,7 +23,7 @@ public class Surface_UnitTests
 	@Test
 	public void getColor_WithNoLightingModel_ExpectException() throws RaytracerException
 	{
-		//Given
+		
 		Ray mockRay = Mockito.mock(Ray.class);
 		Point light = Mockito.mock(Point.class);
 		Point eye = Mockito.mock(Point.class);
@@ -40,19 +39,16 @@ public class Surface_UnitTests
 		classUnderTest.setEffects(effects);
 		classUnderTest.setcR(cR);
 
-		//When
+		
 		assertThrows(RaytracerException.class, () -> {
 			classUnderTest.getColor(mockRay, light, eye, inShadow, n, p);
 		});
-
-		//Then
-		fail("Expected exception not thrown.");
 	}
 
 	@Test
 	public void getColor_WithPhongAndMockedBumpAndNose_ExpectCalls() throws RaytracerException
 	{
-		//Given
+		
 		Ray mockRay = Mockito.mock(Ray.class);
 		Color mockCA = Mockito.mock(Color.class);
 		Color mockCL = Mockito.mock(Color.class);
@@ -99,17 +95,17 @@ public class Surface_UnitTests
 
 		Color expected = new Color(0.2,0.2,0.2);
 		
-		//When
+		
 		Color actual = classUnderTest.getColor(mockRay, light, eye, inShadow, n, p);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void getColor_WithLambertian_ExpectCalls() throws RaytracerException
 	{
-		//Given
+		
 		Ray mockRay = Mockito.mock(Ray.class);
 		Color mockCA = Mockito.mock(Color.class);
 		Color mockCL = Mockito.mock(Color.class);
@@ -137,10 +133,10 @@ public class Surface_UnitTests
 
 		Color expected = new Color(0.2,0.2,0.2);
 		
-		//When
+		
 		Color actual = classUnderTest.getColor(mockRay, light, eye, inShadow, n, p);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 }

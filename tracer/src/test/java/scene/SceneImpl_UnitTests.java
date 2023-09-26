@@ -19,7 +19,7 @@ public class SceneImpl_UnitTests
 	@Test
 	public void getSmallestPositiveHitData_WithNoHits_ExpectMiss() throws RaytracerException
 	{
-		//Given
+		
 		HitData miss = new HitData();
 		ArrayList<HitData> misses = new ArrayList<HitData>();
 		misses.add(miss);
@@ -31,17 +31,17 @@ public class SceneImpl_UnitTests
 		
 		SceneImpl classUnderTest = new SceneImpl(surfaces);
 		
-		//When
+		
 		HitData smallest = classUnderTest.getSmallestPositiveHitDataOrReturnMiss(mockRay);
 		
-		//Then
+		
 		assertFalse(smallest.isHit());
 	}
 	
 	@Test
 	public void getSmallestPositiveHitData_WithAllNegativeHits_ExpectMiss() throws RaytracerException
 	{
-		//Given
+		
 		Ray mockRay = Mockito.mock(Ray.class);
 		Surface mockSurface = Mockito.mock(Surface.class);
 		HitData lessThanZeroHit = new HitData(-1.0, mockSurface, null, null);
@@ -56,17 +56,17 @@ public class SceneImpl_UnitTests
 		
 		SceneImpl classUnderTest = new SceneImpl(surfaces);
 		
-		//When
+		
 		HitData smallest = classUnderTest.getSmallestPositiveHitDataOrReturnMiss(mockRay);
 		
-		//Then
+		
 		assertFalse(smallest.isHit());
 	}
 	
 	@Test
 	public void getSmallestPositiveHitData_WithNegativeMissesAndPositiveHits_ExpectSmallestPositiveHit() throws RaytracerException
 	{
-		//Given
+		
 		Ray mockRay = Mockito.mock(Ray.class);
 		Surface mockSurface = Mockito.mock(Surface.class);
 		HitData lessThanZeroHit = new HitData(-1.0, mockSurface, null, null);
@@ -88,10 +88,10 @@ public class SceneImpl_UnitTests
 		
 		SceneImpl classUnderTest = new SceneImpl(surfaces);
 		
-		//When
+		
 		HitData smallest = classUnderTest.getSmallestPositiveHitDataOrReturnMiss(mockRay);
 		
-		//Then
+		
 		assertTrue(smallest == smallestPositive);
 	}
 }

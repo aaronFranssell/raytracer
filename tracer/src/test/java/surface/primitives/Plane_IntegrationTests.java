@@ -16,7 +16,7 @@ public class Plane_IntegrationTests
 	@Test
 	public void getHitData_WithHit_ExpectHitData()
 	{
-		//Given
+		
 		Vector normal = new Vector(0.0,0.0,1.0);
 		Point point = new Point(0.0,0.0,0.0);
 		
@@ -30,10 +30,10 @@ public class Plane_IntegrationTests
 		HitData expectedHitData = new HitData(-20, classUnderTest, normal, new Point(-20.0, 0.0, 0.0));
 		expected.add(expectedHitData);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 }

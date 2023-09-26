@@ -18,7 +18,7 @@ public class Triangle_IntegrationTests
 	@Test
 	public void getHitData_WithMiss_ExpectNoHits()
 	{
-		//Given
+		
 		Point a = new Point(-1.0,1.0,-1.0);
 		Point b = new Point(-1.0,-1.0,1.0);
 		Point c = new Point(1.0,-1.0,0.0);
@@ -29,17 +29,17 @@ public class Triangle_IntegrationTests
 		
 		Triangle classUnderTest = new Triangle(null, null, null, a, b, c, null);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		assertEquals(0, actual.size());
 	}
 	
 	@Test
 	public void getHitData_WithHit_ExpectHitData()
 	{
-		//Given
+		
 		Point a = new Point(-1.0,1.0,-1.0);
 		Point b = new Point(-1.0,-1.0,1.0);
 		Point c = new Point(1.0,-1.0,0.0);
@@ -54,10 +54,10 @@ public class Triangle_IntegrationTests
 		ArrayList<HitData> expected = new ArrayList<HitData>();
 		expected.add(hit);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 }

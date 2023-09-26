@@ -19,7 +19,7 @@ public class Cone_IntegrationTests
 	@Test
 	public void getHitData_WithVectorMissAbove_ExpectNoHitData() throws RaytracerException
 	{
-		//Given
+		
 		Vector direction = new Vector(1.0,1.0,1.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
 		double alpha = Math.sqrt(2)/2;
@@ -33,17 +33,17 @@ public class Cone_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new RayImpl(d, eye);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 
-		//Then
+		
 		assertTrue(actual.size() == 0);
 	}
 
 	@Test
 	public void getHitData_WithVectorMissBelow_ExpectNoHitData() throws RaytracerException
 	{
-		//Given
+		
 		Vector direction = new Vector(1.0,1.0,1.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
 		double alpha = Math.sqrt(2)/2;
@@ -57,17 +57,17 @@ public class Cone_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new RayImpl(d, eye);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 
-		//Then
+		
 		assertTrue(actual.size() == 0);
 	}
 
 	@Test
 	public void getHitData_WithVectorMissBehindBasePoint_ExpectNoHitData() throws RaytracerException
 	{
-		//Given
+		
 		Vector direction = new Vector(1.0,0.0,0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
 		double alpha = Math.sqrt(2)/2;
@@ -81,17 +81,17 @@ public class Cone_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new RayImpl(d, eye);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 
-		//Then
+		
 		assertTrue(actual.size() == 0);
 	}
 
 	@Test
 	public void getHitData_WithVectorMissAfterLength_ExpectNoHitData() throws RaytracerException
 	{
-		//Given
+		
 		Vector direction = new Vector(1.0,0.0,0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
 		double alpha = Math.sqrt(2)/2;
@@ -105,17 +105,17 @@ public class Cone_IntegrationTests
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new RayImpl(d, eye);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 
-		//Then
+		
 		assertTrue(actual.size() == 0);
 	}
 
 	@Test
 	public void getHitData_WithVectorHitOnLeftSide_ExpectHitData() throws RaytracerException
 	{
-		//Given
+		
 		Vector direction = new Vector(1.0,0.0,0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
 		double alpha = Math.sqrt(2)/2;
@@ -137,17 +137,17 @@ public class Cone_IntegrationTests
 				new Point(-0.9649041287876334, 0.0, -0.8245206439381674));
 		expected.add(expectedHitData);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 
 	@Test
 	public void getHitData_WithVectorHitOnRightSide_ExpectHitData() throws RaytracerException
 	{
-		//Given
+		
 		Vector direction = new Vector(1.0,0.0,0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
 		double alpha = Math.sqrt(2)/2;
@@ -169,17 +169,17 @@ public class Cone_IntegrationTests
 				new Point(0.9649041287876334, 0.0, -0.8245206439381674));
 		expected.add(expectedHitData);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 
 	@Test
 	public void getHitData_HittingInsideOfConeCup_ExpectHitDataWithNormalsPointingTowardsEye() throws RaytracerException
 	{
-		//Given
+		
 		Vector direction = new Vector(1.0,0.0,0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
 		double alpha = Math.sqrt(2)/2;
@@ -198,10 +198,10 @@ public class Cone_IntegrationTests
 											  new Point(0.7586458850629154, 0.6482708229874169, 0.0));
 		expected.add(expectedHitData);
 
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 }

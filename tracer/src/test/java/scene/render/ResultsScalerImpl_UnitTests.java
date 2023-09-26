@@ -9,7 +9,7 @@ public class ResultsScalerImpl_UnitTests
 	@Test
 	public void scale_WithValidInput_ExpectScaledArray()
 	{
-		//Given
+		
 		int[][][] expected = new int[10][1][1];
 		expected[0][0][0] = 150;
 		expected[1][0][0] = 204;
@@ -36,10 +36,10 @@ public class ResultsScalerImpl_UnitTests
 		
 		ResultsScalerImpl classUnderTest = new ResultsScalerImpl();
 		
-		//When
+		
 		int[][][] retImage = classUnderTest.scale(image);
 		
-		//Then
+		
 		for(int i = 0; i < retImage.length; i++)
 		{
 			for(int m = 0; m < retImage[i].length; m++)

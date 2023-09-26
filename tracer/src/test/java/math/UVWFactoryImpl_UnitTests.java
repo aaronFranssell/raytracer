@@ -2,7 +2,6 @@ package math;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -14,7 +13,7 @@ public class UVWFactoryImpl_UnitTests
 	@Test
 	public void createUVW_WithMockParallelVectors_ExpectException() throws RaytracerException
 	{
-		//Given
+		
 		Vector mockGaze = Mockito.mock(Vector.class);
 		Mockito.when(mockGaze.copy()).thenReturn(mockGaze);
 		Mockito.when(mockGaze.normalizeReturn()).thenReturn(mockGaze);
@@ -29,19 +28,16 @@ public class UVWFactoryImpl_UnitTests
 		
 		Mockito.when(mockGaze.cross(mockUp)).thenReturn(mockWCrossT);
 		
-		//When
+		
 		assertThrows(RaytracerException.class, () -> {
 			classUnderTest.createUVW(mockUp, mockGaze);
 		});
-		
-		//Then
-		fail("Expected exception not thrown.");
 	}
 	
 	@Test
 	public void createUVW_WithMockVectors_ExpectUVW() throws RaytracerException
 	{
-		//Given
+		
 		Vector mockGaze = Mockito.mock(Vector.class);
 		Vector mockWCrossTCrossW = Mockito.mock(Vector.class);
 		Vector mockWCrossT = Mockito.mock(Vector.class);
@@ -60,10 +56,10 @@ public class UVWFactoryImpl_UnitTests
 		
 		UVWFactoryImpl classUnderTest = new UVWFactoryImpl();
 		
-		//When
+		
 		UVW retUVW = classUnderTest.createUVW(mockUp, mockGaze);
 		
-		//Then
+		
 		Mockito.verify(mockGaze).copy();
 		Mockito.verify(mockGaze).normalizeReturn();
 		Mockito.verify(mockGaze).cross(mockUp);

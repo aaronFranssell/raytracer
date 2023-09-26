@@ -14,7 +14,7 @@ public class Simplex_UnitTests
 	@Test
 	public void getNormal_WithBarycentricSimplexAndPoints_ExpectNormal()
 	{
-		//Given
+		
 		Point eye = new Point(0.0,0.0,4.0);
 		Vector d = new Vector(0.0,0.0,-1.0);
 		Ray r = new RayImpl(d,eye);
@@ -26,17 +26,17 @@ public class Simplex_UnitTests
 		
 		Vector expected = new Vector(0.0,0.0,1.0);
 		
-		//When
+		
 		Vector actual = classUnderTest.getNormal(r);
 		
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void getNormal_WithBarycentricSimplexAndRayOnOtherSide_ExpectNormal()
 	{
-		//Given
+		
 		Point eye = new Point(0.0,0.0,-4.0);
 		Vector d = new Vector(0.0,0.0,1.0);
 		Ray r = new RayImpl(d,eye);
@@ -48,10 +48,10 @@ public class Simplex_UnitTests
 		
 		Vector expected = new Vector(0.0,0.0,-1.0);
 		
-		//When
+		
 		Vector actual = classUnderTest.getNormal(r);
 		
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 }

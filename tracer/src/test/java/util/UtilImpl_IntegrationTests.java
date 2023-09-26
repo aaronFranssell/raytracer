@@ -3,6 +3,9 @@ package util;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
@@ -12,19 +15,17 @@ import helper.TestsHelper;
 public class UtilImpl_IntegrationTests
 {
 	@Test
-	public void readImage_WithTestImage_ExpectImage() throws IOException
+	public void readImage_WithTestImage_ExpectImage() throws IOException, URISyntaxException
 	{
-		//Given
 		UtilImpl classUnderTest = new UtilImpl();
 		int[][][] expected = new int[1][1][3];
 		expected[0][0][0] = 255;
 		expected[0][0][1] = 242;
 		expected[0][0][2] = 0;
+		URL resource = this.getClass().getClassLoader().getResource("testReadImage.png");
+		int[][][] actual = classUnderTest.readImage(Paths.get(resource.toURI()).toString());
 		
-		//When
-		int[][][] actual = classUnderTest.readImage("src\\test\\resources\\testReadImage.png");
 		
-		//Then
 		assertEquals(expected.length, actual.length);
 		assertEquals(expected[0].length, actual[0].length);
 		assertEquals(expected[0][0][0], actual[0][0][0]);
@@ -33,21 +34,19 @@ public class UtilImpl_IntegrationTests
 	}
 	
 	@Test
-	public void readTextFile_WithTextFile_ExpectTest() throws IOException
+	public void readTextFile_WithTextFile_ExpectTest() throws IOException, URISyntaxException
 	{
-		//Given
-		String filePath = "src\\test\\resources\\textFile.txt";
-		
+		URL resource = this.getClass().getClassLoader().getResource("textFile.txt");
 		ArrayList<String> expected = new ArrayList<String>();
 		expected.add("asdf asdf");
 		expected.add(";lkj ;lkj");
 		
 		UtilImpl classUnderTest = new UtilImpl();
 		
-		//When
-		ArrayList<String> actual = classUnderTest.readTextFile(filePath);
 		
-		//Then
+		ArrayList<String> actual = classUnderTest.readTextFile(Paths.get(resource.toURI()).toString());
+		
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 }

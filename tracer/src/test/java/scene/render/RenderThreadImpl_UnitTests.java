@@ -23,7 +23,7 @@ public class RenderThreadImpl_UnitTests
 	@Test
 	public void call_WithValidParameters_ExpectFactoryCalls() throws Exception
 	{
-		//Given
+		
 		Point eye = new Point(0.0,0.0,4.0);
 		ViewingVolume volume = new ViewingVolume(-1.0, 1.0, -1.0, 1.0);
 		int width = 40;
@@ -49,10 +49,10 @@ public class RenderThreadImpl_UnitTests
 		
 		RenderThreadImpl classUnderTest = new RenderThreadImpl(eye, volume, width, height, basis, light, mockScene, startHeight, threadHeight, mockRayFactory, mockPixelFactory, maxDepth);
 		
-		//When
+		
 		double[][][] retColors = classUnderTest.call();
 		
-		//Then
+		
 		for(int i = 0; i < width; i++)
 		{
 			for(int m = 0; m < threadHeight; m++)

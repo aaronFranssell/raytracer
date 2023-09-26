@@ -19,7 +19,7 @@ public class Parallelogram_IntegrationTests
 	@Test
 	public void getHitData_WithMiss_ExpectNoData() throws RaytracerException
 	{
-		//Given
+		
 		Point basePoint = new Point(-1.0, 1.0,-1.0);
 		Vector v1 = new Vector(0.0,-2.0,1.0);
 		Vector v2 = new Vector(2.0,0.0,1.0);
@@ -30,17 +30,17 @@ public class Parallelogram_IntegrationTests
 		
 		Parallelogram classUnderTest = new Parallelogram(basePoint, v1, v2, null, null, null, null);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		assertEquals(0, actual.size());
 	}
 	
 	@Test
 	public void getHitData_WithHit_ExpectHitData() throws RaytracerException
 	{
-		//Given
+		
 		Point basePoint = new Point(-1.0, 1.0,-1.0);
 		Vector v1 = new Vector(0.0,-2.0,1.0);
 		Vector v2 = new Vector(2.0,0.0,1.0);
@@ -56,10 +56,10 @@ public class Parallelogram_IntegrationTests
 									  new Point(0.0,0.42105263157894735,-0.21052631578947345));
 		expected.add(hitData);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(r);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expected, actual);
 	}
 }

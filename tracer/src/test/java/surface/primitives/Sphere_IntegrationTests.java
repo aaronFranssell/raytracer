@@ -19,7 +19,7 @@ public class Sphere_IntegrationTests
 	@Test
 	public void getHitData_MissLeft_ExpectNoHits()
 	{
-		//Given
+		
 		Point center = new Point(0.0,0.0,0.0);
 		double radius = 1.0;
 		UtilImpl ops = new UtilImpl();
@@ -30,17 +30,17 @@ public class Sphere_IntegrationTests
 
 		Sphere classUnderTest = new Sphere(center, radius, null,null,null, null, ops);
 		
-		//When
+		
 		ArrayList<HitData> list = classUnderTest.getHitData(ray);
 		
-		//Then
+		
 		assertEquals(0, list.size());
 	}
 	
 	@Test
 	public void getHitData_WithHit_ExpectHitData()
 	{
-		//Given
+		
 		Point center = new Point(1.0,0.0,1.0);
 		double radius = 1.0;
 		UtilImpl ops = new UtilImpl();
@@ -57,10 +57,10 @@ public class Sphere_IntegrationTests
 		hit = new HitData(4.0, classUnderTest, new Vector(0.0,0.0,-1.0), new Point(1.0,0.0,0.0));
 		expectedHitData.add(hit);
 		
-		//When
+		
 		ArrayList<HitData> actual = classUnderTest.getHitData(ray);
 		
-		//Then
+		
 		TestsHelper.arrayListSubsets(expectedHitData, actual);
 	}
 }

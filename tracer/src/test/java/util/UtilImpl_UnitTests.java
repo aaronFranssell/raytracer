@@ -30,14 +30,14 @@ public class UtilImpl_UnitTests
 	@Test
 	public void sort_WithArray_ExpectSortedArray()
 	{
-		//Given
+		
 		double[] array = new double[] {5, 3, 8, 10, -5, 0.4, 5, 9, 10, 0.0};
 		UtilImpl classUnderTest = new UtilImpl();
 
-		//When
+		
 		double[] result = classUnderTest.sort(array);
 
-		//Then
+		
 		assertEquals(array.length, result.length);
 		for(int i = 0; i < result.length; i++)
 		{
@@ -62,7 +62,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getP_WithValues_ExpectP()
 	{
-		//Given
+		
 		Ray r1 = new RayImpl(new Vector(1.0,1.0,1.0), new Point(1.0,1.0,1.0));
 		double t1 = 2.0;
 		Ray r2 = new RayImpl(new Vector(1.0,1.0,1.0), new Point(1.0,1.0,1.0));
@@ -70,11 +70,11 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl();
 
-		//When
+		
 		Point result1 = classUnderTest.getP(t1, r1);
 		Point result2 = classUnderTest.getP(t2, r2);
 
-		//Then
+		
 		assertEquals(3.0, result1.x, 0.0003);
 		assertEquals(3.0, result1.y, 0.0003);
 		assertEquals(3.0, result1.z, 0.0003);
@@ -86,7 +86,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getRefractedRay_With1sForIndexesOfRefraction_ExpectUnchangedRefractedRay()
 	{
-		//Given
+		
 		double originalN = 1.0;
 		double newN = 1.0;
 
@@ -105,10 +105,10 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockFactory);
 
-		//When
+		
 		Ray result = classUnderTest.getRefractedRay(r, originalN, newN, hitData);
 
-		//Then
+		
 		assertTrue(result.getD().equals(r));
 		assertEquals(result.getEye(), p);
 		Mockito.verify(mockFactory).createRay(r, p);
@@ -117,7 +117,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getRefractedRay_WithNewNGreater_ExpectUnchangedRefractedRay()
 	{
-		//Given
+		
 		double originalN = 1.0;
 		double newN = 8.0;
 
@@ -138,10 +138,10 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockFactory);
 
-		//When
+		
 		Ray result = classUnderTest.getRefractedRay(r, originalN, newN, hitData);
 
-		//Then
+		
 		assertTrue(result.getD().equals(expected));
 		assertEquals(result.getEye(), p);
 		Mockito.verify(mockFactory).createRay(expected, p);
@@ -150,7 +150,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getRefractedRay_WithTotalInternalReflection_ExpectNullRay()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 
 		double originalN = 8.0;
@@ -164,17 +164,17 @@ public class UtilImpl_UnitTests
 		normal = normal.normalizeReturn();
 		HitData hitData = new HitData(1.0, null, normal, p);
 
-		//When
+		
 		Ray result = classUnderTest.getRefractedRay(r, originalN, newN, hitData);
 
-		//Then
+		
 		assertNull(result);
 	}
 
 	@Test
 	public void getRefractedRay_WithOriginalNLess_ExpectNullRay()
 	{
-		//Given
+		
 		double originalN = 1.5;
 		double newN = 1.0;
 
@@ -195,10 +195,10 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockFactory);
 
-		//When
+		
 		Ray result = classUnderTest.getRefractedRay(r, originalN, newN, hitData);
 
-		//Then
+		
 		assertTrue(expected.equals(result.getD()));
 		assertEquals(result.getEye(), p);
 		Mockito.verify(mockFactory).createRay(expected, p);
@@ -207,14 +207,14 @@ public class UtilImpl_UnitTests
 	@Test
 	public void clamp_WithValuesOver1_Expect1s()
 	{
-		//Given
+		
 		Color c = new Color(1.1, 1.4, 1.5);
 		UtilImpl classUnderTest = new UtilImpl();
 
-		//When
+		
 		Color actual = classUnderTest.clamp(c);
 
-		//Then
+		
 		Color expected = new Color(1.0,1.0,1.0);
 		assertTrue(expected.equals(actual));
 	}
@@ -222,14 +222,14 @@ public class UtilImpl_UnitTests
 	@Test
 	public void clamp_WithValuesUnder1_ExpectUnchanged()
 	{
-		//Given
+		
 		Color c = new Color(0.1, 0.4, 0.5);
 		UtilImpl classUnderTest = new UtilImpl();
 
-		//When
+		
 		Color actual = classUnderTest.clamp(c);
 
-		//Then
+		
 		Color expected = new Color(0.1,0.4,0.5);
 		assertTrue(expected.equals(actual));
 	}
@@ -237,7 +237,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getReflectedRay_WithValues_ExpectCall()
 	{
-		//Given
+		
 		Vector d = new Vector(0.3,0.5,0.7);
 		Point eye = new Point(0.0,0.0,0.0);
 		Ray r = new RayImpl(d, eye);
@@ -254,10 +254,10 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockFactory);
 
-		//When
+		
 		Ray actual = classUnderTest.getReflectedRay(r, p, normal);
 
-		//Then
+		
 		Ray expected = new RayImpl(expectedD, expectedEye);
 		assertEquals(expected, actual);
 		Mockito.verify(mockFactory).createRay(expectedD, expectedEye);
@@ -266,7 +266,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getReflectedColor_WithNonReflectiveSurfaceMocked_ExpectBlack() throws RaytracerException
 	{
-		//Given
+		
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.isReflective()).thenReturn(false);
 		Surface mockSurface = Mockito.mock(Surface.class);
@@ -278,10 +278,10 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl();
 
-		//When
+		
 		Color actual = classUnderTest.getReflectedColor(r, currentDepth, hit, mockSurface, pixel);
 
-		//Then
+		
 		Color expected = new Color(0.0,0.0,0.0);
 		assertEquals(expected, actual);
 	}
@@ -289,7 +289,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getReflectedColor_WithMockedRayInsideOfSurface_ExpectBlack() throws RaytracerException
 	{
-		//Given
+		
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.isReflective()).thenReturn(true);
 		Surface mockSurface = Mockito.mock(Surface.class);
@@ -304,10 +304,10 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl();
 
-		//When
+		
 		Color actual = classUnderTest.getReflectedColor(r, currentDepth, hit, mockSurface, pixel);
 
-		//Then
+		
 		Color expected = new Color(0.0,0.0,0.0);
 		assertEquals(expected, actual);
 	}
@@ -315,7 +315,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getReflectedColor_WithReflectedRay_ExpectCall() throws RaytracerException
 	{
-		//Given
+		
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.isReflective()).thenReturn(true);
 		Surface mockSurface = Mockito.mock(Surface.class);
@@ -338,10 +338,10 @@ public class UtilImpl_UnitTests
 		Mockito.doReturn(r).when(classUnderTest).getReflectedRay(r, mockPoint, mockVec);
 		Mockito.doReturn(clampReturn).when(classUnderTest).clamp(reflectReturn);
 
-		//When
+		
 		Color actual = classUnderTest.getReflectedColor(r, currentDepth, hit, mockSurface, pixel);
 
-		//Then
+		
 		Color expected = new Color(0.1,0.3,0.7);
 		assertEquals(expected, actual);
 	}
@@ -349,7 +349,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getRefractedColor_WithNonRefractiveMocks_ExpectBlack() throws RaytracerException
 	{
-		//Given
+		
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.getRefractive()).thenReturn(null);
 
@@ -358,10 +358,10 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl();
 
-		//When
+		
 		Color actual = classUnderTest.getRefractedColor(null, 0, null, mockSurface, null);
 
-		//Then
+		
 		Color expected = new Color(0.0,0.0,0.0);
 		assertEquals(expected, actual);
 	}
@@ -369,7 +369,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getRefractedColor_WithTotalInternalReflection_ExpectBlack() throws RaytracerException
 	{
-		//Given
+		
 		double n = 1.0;
 		double nT = 1.0;
 		Refractive mockRefractive = Mockito.mock(Refractive.class);
@@ -392,10 +392,10 @@ public class UtilImpl_UnitTests
 		UtilImpl classUnderTest = Mockito.spy(new UtilImpl());
 		Mockito.doReturn(null).when(classUnderTest).getRefractedRay(mockD, n, nT, mockHit);
 
-		//When
+		
 		Color actual = classUnderTest.getRefractedColor(mockRay, 0, mockHit, mockSurface, null);
 
-		//Then
+		
 		Color expected = new Color(0.0,0.0,0.0);
 		assertEquals(expected, actual);
 	}
@@ -403,7 +403,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getRefractedColor_WithMockedRefraction_ExpectCalls() throws RaytracerException
 	{
-		//Given
+		
 		int currentDepth = 0;
 		double n = 1.0;
 		double nT = 1.0;
@@ -437,17 +437,17 @@ public class UtilImpl_UnitTests
 		Mockito.doReturn(mockRefractedRay).when(classUnderTest).getRefractedRay(mockD, n, nT, mockHit);
 		Mockito.doReturn(mockClampedColor).when(classUnderTest).clamp(mockPixelReturnColor);
 
-		//When
+		
 		Color actual = classUnderTest.getRefractedColor(mockRay, currentDepth, mockHit, mockSurface, mockPixel);
 
-		//Then
+		
 		assertTrue(mockClampedColor == actual);
 	}
 
 	@Test
 	public void isInShadow_WithNoHits_ExpectFalse() throws RaytracerException
 	{
-		//Given
+		
 		Point mockHitPoint = Mockito.mock(Point.class);
 
 		HitData mockHitData = Mockito.mock(HitData.class);
@@ -470,17 +470,17 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
 
-		//When
+		
 		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
 
-		//Then
+		
 		assertFalse(result);
 	}
 
 	@Test
 	public void isInShadow_HittingOutersphere_ExpectFalse() throws RaytracerException
 	{
-		//Given
+		
 		Point mockHitPoint = Mockito.mock(Point.class);
 
 		HitData mockHitData = Mockito.mock(HitData.class);
@@ -507,17 +507,17 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
 
-		//When
+		
 		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
 
-		//Then
+		
 		assertFalse(result);
 	}
 
 	@Test
 	public void isInShadow_HitObjectButLightIsCloser_ExpectFalse() throws RaytracerException
 	{
-		//Given
+		
 		Point mockHitPoint = Mockito.mock(Point.class);
 
 		HitData mockHitData = Mockito.mock(HitData.class);
@@ -552,17 +552,17 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
 
-		//When
+		
 		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
 
-		//Then
+		
 		assertFalse(result);
 	}
 
 	@Test
 	public void isInShadow_HitObjectCloserThanLight_ExpectTrue() throws RaytracerException
 	{
-		//Given
+		
 		Point mockHitPoint = Mockito.mock(Point.class);
 
 		HitData mockHitData = Mockito.mock(HitData.class);
@@ -597,17 +597,17 @@ public class UtilImpl_UnitTests
 
 		UtilImpl classUnderTest = new UtilImpl(mockRayFactory);
 
-		//When
+		
 		boolean result = classUnderTest.isInShadow(mockScene, mockLight, mockHitData);
 
-		//Then
+		
 		assertTrue(result);
 	}
 
 	@Test
 	public void getColorLambertian_InShadow_ExpectColor()
 	{
-		//Given
+		
 		Color cR = new Color(0.2,0.2,0.2);
 		Color cA = new Color(0.2,0.2,0.2);
 		Color cL = null;
@@ -628,17 +628,17 @@ public class UtilImpl_UnitTests
 
 		Color expected = new Color(.04,.04,.04);
 
-		//When
+		
 		Color actual = classUnderTest.getColorLambertian(cR, cA, cL, n, light, p, inShadow);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getColorLambertian_NotInShadowNDotLGreaterThanZero_ExpectColor()
 	{
-		//Given
+		
 		Color cR = new Color(0.2,0.2,0.2);
 		Color cA = new Color(0.2,0.2,0.2);
 		Color cL = new Color(0.2,0.2,0.2);
@@ -660,17 +660,17 @@ public class UtilImpl_UnitTests
 
 		Color expected = new Color(.08,.08,.08);
 
-		//When
+		
 		Color actual = classUnderTest.getColorLambertian(cR, cA, cL, n, light, p, inShadow);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getColorLambertian_NotInShadowNDotLLessThanZero_ExpectColor()
 	{
-		//Given
+		
 		Color cR = new Color(0.2,0.2,0.2);
 		Color cA = new Color(0.2,0.2,0.2);
 		Color cL = new Color(0.2,0.2,0.2);
@@ -692,17 +692,17 @@ public class UtilImpl_UnitTests
 
 		Color expected = new Color(.04,.04,.04);
 
-		//When
+		
 		Color actual = classUnderTest.getColorLambertian(cR, cA, cL, n, light, p, inShadow);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getColorPhong_InShadow_ExpectLambertianColor()
 	{
-		//Given
+		
 		Color cR = new Color(0.2,0.2,0.2);
 		Color cA = new Color(0.2,0.2,0.2);
 		Color cL = new Color(0.2,0.2,0.2);
@@ -723,17 +723,17 @@ public class UtilImpl_UnitTests
 
 		Color expected = new Color(0.1,0.1,0.1);
 
-		//When
+		
 		Color actual = classUnderTest.getColorPhong(cR, cA, cL, n, light, mockEye, exponent, p, inShadow);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getColorPhong_NDotHLessThanZero_ExpectLambertianColor()
 	{
-		//Given
+		
 		Color cR = new Color(0.2,0.2,0.2);
 		Color cA = new Color(0.2,0.2,0.2);
 		Color cL = new Color(0.2,0.2,0.2);
@@ -769,17 +769,17 @@ public class UtilImpl_UnitTests
 
 		Color expected = new Color(0.1,0.1,0.1);
 
-		//When
+		
 		Color actual = classUnderTest.getColorPhong(cR, cA, cL, n, light, mockEye, exponent, p, inShadow);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 
 	@Test
 	public void getColorPhong_NDotHGreaterThanZero_ExpectPhongColor()
 	{
-		//Given
+		
 		Color cR = new Color(0.2,0.2,0.2);
 		Color cA = new Color(0.2,0.2,0.2);
 		Color cL = new Color(0.2,0.2,0.2);
@@ -815,79 +815,79 @@ public class UtilImpl_UnitTests
 
 		Color expected = new Color(0.14,0.14,0.14);
 
-		//When
+		
 		Color actual = classUnderTest.getColorPhong(cR, cA, cL, n, light, mockEye, exponent, p, inShadow);
 
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void solveQuadratic_WithImaginaryDiscriminant_ExpectNans()
 	{
-		//Given
+		
 		double[] expected = new double[] {Double.NaN, Double.NaN};
 		double a = 2;
 		double b = 4;
 		double c = 8;
 		UtilImpl classUnderTest = new UtilImpl();
 		
-		//When
+		
 		double[] actual = classUnderTest.solveQuadratic(a, b, c);
 		
-		//Then
+		
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
 	
 	@Test
 	public void solveQuadratic_WithRealDiscriminant_ExpectNans()
 	{
-		//Given
+		
 		double[] expected = new double[] {-0.45861873485089033, -6.541381265149109};
 		double a = 1;
 		double b = 7;
 		double c = 3;
 		UtilImpl classUnderTest = new UtilImpl();
 		
-		//When
+		
 		double[] actual = classUnderTest.solveQuadratic(a, b, c);
 		
-		//Then
+		
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
 	
 	@Test
 	public void hasHits_WithANaN_ExpectFalse()
 	{
-		//Given
+		
 		double[] hits = new double[]{1.0, Double.NaN};
 		UtilImpl classUnderTest = new UtilImpl();
 		
-		//When
+		
 		boolean result = classUnderTest.hasHits(hits);
 		
-		//Then
+		
 		assertFalse(result);
 	}
 	
 	@Test
 	public void hasHits_WithNoNaNs_ExpectTrue()
 	{
-		//Given
+		
 		double[] hits = new double[]{1.0, -1.0};
 		UtilImpl classUnderTest = new UtilImpl();
 		
-		//When
+		
 		boolean result = classUnderTest.hasHits(hits);
 		
-		//Then
+		
 		assertTrue(result);
 	}
 	
 	@Test
 	public void solveQuartic_HittingFirstSecondIf_ExpectZeros()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double a = 1.0;
 		double b = 0.0;
@@ -901,17 +901,17 @@ public class UtilImpl_UnitTests
 		expected[2] = 0.0;
 		expected[3] = 0.0;
 		
-		//When
+		
 		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
 		
-		//Then
+		
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
 	
 	@Test
 	public void solveQuartic_HittingFirstThirdIf_ExpectZeros()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double a = 1.0;
 		double b = 0.0;
@@ -925,17 +925,17 @@ public class UtilImpl_UnitTests
 		expected[2] = Double.NaN;
 		expected[3] = Double.NaN;
 		
-		//When
+		
 		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
 		
-		//Then
+		
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
 	
 	@Test
 	public void solveQuartic_HittingFifthSixthSeventhIf_ExpectZeros()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double a = 1.0;
 		double b = 0.0;
@@ -949,17 +949,17 @@ public class UtilImpl_UnitTests
 		expected[2] = 0.0;
 		expected[3] = -1.0;
 		
-		//When
+		
 		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
 		
-		//Then
+		
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
 	
 	@Test
 	public void solveQuartic_HittingFourthSixthIf_ExpectZeros()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double a = 1.0;
 		double b = 1.0;
@@ -973,17 +973,17 @@ public class UtilImpl_UnitTests
 		expected[2] = 0.0;
 		expected[3] = -1.0;
 		
-		//When
+		
 		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
 		
-		//Then
+		
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
 	
 	@Test
 	public void solveQuartic_WithTypicalCall_ExpectZeros()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double a = 2.0;
 		double b = 3.0;
@@ -997,73 +997,73 @@ public class UtilImpl_UnitTests
 		expected[2] = -0.6992823840584236;
 		expected[3] = -2.505678468626153;
 		
-		//When
+		
 		double[] actual = classUnderTest.solveQuartic(a, b, c, d, e);
 		
-		//Then
+		
 		TestsHelper.doubleArraysSubsets(expected, actual);
 	}
 	
 	@Test
 	public void getGreaterValue_WithNanVal1_ExpectVal2()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double expected = 1.0;
 		
-		//When
+		
 		double actual = classUnderTest.getGreaterValue(Double.NaN, 1.0);
 		
-		//Then
+		
 		assertEquals(expected, actual, Constants.POSITIVE_ZERO);
 	}
 	
 	@Test
 	public void getGreaterValue_WithNanVal2_ExpectVal1()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double expected = 1.0;
 		
-		//When
+		
 		double actual = classUnderTest.getGreaterValue(1.0, Double.NaN);
 		
-		//Then
+		
 		assertEquals(expected, actual, Constants.POSITIVE_ZERO);
 	}
 	
 	@Test
 	public void getGreaterValue_WithVal1GreaterThanVal2_ExpectVal1()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double expected = 1.0;
 		
-		//When
+		
 		double actual = classUnderTest.getGreaterValue(1.0, -1.0);
 		
-		//Then
+		
 		assertEquals(expected, actual, Constants.POSITIVE_ZERO);
 	}
 	
 	@Test
 	public void getGreaterValue_WithVal2GreaterThanVal1_ExpectVal2()
 	{
-		//Given
+		
 		UtilImpl classUnderTest = new UtilImpl();
 		double expected = 1.0;
 		
-		//When
+		
 		double actual = classUnderTest.getGreaterValue(-1.0, 1.0);
 		
-		//Then
+		
 		assertEquals(expected, actual, Constants.POSITIVE_ZERO);
 	}
 	
 	@Test
 	public void getTOnPlane_WithRay_ExpectT()
 	{
-		//Given
+		
 		Vector d = new Vector(0.0,0.0,-1.0);
 		Point eye = new Point(0.0,0.0,4.0);
 		Ray r = new RayImpl(d,eye);
@@ -1074,17 +1074,17 @@ public class UtilImpl_UnitTests
 		UtilImpl classUnderTest = new UtilImpl();
 		double expected = 4.0;
 		
-		//When
+		
 		double actual = classUnderTest.getTOnPlane(r, pointOnPlane, normal);
 		
-		//Then
+		
 		assertEquals(expected, actual, Constants.POSITIVE_ZERO);
 	}
 	
 	@Test
 	public void getCircleUVImageMapping_PhiGreaterThanZero_ExpectUVValue() throws IOException, RaytracerException
 	{
-		//Given
+		
 		Point center = new Point(1.0,1.0,1.0);
 		double radius = 3.0;
 		Point hitPoint = new Point(3.0,4.0,7.0);
@@ -1093,10 +1093,10 @@ public class UtilImpl_UnitTests
 		
 		UtilImpl classUnderTest = new UtilImpl();
 		
-		//When
+		
 		int[] actual = classUnderTest.getCircleUVImageMapping(hitPoint, center, radius, w, h);
 		
-		//Then
+		
 		assertEquals(20, actual[0]);
 		assertEquals(103, actual[1]);
 	}
@@ -1104,7 +1104,7 @@ public class UtilImpl_UnitTests
 	@Test
 	public void getCircleUVImageMapping_PhiLessThanZero_ExpectUVValue() throws IOException, RaytracerException
 	{
-		//Given
+		
 		Point center = new Point(1.0,1.0,1.0);
 		double radius = 3.0;
 		Point hitPoint = new Point(-2.0,-2.0,-2.0);
@@ -1113,10 +1113,10 @@ public class UtilImpl_UnitTests
 		
 		UtilImpl classUnderTest = new UtilImpl();
 		
-		//When
+		
 		int[] actual = classUnderTest.getCircleUVImageMapping(hitPoint, center, radius, w, h);
 		
-		//Then
+		
 		assertEquals(63, actual[0]);
 		assertEquals(0, actual[1]);
 	}

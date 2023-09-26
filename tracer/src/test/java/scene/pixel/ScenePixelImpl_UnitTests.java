@@ -20,21 +20,21 @@ public class ScenePixelImpl_UnitTests
 	@Test
 	public void getPixelColor_RecursionLimitReached_ExpectBlack() throws RaytracerException
 	{
-		//Given
+		
 		ScenePixelImpl classUnderTest = new ScenePixelImpl(null, null, null, null, 6);
 		Color expected = new Color(0.0,0.0,0.0);
 		
-		//When
+		
 		Color actual = classUnderTest.getPixelColor(null, 6);
 		
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void getPixelColor_NoHits_ExpectBlack() throws RaytracerException
 	{
-		//Given
+		
 		HitData mockHit = Mockito.mock(HitData.class);
 		Mockito.when(mockHit.isHit()).thenReturn(false);
 		
@@ -46,17 +46,17 @@ public class ScenePixelImpl_UnitTests
 		ScenePixelImpl classUnderTest = new ScenePixelImpl(mockScene, null, null, null, 6);
 		Color expected = new Color(0.0,0.0,0.0);
 		
-		//When
+		
 		Color actual = classUnderTest.getPixelColor(mockRay, 0);
 		
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 	
 	@Test
 	public void getPixelColor_WithHits_ExpectColor() throws RaytracerException
 	{
-		//Given
+		
 		int currentDepth = 0;
 		Color surfaceColor = new Color(0.1,0.1,0.1);
 		Color refractColor = new Color(0.1,0.1,0.1);
@@ -95,10 +95,10 @@ public class ScenePixelImpl_UnitTests
 		
 		Color expected = new Color(0.3,0.3,0.3);
 		
-		//When
+		
 		Color actual = classUnderTest.getPixelColor(mockRay, currentDepth);
 		
-		//Then
+		
 		assertEquals(expected, actual);
 	}
 }

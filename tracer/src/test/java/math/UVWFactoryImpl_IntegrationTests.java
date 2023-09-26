@@ -2,7 +2,6 @@ package math;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.jupiter.api.Test;
 
@@ -13,24 +12,19 @@ public class UVWFactoryImpl_IntegrationTests
 	@Test
 	public void createUVW_WithParallelVectors_ExpectException() throws RaytracerException
 	{
-		//Given
 		Vector gaze = new Vector(1.0, 0.0, 0.0);
 		Vector up = new Vector(1.0,0.0,0.0);
 		UVWFactoryImpl classUnderTest = new UVWFactoryImpl();
 		
-		//When
 		assertThrows(RaytracerException.class, () -> {
 			classUnderTest.createUVW(up, gaze);
 		});
-		
-		//Then
-		fail("Expected exception not thrown.");
 	}
 	
 	@Test
 	public void createUVW_WithZGazeAndYUp_ExpectUVW() throws RaytracerException
 	{
-		//Given
+		
 		Vector gaze = new Vector(0.0, 0.0, -1.0);
 		Vector up = new Vector(0.0, 1.0, 0.0);
 		
@@ -39,10 +33,10 @@ public class UVWFactoryImpl_IntegrationTests
 		Vector expectedW = new Vector(0.0, 0.0, -1.0);
 		UVWFactoryImpl classUnderTest = new UVWFactoryImpl();
 		
-		//When
+		
 		UVW retUVW = classUnderTest.createUVW(up, gaze);
 	
-		//Then
+		
 		assertTrue(retUVW.getU().equals(expectedU));
 		assertTrue(retUVW.getV().equals(expectedV));
 		assertTrue(retUVW.getW().equals(expectedW));
@@ -51,7 +45,7 @@ public class UVWFactoryImpl_IntegrationTests
 	@Test
 	public void createUVW_WithLookingInMinusAll3Directions_ExpectUVW() throws RaytracerException
 	{
-		//Given
+		
 		Vector gaze = new Vector(-1.0, -1.0, -1.0);
 		Vector up = new Vector(0.0, 1.0, 0.0);
 		
@@ -60,10 +54,10 @@ public class UVWFactoryImpl_IntegrationTests
 		Vector expectedW = new Vector(-0.5773502691896258, -0.5773502691896258, -0.5773502691896258);
 		UVWFactoryImpl classUnderTest = new UVWFactoryImpl();
 		
-		//When
+		
 		UVW retUVW = classUnderTest.createUVW(up, gaze);
 		
-		//Then
+		
 		assertTrue(retUVW.getU().equals(expectedU));
 		assertTrue(retUVW.getV().equals(expectedV));
 		assertTrue(retUVW.getW().equals(expectedW));
