@@ -7,9 +7,9 @@ import scene.render.ResultsConverterImpl;
 
 public class ResultsConverterFactoryImpl implements ResultsConverterFactory {
 
-  @Override
-  public ResultsConverter getConverter(
-      Collection<Future<double[][][]>> incomingResults, int incomingWidth, int incomingHeight) {
-    return new ResultsConverterImpl(incomingResults, incomingWidth, incomingHeight);
-  }
+	@Override
+	public ResultsConverter getConverter(
+			Collection<Future<double[][][]>> incomingResults, int incomingWidth, int incomingHeight) {
+		return new ResultsConverterImpl(incomingResults, incomingWidth, incomingHeight);
+	}
 }

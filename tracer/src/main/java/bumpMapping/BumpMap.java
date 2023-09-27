@@ -5,5 +5,5 @@ import math.Vector;
 import scene.ray.Ray;
 
 public interface BumpMap {
-  public abstract Vector getBump(Ray r, Point p, Vector normal);
+	public abstract Vector getBump(Ray r, Point p, Vector normal);
 }

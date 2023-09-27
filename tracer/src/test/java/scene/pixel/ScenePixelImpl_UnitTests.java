@@ -15,85 +15,85 @@ import surface.Surface;
 import util.Util;
 
 public class ScenePixelImpl_UnitTests {
-  @Test
-  public void getPixelColor_RecursionLimitReached_ExpectBlack() throws RaytracerException {
+	@Test
+	public void getPixelColor_RecursionLimitReached_ExpectBlack() throws RaytracerException {
 
-    ScenePixelImpl classUnderTest = new ScenePixelImpl(null, null, null, null, 6);
-    Color expected = new Color(0.0, 0.0, 0.0);
+		ScenePixelImpl classUnderTest = new ScenePixelImpl(null, null, null, null, 6);
+		Color expected = new Color(0.0, 0.0, 0.0);
 
-    Color actual = classUnderTest.getPixelColor(null, 6);
+		Color actual = classUnderTest.getPixelColor(null, 6);
 
-    assertEquals(expected, actual);
-  }
+		assertEquals(expected, actual);
+	}
 
-  @Test
-  public void getPixelColor_NoHits_ExpectBlack() throws RaytracerException {
+	@Test
+	public void getPixelColor_NoHits_ExpectBlack() throws RaytracerException {
 
-    HitData mockHit = Mockito.mock(HitData.class);
-    Mockito.when(mockHit.isHit()).thenReturn(false);
+		HitData mockHit = Mockito.mock(HitData.class);
+		Mockito.when(mockHit.isHit()).thenReturn(false);
 
-    Ray mockRay = Mockito.mock(Ray.class);
+		Ray mockRay = Mockito.mock(Ray.class);
 
-    Scene mockScene = Mockito.mock(Scene.class);
-    Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRay)).thenReturn(mockHit);
+		Scene mockScene = Mockito.mock(Scene.class);
+		Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRay)).thenReturn(mockHit);
 
-    ScenePixelImpl classUnderTest = new ScenePixelImpl(mockScene, null, null, null, 6);
-    Color expected = new Color(0.0, 0.0, 0.0);
+		ScenePixelImpl classUnderTest = new ScenePixelImpl(mockScene, null, null, null, 6);
+		Color expected = new Color(0.0, 0.0, 0.0);
 
-    Color actual = classUnderTest.getPixelColor(mockRay, 0);
+		Color actual = classUnderTest.getPixelColor(mockRay, 0);
 
-    assertEquals(expected, actual);
-  }
+		assertEquals(expected, actual);
+	}
 
-  @Test
-  public void getPixelColor_WithHits_ExpectColor() throws RaytracerException {
+	@Test
+	public void getPixelColor_WithHits_ExpectColor() throws RaytracerException {
 
-    int currentDepth = 0;
-    Color surfaceColor = new Color(0.1, 0.1, 0.1);
-    Color refractColor = new Color(0.1, 0.1, 0.1);
-    Color reflectColor = new Color(0.1, 0.1, 0.1);
+		int currentDepth = 0;
+		Color surfaceColor = new Color(0.1, 0.1, 0.1);
+		Color refractColor = new Color(0.1, 0.1, 0.1);
+		Color reflectColor = new Color(0.1, 0.1, 0.1);
 
-    Point mockEye = Mockito.mock(Point.class);
-    Point mockLight = Mockito.mock(Point.class);
+		Point mockEye = Mockito.mock(Point.class);
+		Point mockLight = Mockito.mock(Point.class);
 
-    Surface mockSurface = Mockito.mock(Surface.class);
+		Surface mockSurface = Mockito.mock(Surface.class);
 
-    Vector mockNormal = Mockito.mock(Vector.class);
+		Vector mockNormal = Mockito.mock(Vector.class);
 
-    Point mockHitPoint = Mockito.mock(Point.class);
+		Point mockHitPoint = Mockito.mock(Point.class);
 
-    HitData mockHit = Mockito.mock(HitData.class);
-    Mockito.when(mockHit.isHit()).thenReturn(true);
-    Mockito.when(mockHit.getSurface()).thenReturn(mockSurface);
-    Mockito.when(mockHit.getNormal()).thenReturn(mockNormal);
-    Mockito.when(mockHit.getP()).thenReturn(mockHitPoint);
+		HitData mockHit = Mockito.mock(HitData.class);
+		Mockito.when(mockHit.isHit()).thenReturn(true);
+		Mockito.when(mockHit.getSurface()).thenReturn(mockSurface);
+		Mockito.when(mockHit.getNormal()).thenReturn(mockNormal);
+		Mockito.when(mockHit.getP()).thenReturn(mockHitPoint);
 
-    Ray mockRay = Mockito.mock(Ray.class);
+		Ray mockRay = Mockito.mock(Ray.class);
 
-    Scene mockScene = Mockito.mock(Scene.class);
-    Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRay)).thenReturn(mockHit);
+		Scene mockScene = Mockito.mock(Scene.class);
+		Mockito.when(mockScene.getSmallestPositiveHitDataOrReturnMiss(mockRay)).thenReturn(mockHit);
 
-    boolean inShadow = false;
-    Util mockUtil = Mockito.mock(Util.class);
-    Mockito.when(mockUtil.isInShadow(mockScene, mockLight, mockHit)).thenReturn(inShadow);
+		boolean inShadow = false;
+		Util mockUtil = Mockito.mock(Util.class);
+		Mockito.when(mockUtil.isInShadow(mockScene, mockLight, mockHit)).thenReturn(inShadow);
 
-    Mockito.when(
-            mockSurface.getColor(mockRay, mockLight, mockEye, inShadow, mockNormal, mockHitPoint))
-        .thenReturn(surfaceColor);
+		Mockito.when(
+				mockSurface.getColor(mockRay, mockLight, mockEye, inShadow, mockNormal, mockHitPoint))
+				.thenReturn(surfaceColor);
 
-    ScenePixelImpl classUnderTest = new ScenePixelImpl(mockScene, mockEye, mockLight, mockUtil, 6);
+		ScenePixelImpl classUnderTest = new ScenePixelImpl(mockScene, mockEye, mockLight, mockUtil, 6);
 
-    Mockito.when(
-            mockUtil.getReflectedColor(mockRay, currentDepth, mockHit, mockSurface, classUnderTest))
-        .thenReturn(reflectColor);
-    Mockito.when(
-            mockUtil.getRefractedColor(mockRay, currentDepth, mockHit, mockSurface, classUnderTest))
-        .thenReturn(refractColor);
+		Mockito.when(
+				mockUtil.getReflectedColor(mockRay, currentDepth, mockHit, mockSurface, classUnderTest))
+				.thenReturn(reflectColor);
+		Mockito.when(
+				mockUtil.getRefractedColor(mockRay, currentDepth, mockHit, mockSurface, classUnderTest))
+				.thenReturn(refractColor);
 
-    Color expected = new Color(0.3, 0.3, 0.3);
+		Color expected = new Color(0.3, 0.3, 0.3);
 
-    Color actual = classUnderTest.getPixelColor(mockRay, currentDepth);
+		Color actual = classUnderTest.getPixelColor(mockRay, currentDepth);
 
-    assertEquals(expected, actual);
-  }
+		assertEquals(expected, actual);
+	}
 }

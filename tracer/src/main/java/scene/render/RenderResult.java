@@ -4,22 +4,22 @@ import java.awt.image.BufferedImage;
 import util.stopwatch.StopWatch;
 
 public class RenderResult {
-  private StopWatch stopWatch;
-  private BufferedImage image;
+	private StopWatch stopWatch;
+	private BufferedImage image;
 
-  public StopWatch getStopWatch() {
-    return stopWatch;
-  }
+	public StopWatch getStopWatch() {
+		return stopWatch;
+	}
 
-  public void setStopWatch(StopWatch stopWatch) {
-    this.stopWatch = stopWatch;
-  }
+	public void setStopWatch(StopWatch stopWatch) {
+		this.stopWatch = stopWatch;
+	}
 
-  public BufferedImage getImage() {
-    return image;
-  }
+	public BufferedImage getImage() {
+		return image;
+	}
 
-  public void setImage(BufferedImage image) {
-    this.image = image;
-  }
+	public void setImage(BufferedImage image) {
+		this.image = image;
+	}
 }

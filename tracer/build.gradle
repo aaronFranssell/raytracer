@@ -18,7 +18,7 @@ dependencies {
 
 spotless {
   java {
-    googleJavaFormat('1.17.0')
+    eclipse().configFile 'spotlessFormat.xml'
   }
 }
 

@@ -4,9 +4,9 @@ import math.Point;
 import math.Vector;
 
 public interface Ray {
-  public Vector getD();
+	public Vector getD();
 
-  public Point getEye();
+	public Point getEye();
 
-  public double getDistance(Point p);
+	public double getDistance(Point p);
 }
