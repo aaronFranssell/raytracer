@@ -20,15 +20,15 @@ public class Effects {
 		refractive = null;
 	}
 
-	private boolean bothLambertianAndPhong() throws RaytracerException {
+	private boolean bothLambertianAndPhong() throws Exception {
 		if (lambertian && phong != null) {
-			throw new RaytracerException(
+			throw new Exception(
 					"Both phong and lambertian models are not allowed on the same surface.");
 		}
 		return false;
 	}
 
-	public boolean isLambertian() throws RaytracerException {
+	public boolean isLambertian() throws Exception {
 		bothLambertianAndPhong();
 		return lambertian;
 	}

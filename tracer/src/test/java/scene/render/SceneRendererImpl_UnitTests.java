@@ -2,7 +2,6 @@ package scene.render;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import etc.RaytracerException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,12 +10,14 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+
 import math.Point;
 import math.UVW;
 import math.UVWFactory;
 import math.Vector;
-import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
 import scene.Scene;
 import scene.render.factory.ExecutorServiceFactory;
 import scene.render.factory.RenderThreadFactory;
@@ -28,7 +29,7 @@ import util.stopwatch.StopWatch;
 public class SceneRendererImpl_UnitTests {
 	@Test
 	public void render_WithMocks_ExpectCall()
-			throws RaytracerException, InterruptedException, ExecutionException, IOException {
+			throws Exception, InterruptedException, ExecutionException, IOException {
 
 		Vector up = Mockito.mock(Vector.class);
 		Vector gaze = Mockito.mock(Vector.class);

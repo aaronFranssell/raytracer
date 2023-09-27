@@ -4,7 +4,6 @@ import bumpMapping.BumpMap;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import etc.RaytracerException;
 import etc.mapper.ImageMapper;
 import java.util.ArrayList;
 import math.Point;
@@ -27,10 +26,10 @@ public abstract class Surface {
 
 	protected Effects effects;
 
-	public abstract ArrayList<HitData> getHitData(Ray r) throws RaytracerException;
+	public abstract ArrayList<HitData> getHitData(Ray r) throws Exception;
 
 	public Color getColor(Ray r, Point light, Point eye, boolean inShadow, Vector n, Point p)
-			throws RaytracerException {
+			throws Exception {
 		Color currentCR = cR.copy();
 		Vector normal = n.copy();
 		if (effects.getBumpMapClass() != null) {
@@ -51,7 +50,7 @@ public abstract class Surface {
 		} else if (effects.isLambertian()) {
 			return ops.getColorLambertian(currentCR, cA, cL, normal, light, p, inShadow);
 		}
-		throw new RaytracerException("No lighting model present. Must be either lambertian or phong.");
+		throw new Exception("No lighting model present. Must be either lambertian or phong.");
 	}
 
 	public Color getCA() {

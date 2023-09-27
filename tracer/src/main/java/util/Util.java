@@ -1,10 +1,10 @@
 package util;
 
-import etc.Color;
-import etc.HitData;
-import etc.RaytracerException;
 import java.io.IOException;
 import java.util.ArrayList;
+
+import etc.Color;
+import etc.HitData;
 import math.Point;
 import math.Vector;
 import scene.Scene;
@@ -25,13 +25,13 @@ public interface Util {
 
 	public Color getReflectedColor(
 			Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel)
-			throws RaytracerException;
+			throws Exception;
 
 	public Color getRefractedColor(
 			Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel)
-			throws RaytracerException;
+			throws Exception;
 
-	public boolean isInShadow(Scene scene, Point light, HitData hitData) throws RaytracerException;
+	public boolean isInShadow(Scene scene, Point light, HitData hitData) throws Exception;
 
 	public Color getColorLambertian(
 			Color cR, Color cA, Color cL, Vector n, Point light, Point p, boolean inShadow);

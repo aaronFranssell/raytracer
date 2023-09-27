@@ -1,23 +1,24 @@
 package surface.csg.operation;
 
-import etc.RaytracerException;
 import java.util.Hashtable;
 import java.util.Map.Entry;
-import util.*;
+
+import util.Util;
+import util.UtilImpl;
 
 public class IntervalImpl implements Interval {
 	private Util ops;
 	private double[] interval;
 
-	public IntervalImpl(double[] incomingInterval) throws RaytracerException {
+	public IntervalImpl(double[] incomingInterval) throws Exception {
 		this(incomingInterval, new UtilImpl());
 	}
 
-	public IntervalImpl(double[] incomingInterval, Util incomingOps) throws RaytracerException {
+	public IntervalImpl(double[] incomingInterval, Util incomingOps) throws Exception {
 		ops = incomingOps;
 		interval = ops.sort(incomingInterval);
 		if (interval.length % 2 != 0) {
-			throw new RaytracerException("Interval length: " + interval.length + " is not even!");
+			throw new Exception("Interval length: " + interval.length + " is not even!");
 		}
 	}
 

@@ -1,8 +1,8 @@
 package scene;
 
-import etc.HitData;
-import etc.RaytracerException;
 import java.util.ArrayList;
+
+import etc.HitData;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Constants;
@@ -14,7 +14,7 @@ public class SceneImpl implements Scene {
 		surfaceList = incomingSurfaceList;
 	}
 
-	public HitData getSmallestPositiveHitDataOrReturnMiss(Ray r) throws RaytracerException {
+	public HitData getSmallestPositiveHitDataOrReturnMiss(Ray r) throws Exception {
 		HitData retHitData = new HitData();
 		ArrayList<HitData> sceneHitData = getSceneHitData(r);
 		for (HitData currentHit : sceneHitData) {
@@ -41,7 +41,7 @@ public class SceneImpl implements Scene {
 		return hit.isHit() && hit.getT() > Constants.POSITIVE_ZERO;
 	}
 
-	private ArrayList<HitData> getSceneHitData(Ray r) throws RaytracerException {
+	private ArrayList<HitData> getSceneHitData(Ray r) throws Exception {
 		ArrayList<HitData> sceneHitInfo = new ArrayList<HitData>();
 		for (Surface surface : surfaceList) {
 			ArrayList<HitData> surfaceHitData = surface.getHitData(r);

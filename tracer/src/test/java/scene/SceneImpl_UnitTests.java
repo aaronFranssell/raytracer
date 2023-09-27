@@ -3,17 +3,18 @@ package scene;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import etc.HitData;
-import etc.RaytracerException;
 import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+
+import etc.HitData;
 import scene.ray.Ray;
 import surface.Surface;
 
 public class SceneImpl_UnitTests {
 	@Test
-	public void getSmallestPositiveHitData_WithNoHits_ExpectMiss() throws RaytracerException {
+	public void getSmallestPositiveHitData_WithNoHits_ExpectMiss() throws Exception {
 
 		HitData miss = new HitData();
 		ArrayList<HitData> misses = new ArrayList<HitData>();
@@ -33,7 +34,7 @@ public class SceneImpl_UnitTests {
 
 	@Test
 	public void getSmallestPositiveHitData_WithAllNegativeHits_ExpectMiss()
-			throws RaytracerException {
+			throws Exception {
 
 		Ray mockRay = Mockito.mock(Ray.class);
 		Surface mockSurface = Mockito.mock(Surface.class);
@@ -56,7 +57,7 @@ public class SceneImpl_UnitTests {
 
 	@Test
 	public void getSmallestPositiveHitData_WithNegativeMissesAndPositiveHits_ExpectSmallestPositiveHit()
-			throws RaytracerException {
+			throws Exception {
 
 		Ray mockRay = Mockito.mock(Ray.class);
 		Surface mockSurface = Mockito.mock(Surface.class);

@@ -8,7 +8,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import etc.RaytracerException;
 import etc.Refractive;
 import helper.TestsHelper;
 import java.io.IOException;
@@ -230,8 +229,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void getReflectedColor_WithNonReflectiveSurfaceMocked_ExpectBlack()
-			throws RaytracerException {
+	public void getReflectedColor_WithNonReflectiveSurfaceMocked_ExpectBlack() throws Exception {
 
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.isReflective()).thenReturn(false);
@@ -251,8 +249,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void getReflectedColor_WithMockedRayInsideOfSurface_ExpectBlack()
-			throws RaytracerException {
+	public void getReflectedColor_WithMockedRayInsideOfSurface_ExpectBlack() throws Exception {
 
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.isReflective()).thenReturn(true);
@@ -275,7 +272,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void getReflectedColor_WithReflectedRay_ExpectCall() throws RaytracerException {
+	public void getReflectedColor_WithReflectedRay_ExpectCall() throws Exception {
 
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.isReflective()).thenReturn(true);
@@ -306,7 +303,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void getRefractedColor_WithNonRefractiveMocks_ExpectBlack() throws RaytracerException {
+	public void getRefractedColor_WithNonRefractiveMocks_ExpectBlack() throws Exception {
 
 		Effects mockEffects = Mockito.mock(Effects.class);
 		Mockito.when(mockEffects.getRefractive()).thenReturn(null);
@@ -323,8 +320,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void getRefractedColor_WithTotalInternalReflection_ExpectBlack()
-			throws RaytracerException {
+	public void getRefractedColor_WithTotalInternalReflection_ExpectBlack() throws Exception {
 
 		double n = 1.0;
 		double nT = 1.0;
@@ -355,7 +351,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void getRefractedColor_WithMockedRefraction_ExpectCalls() throws RaytracerException {
+	public void getRefractedColor_WithMockedRefraction_ExpectCalls() throws Exception {
 
 		int currentDepth = 0;
 		double n = 1.0;
@@ -397,7 +393,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void isInShadow_WithNoHits_ExpectFalse() throws RaytracerException {
+	public void isInShadow_WithNoHits_ExpectFalse() throws Exception {
 
 		Point mockHitPoint = Mockito.mock(Point.class);
 
@@ -428,7 +424,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void isInShadow_HittingOutersphere_ExpectFalse() throws RaytracerException {
+	public void isInShadow_HittingOutersphere_ExpectFalse() throws Exception {
 
 		Point mockHitPoint = Mockito.mock(Point.class);
 
@@ -463,7 +459,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void isInShadow_HitObjectButLightIsCloser_ExpectFalse() throws RaytracerException {
+	public void isInShadow_HitObjectButLightIsCloser_ExpectFalse() throws Exception {
 
 		Point mockHitPoint = Mockito.mock(Point.class);
 
@@ -506,7 +502,7 @@ public class UtilImpl_UnitTests {
 	}
 
 	@Test
-	public void isInShadow_HitObjectCloserThanLight_ExpectTrue() throws RaytracerException {
+	public void isInShadow_HitObjectCloserThanLight_ExpectTrue() throws Exception {
 
 		Point mockHitPoint = Mockito.mock(Point.class);
 
@@ -973,7 +969,7 @@ public class UtilImpl_UnitTests {
 
 	@Test
 	public void getCircleUVImageMapping_PhiGreaterThanZero_ExpectUVValue()
-			throws IOException, RaytracerException {
+			throws IOException {
 
 		Point center = new Point(1.0, 1.0, 1.0);
 		double radius = 3.0;
@@ -991,7 +987,7 @@ public class UtilImpl_UnitTests {
 
 	@Test
 	public void getCircleUVImageMapping_PhiLessThanZero_ExpectUVValue()
-			throws IOException, RaytracerException {
+			throws IOException {
 
 		Point center = new Point(1.0, 1.0, 1.0);
 		double radius = 3.0;

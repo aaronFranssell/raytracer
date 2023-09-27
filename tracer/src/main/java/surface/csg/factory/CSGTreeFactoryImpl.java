@@ -1,11 +1,10 @@
 package surface.csg.factory;
 
-import etc.RaytracerException;
 import surface.csg.tree.CSGTree;
 
 public class CSGTreeFactoryImpl implements CSGTreeFactory {
 	@Override
-	public CSGTree createTree() throws RaytracerException {
+	public CSGTree createTree() {
 		return new CSGTree();
 	}
 }

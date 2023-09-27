@@ -2,7 +2,6 @@ package scene.pixel;
 
 import etc.Color;
 import etc.HitData;
-import etc.RaytracerException;
 import math.Point;
 import scene.Scene;
 import scene.ray.Ray;
@@ -38,7 +37,7 @@ public class ScenePixelImpl implements ScenePixel {
 	}
 
 	@Override
-	public Color getPixelColor(Ray r, int currentDepth) throws RaytracerException {
+	public Color getPixelColor(Ray r, int currentDepth) throws Exception {
 		if (maxDepth == currentDepth) {
 			return new Color(0.0, 0.0, 0.0);
 		}
@@ -50,7 +49,7 @@ public class ScenePixelImpl implements ScenePixel {
 	}
 
 	private Color colorPixel(Ray r, Scene scene, int currentDepth, HitData hit)
-			throws RaytracerException {
+			throws Exception {
 		Surface currSurface = hit.getSurface();
 
 		boolean inShadow = util.isInShadow(scene, light, hit);

@@ -3,7 +3,6 @@ package surface.primitives;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import etc.RaytracerException;
 import java.util.ArrayList;
 import math.Point;
 import math.Vector;
@@ -68,7 +67,7 @@ public class Parallelogram extends Surface {
 	}
 
 	@Override
-	public ArrayList<HitData> getHitData(Ray r) throws RaytracerException {
+	public ArrayList<HitData> getHitData(Ray r) throws Exception {
 		double abcT = abc.getT(r);
 		double bcdT = bcd.getT(r);
 		if (Double.isNaN(abcT) && Double.isNaN(bcdT)) {

@@ -3,25 +3,24 @@ package math;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import etc.RaytracerException;
 import org.junit.jupiter.api.Test;
 
 public class UVWFactoryImpl_IntegrationTests {
 	@Test
-	public void createUVW_WithParallelVectors_ExpectException() throws RaytracerException {
+	public void createUVW_WithParallelVectors_ExpectException() throws Exception {
 		Vector gaze = new Vector(1.0, 0.0, 0.0);
 		Vector up = new Vector(1.0, 0.0, 0.0);
 		UVWFactoryImpl classUnderTest = new UVWFactoryImpl();
 
 		assertThrows(
-				RaytracerException.class,
+				Exception.class,
 				() -> {
 					classUnderTest.createUVW(up, gaze);
 				});
 	}
 
 	@Test
-	public void createUVW_WithZGazeAndYUp_ExpectUVW() throws RaytracerException {
+	public void createUVW_WithZGazeAndYUp_ExpectUVW() throws Exception {
 
 		Vector gaze = new Vector(0.0, 0.0, -1.0);
 		Vector up = new Vector(0.0, 1.0, 0.0);
@@ -39,7 +38,7 @@ public class UVWFactoryImpl_IntegrationTests {
 	}
 
 	@Test
-	public void createUVW_WithLookingInMinusAll3Directions_ExpectUVW() throws RaytracerException {
+	public void createUVW_WithLookingInMinusAll3Directions_ExpectUVW() throws Exception {
 
 		Vector gaze = new Vector(-1.0, -1.0, -1.0);
 		Vector up = new Vector(0.0, 1.0, 0.0);

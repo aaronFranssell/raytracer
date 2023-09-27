@@ -1,6 +1,5 @@
 package scene.render;
 
-import etc.RaytracerException;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,6 +8,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+
 import math.Point;
 import math.UVW;
 import math.UVWFactory;
@@ -66,7 +66,7 @@ public class SceneRendererImpl {
 			ArrayList<Callable<double[][][]>> incomingTasks,
 			ExecutorServiceFactory serviceFactory,
 			int incomingMaxDepth)
-			throws RaytracerException {
+			throws Exception {
 		numThreads = incomingNumThreads;
 		up = incomingUp;
 		gaze = incomingGaze;
@@ -100,7 +100,7 @@ public class SceneRendererImpl {
 			Scene incomingScene,
 			Point incomingLight,
 			int incomingMaxDepth)
-			throws RaytracerException {
+			throws Exception {
 		this(
 				incomingUp,
 				incomingGaze,

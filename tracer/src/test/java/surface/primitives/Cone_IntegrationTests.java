@@ -2,19 +2,20 @@ package surface.primitives;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import etc.HitData;
-import etc.RaytracerException;
-import helper.TestsHelper;
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import etc.HitData;
+import helper.TestsHelper;
 import math.Point;
 import math.Vector;
-import org.junit.jupiter.api.Test;
 import scene.ray.Ray;
 import scene.ray.RayImpl;
 
 public class Cone_IntegrationTests {
 	@Test
-	public void getHitData_WithVectorMissAbove_ExpectNoHitData() throws RaytracerException {
+	public void getHitData_WithVectorMissAbove_ExpectNoHitData() throws Exception {
 
 		Vector direction = new Vector(1.0, 1.0, 1.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
@@ -35,7 +36,7 @@ public class Cone_IntegrationTests {
 	}
 
 	@Test
-	public void getHitData_WithVectorMissBelow_ExpectNoHitData() throws RaytracerException {
+	public void getHitData_WithVectorMissBelow_ExpectNoHitData() throws Exception {
 
 		Vector direction = new Vector(1.0, 1.0, 1.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
@@ -56,7 +57,7 @@ public class Cone_IntegrationTests {
 	}
 
 	@Test
-	public void getHitData_WithVectorMissBehindBasePoint_ExpectNoHitData() throws RaytracerException {
+	public void getHitData_WithVectorMissBehindBasePoint_ExpectNoHitData() throws Exception {
 
 		Vector direction = new Vector(1.0, 0.0, 0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
@@ -77,7 +78,7 @@ public class Cone_IntegrationTests {
 	}
 
 	@Test
-	public void getHitData_WithVectorMissAfterLength_ExpectNoHitData() throws RaytracerException {
+	public void getHitData_WithVectorMissAfterLength_ExpectNoHitData() throws Exception {
 
 		Vector direction = new Vector(1.0, 0.0, 0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
@@ -98,7 +99,7 @@ public class Cone_IntegrationTests {
 	}
 
 	@Test
-	public void getHitData_WithVectorHitOnLeftSide_ExpectHitData() throws RaytracerException {
+	public void getHitData_WithVectorHitOnLeftSide_ExpectHitData() throws Exception {
 
 		Vector direction = new Vector(1.0, 0.0, 0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
@@ -133,7 +134,7 @@ public class Cone_IntegrationTests {
 	}
 
 	@Test
-	public void getHitData_WithVectorHitOnRightSide_ExpectHitData() throws RaytracerException {
+	public void getHitData_WithVectorHitOnRightSide_ExpectHitData() throws Exception {
 
 		Vector direction = new Vector(1.0, 0.0, 0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);
@@ -169,7 +170,7 @@ public class Cone_IntegrationTests {
 
 	@Test
 	public void getHitData_HittingInsideOfConeCup_ExpectHitDataWithNormalsPointingTowardsEye()
-			throws RaytracerException {
+			throws Exception {
 
 		Vector direction = new Vector(1.0, 0.0, 0.0);
 		Point vertex = new Point(0.0, 0.0, 0.0);

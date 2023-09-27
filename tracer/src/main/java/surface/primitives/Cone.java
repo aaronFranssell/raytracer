@@ -1,14 +1,15 @@
 package surface.primitives;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import org.apache.commons.lang3.ArrayUtils;
+
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import etc.RaytracerException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import math.Point;
 import math.Vector;
-import org.apache.commons.lang3.ArrayUtils;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Constants;
@@ -49,7 +50,7 @@ public class Cone extends Surface {
 			Color incomingCL,
 			Effects incomingEffects,
 			Util incomingOps)
-			throws RaytracerException {
+			throws Exception {
 		direction = incomingDirection.normalizeReturn();
 		vertex = incomingVertex;
 		alpha = incomingAlpha;
@@ -76,7 +77,7 @@ public class Cone extends Surface {
 			Vector basePointVertexDirection = basePoint.minus(vertex).normalizeReturn();
 			if (!basePointVertexDirection.equals(direction)
 					&& !basePointVertexDirection.scaleReturn(-1.0).equals(direction)) {
-				throw new RaytracerException(
+				throw new Exception(
 						"The base point: "
 								+ basePoint.toString()
 								+ " is not on the same line as the vertex: "
@@ -97,7 +98,7 @@ public class Cone extends Surface {
 			Color incomingCA,
 			Color incomingCL,
 			Effects incomingEffects)
-			throws RaytracerException {
+			throws Exception {
 		this(
 				incomingDirection,
 				incomingVertex,
@@ -158,7 +159,7 @@ public class Cone extends Surface {
 	}
 
 	@Override
-	public ArrayList<HitData> getHitData(Ray r) throws RaytracerException {
+	public ArrayList<HitData> getHitData(Ray r) throws Exception {
 		double Dz = r.getD().z;
 		double Dy = r.getD().y;
 		double Dx = r.getD().x;
@@ -266,7 +267,7 @@ public class Cone extends Surface {
 	 * @throws Exception
 	 */
 	private ArrayList<Double> getHitTsByLimitingLength(double[] incomingHitTs, Ray r)
-			throws RaytracerException {
+			throws Exception {
 		ArrayList<Double> hitTs = new ArrayList<Double>();
 		for (int i = 0; i < incomingHitTs.length; i++) {
 			Point hitP = ops.getP(incomingHitTs[i], r);

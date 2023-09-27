@@ -2,19 +2,20 @@ package surface.primitives;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import etc.HitData;
-import etc.RaytracerException;
-import helper.TestsHelper;
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.Test;
+
+import etc.HitData;
+import helper.TestsHelper;
 import math.Point;
 import math.Vector;
-import org.junit.jupiter.api.Test;
 import scene.ray.Ray;
 import scene.ray.RayImpl;
 
 public class Parallelogram_IntegrationTests {
 	@Test
-	public void getHitData_WithMiss_ExpectNoData() throws RaytracerException {
+	public void getHitData_WithMiss_ExpectNoData() throws Exception {
 
 		Point basePoint = new Point(-1.0, 1.0, -1.0);
 		Vector v1 = new Vector(0.0, -2.0, 1.0);
@@ -32,7 +33,7 @@ public class Parallelogram_IntegrationTests {
 	}
 
 	@Test
-	public void getHitData_WithHit_ExpectHitData() throws RaytracerException {
+	public void getHitData_WithHit_ExpectHitData() throws Exception {
 
 		Point basePoint = new Point(-1.0, 1.0, -1.0);
 		Vector v1 = new Vector(0.0, -2.0, 1.0);

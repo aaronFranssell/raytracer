@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import etc.Color;
 import etc.HitData;
-import etc.RaytracerException;
 import math.Point;
 import math.Vector;
 import org.junit.jupiter.api.Test;
@@ -16,7 +15,7 @@ import util.Util;
 
 public class ScenePixelImpl_UnitTests {
 	@Test
-	public void getPixelColor_RecursionLimitReached_ExpectBlack() throws RaytracerException {
+	public void getPixelColor_RecursionLimitReached_ExpectBlack() throws Exception {
 
 		ScenePixelImpl classUnderTest = new ScenePixelImpl(null, null, null, null, 6);
 		Color expected = new Color(0.0, 0.0, 0.0);
@@ -27,7 +26,7 @@ public class ScenePixelImpl_UnitTests {
 	}
 
 	@Test
-	public void getPixelColor_NoHits_ExpectBlack() throws RaytracerException {
+	public void getPixelColor_NoHits_ExpectBlack() throws Exception {
 
 		HitData mockHit = Mockito.mock(HitData.class);
 		Mockito.when(mockHit.isHit()).thenReturn(false);
@@ -46,7 +45,7 @@ public class ScenePixelImpl_UnitTests {
 	}
 
 	@Test
-	public void getPixelColor_WithHits_ExpectColor() throws RaytracerException {
+	public void getPixelColor_WithHits_ExpectColor() throws Exception {
 
 		int currentDepth = 0;
 		Color surfaceColor = new Color(0.1, 0.1, 0.1);

@@ -1,8 +1,8 @@
 package surface.csg.operation;
 
-import etc.HitData;
-import etc.RaytracerException;
 import org.apache.commons.lang3.NotImplementedException;
+
+import etc.HitData;
 import scene.ray.Ray;
 import surface.Surface;
 import util.Util;
@@ -37,8 +37,7 @@ public class BoundedBy implements Operation {
 	 * @throws RaytracerException
 	 */
 	@Override
-	public HitData getHitData(HitData leftHitData, HitData rightHitData, Ray ray)
-			throws RaytracerException {
+	public HitData getHitData(HitData leftHitData, HitData rightHitData, Ray ray) {
 		throw new NotImplementedException();
 		/* Some of this code may be useful... at some point. Hopefully the ideas will be.
 		 * 

@@ -3,13 +3,12 @@ package math;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import etc.RaytracerException;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 public class UVWFactoryImpl_UnitTests {
 	@Test
-	public void createUVW_WithMockParallelVectors_ExpectException() throws RaytracerException {
+	public void createUVW_WithMockParallelVectors_ExpectException() throws Exception {
 
 		Vector mockGaze = Mockito.mock(Vector.class);
 		Mockito.when(mockGaze.copy()).thenReturn(mockGaze);
@@ -26,14 +25,14 @@ public class UVWFactoryImpl_UnitTests {
 		Mockito.when(mockGaze.cross(mockUp)).thenReturn(mockWCrossT);
 
 		assertThrows(
-				RaytracerException.class,
+				Exception.class,
 				() -> {
 					classUnderTest.createUVW(mockUp, mockGaze);
 				});
 	}
 
 	@Test
-	public void createUVW_WithMockVectors_ExpectUVW() throws RaytracerException {
+	public void createUVW_WithMockVectors_ExpectUVW() throws Exception {
 
 		Vector mockGaze = Mockito.mock(Vector.class);
 		Vector mockWCrossTCrossW = Mockito.mock(Vector.class);

@@ -1,20 +1,19 @@
 package math;
 
-import etc.RaytracerException;
 import util.Constants;
 import util.UtilImpl;
 
 public class UVWFactoryImpl implements UVWFactory {
 
 	@Override
-	public UVW createUVW(Vector up, Vector gaze) throws RaytracerException {
+	public UVW createUVW(Vector up, Vector gaze) throws Exception {
 		Vector w = gaze.copy();
 		w = w.normalizeReturn();
 		Vector t = up.copy();
 		t = t.normalizeReturn();
 		Vector wCrossT = w.cross(t);
 		if (UtilImpl.doubleEqual(wCrossT.magnitude(), 0.0, Constants.POSITIVE_ZERO)) {
-			throw new RaytracerException(
+			throw new Exception(
 					"Can't instantiate UVW basis, the gaze and up vector are pointing in the same direction!");
 		}
 		wCrossT = wCrossT.normalizeReturn();

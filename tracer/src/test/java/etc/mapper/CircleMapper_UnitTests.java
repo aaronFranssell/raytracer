@@ -1,7 +1,6 @@
 package etc.mapper;
 
 import etc.Color;
-import etc.RaytracerException;
 import java.io.IOException;
 import math.Point;
 import org.junit.jupiter.api.Test;
@@ -11,7 +10,7 @@ import util.Util;
 public class CircleMapper_UnitTests {
 
 	@Test
-	public void getColor_WithMocks_ExpectColor() throws IOException, RaytracerException {
+	public void getColor_WithMocks_ExpectColor() throws IOException {
 
 		int[][][] fileBytes = new int[1][1][3];
 		fileBytes[0][0][0] = 7;

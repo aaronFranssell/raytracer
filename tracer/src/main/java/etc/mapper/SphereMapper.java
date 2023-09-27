@@ -1,8 +1,8 @@
 package etc.mapper;
 
-import etc.Color;
-import etc.RaytracerException;
 import java.io.IOException;
+
+import etc.Color;
 import math.Point;
 import util.Util;
 import util.UtilImpl;
@@ -13,7 +13,7 @@ public class SphereMapper extends ImageMapper {
 
 	public SphereMapper(
 			String filePath, Point incomingCenter, double incomingRadius, double incomingTextureScale)
-			throws RaytracerException {
+			throws Exception {
 		this(filePath, incomingCenter, incomingRadius, incomingTextureScale, new UtilImpl());
 	}
 
@@ -22,17 +22,13 @@ public class SphereMapper extends ImageMapper {
 			Point incomingCenter,
 			double incomingRadius,
 			double incomingTextureScale,
-			Util incomingUtil)
-			throws RaytracerException {
+			Util incomingUtil) throws IOException {
 		center = incomingCenter;
 		radius = incomingRadius;
 		util = incomingUtil;
 		textureScale = incomingTextureScale;
-		try {
-			super.readImage(filePath);
-		} catch (IOException e) {
-			throw new RaytracerException(e);
-		}
+
+		super.readImage(filePath);
 	}
 
 	@Override

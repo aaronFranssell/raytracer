@@ -3,7 +3,6 @@ package surface.csg.tree;
 import etc.Color;
 import etc.Effects;
 import etc.HitData;
-import etc.RaytracerException;
 import java.util.ArrayList;
 import math.Point;
 import math.Vector;
@@ -23,20 +22,20 @@ public class CSGTree extends Surface {
 	// private CSGTreeFactory factory;
 	private HitData lastHitResult;
 
-	public CSGTree(CSGTreeFactory incomingFactory) throws RaytracerException {
+	public CSGTree(CSGTreeFactory incomingFactory) {
 		// factory = incomingFactory;
 	}
 
-	public CSGTree() throws RaytracerException {
+	public CSGTree() {
 		this(new CSGTreeFactoryImpl());
 	}
 
 	/**
 	 * This function ensures that the incomingRoot is a valid CSGTree (all Surfaces with no children, all operations have children).
 	 */
-	public void validate(CSGNode currNode) throws RaytracerException {
+	public void validate(CSGNode currNode) throws Exception {
 		if (currNode == null) {
-			throw new RaytracerException("Node may not be null.");
+			throw new Exception("Node may not be null.");
 		}
 
 		if ((currNode.getLeftChild() != null && currNode.getRightChild() == null)
@@ -46,12 +45,12 @@ public class CSGTree extends Surface {
 		if (currNode.getLeftChild() == null
 				&& currNode.getRightChild() == null
 				&& currNode.getOperation() != null) {
-			throw new RaytracerException("Invalid CSGTree, an operation node has no children.");
+			throw new Exception("Invalid CSGTree, an operation node has no children.");
 		}
 		if (currNode.getLeftChild() != null
 				&& currNode.getRightChild() != null
 				&& currNode.getSurface() != null) {
-			throw new RaytracerException("Invalid CSGTree, a node has children and contains a surface.");
+			throw new Exception("Invalid CSGTree, a node has children and contains a surface.");
 		}
 		if (currNode.getLeftChild() != null) {
 			validate(currNode.getLeftChild());
@@ -63,9 +62,9 @@ public class CSGTree extends Surface {
 	}
 
 	@Override
-	public ArrayList<HitData> getHitData(Ray r) throws RaytracerException {
+	public ArrayList<HitData> getHitData(Ray r) throws Exception {
 		if (root == null) {
-			throw new RaytracerException(
+			throw new Exception(
 					"The root has not been set on this tree. Call setRoot() on this instance before use.");
 		}
 
@@ -83,7 +82,7 @@ public class CSGTree extends Surface {
 		throw new NotImplementedException();
 	}
 
-	public void setRoot(CSGNode incomingRoot) throws RaytracerException {
+	public void setRoot(CSGNode incomingRoot) throws Exception {
 		root = incomingRoot;
 		validate(root);
 		CSGNode node = getBottomLeftChild();

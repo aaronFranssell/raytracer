@@ -2,7 +2,6 @@ package util;
 
 import etc.Color;
 import etc.HitData;
-import etc.RaytracerException;
 import etc.Refractive;
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -124,8 +123,7 @@ public class UtilImpl implements Util {
 
 	@Override
 	public Color getReflectedColor(
-			Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel)
-			throws RaytracerException {
+			Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws Exception {
 		// r.getD().dot... code is for when the ray might be refracted inside of a surface.
 		// if the ray's dot product is > 0 then the ray is inside of a surface and does not need to
 		// be reflected
@@ -140,8 +138,7 @@ public class UtilImpl implements Util {
 
 	@Override
 	public Color getRefractedColor(
-			Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel)
-			throws RaytracerException {
+			Ray r, int currentDepth, HitData hit, Surface currSurface, ScenePixel pixel) throws Exception {
 		if (currSurface.getEffects().getRefractive() == null) {
 			return new Color(0.0, 0.0, 0.0);
 		}
@@ -157,7 +154,7 @@ public class UtilImpl implements Util {
 	}
 
 	@Override
-	public boolean isInShadow(Scene scene, Point light, HitData hitData) throws RaytracerException {
+	public boolean isInShadow(Scene scene, Point light, HitData hitData) throws Exception {
 		Vector d = light.minus(hitData.getP());
 		double distanceToLight = d.magnitude();
 		d = d.normalizeReturn();

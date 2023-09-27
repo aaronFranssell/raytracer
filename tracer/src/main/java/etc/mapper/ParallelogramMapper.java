@@ -1,8 +1,8 @@
 package etc.mapper;
 
-import etc.Color;
-import etc.RaytracerException;
 import java.io.IOException;
+
+import etc.Color;
 import math.Point;
 import math.Vector;
 import util.Util;
@@ -24,7 +24,7 @@ public class ParallelogramMapper extends ImageMapper {
 			Vector incomingV2,
 			Point incomingOrigin,
 			double incomingTextureScale)
-			throws RaytracerException {
+			throws Exception {
 		this(
 				incomingFilePath,
 				incomingV1,
@@ -40,8 +40,7 @@ public class ParallelogramMapper extends ImageMapper {
 			Vector incomingV2,
 			Point incomingOrigin,
 			double incomingTextureScale,
-			Util incomingUtil)
-			throws RaytracerException {
+			Util incomingUtil) throws IOException {
 		v1Mag = incomingV1.magnitude();
 		v2Mag = incomingV2.magnitude();
 		v1Unit = incomingV1.normalizeReturn();
@@ -49,11 +48,7 @@ public class ParallelogramMapper extends ImageMapper {
 		origin = incomingOrigin;
 		util = incomingUtil;
 		textureScale = incomingTextureScale;
-		try {
-			super.readImage(incomingFilePath);
-		} catch (IOException e) {
-			throw new RaytracerException(e);
-		}
+		super.readImage(incomingFilePath);
 	}
 
 	@Override
