@@ -65,3 +65,6 @@ _ReSharper*/
 
 #NuGet
 packages/
+
+**/bin
+*.class
