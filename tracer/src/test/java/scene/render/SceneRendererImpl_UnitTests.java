@@ -80,7 +80,7 @@ public class SceneRendererImpl_UnitTests {
 				.thenReturn(mockResultsConverter);
 		Mockito.when(mockResultsConverter.getImageFromResults()).thenReturn(retImage);
 
-		SceneRendererImpl classUnderTest = new SceneRendererImpl(
+		SceneRenderer classUnderTest = new SceneRenderer(
 				up,
 				gaze,
 				eye,

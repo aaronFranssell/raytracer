@@ -12,7 +12,6 @@ import java.util.concurrent.Future;
 import math.Point;
 import math.UVW;
 import math.UVWFactory;
-import math.UVWFactoryImpl;
 import math.Vector;
 import scene.Scene;
 import scene.render.factory.ExecutorServiceFactory;
@@ -27,7 +26,7 @@ import scene.viewer.factory.ViewingVolumeFactoryImpl;
 import util.stopwatch.StopWatch;
 import util.stopwatch.StopWatchImpl;
 
-public class SceneRendererImpl {
+public class SceneRenderer {
 	private Vector up;
 	private Vector gaze;
 	private Point eye;
@@ -45,7 +44,7 @@ public class SceneRendererImpl {
 	private ExecutorService workers;
 	private int maxDepth;
 
-	public SceneRendererImpl(
+	public SceneRenderer(
 			Vector incomingUp,
 			Vector incomingGaze,
 			Point incomingEye,
@@ -86,7 +85,7 @@ public class SceneRendererImpl {
 		maxDepth = incomingMaxDepth;
 	}
 
-	public SceneRendererImpl(
+	public SceneRenderer(
 			Vector incomingUp,
 			Vector incomingGaze,
 			Point incomingEye,
@@ -114,7 +113,7 @@ public class SceneRendererImpl {
 				incomingNumThreads,
 				incomingScene,
 				incomingLight,
-				new UVWFactoryImpl(),
+				new UVWFactory(),
 				new StopWatchImpl(),
 				new RenderThreadFactoryImpl(),
 				new ViewingVolumeFactoryImpl(),

@@ -17,7 +17,7 @@ public class UVWFactoryImpl_UnitTests {
 		Vector mockUp = Mockito.mock(Vector.class);
 		Mockito.when(mockUp.copy()).thenReturn(mockUp);
 		Mockito.when(mockUp.normalizeReturn()).thenReturn(mockUp);
-		UVWFactoryImpl classUnderTest = new UVWFactoryImpl();
+		UVWFactory classUnderTest = new UVWFactory();
 
 		Vector mockWCrossT = Mockito.mock(Vector.class);
 		Mockito.when(mockWCrossT.magnitude()).thenReturn(0.0);
@@ -50,7 +50,7 @@ public class UVWFactoryImpl_UnitTests {
 		Mockito.when(mockUp.copy()).thenReturn(mockUp);
 		Mockito.when(mockUp.normalizeReturn()).thenReturn(mockUp);
 
-		UVWFactoryImpl classUnderTest = new UVWFactoryImpl();
+		UVWFactory classUnderTest = new UVWFactory();
 
 		UVW retUVW = classUnderTest.createUVW(mockUp, mockGaze);
 

@@ -159,7 +159,7 @@ public class SceneRendererImpl_TestsHelper {
 		Point light = new Point(0.0, 100.0, 100.0);
 
 		Scene scene = new SceneImpl(surfaceList);
-		SceneRendererImpl renderer = new SceneRendererImpl(
+		SceneRenderer renderer = new SceneRenderer(
 				up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light, maxDepth);
 		RenderResult result = renderer.render();
 
