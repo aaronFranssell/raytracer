@@ -12,7 +12,7 @@ import etc.HitData;
 import scene.ray.Ray;
 import surface.Surface;
 
-public class SceneImpl_UnitTests {
+public class Scene_UnitTests {
 	@Test
 	public void getSmallestPositiveHitData_WithNoHits_ExpectMiss() throws Exception {
 
@@ -25,7 +25,7 @@ public class SceneImpl_UnitTests {
 		Mockito.when(mockSurface.getHitData(mockRay)).thenReturn(misses);
 		ArrayList<Surface> surfaces = new ArrayList<Surface>();
 
-		SceneImpl classUnderTest = new SceneImpl(surfaces);
+		Scene classUnderTest = new Scene(surfaces);
 
 		HitData smallest = classUnderTest.getSmallestPositiveHitDataOrReturnMiss(mockRay);
 
@@ -33,8 +33,7 @@ public class SceneImpl_UnitTests {
 	}
 
 	@Test
-	public void getSmallestPositiveHitData_WithAllNegativeHits_ExpectMiss()
-			throws Exception {
+	public void getSmallestPositiveHitData_WithAllNegativeHits_ExpectMiss() throws Exception {
 
 		Ray mockRay = Mockito.mock(Ray.class);
 		Surface mockSurface = Mockito.mock(Surface.class);
@@ -48,7 +47,7 @@ public class SceneImpl_UnitTests {
 		ArrayList<Surface> surfaces = new ArrayList<Surface>();
 		surfaces.add(mockSurface);
 
-		SceneImpl classUnderTest = new SceneImpl(surfaces);
+		Scene classUnderTest = new Scene(surfaces);
 
 		HitData smallest = classUnderTest.getSmallestPositiveHitDataOrReturnMiss(mockRay);
 
@@ -78,7 +77,7 @@ public class SceneImpl_UnitTests {
 		ArrayList<Surface> surfaces = new ArrayList<Surface>();
 		surfaces.add(mockSurface);
 
-		SceneImpl classUnderTest = new SceneImpl(surfaces);
+		Scene classUnderTest = new Scene(surfaces);
 
 		HitData smallest = classUnderTest.getSmallestPositiveHitDataOrReturnMiss(mockRay);
 

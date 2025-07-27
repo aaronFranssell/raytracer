@@ -14,7 +14,6 @@ import math.Vector;
 import noise.noiseClasses.NoiseStone;
 import noise.noiseClasses.NoiseWood;
 import scene.Scene;
-import scene.SceneImpl;
 import surface.Surface;
 import surface.primitives.Cone;
 import surface.primitives.Cylinder;
@@ -158,7 +157,7 @@ public class SceneRendererImpl_TestsHelper {
 		int maxDepth = 6;
 		Point light = new Point(0.0, 100.0, 100.0);
 
-		Scene scene = new SceneImpl(surfaceList);
+		Scene scene = new Scene(surfaceList);
 		SceneRenderer renderer = new SceneRenderer(
 				up, gaze, eye, left, right, top, bottom, width, height, 3, scene, light, maxDepth);
 		RenderResult result = renderer.render();

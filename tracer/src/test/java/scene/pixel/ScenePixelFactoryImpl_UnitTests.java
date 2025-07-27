@@ -5,13 +5,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import math.Point;
 import org.junit.jupiter.api.Test;
 import scene.Scene;
-import scene.SceneImpl;
 
 public class ScenePixelFactoryImpl_UnitTests {
 	@Test
 	public void createScenePixel_WithValidValue_ExpectScenePixel() {
 
-		Scene scene = new SceneImpl(null);
+		Scene scene = new Scene(null);
 		Point eye = new Point(0.0, 0.0, 0.0);
 		Point light = new Point(0.0, 0.0, 0.0);
 		ScenePixelFactoryImpl classUnderTest = new ScenePixelFactoryImpl();
