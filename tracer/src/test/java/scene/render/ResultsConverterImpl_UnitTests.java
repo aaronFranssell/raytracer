@@ -77,7 +77,7 @@ public class ResultsConverterImpl_UnitTests {
 		ResultsScaler mockScaler = Mockito.mock(ResultsScaler.class);
 		Mockito.when(mockScaler.scale(Mockito.any(int[][][].class))).thenReturn(combinedArray);
 
-		ResultsConverterImpl classUnderTest = new ResultsConverterImpl(resultsList, width, height, mockScaler, mockImage);
+		ResultsConverter classUnderTest = new ResultsConverter(resultsList, width, height, mockScaler, mockImage);
 
 		BufferedImage retImage = classUnderTest.getImageFromResults();
 

@@ -4,7 +4,6 @@ import math.Point;
 import math.UVW;
 import scene.Scene;
 import scene.render.RenderThread;
-import scene.render.RenderThreadImpl;
 import scene.viewer.ViewingVolume;
 
 public class RenderThreadFactoryImpl implements RenderThreadFactory {
@@ -20,7 +19,7 @@ public class RenderThreadFactoryImpl implements RenderThreadFactory {
 			int incomingStartHeight,
 			int incomingThreadHeight,
 			int incomingHeight) {
-		return new RenderThreadImpl(
+		return new RenderThread(
 				incomingEye,
 				incomingVolume,
 				incomingPictureWidth,

@@ -46,7 +46,7 @@ public class RenderThreadImpl_UnitTests {
 		Mockito.when(mockPixelFactory.createScenePixel(mockScene, eye, light, maxDepth))
 				.thenReturn(mockPixel);
 
-		RenderThreadImpl classUnderTest = new RenderThreadImpl(
+		RenderThread classUnderTest = new RenderThread(
 				eye,
 				volume,
 				width,
